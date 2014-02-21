@@ -1,0 +1,128 @@
+<style type="text/css">
+    .hdiv
+    {
+        width: 450px;
+        height: 250px;
+        border-radius: 10px;
+        border: 1px solid #667c8d;
+        padding: 5px 0px 0px 0px;
+        margin: 0px 0px 0px 10px;
+    }
+    .hTable td
+    {
+        height: 30px;
+    }
+    .htableTd0
+    {
+        width: 60px;
+        text-align: right;
+        padding: 1px;
+    }
+    .htableTd1
+    {
+        width: 130px;
+        text-align: left;
+        padding: 1px;
+    }
+    .htableTd1 input[type='text']
+    {
+        width: 80%;
+        font-size: 8px;
+        font-family: '微软雅黑' ,Arial;
+    }
+    .htableTd2
+    {
+        width: 130px;
+        text-align: left;
+        padding: 1px;
+    }
+</style>
+<div class="hdiv">
+    <table class="hTable">
+        <tr>
+            <td class="htableTd0">
+                表达式:
+            </td>
+            <td class="htableTd1" colspan="3">
+                <input type="text" id="expression" value="var" />
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd0" >
+                何时禁用:
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd1" colspan="4">
+                　　　　　<input type="radio" name="Estate" value="0" />表达式为真
+                　　　　　<input type="radio" name="Estate" value="1" />表达式为假
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd0">
+            </td>
+            <td class="htableTd1">
+            </td>
+            <td class="htableTd0">
+            </td>
+            <td class="htableTd1">
+                
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<script type="text/javascript">
+    //宽度变化
+    //1.数据
+    //初始化宽度变化所对应的对象
+    var isEnable = false;
+    //获取当前控件对象
+    var control = Agi.Edit.workspace.currentControls[0];
+    //获取属性配置
+    var PropertySettings = control.Get("PropertySettings");
+    var animations = PropertySettings.animations;
+    for (var i = 0; i < animations.length; i++) {
+        var animation = animations[i];
+        if (animation.type == "isEnable") {
+            isEnable = animation;
+        }
+    }
+    //2.默认值
+    if (!isEnable) {
+        isEnable = {
+            type: "isEnable",
+            expression: "var",
+                Estate: 0
+        }
+    }
+    //3.绑定值
+    debugger;
+    $("#expression").val(isEnable.expression);
+    $("input[name=Estate]:eq(" + parseInt(isEnable.Estate) + ")").attr("checked", 'checked');
+    //3、添加和删除
+    function doAnimationAdd() {
+        debugger;
+        isEnable.expression = $("#expression").val();
+        isEnable.Estate = $('input[name="Estate"]:checked').val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(isEnable);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            if (animation.type == "isEnable") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

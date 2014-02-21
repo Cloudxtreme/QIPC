@@ -1,0 +1,27 @@
+.canvas{
+    /*border: 1px solid #e3e3e3;*/
+    /*width: auto;*/
+    /*--min-height: 570px;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*background-color: #ffe4fb;*/
+}
+.cell{
+    border:2px dashed #000;
+    border-radius: 3px;
+    height: 100%;
+    position: relative;
+    padding: 3px;
+}
+.row-fluid{
+    margin-top: 5px;
+}
+
+.control-group:first-child label{
+    display: none;
+}
+
+/*.ui-dialog-titlebar{*/
+    /*--background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));*/
+    /*color: #fff;*/
+/*}*/

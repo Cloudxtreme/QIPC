@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="pcchartPropertyTab">
+<div id="popTab">
+
+    <!--图形属性-基本设置-->
+    <div id="ptab-1" class="PCChart_Pro_Panel">
+        <table class="PCChart_prortityPanelTable">
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">数据列:</td>
+                <td colspan="3">
+                    <select id="chartColumn" class="input-mini"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">子组大小:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartGroup"/></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">规格下限:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartStdLower"/>
+                    <input type="checkbox" id="chartStdLowerBox" style="margin-top:-4px;width:auto;"/>边界(N)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">规格上限:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartStdUpper"/>
+                    <input type="checkbox" id="chartStdUpperBox" style="margin-top:-4px;width:auto;"/>边界(D)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">历史均值:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartHisVal"/>(可选)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">历史标准差:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartHisStd"/>(可选)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd0">目标:</td>
+                <td class="PCChart_prortityPanelTabletd1"><input type="text" id="chartTargetVal"/></td>
+            </tr>
+            <tr>
+                <td><div id='pop1Save'  class='PCChartPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-标准差估计-->
+    <div id="ptab-2" class="PCChart_Pro_Panel">
+        <table class="PCChart_prortityPanelTable">
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">估计子组内标准差得方法</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">(子组大小>1)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="stdLg1" value="Rbar" />Rbar(R)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" value="Sbar" name="stdLg1"/>Sbar(S)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" value="mergeStdDev" name="stdLg1" checked="true"/>合并标准差(P)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">(子组大小=1)</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="std1" value="movRangeAvg" checked="true"/>移动极差均值(A)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="std1" value="movRangeMid"/>移动极差中位数(D)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="std1" value="squareRootOfMeanSquareDev"/>均方递差的平方根(Q)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">移动极差使用长度(V):<input type="number" id="chartRangeLength" value="2"/></td>
+            </tr>
+            <tr>               
+                <td><div id='pop2Save'  class='PCChartPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-图形选项-->
+    <div id="ptab-3" class="PCChart_Pro_Panel">
+        <table class="PCChart_prortityPanelTable">
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">使用K*sigma|K = <input type="number" id="chartSigmaVal" value="6"/></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">显示</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="chartView" value="ppm" checked="true"/>百万分之(P)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="chartView" value="hpm"/>百分比(R)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1" height="10px" bgcolor="#dcdcdc"></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="chartView2" value="ablity" checked="true"/>能力统计量(Cp、Pp)(L)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="chartView2" value="ZVal"/>水平对比Z值(西格玛水平)(E)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1" height="10px" bgcolor="#dcdcdc"></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">
+                    <div><input type="checkbox" id="confidenceBox"/>包括置信区间(N)</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd2" style="padding-left: 65px">
+                    置信水平:<input type="number" disabled="true" id="chartLevel" value="95.0"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd2" style="padding-left: 65px">置信区间:
+                    <select id="chartRange" class="input-mini" disabled="true">
+                        <option value="upper">上限</option>
+                        <option value="lower">下限</option>
+                        <option value="double" selected="true">双限</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">进行分析</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">
+                    <input type="checkbox" id="chartGrpAnaBox" checked="true"/>子组内分析(W)
+                    <input type="checkbox" id="chartWholeAnaBox" checked="true"/>整体分析(V)</td>
+            </tr>
+            <tr>
+                <td><div id='pop3Save'  class='PCChartPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-正太性检验-->
+    <div id="ptab-4" class="PCChart_Pro_Panel">
+        <table class="PCChart_prortityPanelTable">
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1">正太性检验</td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="tnormalRadio" value="anderson" checked="true"/>Anderson-Darling(A)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="tnormalRadio" value="ryan"/>Ryan-Joiner(R)(与Shapiro-Wilk 类似)</div></td>
+            </tr>
+            <tr>
+                <td class="PCChart_prortityPanelTabletd1"><div><input type="radio" name="tnormalRadio" value="kolmogorov"/>Kolmogorov-Smirnov (K)</div></td>
+            </tr>
+            <tr>
+                <td><div id='pop4Save'  class='PCChartPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+        </table>
+        </div>
+</div>
+</div>
+</body>
+</html>

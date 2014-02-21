@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+<div id="popTab">
+    <!--图形属性-基本设置-->
+    <div id="ptab-1" class="CstSigleChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">数据列:</td>
+                <td colspan="3">
+                    <select id="chartColumn" class="input-mini"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">子组大小:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartGroup"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">规格下限:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartStdLower"/>
+                    <input type="checkbox" id="chartStdLowerBox" style="margin-top:-4px;width:auto;"/>边界(N)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">规格上限:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartStdUpper"/>
+                    <input type="checkbox" id="chartStdUpperBox" style="margin-top:-4px;width:auto;"/>边界(D)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">历史均值:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartHisVal"/>(可选)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">历史标准差:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartHisStd"/>(可选)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">目标:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="chartTargetVal"/></td>
+            </tr>
+            <tr>
+                <td><input id="pop1Save" type="button"  value="保存"/></td>
+                <td><input id="pop1Cancel" type="button"  value="取消"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-标准差估计-->
+    <div id="ptab-2" class="CstSigleChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">估计子组内标准差得方法</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">(子组大小>1)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="stdLg1"/>Rbar(R)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="stdLg1"/>Sbar(S)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="stdLg1"/>合并标准差(P)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">(子组大小=1)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="std1"/>移动极差均值(A)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="std1"/>>移动极差中位数(D)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="std1"/>均方递差的平方根(Q)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">移动极差使用长度(V):</td>
+                <td class="CustomprortityPanelTabletd1"><input type="number" id="chartRangeLength" value="2"/></td>
+            </tr>
+            <tr>
+                <td><input id="pop2Save" type="button"  value="保存"/></td>
+                <td><input id="pop2Cancel" type="button"  value="取消"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-图形选项-->
+    <div id="ptab-3" class="CstSigleChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">使用K*sigma|K =</td>
+                <td class="CustomprortityPanelTabletd1"><input type="number" id="chartSigmaVal" value="6"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">显示</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="chartView"/>百万分之(P)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="chartView"/>百分比(R)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="chartView"/>能力统计量(Cp、Pp)(L)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="chartView"/>水平对比Z值(西格玛水平)(E)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="checkbox"/>包括置信区间(N)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">置信水平:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="number" id="chartLevel" value="95.0"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">置信区间:</td>
+                <td class="CustomprortityPanelTabletd1">
+                    <select id="chartRange" class="input-mini">
+                        <option value="U">上限</option><option value="L">下限</option><option value="D">双限</option></select></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">进行分析</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">
+                    <input type="checkbox" id="chartGrpAnaBox" checked="true"/>子组内分析(W)
+                    <input type="checkbox" id="chartWholeAnaBox" checked="true"/>整体分析(V)</td>
+            </tr>
+            <tr>
+                <td><input id="pop3Save" type="button"  value="保存"/></td>
+                <td><input id="pop3Cancel" type="button"  value="取消"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--图形属性-正太性检验-->
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">正太性检验</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="tnormalRadio"/>Anderson-Darling(A)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="tnormalRadio"/>Ryan-Joiner(R)</div></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">(与Shapiro-Wilk 类似)</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"><div><input type="radio" name="tnormalRadio"/>Kolmogorov-Smirnov (K)</div></td>
+            </tr>
+            <tr>
+                <td><input id="pop4Save" type="button"  value="保存"/></td>
+                <td><input id="pop4Cancel" type="button"  value="取消"/></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,403 @@
+/*所有控件的外壳*/
+.PanelSty
+{
+    /*-webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;*/
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    position: absolute;
+    height: auto;
+}
+
+.ProtiyPanel_ItemContentOpenSty .control-group{
+    margin-bottom: 2px;
+}
+
+.selectPanelheadSty{
+    width: 100%;
+    height: 20px;
+    line-height: 16px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    color: #fff;
+    cursor: move;
+}
+.selectPanelBodySty{
+    width: 100%;
+    height: 100%;
+    background-color:transparent;
+}
+.selectPanelFooterSty{
+    width: 100%;
+    height: 14px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+}
+
+
+
+#BasicPropertyPanel
+{
+    width: 220px;
+}
+#BasicPropertyPanel .BasicPropertyPanel_sty table td{
+    line-height: 30px;
+    height: 30px;
+}
+.BasicProPanel_Itemleft
+{
+    text-align: right;
+}
+.BasicProPanel_Controls_Sty
+{
+    width: 145px;margin-left: 0px;
+}
+.BasicProPanel_Number_sty
+{
+    width:130px;
+}
+.BasicProPanel_Senior_btnsty
+{
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    float:right;
+    clear: both;
+}
+
+/*自定义属性面板样式*/
+.ProtiyPanel_ContentSty{
+    width:340px;
+    height: auto;
+    margin-left: 10px;
+}
+.ProtiyPanel_ItemSty
+{
+    width: 100%;height:auto;margin: 2px 0px 2px 0px;
+}
+.ProtiyPanel_ItemHeadOpenSty
+{
+    width: 100%;
+    height: 17px;
+    line-height: 17px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#070b13), to(#555f6f));
+    border:1px solid #667c8d;
+    display:box;
+    display:-webkit-box;
+    display:-moz-box;
+}
+.ProtiyPanel_ItemHeadCloseSty
+{
+    width: 100%;
+    height: 17px;
+    line-height: 17px;
+    background:#f0f1f4;
+    border:1px solid #667c8d;
+    display:box;
+    display:-webkit-box;
+    display:-moz-box;
+}
+.ProtiyPanel_ItemOpenStateOpenSty
+{
+    width:16px;height: 17px;
+    background-color: #ffffff;
+    background-image: url("img/Minus-black.png");
+    cursor: pointer;
+}
+.ProtiyPanel_ItemOpenStateCloseSty
+{
+    width:16px;height: 17px;
+    background-color: #000000;
+    background-image: url("img/plus-white.png");
+    cursor: pointer;
+}
+.ProtiyPanel_ItemTitleOpenSty
+{
+    box-flex:2;
+    -moz-box-flex:2;
+    -webkit-box-flex:2;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    text-indent: 1em;
+}
+.ProtiyPanel_ItemTitleCloseSty
+{
+    box-flex:2;
+    -moz-box-flex:2;
+    -webkit-box-flex:2;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    text-indent: 1em;
+}
+.ProtiyPanel_ItemDisabled1Sty
+{
+    width:35px;height: 14px;
+    /*暂时未实现此功能*/
+    /*background:url(img/hook2-selected.png) no-repeat top center;*/
+    /*cursor: pointer;*/
+}
+.ProtiyPanel_ItemDisabled0Sty
+{
+    width:35px;height: 14px;
+    /*暂时未实现此功能*/
+    /*background:url(img/hook2-unselected.png) no-repeat top center;*/
+    /*cursor: pointer;*/
+}
+.ProtiyPanel_ItemDisabled2Sty
+{
+    width:35px;height: 14px;
+}
+.ProtiyPanel_ItemContentOpenSty
+{
+    display: block;
+}
+.ProtiyPanel_ItemContentCloseSty
+{
+    display: none;
+}
+/*下拉列表框*/
+.selectbox{padding-left:4px;border:none; display:block; cursor:pointer; background:url("img/beautifyselectbg.png") right no-repeat}
+div.selectbox-wrapper{width:auto; border:1px solid #b7d1eb; border-top:none; margin-top:-3px; position:absolute; text-align:left; background-color:#ffffff}
+div.selectbox-wrapper ul li{width:auto; padding-left:4px; cursor:pointer; line-height:20px; font-size:11px;font-family: '微软雅黑'}
+div.selectbox-wrapper ul li.selected{background-color:#e0ecf7}
+div.selectbox-wrapper ul li.hover{color:#ffffff; background-color:#36c}
+/*编辑界面 Grid Tabs样式*/
+.EditControlEntityTabsRow
+{
+    width:100%;height: 35px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    color: #ffffff;
+    font-family:'微软雅黑',arial;
+    font-size: 12px;
+}
+.EditControlEntityTabsitemsty
+{
+    width:auto;
+    height: 23px;
+    line-height: 23px;
+    float:left;
+    margin-top: 2px;
+    padding: 3px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#236DA1), to(#2F93D9));
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border:1px solid #9f9f9f;
+    color: #ffffff;
+    cursor: pointer;
+}
+.EditControlEntityTabsitemseledsty
+{
+    width:auto;
+    height: 23px;
+    line-height: 23px;
+    float:left;
+    margin-top: 2px;
+    padding: 3px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dcdcdc), to(#ffffff));
+    border:1px solid #9f9f9f;
+    color: #000000;
+    cursor: pointer;
+}
+.EditPageDatatabsGridsty
+{
+    width: 100%;height: auto;
+}
+/*#BasicProPanel_Width{-webkit-}*/
+/*:-webkit-*/
+/*#BasicProPanel_Senior{
+text-align:center;
+}*/
+/*颜色选择控件*/
+.ControlColorSelPanelSty
+{
+    width: 18px;
+    height: 18px;
+    border-radius:3px;
+    cursor: pointer;
+    margin: 4px;
+    position: relative;
+    border:2px solid #ffffff;
+    -webkit-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+    -moz-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+}
+
+/*SCP 控件钻取，属性面板样式信息 start*/
+.CustomControl_Pro_Panel{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.CustomControlproPanelTable{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: bold;
+    font-family: '微软雅黑', Arial;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+.CustomControlproPanelTable td {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+.CustomControlproPanelTable td input {
+    margin-left: 0px;
+    width:95%;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomControlproPanelTable td select {
+    margin-left: 0px;
+    width:95%;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomControlproPanelTabletd0{
+    margin-left: 0px;
+    width:80px;
+    text-align: right;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+    text-indent:10px;
+}
+.CustomControlproPanelTabletd0max{
+    margin-left: 0px;
+    width:90px;
+    text-align: right;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+    text-indent:10px;
+}
+.CustomControlproPanelTabletd1 {
+    text-align: left;
+    padding: 1px;
+    min-width: 60px;
+}
+.CustomControlproPanelTabletd1 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomControlproPanelTabletd1 input[type='text'] {
+    width: 80px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomControlproPanelTabletd2 {
+    text-align: left;
+    padding: 1px;
+}
+.CustomControlproPanelTabletd2 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+/*新增,按钮*/
+.CustomControlProbtnAdd {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("img/plus-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+/*保存,按钮*/
+.CustomControlProbtnSave {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+/*删除,按钮*/
+.CustomControlProbtnDelete {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("img/cross-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+/*取消,按钮*/
+.CustomControlProbtnRedo {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("img/redo.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+/*按钮清除浮动*/
+.CustomControlProbtnfloatclear{
+    clear: both;
+    width:0px;
+    height:0px;
+    line-height:0px;
+    font-size:0px;
+}
+/*参数设置*/
+.CustomControlExtracturlinput{
+    width:150px;
+}
+.CustomCtrlExtParsHeadSty{
+    width: 100%;height:auto;display:box;display:-webkit-box;display:-moz-box;border-bottom: dotted 1px #000000;
+}
+.CustomCtrlExtParsitem{
+    width: 100%;height:auto;display:box;display:-webkit-box;display:-moz-box;border-bottom: dotted 1px #000000;font-weight:normal;
+}
+.CustomCtrlExtParsitem_selected{
+    width: 100%;height:auto;display:box;display:-webkit-box;display:-moz-box;background-color:#f0713a;
+}
+.CustomCtrlExtParsheadCellSty{
+    text-align: left;
+    background-color:#dcdcdc;
+    padding-left: 10px;
+    width:102px;
+}
+.CustomCtrlExtParsCellSty{
+    text-align: left;
+    padding-left: 10px;
+    width:102px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.CustomCtrlExtParsListPanelsty{
+    width: 100%;height:auto;overflow: auto;
+}
+.CustomControlProRowtdsty{
+    width:100%;height:100%;background-color: aliceblue;text-align: center;
+}
+.CustomControlProhidenValue{
+    display: none;width:0px;height:0px;font-size:0px;
+}
+/*SCP 控件钻取，属性面板样式信息 end*/

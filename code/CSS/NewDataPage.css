@@ -1,0 +1,1231 @@
+﻿#NewDataSourcePage
+{
+      padding:20px 20px 0px 20px;
+      margin:20px 0px 0px 0px;
+      background-color:#fff;
+      border-radius:3px;
+      -webkit-box-shadow: 0 0 3px #040d14;
+      width:70%;
+	 height:480px;
+       display: -webkit-box;
+      -webkit-box-orient:vertical;
+    -webkit-box-align:left; 
+    overflow:auto;
+    }
+    
+.OutDivd
+{
+    display: -webkit-box;
+    margin-bottom:3px;
+    }    
+    
+.innerLeft
+{
+    width:160px;
+    margin-left:100px;
+    display: -webkit-box;
+    -webkit-box-align:left; 
+    }    
+
+.innerRight
+{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    display: -webkit-box;
+    -webkit-box-align:left; 
+    }    
+    
+.labelSty
+{
+    color:Black;
+    font-size:14px;
+    font-family:'微软雅黑';
+    }    
+    
+.textSty
+{
+    width:200px;
+    --height:20px;
+    margin-left:20px;
+    border:1px solid #d3d5db;  
+    border-radius:5px; 
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(255,255,255)),
+    color-stop(1, rgb(232,231,231))
+);
+    }  
+    
+.textareaSty
+{
+     border:1px solid #d3d5db;  
+     width:200px;
+    height:40px;
+    border-radius:5px; 
+    margin-left:20px;
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(255,255,255)),
+    color-stop(1, rgb(232,231,231))
+);
+    }  
+    .textareaSty1
+{
+     border:1px solid #d3d5db;  
+     width:90%;
+    height:200px;
+    border-radius:5px; 
+    margin-left:2px;
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(255,255,255)),
+    color-stop(1, rgb(232,231,231))
+);
+   margin-bottom:20px;
+   margin-top:0px;
+   margin-left:50px;
+   margin-right:30px;
+   overflow:auto;
+    } 
+#NewDataSourceSaveBtn
+{
+    width:120px;
+    height:25px;
+    margin-left:260px;
+    margin-top:20px;
+    margin-bottom:20px;
+    color:Black;
+    font-size:15px;
+    font-family:微软雅黑;
+    border-radius:5px; 
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(235,233,233)),
+    color-stop(1, rgb(203,202,202))
+);
+    }
+    
+#NewDataSourceSaveBtn:hover
+{
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(203,202,202)),
+    color-stop(1, rgb(235,233,233))
+);
+    }     
+    
+#lineDiv
+{
+    height:1px;
+   background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    right bottom,
+    color-stop(0, rgb(255,255,255)),
+    color-stop(0.5, rgb(112,115,122)),
+    color-stop(1, rgb(255,255,255))
+);
+    opacity:0.5;
+    width:100%;
+    }    
+    
+#NewVirtualtableSelectPage
+{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    background-color:Transparent;
+    padding:20px 0px 0px 10px;
+    color:#000;
+    margin-left:50px;
+    }
+    
+.VirtualTitle,.SelectVirtualWay
+{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    margin-bottom:20px;
+    }  
+    
+      
+    
+.NextVirtual
+{
+    margin:50px 0px 0px 300px;
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    }   
+    
+.NextVirtualBtn
+{
+    width:80px;
+    height:23px;
+     border-radius:5px;
+     border:1px solid #768d96;
+    margin-right:30px;
+     background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(203,202,202)),
+    color-stop(1, rgb(235,233,233))
+);
+    }    
+    
+.NextVirtualBtn:hover
+{
+ background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(235,233,233)),
+    color-stop(1, rgb(203,202,202))
+);
+    }    
+
+.CancelVirtualBtn
+{
+    width:80px;
+    height:23px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(203,202,202)),
+    color-stop(1, rgb(235,233,233))
+);
+    }    
+#ShowVirtualtableSource input[type="button"]{
+    width: 100px;
+}
+.CancelVirtualBtn:hover
+{
+    background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(235,233,233)),
+    color-stop(1, rgb(203,202,202))
+);
+    }    
+    
+.SelectVirtualWay
+{
+    margin-left:100px;
+    }    
+    
+.SelectVirtual
+{
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    margin-bottom:30px;
+    }     
+
+.VirtualBigText
+{
+    font-size:16px;
+    }
+    
+.VirtualSmallText
+{
+    font-size:14px;
+    }    
+    
+.VirtualRadio
+{
+    margin-right:20px;
+    }    
+    
+#ShowVirtualtableSource
+{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    background-color:Transparent;
+    padding:50px 0px 0px 10px;
+    }        
+    
+.SelectDbOK
+{
+    margin:30px 0px 0px 50px;
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    }    
+    
+
+    
+#clientsDb {
+                    width: 600px;
+                    height: 300px;
+                    margin:0px;
+                }         
+                
+.VirtualDBTitle
+{
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    margin-bottom:20px;
+    color:#000;
+    }               
+    
+ #AllListDiv
+        {
+            width:90%;
+            height:80%;
+            margin-top:30px;
+            padding:10px 30px 10px 30px;
+            display: -webkit-box;
+            -webkit-box-orient:vertical;
+            background-color:#fff;
+            border-radius:3px;
+            -webkit-box-shadow: 0 0 3px #040d14;
+            overflow:auto;
+            }
+           .ListTitle
+           {
+               color:#000;
+               font-family:微软雅黑;
+               font-size:20px;
+               }
+         .ShowList
+         {
+             width:auto;
+            height:auto;
+            margin-top:20px;
+             display: -webkit-box;
+            -webkit-box-orient:vertical;
+             }   
+           .textinput
+           {
+                width:auto;
+                margin-left:30px;
+                background-color:Transparent;
+                text-shadow: 0px 2px 2px #ccc;
+                color:#000;
+                font-family:微软雅黑;
+                font-size:18px;
+                border:0px;
+                margin:0px 0px 20px 0px;
+               }
+            
+ #Detailquery
+        {
+            width:90%;
+            height:auto;
+            display: -webkit-box;
+            -webkit-box-orient:vertical;
+            padding:10px;
+            }
+           .OverT
+           {
+             display: -webkit-box;
+            -webkit-box-orient:vertical;
+            margin-top:20px;
+            padding:20px 20px 30px 20px;
+            border-radius:10px;
+               }       
+  
+  
+  /*实时数据源块样式*/
+#NewRTDBPage
+{
+      padding:20px 20px 0px 20px;
+      margin:50px 0px 0px 0px;
+      background-color:#fff;
+      border-radius:3px;
+      -webkit-box-shadow: 0 0 3px #040d14;
+      width:70%;
+	 height:380px;
+       display: -webkit-box;
+      -webkit-box-orient:vertical;
+    -webkit-box-align:left; 
+    overflow:auto;
+    }
+    
+ .RTlabelSty
+ {
+     margin-right: 30px;
+    width: 150px;
+    height: 30px;
+     }   
+  
+    .RTPopupBtn
+  {
+    width:100px;
+    height:25px;
+     border-radius:5px;
+     border:1px solid #768d96;
+     margin-top:50px;
+    margin-left:300px;
+     background-image:-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(203,202,202)),
+    color-stop(1, rgb(235,233,233))
+);
+      }
+  .RTPopupBtn:hover
+  {
+      background-image: -webkit-gradient(
+ linear,
+ left bottom,
+ left top,
+ color-stop(0, #EBE9E9),
+ color-stop(1, #CBCACA)
+ );
+      }
+/*点位号相关样式------------------------------------------------------------------------------------------------------------------------------*/
+.TagBorderClass{
+    width:90%;
+    height:80%;
+    margin-top:30px;
+    padding:10px 30px 10px 30px;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    background-color:#fff;
+    border-radius:3px;
+    -webkit-box-shadow: 0 0 3px #040d14;
+    overflow:auto;
+}
+#tagNameDiv{
+    padding:20px 20px 0px 20px;
+    margin:20px 0px 0px 0px;
+    background-color:#fff;
+    border-radius:10px;
+    -webkit-box-shadow: 0 0 3px #040d14;
+    width:80%;
+    height:480px;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-box-align:left;
+    overflow:auto;
+}
+/*#tagTabPage{*/
+    /*width:80%;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : vertical;*/
+    /*-webkit-box-orient : vertical;*/
+    /*margin:20px;*/
+    /*border-radius:3px;*/
+    /*padding-bottom:10px;*/
+    /*background-color:Transparent;*/
+/*}*/
+/*#tagtop{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : horizontal;*/
+    /*-webkit-box-orient : horizontal;*/
+    /*height:auto;*/
+    /*-webkit-border-radius:10px;*/
+/*}*/
+/*#tagtop div{*/
+    /*background-color:#fff;*/
+    /*border-top-left-radius:3px;*/
+    /*border-top-right-radius:3px;*/
+    /*overflow:auto;*/
+/*}*/
+/*#tagtop1{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*padding:20px 20px 0px 20px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : vertical;*/
+    /*-webkit-box-orient : vertical;*/
+    /*-webkit-box-align:center;*/
+    /*-webkit-box-pack:center;*/
+    /*border-bottom-right-radius:3px;*/
+    /*-webkit-box-shadow: 0 0 3px #040d14;*/
+    /*overflow-y:scroll;*/
+/*}*/
+/*#tagtop2{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*padding:20px 20px 0px 20px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : vertical;*/
+    /*-webkit-box-orient : vertical;*/
+    /*-webkit-box-align:center;*/
+    /*-webkit-box-pack:center;*/
+    /*border-bottom-right-radius:3px;*/
+    /*-webkit-box-shadow: 0 0 3px #040d14;*/
+/*}*/
+/*#tagtop3{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*padding:20px 20px 0px 20px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : vertical;*/
+    /*-webkit-box-orient : vertical;*/
+    /*-webkit-box-align:center;*/
+    /*-webkit-box-pack:center;*/
+    /*border-bottom-right-radius:3px;*/
+    /*-webkit-box-shadow: 0 0 3px #040d14;*/
+/*}*/
+/*#tagtop4{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*padding:20px 20px 0px 20px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : vertical;*/
+    /*-webkit-box-orient : vertical;*/
+    /*-webkit-box-align:center;*/
+    /*-webkit-box-pack:center;*/
+    /*border-bottom-right-radius:3px;*/
+    /*-webkit-box-shadow: 0 0 3px #040d14;*/
+/*}*/
+/*#tagbottom{*/
+    /*eight:25px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : horizontal;*/
+    /*-webkit-box-orient : horizontal;*/
+    /*width:320px;*/
+    /*margin-left:-1px;*/
+/*}*/
+/*#tagbottom div{*/
+/*background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, rgb(165,169,182)),color-stop(0.53, rgb(223,225,230)),color-stop(0.98, rgb(244,245,247)),color-stop(1, rgb(170,170,170)));*/
+    /*background-image: -webkit-gradient(*/
+        /*linear,*/
+        /*left bottom,*/
+        /*left top,*/
+        /*color-stop(0, rgb(165,169,182)),*/
+        /*color-stop(0.53, rgb(223,225,230)),*/
+        /*color-stop(0.98, rgb(244,245,247)),*/
+        /*color-stop(1, rgb(0,0,0))*/
+    /*);*/
+
+    /*border-bottom-left-radius:3px;*/
+    /*border-bottom-right-radius:3px;*/
+    /*display: -moz-box;*/
+    /*display: -webkit-box;*/
+    /*-moz-box-orient : horizontal;*/
+    /*-webkit-box-orient : horizontal;*/
+    /*-webkit-box-align:center;*/
+    /*-webkit-box-pack:center;*/
+    /*-webkit-box-shadow: 3px 3px 3px #ccc;*/
+    /*border-top:0px;*/
+/*}*/
+/*#tagbottom1{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*margin-right:3px;*/
+    /*border:1px solid #ccc;*/
+/*}*/
+/*#tagbottom2{*/
+
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+/*}*/
+/*#tagbottom3{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*margin-left:3px;*/
+/*}*/
+/*#tagbottom4{*/
+    /*-webkit-box-flex:1;*/
+    /*-moz-box-flex:1;*/
+    /*margin-left:3px;*/
+/*}*/
+.BtnAddDiv{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+/*关系配置的样式*/
+.RightConfig{/*显示数据DIV*/
+    margin-left:5px;
+    width:110px;
+    height:auto;
+    border: 1px;
+    border:solid;
+    border: #c0c0c0;
+    word-wrap : normal;
+}
+.Configbtn {
+    width:100px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-top:10px;
+    margin-bottom: 10px;
+    margin-left:100px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+.ToolConfigbtn {
+    width:100px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-top:10px;
+    margin-bottom: 10px;
+    margin-left:10px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+.toolBtn{  /*工具栏中的btn*/
+    width:100px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-left:5px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+.toolBtn:hover {
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+
+.toolBtn1 {
+    width:50px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-left:5px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+.toolBtn1:hover {
+background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+color-stop(1, rgb(203,202,202))
+);
+}
+#textOneApiPointBtn{
+    width:50px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-left:5px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+#promptSpand{/*工具栏中的spand*/
+    position:absolute;
+    float:left;
+    line-height:40px;
+    left:10px;
+    color:#BCBCBC;
+    cursor:text;
+}
+#achieveBtn{
+    /*margin-left:55px;*/
+}
+.strToCennter{
+    margin-left:20px;
+    width: 100%;
+}
+.DivforBtnClass{
+    padding: 0px 00px 0px 00px;
+    margin: 10px 0px 0px 10px;
+}
+.borderClassDiv1{
+    padding: 0px 20px 0px 20px;
+    margin: 5px 0px 0px 0px;
+    background-color: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 3px #040D14;
+    width:96%;
+    height:180px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: left;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    /*-webkit-scrollbar-face-color:black;*/
+}
+ /*伪类*/
+/*::-webkit-scrollbar-track-piece{
+    background-color:#CCC;
+    -webkit-border-radius:0;
+}
+::-webkit-scrollbar{
+    width:12px;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#999;
+    border:solid 1px #333;
+    border-radius:4px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color:#999;
+}
+::-webkit-scrollbar-arrow {
+    color:#F00;
+    backgound:#0F0;
+}*/
+/*多选框样式*/
+.isDelete{
+    /*border-color: #c6c6c6;*/
+    /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);*/
+    /*box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);*/
+   /*padding: 3px;*/
+   /*background-color: #dcdcdc;*/
+    /*background-color: #0064cd;*/
+    /*-webkit-border-radius: 10px;*/
+    /*-moz-border-radius: 10px;*/
+    /*-khtml-border-radius: 10px;*/
+    /*border-radius: 10px;*/
+    /*-webkit-box-shadow: 0 5px 12px rgba(0,0,0,.4);*/
+    /*-moz-box-shadow: 0 5px 12px rgba(0,0,0,.4);*/
+    /*-khtml-box-shadow: 0 5px 12px rgba(0,0,0,.4);*/
+    /*box-shadow: 0 5px 12px rgba(0,0,0,.4);*/
+}
+.isDelete:hover{
+    background-color:#adff2f;
+}
+
+
+.borderClassDiv{
+    padding: 0px 20px 0px 20px;
+    margin: 10px 0px 0px 0px;
+    background-color: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 3px #040D14;
+    width: 70%;
+    height:480px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: left;
+    overflow-y:scroll;
+}
+.showAddandEidentPointTabelClass{
+    width: 100%;
+    height:100px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+ .showAddandEidentPointTabelClass td{
+     border-collapse:collapse;
+ }
+/*.showAddandEidentPointTabelClass td input{*/
+    /*margin-left: 0px;*/
+    /*width:80%;*/
+    /*height:98%;*/
+    /*margin-bottom: 0px;*/
+    /*font-size:8px;*/
+    /*font-family: '微软雅黑',arial;*/
+/*}*/
+.newConfigtitle{
+    color:#000;
+    width:100%;
+    /*text-shadow: 0px 1px 1px #000;*/
+    font-family:'微软雅黑';
+    font-size:16px;
+    font-weight:bold;
+    padding: 0px 0px 5px 0px;
+    border-bottom:1px solid #a5a9b6;
+    margin-bottom:10px;
+}
+.innerLeftq {
+    /*text-align: right;*/
+    /*width: 100px;*/
+    /*height: 40px;*/
+    font-size:12px;
+    color: #000000;
+    font-family:'微软雅黑',arial;
+    text-align: right;
+    padding: 1px;
+}
+.innerRightqb{
+    text-align: left;
+    padding: 1px;
+}
+
+.innerRightq input[type='text']{
+    width:80%;
+    height:80% ;
+    font-size:12px;
+    font-family: '微软雅黑',arial;
+}
+/*.innerRightq input[type='button']{*/
+    /*width:30%;*/
+    /*height:90% ;*/
+    /*font-size:8px;*/
+    /*font-family: '微软雅黑',arial;*/
+    /*text-align: center;*/
+    /*margin-right:100px;*/
+/*}*/
+.inputTextClass{
+    width:80%;
+    height:80% ;
+    margin-top: 5px;
+    font-size:12px;
+    font-family: '微软雅黑',arial;
+}
+/*向下箭头*/
+.site {
+    width:auto;
+    height:auto;
+    background-color:#fff;
+    /*position:relative;*/
+   /*display: inline;*/
+}
+.site b {
+    border-color: #666 #fff #fff;
+    border-style: solid;
+    border-width: 4px;
+    position:absolute;
+    top:7px;
+}
+/*向上箭头*/
+.site1 {
+    width:auto;
+    height:auto;
+    background-color:#fff;
+    position:relative;
+    /*display:inline;*/
+}
+.site1 b {
+    border-color: #fff #fff #666;
+    border-style: solid;
+    border-width: 4px;
+    position:absolute;
+    top:3px;
+}
+#showtitletool{
+    font-size: 14px;
+    color:#000000;
+    font-family: "微软雅黑";
+    display: inline;
+}
+#showPointBtn{
+    background-image: url(../Img/upDown.jpg);
+    background-color: #CBCACA;
+    display: inline;
+    margin-left:20px;
+    margin-top:3px;
+    width:50px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+/*background-image:-webkit-gradient(*/
+    /*linear,*/
+    /*left bottom,*/
+    /*left top,*/
+    /*color-stop(0, rgb(203,202,202)),*/
+/*color-stop(1, rgb(235,233,233))*/
+/*);*/
+    }
+
+/*#showPointBtn:hover*/
+/*{*/
+    /*background-image:-webkit-gradient(*/
+        /*linear,*/
+        /*left bottom,*/
+        /*left top,*/
+        /*color-stop(0, rgb(235,233,233)),*/
+        /*color-stop(1, rgb(203,202,202))*/
+    /*);*/
+
+  /*版本管理样式**********************************************************************************************************************/
+.VersionInfoManageShell{
+    width:98%;
+    height:98%;
+    margin-top:5px;
+    padding:2px 2px 2px 2px;
+    -webkit-box-orient:vertical;
+    background-color:#fff;
+    border-radius:3px;
+    /*-webkit-box-shadow: 0 0 3px #040d14;*/
+    overflow:auto;
+    display: -webkit-box;
+}
+.ShowTreeDivShell{
+    width:20%;
+    height:460px;
+    /*height: 88%;*/
+    /*margin-top:10px;*/
+    /*margin-left: 20px;*/
+    padding:10px 30px 10px 10px;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    background-color:#fff;
+    border-radius:3px;
+    -webkit-box-shadow: 0 0 3px #040d14;
+    overflow-y:scroll;
+}
+.ShowTableDivShell{
+    width:100%;
+    height:90%;
+    /*margin-top:10px;*/
+    /*margin-left:10px;*/
+    padding:0px 0px 20px 0px;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
+    background-color:#fff;
+    border-radius:3px;
+    -webkit-box-shadow: 0 0 3px #040d14;
+    overflow:auto;
+}
+.ShowBtnDivShell{
+    margin-top: 10px;
+    text-align: center;
+    }
+#ConfirmBtn{
+    width:100px;
+    height:25px;
+    border-radius:5px;
+    border:1px solid #768d96;
+    margin-left:5px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+#ConfirmBtn:hover {
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+.VersionTd1{
+    font-size:12px;
+    color: #000000;
+    font-family:'微软雅黑',arial;
+    text-align: right;
+    padding: 1px;
+}
+.VersionTd2 {
+    text-align: left;
+    padding: 1px;
+}
+.VersionTd2 input[type='text']{
+    width:80%;
+    height:80% ;
+    font-size:12px;
+    font-family: '微软雅黑',arial;
+}
+.PageNameinputText{
+    width:100px;
+    height:20px;
+    margin-bottom: 2px;
+    font-size:12px;
+    font-family: '微软雅黑',arial;
+}
+#VersionSelect{
+    width:100px;
+    height:20px;
+    margin-bottom: 2px;
+    font-size:12px;
+    font-family: '微软雅黑',arial;
+}
+#Versionfooter{
+    text-align: center;
+}
+.isCoverVersionNone{
+    display: none;
+}
+.isCoverVersionBlock{
+    /*display: block;*/
+}
+#ShowVersioninfomodal{
+    width:300px;
+    /*top:60%;*/
+    /*left: 60%;*/
+}
+#showData{
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+/*Excel数据源*********************************************************************************************************************************************/
+#ExeclLeft{
+    color: black;
+    font-size: 14px;
+    font-family: '微软雅黑';
+     margin-left: 100px;
+    width: 100px;
+    height: 30px;
+    float:left;
+}
+#ShowExcelTable{
+    margin-top: 10px;
+    margin-left: 270px;
+    width: 50%;
+
+}
+#OperateBtn{
+    margin-left:150px;
+    text-align:center;
+    width: 50%;
+}
+.ExcelOperateBtn{ /*操作按钮*/
+    width: 50px;
+    height: 25px;
+    color:Black;
+    font-size:14px;
+    margin-left:10px;
+    margin-top:10px;
+    font-family:'微软雅黑';
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+.ExcelOperateBtn:hover{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+ .ExcelOperateBtn1{
+     width: 50px;
+     height: 25px;
+     color:Black;
+     font-size:14px;
+     margin-left:10px;
+     font-family:'微软雅黑';
+     border-radius:5px;
+     border:1px solid #768d96;
+     background-image:-webkit-gradient(
+         linear,
+         left bottom,
+         left top,
+         color-stop(0, rgb(235,233,233)),
+         color-stop(1, rgb(203,202,202))
+     );
+ }
+.ExcelOperateBtn1:hover{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+#NewExcelSaveBtn{/*Excel保存按钮*/
+    width:120px;
+    height:25px;
+    margin-left:260px;
+    margin-top:50px;
+    margin-bottom:20px;
+    color:Black;
+    font-size:14px;
+    font-family:'微软雅黑';
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+
+#NewExcelSaveBtn:hover
+{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+#excelAddressBtn{/*上传查找地址*/
+    width:200px;
+    height:25px;
+    margin-left:10px;
+    margin-top:20px;
+    margin-bottom:10px;
+    color:Black;
+    font-size:14px;
+    font-family:'微软雅黑';
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+
+#excelAddressBtn:hover
+{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+.fileAddresasBtn{
+    width:180px;
+    margin-left:10px;
+    margin-top:20px;
+    margin-bottom:10px;
+    color:Black;
+    font-size:15px;
+    font-family:'微软雅黑';
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+
+.fileAddresasBtn:hover{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+ /*file样式*/
+#file {
+          position:relative;
+          /*width:226px;*/
+          height:28px;
+          /*border-radius:5px;*/
+          /*border:1px solid #768d96;*/
+          float:left;
+     }
+#file input {
+           font-size:14px;
+           margin:0;
+           padding:0;
+           position:relative;
+           vertical-align:middle;
+           outline:none;
+       }
+#file input[type="text"] {
+             border:3px none;
+             width:172px;
+             z-index:4;
+        }
+#file input[type="button"] {
+    width: 50px;
+    height: 25px;
+    color:Black;
+    font-size:14px;
+    font-family:'微软雅黑';
+    border-radius:5px;
+    border:1px solid #768d96;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+    z-index:2;
+}
+#file input[type="button"]:hover
+{
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+
+#file input[type="file"] {
+            /*position:absolute;*/
+            margin-top: -8px;
+            width: 72px;
+            margin-right: 4px;
+             height:25px;
+             opacity:1;
+             /*z-index:3;*/
+       }
+
+#OperateExcelDiv{/*Excel弹出窗体*/
+    -webkit-box-shadow:0px 8px 8px #999;
+    border-radius:5px;
+    background-color:#F7FBFE;
+    width:550px;
+    height:380px;
+    overflow:hidden;
+    border:0px;
+}
+.Excelmodalp{
+    margin-bottom:5px;
+    margin-left: 0px;
+    font-family: '微软雅黑';
+    font-size: 14px;
+    width: 14%;
+}
+.ExcelmodalTabel{
+    width: 95%;
+    margin-left: 10px;}

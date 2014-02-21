@@ -1,0 +1,460 @@
+﻿<Controls>
+    <Group Name="基本控件"  IcoURL='JS/Controls/ControlsImages/BasicControl.png'>
+          <Control id='1' ControlType='Panel' ControlName='容器框' IcoURL='JS/Controls/ControlsImages/Panel.png'
+              Initialize="Agi.Controls.InitPanel">
+          <Files>
+            <File Type='js' Path='JS/Controls/Panel/Panel.js'></File>
+            <File Type='css' Path='JS/Controls/Panel/Panel.css'></File>
+          </Files>
+          </Control>
+          <Control id='1' ControlType='InquireButton' ControlName='查询按钮' IcoURL='JS/Controls/ControlsImages/InquireButton.png'
+              Initialize="Agi.Controls.InitInquireButton">
+          <Files>
+          <File Type='js' Path='JS/Controls/InquireButton/InquireButton.js'></File>
+          <File Type='css' Path='JS/Controls/InquireButton/InquireButton.css'></File>
+          </Files>
+          </Control>
+          <Control id='1' ControlType='DropDownList' ControlName='下拉列表框'
+              IcoURL='JS/Controls/ControlsImages/DropDownList.png' Initialize="Agi.Controls.InitDropDownList">
+          <Files>
+            <File Type='js' Path='JS/Controls/DropDownList/DropDownList.js'></File>
+            <File Type='css' Path='JS/Controls/DropDownList/DropDownList.css'></File>
+          </Files>
+          </Control>
+          <Control id='1' ControlType='MultiSelect' ControlName='多选下拉列表框'
+          IcoURL='JS/Controls/ControlsImages/DropDownList.png' Initialize="Agi.Controls.InitMultiSelect">
+          <Files>
+          <File Type='css' Path='JS/Controls/MultiSelect/jquery-ui-1.8.13.custom.css'></File>
+          <File Type='css' Path='JS/Controls/MultiSelect/ui.dropdownchecklist.themeroller.css'></File>
+          <File Type='css' Path='JS/Controls/MultiSelect/MultiSelect.css'></File>
+          <File Type='js' Path='JS/Controls/MultiSelect/ui.dropdownchecklist.js'></File>
+          <File Type='js' Path='JS/Controls/MultiSelect/MultiSelect.js'></File>
+          </Files>
+          </Control>
+          <Control id='1' ControlType='Label' ControlName='标签' IcoURL='JS/Controls/ControlsImages/Label.png'
+              Initialize="Agi.Controls.InitLabel">
+          <Files>
+          <File Type='js' Path='JS/Controls/Label/Label.js'></File>
+          <File Type='css' Path='JS/Controls/Label/Label.css'></File>
+          </Files>
+          </Control>
+        <Control id='1' ControlType='TextInputBox' ControlName='文本框' IcoURL='JS/Controls/ControlsImages/TextInputBox.png'
+                              Initialize="Agi.Controls.InitTextInputBox">
+            <Files>
+                <File Type='js' Path='JS/Controls/TextInputBox/TextInputBox.js'></File>
+                <File Type='css' Path='JS/Controls/TextInputBox/TextInputBox.css'></File>
+            </Files>
+        </Control>
+          <Control id="6" ControlType="RadioButton" ControlName="单选按钮1" IcoURL="JS/Controls/ControlsImages/RadioButton.png" Initialize="Agi.Controls.InitRadioButton">
+          <Files>
+          <File Type="css" Path="JS/Controls/RadioButton1/RadioButton.css"></File>
+          <File Type="js" Path="JS/Controls/RadioButton1/RadioButton.js"></File>
+          </Files>
+          </Control>
+
+          <Control id="7" ControlType="AssociativeInputBox" ControlName="联想输入框" IcoURL="JS/Controls/ControlsImages/AssociativeInputBox.png" Initialize="Agi.Controls.InitAssociativeInputBox">
+          <Files>
+          <File Type="css" Path="JS/Controls/AssociativeInputBox/AssociativeInputBox.css"></File>
+          <File Type="js" Path="JS/Controls/AssociativeInputBox/AssociativeInputBox.js"></File>
+          </Files>
+          </Control>
+          <Control id='1' ControlType='DatePicker' ControlName='单日期选择'
+              IcoURL='JS/Controls/ControlsImages/DatePicker.png' Initialize="Agi.Controls.InitDatePicker">
+          <Files>
+            <File Type='js' Path='JS/Controls/DatePicker/zebra_datepicker.src.js'></File>
+            <File Type='js' Path='JS/Controls/DatePicker/DatePicker.js'></File>
+            <File Type='css' Path='JS/Controls/DatePicker/zebra_datepicker_metallic.css'></File>
+          </Files>
+          </Control>
+          <Control id="8" ControlType="TimeSelector" ControlName="日期范围选择" IcoURL="JS/Controls/ControlsImages/TimePicker.png" Initialize="Agi.Controls.InitTimeSelector">
+          <Files>
+          <File Type='css' Path='JS/Controls/TimeSelector1/MyDatePicker.css'></File>
+          <File Type='js' Path='JS/Controls/TimeSelector1/MyDatePicker.js'></File>
+          <File Type='js' Path='JS/Controls/TimeSelector1/hammer.js'></File>
+          <File Type='css' Path='JS/Controls/TimeSelector1/TimeSelector.css'></File>
+          <File Type='js' Path='JS/Controls/TimeSelector1/TimeSelector.js'></File>
+          </Files>
+          </Control>
+
+          <Control id='1' ControlType='AnimationControl' ControlName='动画控件' IcoURL='JS/Controls/ControlsImages/AnimationControl.png'
+              Initialize="Agi.Controls.InitAnimationControl">
+          <Files>
+            <File Type='css' Path='JS/Controls/AnimationControl/AnimationControl.css'></File>
+            <File Type='js' Path='JS/Controls/AnimationControl/AnimationControl.js'></File>
+              
+          </Files>
+          </Control>
+
+      <Control id='1' ControlType='NewCheckBox' ControlName='新复选框' IcoURL='JS/Controls/ControlsImages/CheckBox.png'
+              Initialize="Agi.Controls.InitNewCheckBox">
+        <Files>
+          <File Type='css' Path='JS/Controls/NewCheckBox/NewCheckBox.css'></File>
+          <File Type='js' Path='JS/Controls/NewCheckBox/NewCheckBox.js'></File>
+          
+        </Files>
+      </Control>
+       
+       
+       
+        
+    </Group>
+
+    <Group Name="数据控件" IcoURL='JS/Controls/ControlsImages/DataControl.png'>
+        <Control id='1' ControlType='DataGrid' ControlName='数据表格' IcoURL='JS/Controls/ControlsImages/DataGrid.png'
+                 Initialize="Agi.Controls.InitDataGrid">
+            <Files>
+                <File Type='css' Path="JS/Controls/DataGrid/themes/bootstrap/jquery-ui.css"></File>
+                <File Type='css' Path="JS/Controls/DataGrid/themes/wijmo/jquery.wijmo-open.2.2.1.css"></File>
+                <File Type='css' Path="JS/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijpager.css"></File>
+                <File Type='css' Path="JS/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijinput.css"></File>
+                <File Type='css' Path="JS/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijgrid.css"></File>
+
+                <File Type='js' Path="JS/Controls/DataGrid/external/jquery-ui-1.8.23.custom.min.js"></File>
+
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.plugin.wijtextselection.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputcore.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputdate.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputmask.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputnumber.min.js"></File>
+
+                <File Type='js' Path="JS/Controls/DataGrid/external/jquery.mousewheel.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/external/jquery.wijmo-open.all.2.2.1.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijpager.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijdatasource.min.js"></File>
+                <File Type='js' Path="JS/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijgrid.min.js"></File>
+                <File Type="css" Path="JS/Controls/DataGrid/DataGrid.css"></File>
+                <File Type="js" Path="JS/Controls/DataGrid/DataGrid.js"></File>
+                <File Type="js" Path="JS/Controls/CustomizeControls/Spc.Data.Process.js"></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='BasicChart' ControlName='基本图表'
+                 IcoURL='JS/Controls/ControlsImages/BasicChart.png' Initialize="Agi.Controls.InitBasicChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/BasicChart/BasicChart.css'></File>
+                <File Type='js' Path='JS/Controls/BasicChart/BasicChart.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='PieChart' ControlName='饼图' IcoURL='JS/Controls/ControlsImages/PieChart.png' Initialize="Agi.Controls.InitPieChart">
+        <Files>
+          <File Type='css' Path='JS/Controls/PieChart/PieChart.css'></File>
+          <File Type='js' Path='JS/Controls/PieChart/PieChart.js'></File>
+        </Files>
+      </Control>
+		 <Control id='1' ControlType='DashboardChart' ControlName='圆形仪表盘'
+                 IcoURL='JS/Controls/ControlsImages/DashboardChart.png'
+                 Initialize="Agi.Controls.InitDashboardChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/DashboardChart.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/DashboardChart.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/json2.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/lib.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/style.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/themes/themes.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/classs/DashboardChartStyle.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='DashboardChart1' ControlName='半圆仪表盘'
+                 IcoURL='JS/Controls/ControlsImages/DashboardChart1.png'
+                 Initialize="Agi.Controls.InitDashboardChart1">
+            <Files>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/DashboardChart1.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/DashboardChart1.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/json2.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/lib.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/style.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/classs/DashboardChart1Style.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='ThermometerChart' ControlName='温度计'
+                 IcoURL='JS/Controls/ControlsImages/ThermometerChart.png'
+                 Initialize="Agi.Controls.InitThermometerChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/ThermometerChart.css'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/ThermometerChart.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/json2.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/lib.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/style.css'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='LEDChart' ControlName='数字指示器' IcoURL='JS/Controls/ControlsImages/LEDChart.png'
+                 Initialize="Agi.Controls.InitLEDChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/LEDChart/LEDChartOnload.js'></File>
+                <File Type='css' Path='JS/Controls/LEDChart/css/LEDChart.css'></File>
+                <File Type='js' Path='JS/Controls/LEDChart/LEDChart.js'></File>
+            </Files>
+        </Control>
+    </Group>
+    <Group Name="实时数据" IcoURL='JS/Controls/ControlsImages/RealTimeControl.png'>
+        <Control id='1' ControlType='RealTimeLable' ControlName='实时标签'
+                 IcoURL='JS/Controls/ControlsImages/RealTimeLable.png' Initialize="Agi.Controls.InitRealTimeLable">
+            <Files>
+                <File Type='css' Path='JS/Controls/RealTimeLable/RealTimeLable.css'></File>
+                <File Type='js' Path='JS/Controls/RealTimeLable/RealTimeLable.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='DynamicChart' ControlName='实时图表'
+                 IcoURL='JS/Controls/ControlsImages/DynamicChart.png' Initialize="Agi.Controls.InitDynamicChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/DynamicChart/DynamicChart.css'></File>
+                <File Type='js' Path='JS/Controls/DynamicChart/DynamicChart.js'></File>
+            </Files>
+        </Control>
+		 <Control id='1' ControlType='DashboardChart' ControlName='圆形仪表盘'
+                 IcoURL='JS/Controls/ControlsImages/DashboardChart.png'
+                 Initialize="Agi.Controls.InitDashboardChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/DashboardChart.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/DashboardChart.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/json2.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/lib.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart/css/style.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/themes/themes.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart/classs/DashboardChartStyle.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='DashboardChart1' ControlName='半圆仪表盘'
+                 IcoURL='JS/Controls/ControlsImages/DashboardChart1.png'
+                 Initialize="Agi.Controls.InitDashboardChart1">
+            <Files>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/DashboardChart1.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/DashboardChart1.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/json2.js'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/lib.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/DashboardChart1/css/style.css'></File>
+                <File Type='js' Path='JS/Controls/DashboardChart1/classs/DashboardChart1Style.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='ThermometerChart' ControlName='温度计'
+                 IcoURL='JS/Controls/ControlsImages/ThermometerChart.png'
+                 Initialize="Agi.Controls.InitThermometerChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.HC.Widgets.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/FusionCharts.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/ThermometerChart.css'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/ThermometerChart.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/json2.js'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/lib.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/prettify.css'></File>
+                <File Type='js' Path='JS/Controls/ThermometerChart/prettify.js'></File>
+                <File Type='css' Path='JS/Controls/ThermometerChart/css/style.css'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='LEDChart' ControlName='数字指示器' IcoURL='JS/Controls/ControlsImages/LEDChart.png'
+                 Initialize="Agi.Controls.InitLEDChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/LEDChart/LEDChartOnload.js'></File>
+                <File Type='css' Path='JS/Controls/LEDChart/css/LEDChart.css'></File>
+                <File Type='js' Path='JS/Controls/LEDChart/LEDChart.js'></File>
+            </Files>
+        </Control>
+    </Group>
+    <Group Name="业务控件" IcoURL='JS/Controls/ControlsImages/FunctionControl.png'>
+        <Control id='1' ControlType='PCChart' ControlName='过程能力图表' IcoURL='JS/Controls/ControlsImages/PCChart.png'
+                 Initialize="Agi.Controls.InitPCChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/PCChart/pcchart.css'></File>
+                <File Type='js' Path='JS/Controls/PCChart/pcchart.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='PCLabel' ControlName='过程能力摘要' IcoURL='JS/Controls/ControlsImages/ODInfoTable.png'
+                 Initialize="Agi.Controls.InitPCLabel">
+            <Files>
+              <File Type='css' Path='JS/Controls/PCLabel/PCLabel.css'></File>
+              <File Type='js' Path='JS/Controls/PCLabel/PCLabel.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='ODChart' ControlName='均值 极差图' IcoURL='JS/Controls/ControlsImages/ODChart.png'
+                 Initialize="Agi.Controls.InitODChart">
+            <Files>
+                <File Type="js" Path="JS/Controls/CustomizeControls/Spc.Data.Process.js"></File>
+                <File Type="css" Path="JS/Controls/CustomizeControls/ODChart/ODChart.css"></File>
+                <File Type="js" Path="JS/Controls/CustomizeControls/ODChart/ODChart.js"></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='ODInfoTable' ControlName='过程能力信息' IcoURL='JS/Controls/ControlsImages/ODInfoTable.png'
+                 Initialize="Agi.Controls.InitODInfoTable">
+            <Files>
+                <File Type="js" Path="JS/Controls/CustomizeControls/Spc.Data.Process.js"></File>
+                <File Type="css" Path="JS/Controls/CustomizeControls/ODInfoTable/ODInfoTable.css"></File>
+                <File Type="js" Path="JS/Controls/CustomizeControls/ODInfoTable/ODInfoTable.js"></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='BoxChart1' ControlName='箱线图表' IcoURL='JS/Controls/ControlsImages/BoxChart.png'
+                 Initialize="Agi.Controls.InitBoxChart1">
+            <Files>
+                <File Type='css' Path='JS/Controls/BoxChart/css/BoxChart.css'></File>
+                <File Type='css' Path='JS/Controls/BoxChart/css/prettify.css'></File>
+                <File Type='css' Path='JS/Controls/BoxChart/css/style.css'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.HC.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.HC.PowerCharts.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/BoxChart.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/json2.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/lib.js'></File>
+                <File Type='js' Path='JS/Controls/BoxChart/prettify.js'></File>
+              <File Type='js' Path='JS/Controls/BoxChart/boxStyle/boxStyle.js'></File>
+            </Files>
+        </Control>
+        <Control id='1' ControlType='SPCSingleChart' ControlName='单值图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitSPCSingleChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/SPCSingleChart/SPCSingleChart.css'></File>
+                <File Type='js' Path='JS/Controls/SPCSingleChart/SPCSingleChart.js'></File>
+            </Files>
+        </Control>
+    </Group>
+    <Group Name="SPC控件" IcoURL='JS/Controls/ControlsImages/FunctionControl.png'>
+        <Control id='1' ControlType='CustomSingleChart' GroupName="SPC" ControlName='单值图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitCustomSingleChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomSingleChart/CustomSingleChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomSingleChart/CustomSingleChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomSingleChart/rule.js'></File>
+            </Files>
+        </Control>
+        <Control id='2' ControlType='PCChartGxp' GroupName="SPC" ControlName='过程能力图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitPCChartGxp">
+            <Files>
+                <File Type='css' Path='JS/Controls/PCChartGxp/pcchart.css'></File>
+                <File Type='js' Path='JS/Controls/PCChartGxp/PCChartGxp.js'></File>
+            </Files>
+        </Control>
+        <Control id='3' ControlType='CustomBoxChart' GroupName="SPC" ControlName='箱线图' IcoURL='JS/Controls/ControlsImages/BoxChart.png'
+                            Initialize="Agi.Controls.InitCustomBoxChart">
+        <Files>
+            <File Type='css' Path='JS/Controls/CustomBoxChart/CustomBoxChart.css'></File>
+            <File Type='js' Path='JS/Controls/CustomBoxChart/CustomBoxChart.js'></File>
+            <File Type='js' Path='JS/Controls/CustomBoxChart/rule.js'></File>
+            <File Type='css' Path='JS/Controls/MultiSelect/jquery-ui-1.8.13.custom.css'></File>
+            <File Type='css' Path='JS/Controls/MultiSelect/ui.dropdownchecklist.themeroller.css'></File>
+            <File Type='js' Path='JS/Controls/MultiSelect/ui.dropdownchecklist.js'></File>
+        </Files>
+        </Control>
+        <Control id='4' ControlType='CustomXMRChart' GroupName="SPC" ControlName='单值移动极差X-MR' IcoURL='JS/Controls/ControlsImages/SPCXMRSingleChart.png'
+                 Initialize="Agi.Controls.InitCustomXMRChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomXMRChart/CustomXMRChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomXMRChart/CustomXMRChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomXMRChart/XMRrule.js'></File>
+            </Files>
+        </Control>
+        <Control id='5' ControlType='CustomMRChart' GroupName="SPC" ControlName='均值极差' IcoURL='JS/Controls/ControlsImages/SPCMRSingleChart.png'
+                 Initialize="Agi.Controls.InitCustomMRChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomMRChart/CustomMRChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomMRChart/CustomMRChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomMRChart/MR_rule.js'></File>
+            </Files>
+        </Control>
+        <Control id='6' ControlType='CustomXSChart' GroupName="SPC" ControlName='均值标准差' IcoURL='JS/Controls/ControlsImages/SPCXSChart.png'
+                 Initialize="Agi.Controls.InitCustomXSChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomXSChart/CustomXSChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomXSChart/CustomXSChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomXSChart/XS_rule.js'></File>
+            </Files>
+        </Control>
+        <Control id='7' ControlType='CustomMDRChart' GroupName="SPC" ControlName='中位数极差' IcoURL='JS/Controls/ControlsImages/SPCMDRChart.png'
+                 Initialize="Agi.Controls.InitCustomMDRChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomMDRChart/CustomMDRChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomMDRChart/CustomMDRChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomMDRChart/MDR_rule.js'></File>
+            </Files>
+        </Control>
+        <Control id='8' ControlType='CustomScatterChart' GroupName="SPC" ControlName='散点图' IcoURL='JS/Controls/ControlsImages/CustomScatterChart.png'
+                 Initialize="Agi.Controls.InitCustomScatterChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomScatterChart/CustomScatterChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomScatterChart/CustomScatterChart.js'></File>
+            </Files>
+        </Control>
+        <Control id='9' ControlType='SeqChart' GroupName="SPC" ControlName='时间序列图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitSeqChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/SeqChart/SeqChart.css'></File>
+                <File Type='js' Path='JS/Controls/SeqChart/SeqChartMain.js'></File>
+                <File Type='js' Path='JS/Controls/SeqChart/SeqChartSub.js'></File>
+            </Files>
+        </Control>
+        <Control id='10' ControlType='CustomPCTRChart' GroupName="SPC" ControlName='P控制图' IcoURL='JS/Controls/ControlsImages/CustomPCTRChart.png'
+                 Initialize="Agi.Controls.InitCustomPCTRChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomPCTRChart/CustomPCTRChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomPCTRChart/CustomPCTRChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomPCTRChart/PCTRRrule.js'></File>
+            </Files>
+        </Control>
+        <Control id='11' ControlType='CustomNPChart' GroupName="SPC" ControlName='NP控制图' IcoURL='JS/Controls/ControlsImages/CustomNPCTRChart.png'
+                 Initialize="Agi.Controls.InitCustomNPChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomNPChart/CustomNPChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomNPChart/CustomNPChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomNPChart/NPRrule.js'></File>
+            </Files>
+        </Control>
+        <Control id='12' ControlType='CustomCChart' GroupName="SPC" ControlName='C图' IcoURL='JS/Controls/ControlsImages/CustomCChart.png'
+                 Initialize="Agi.Controls.InitCustomCChart">
+            <Files>
+                <File Type='css' Path='JS/Controls/CustomCChart/CustomCChart.css'></File>
+                <File Type='js' Path='JS/Controls/CustomCChart/CustomCChart.js'></File>
+                <File Type='js' Path='JS/Controls/CustomCChart/CCRrule.js'></File>
+            </Files>
+        </Control>
+        <Control id='13' ControlType='FreeShape' GroupName="SPC" ControlName='预定义图形' IcoURL='JS/Controls/ControlsImages/Freeshape.png'
+                 Initialize="Agi.Controls.InitFreeShape">
+            <Files>
+                <File Type='css' Path='JS/Controls/FreeShape/FreeShape.css'></File>
+                <File Type='js' Path='JS/Controls/FreeShape/FreeShapeCore.js'></File>
+                <File Type='js' Path='JS/Controls/FreeShape/BasicShape.js'></File>
+                <File Type='js' Path='JS/Controls/FreeShape/FreeShape.js'></File>
+            </Files>
+        </Control>
+        <Control id='14' ControlType='EdgeDataView' GroupName="SPC" ControlName='边降数据控件' IcoURL='JS/Controls/ControlsImages/Freeshape.png'
+                 Initialize="Agi.Controls.InitEdgeDataView">
+            <Files>
+                <File Type='css' Path='JS/Controls/EdgeData/EdgeData1_0.css'></File>
+                <File Type='css' Path='JS/Controls/EdgeData/ui.jqgrid.css'></File>
+                <File Type='css' Path='JS/Controls/EdgeData/EdgeData.css'></File>d
+                <File Type='js' Path='JS/Controls/EdgeData/jquery.jqGrid.js'></File>
+                <File Type='js' Path='JS/Controls/EdgeData/EdgeData1_0.js'></File>
+                <File Type='js' Path='JS/Controls/EdgeData/EdgeDataDefault1_0.js'></File>
+                <File Type='js' Path='JS/Controls/EdgeData/EdgeData.js'></File>
+            </Files>
+        </Control>
+        <Control id='15' ControlType='CustomYGZButton' ControlName='数据按钮' IcoURL='JS/Controls/ControlsImages/DataButtonControl.png'
+                 Initialize="Agi.Controls.InitCustomYGZButton">
+            <Files>
+                <File Type='js' Path='JS/Controls/CustomYGZButton/CustomYGZButton.js'></File>
+                <File Type='css' Path='JS/Controls/CustomYGZButton/CustomYGZButton.css'></File>
+            </Files>
+        </Control>
+    </Group>
+</Controls>

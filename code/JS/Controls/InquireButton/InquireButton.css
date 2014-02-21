@@ -1,0 +1,105 @@
+.InquireButtonClass{
+    font-family: '微软雅黑',arial;
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+    border:1px solid #768d96;
+    border-radius: 5px;
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(203,202,202)),
+        color-stop(1, rgb(235,233,233))
+    );
+}
+/*修改bug，查询按钮，修改任何一个属性后，鼠标放上去没有以前的阴影效果了*/
+/*.InquireButtonClass:hover {
+    background-image:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(235,233,233)),
+        color-stop(1, rgb(203,202,202))
+    );
+}
+*/
+
+
+
+/*类型属性集合*/
+.BasicChart_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+
+
+/*数据曲线*/
+.prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.basicprortitystytdCenter{
+    text-align: center;padding: 1px;
+}
+.prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.prortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}

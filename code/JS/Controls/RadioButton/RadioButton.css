@@ -1,0 +1,461 @@
+.selectAutoFill_PanelSty{
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height:45px;
+    height: 45px;
+}
+
+.selectDefault{
+    width: 100%;
+    height:25px;
+    font-family: '微软雅黑';
+    font-size: 9px;
+}
+
+
+/*-----------------------------radiobutton控件样式---------------------*/
+.RadioButtonPanelSty{
+
+}
+
+.RadioButtonDiv{
+    overflow:auto;
+    height:100%;
+    width: 100%;
+}
+
+.radioButtonDivBeforeSpan{
+    margin:5px 0px 5px 15px;
+    Width:15px;
+    height:15px;
+    border-radius:7px;
+    border:1px solid #d9d9d9;
+    -webkit-box-shadow: 0px 1px 2px #ffffff;
+    -moz-box-shadow: 0px 1px 2px #ffffff;
+    box-shadow: 0px 1px 2px #ffffff;
+    -webkit-box-shadow: 0px 1px 2px #000000 inset;
+    -moz-box-shadow: 0px 1px 2px #000000 inset;
+    box-shadow: 0px 1px 2px #000000 inset;
+    opacity: 0.6;
+
+}
+
+ .radioButtonDivBeforeSpan_Checked{
+    margin:5px 0px 5px 15px;
+    Width:15px;
+    height:15px;
+    border-radius:7px;
+    border:1px solid #efefef;
+    -webkit-box-shadow: 0px 1px 2px #000000;
+    -moz-box-shadow: 0px 1px 2px #000000;
+    box-shadow: 0px 1px 2px #000000;
+    -webkit-box-shadow: 0px 1px 2px #ffffff inset;
+    -moz-box-shadow: 0px 1px 2px #ffffff inset;
+    box-shadow: 0px 1px 2px #ffffff inset;
+    -webkit-box-shadow: 0px -1px 1px #969696 inset;
+    -moz-box-shadow: 0px -1px 1px #969696 inset;
+    box-shadow: 0px -1px 1px #969696 inset;
+    opacity: 0.6;
+    background-image:url("/agi/ISCAS_Test/code/JS/Controls/RadioButton/image/hook-radio.png") no-repeat 0px;
+ }
+
+ .radioButtonTD{
+     border-bottom:1px solid #9f9f9f;
+     font-family: '微软雅黑';
+     font-size:12px;
+     display:-moz-box;
+     display:-webkit-box;
+     display:box;
+ }
+
+ .radioButtonTD_horizontal{
+     border-width:0px 1px 0px 0px;
+     border-style:solid;
+     border-color:#9f9f9f;
+     font-family: '微软雅黑';
+     font-size:12px;
+     display:-moz-box;
+     display:-webkit-box;
+     display:box;
+ }
+
+ .Radio_TD_Checked{
+
+ }
+
+.radioButtonTable_horizontal{
+    overflow:auto;
+    border-width:1px 0px 1px 1px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    width:100%;
+    cellspacing:0;
+    cellpadding:0;
+    font-family: '微软雅黑';
+    font-size:12px;
+
+ }
+
+ .radioButtonTable{
+    overflow:auto;
+    border-width:1px 1px 0px 1px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    width:100%;
+    cellspacing:0;
+    cellpadding:0;
+    font-family: '微软雅黑';
+    font-size:12px;
+ }
+
+ .radioButtonSpan{
+     white-space:nowrap;
+     margin:4px 10px 4px 9px;
+     padding:0px;
+     align:left;
+     text-align:center;
+     display:block;
+ }
+
+.RadioButtonHorizontalTR{
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+}
+
+/*-------------------------绑定属性配置-----------------*/
+.prortityBindTable
+{
+    width: 100%;
+    height: auto;
+    border-width:1px 0px 0px 0px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    cellspacing:1;
+    cellpadding:0;
+    color:#333333;
+    font-size:12px;
+    font-family: '微软雅黑';
+    font-weight: bold;
+}
+
+.prortityBindLabel{
+    height:25px;
+    width:142px;
+    align:right;
+    border-width:0px 1px 1px 0px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    color:#333333;
+    font-size:12px;
+    font-family: '微软雅黑';
+    font-weight: bold;
+}
+
+.prortityBindSelect{
+    height:25px;
+    width:200px;
+    align:left;
+    border-width:0px 0px 1px 0px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    font-family: '微软雅黑';
+    font-size:12px;
+    font-weight: bold;
+    color:#333333;
+}
+
+.prortityBindSelect select{
+    height:23px;
+}
+
+/*-------------------------基本属性配置--------------------*/
+.BasicChart_Pro_Panel{
+    font-family: '微软雅黑';
+    font-size:12px;
+    font-weight: bold;
+    color:#333333;
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+
+.prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+
+.prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.basicprortitystytdCenter{
+    text-align: center;
+    padding: 1px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelTabletd1
+{
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    text-align: left;
+    padding: 1px;
+}
+
+.prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+
+.prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+ /*-------------------元素管理--------------------*/
+.prortityPanelRadioButtonTextDiv
+{
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    width: 165px;
+    height:232px;
+    overflow:auto;
+    border:1px solid #151b24;
+    border-radius:10px;
+    margin:2px 0px 0px 0px;
+}
+
+.prortityPanelRadioButtonTextTable
+{
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelRadioButtonTextTD
+{
+    padding-left:10px;
+    border-width:0px 0px 1px 0px;
+    border-style:solid;
+    border-color:#9f9f9f;
+    margin-left: 0px;
+    width:165px;
+    margin-bottom: 0px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelRadioButtonManagmentDiv
+{
+     display:-moz-box;
+     display:-webkit-box;
+     display:box;
+     padding:0px;
+     margin:0px;
+}
+
+.prortityPanelRadioButtonManagmentDivUnit
+{
+    width:159px;
+    height:25px;
+    margin-left:10px;
+    color:#333333;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+}
+
+.prortityPanelRadioButtonManagmentDivUnit label
+{
+    width:67px;
+    text-align:center;
+    margin-top:2px;
+    margin-right:0px;
+    padding-right:0px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}
+
+.prortityPanelRadioButtonManagmentDivUnit .InputButton
+ {
+     margin-left:24px;
+     padding-right:0;
+     text-align:center;
+     color:#333333;
+     width:55px;
+     font-size:12px;
+     font-weight:bold;
+     font-family:'微软雅黑',Arial;
+     //border-radius:6px;
+     background:-webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7),to(#b9b9b9));
+     align:right;
+ }
+
+ .prortityPanelRadioButtonManagmentDivUnit .InputButtonAdd
+ {
+     margin-left:110px;
+     padding-right:0;
+     text-align:center;
+     color:#333333;
+     width:55px;
+     font-size:12px;
+     font-weight:bold;
+     font-family:'微软雅黑',Arial;
+     border-radius:6px;
+     background:-webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f7),to(#b9b9b9));
+     align:right;
+ }
+.prortityPanelRadioButtonManagmentDivUnit .InputText
+{
+    padding-left:0;
+    padding-right:0;
+    text-align:left;
+    width:97px;
+    font-size:12px;
+    font-weight:bold;
+    font-family:'微软雅黑',Arial;
+    border-radius:5px;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4),to(#ffffff));
+}
+.prortityPanelRadioButtonManagmentDivUnitHr
+{
+    margin-top:10px;
+    margin-left:15px;
+    height:1px;
+    width:90%;
+    display:block;
+    border-bottom:1px solid #FFFFFF;
+}
+.prortityPanelRadioButtonItemManagmentDiv
+{
+
+}
+.prortityPanelRadioButtonTextTR_checked
+{
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#C4D3ED),to(#B3C6DA));
+}
+
+
+/*---------------------------------属性配置原有样式-----------------------*/
+.form-horizontal{
+     width: 100%;
+     height:auto;
+     border-radius: 10px;
+     border:1px solid #667c8d;
+     padding: 5px 0px 5px 0px;
+     margin:10px 0px 10px 0px;
+     text-align: center;
+     font-family: '微软雅黑',arial;
+     font-size: 16px;
+     font-weight: bold;
+     text-overflow:ellipsis;
+     overflow: hidden;
+     white-space:nowrap;
+ }
+
+ .controls .input{
+      text-align: center;
+      font-family: '微软雅黑',arial;
+      font-size: 10px;
+      font-weight: bold;
+      text-overflow:ellipsis;
+      overflow: hidden;
+      white-space:nowrap;
+  }
+
+  .controls input{
+      text: C2C2C2;
+      text-align: left;
+      font-family: '微软雅黑',arial;
+      font-size: 10px;
+      text-overflow:ellipsis;
+      overflow: hidden;
+      white-space:nowrap;
+      margin-left: 10px;
+      padding-left: 3px;
+  }
+
+.RadiusTable td{
+     border:1px solid #cccccc;
+     border-collapse:collapse;
+ }

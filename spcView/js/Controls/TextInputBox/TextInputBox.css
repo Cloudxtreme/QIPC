@@ -1,0 +1,136 @@
+
+ .BasicProperty_RadiusTextInputBox{
+     margin:5px 4px 5px 4px;
+     cursor: pointer;
+     text-align: center;
+     float: left;
+     width:30px;
+     font-family: '微软雅黑',arial;
+     font-size: 12px;
+     font-weight: bold;
+     text-overflow:ellipsis;
+     overflow: hidden;
+     white-space:nowrap;
+ }
+ .TxtInputBoxselectDivClass{
+     width: 90px;
+     height:20px;
+ }
+
+ .prortityPanelTabletd0txtinputbox{
+     text-align: right;
+     padding-right: 5px;
+ }
+ .prortityPanelTabletd1txtinputbox
+ {
+     text-align: left;
+     padding-left: 5px
+ }
+ .TextInputBox_Pro_Panel
+ {
+     width: 100%;
+     height:auto;
+     border-radius: 10px;
+     border:1px solid #667c8d;
+     padding: 5px 0px 5px 0px;
+     margin:10px 0px 10px 0px;
+ }
+ .TextInputBox_Pro_Panel input
+ {
+     height: 20px;
+ }
+ .prortityPanelTableTxtBox
+ {
+     width: 100%;
+     height:auto;
+     border-radius:5px;
+     font-size:12px;
+     font-weight: bold;
+     font-family: '微软雅黑',Arial;
+     border:1px solid #cccccc;
+     border-collapse:collapse;
+ }
+ .prortityPanelTableTxtBox td
+ {
+     border:1px solid #cccccc;
+     border-collapse:collapse;
+ }
+ .prortityPanelTableTxtBox td input
+ {
+     margin-left: 0px;
+     width:60px;
+     margin-bottom: 0px;
+     font-size:12px;
+     font-family: '微软雅黑',Arial;
+     height: 20px;
+ }
+ .prortityPanelTableTxtBox select
+ {
+     margin-left: 0px;
+     width:90%;
+     height: 20px;
+     margin-bottom: 0px;
+     font-size:12px;
+     font-family: '微软雅黑',arial;
+ }
+ .prortityPanelTabletd0txtinputbox input[type='button']{
+     width:30%;
+     height:90% ;
+     font-size:12px;
+     font-family: '微软雅黑',arial;
+     font-weight: bold;
+     text-align: center;
+     margin-right:100px;
+     margin-bottom: 4px;
+ }
+ .prortityPanelTabletd0txtinputbox td select
+ {
+     height: 20px;
+ }
+ .TextinputBoxativeClass{
+     min-width: 50px;
+     padding: 0px;
+     height: 20px;
+     border: 1px   solid  #9f9f9f;
+     border-top-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+     background:-webkit-gradient(
+         linear,
+         left bottom,
+         left top,
+         color-stop(0, #f4f4f4),
+         color-stop(1, #ffffff)
+     );
+
+ }
+ #TxtinputBoxAndButtonShell{
+     width: 100%
+ }
+ #TextinputBoxDiv{
+     width: 100%;
+     min-width: 105px;
+     height: 100%
+ }
+ #TxtBoxPanelBgColor
+ {
+     width: 60px;
+     height: 20px;
+ }
+ #TxtBoxAssociativeDisplayRows
+ {
+     width: 60px
+ }
+ #TxtBoxPanelBorderColor
+ {
+     width: 60px
+ }
+ #TxtBoxPanelFontSty
+ {
+     width: 75px
+ }
+ #TxtBoxchangeAsso{
+     font-size: 12px;
+ }
+
+
+

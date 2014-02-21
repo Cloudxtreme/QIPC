@@ -1,0 +1,98 @@
+.jPicker td.Radio {
+    margin: 0;
+    padding: 0;
+    width: 35px;
+}
+
+.jPicker tr.Hex td.Text input.AHex{
+    margin: 0;
+}
+
+.jPicker table input.Ok,
+.jPicker table input.Cancel{
+    display: none;
+}
+.gradientViewArea{
+    display: block;
+    float: right;
+    width: 479.5px;height: 40px;border: 0;
+    background: rgba(95, 158, 255, 0.40);
+    margin-right: 5.5px;
+}
+.gradientDragArea{
+    display: block;
+    float: right;
+    width: 490px;height: 17px;border: 0;
+    /*background: rgba(0,0,155,0.3);*/
+    cursor: pointer;
+    position: relative;
+}
+.gradientLeft{
+    display: inline-block;
+    border: 0px solid blue;
+    /*width: 60%;*/
+    height: 100%;
+}
+.gradientRight{
+    display: inline-block;
+    border: 0px solid blue;
+    /*width: 36%;*/
+    height: 100%;
+    float: right;
+    display: none;
+}
+.stop-marker {
+    cursor: default;
+    width: 11px;
+    height: 17px;
+    background-image:  url(images/dragMarkerBg.png);
+    background-position: right;
+    position: absolute;
+}
+.stop-marker.active {
+    background-position: left;
+}
+.stop-marker .color {
+    position: absolute;
+    top: 8px;
+    left: 2px;
+    width: 7px;
+    height: 7px;
+}
+/*#colorPickerTab-2 table.jPicker{*/
+    /*width: 421px;*/
+/*}*/
+/*#colorPickerTab-2 td.Button{*/
+    /*display: none;*/
+/*}*/
+
+#AgiColorPickerDialog_tabs .ui-tabs-nav li a{
+    /*color: #ffffff;*/
+}
+#AgiColorPickerDialog_tabs input{
+    padding: 0;
+}
+#AgiColorPickerDialog_tabs .ui-tabs-nav
+{
+    background: transparent;
+}
+
+.color-imageItem{
+    list-style: none;
+    margin: 1px  10px;
+    display: inline-block;
+    padding: 1px;
+}
+.color-imageItem:hover{
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 5px #236DA1;
+}
+.color-imageItem.selected{
+    -webkit-box-shadow: 0px 0px 5px #ff2540;
+}
+.color-imageItem>img{
+    width: 150px;
+    height: 100px;
+    /*border: 1px solid #ff0000;*/
+    margin: 2px;
+}

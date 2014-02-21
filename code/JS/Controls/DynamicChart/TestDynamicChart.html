@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试页面</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.js"></script>
+    <script src="../highcharts.js"></script>
+</head>
+<body>
+<div style="width:auto;height:auto">
+    <div id="container" style="width:100%;min-width: 200px; height: 150px; margin: 0 auto"></div>
+</div>
+<div style="margin-top: 300px">
+    <input type="button" value="开始" onclick="btnStart()">
+    <input type="button" value="停止" onclick="btnStop()">
+    <input type="button" value="改变" onclick="btnChange()">
+</div>
+</body>
+</html>
+<script>
+    var chartProperty;
+    var chartSeries;
+    $(document).ready(function(){
+        SetChartProperty();
+        btnStart();
+    });
+    var series;
+    var IntervalID;
+    var myChart;
+    function btnStart(){
+        if(IntervalID) btnStop();
+        {
+            var minValue=chartProperty.yAxis_PlotLines_Min.value;
+            var maxValue=chartProperty.yAxis_PlotLines_Max.value;
+            InitHighCharts();
+        }
+        IntervalID = setInterval(function(){
+            if(series && series.length>0){
+                for(var i=0;i<series.length;i++){
+                    var y = GetRandomValue(parseInt(minValue)- 1,parseInt(maxValue)+1);
+                    if(i==1 && y<5){
+                        series[i].addPoint({y:null},true,true);
+                        continue;
+                    }
+                    if(y>maxValue)
+                        y={y:y,marker:{fillColor:'red'}};
+                    else if(y<minValue)
+                        y={y:y,marker:{fillColor:'blue'}};
+                    else
+                        y={y:y}
+                    series[i].addPoint(y,true,true);
+                }
+            }
+        },1000);
+    }
+    function btnStop(){
+        if(IntervalID) clearInterval(IntervalID);
+        if(myChart) myChart=null;
+    }
+    function btnChange(){
+        myChart.options.chart.type='column';
+        series.redraw();
+    }
+    function InitHighCharts(){
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+        myChart = new Highcharts.Chart({
+            chart:{
+                renderTo: chartProperty.chart_RenderTo,
+                type: chartProperty.chart_Type,
+                animation:false,
+                marginRight: 130,
+                marginBottom: 25,
+                reflow:chartProperty.chart_Reflow,
+                events:{load:function(){series = this.series;}}
+            },
+            colors: [
+                '#4572A7',
+                '#89A54E',
+                '#80699B',
+                '#3D96AE',
+                '#92A8CD',
+                '#A47D7C',
+                '#B5CA92'
+            ],
+            title: {
+                text: chartProperty.title_Text
+            },
+            xAxis: {
+                tickWidth:5,
+                tickPixelInterval:100,
+                opposite:true,
+                reversed:true
+            },
+            yAxis: {
+                title: {
+                    text:chartProperty.yAxis_Title_Text
+                },
+                min:chartProperty.yAxis_Min,
+                max:chartProperty.yAxis_Max,
+                tickInterval:1,
+                gridLineWidth:0,
+                labels: {
+                    enabled:true,
+                    formatter: function() {
+                        if(this.value == chartProperty.yAxis_PlotLines_Min.value
+                                ||  this.value == chartProperty.yAxis_PlotLines_Max.value
+                                ||  this.value == chartProperty.yAxis_PlotLines_Min.value+(chartProperty.yAxis_PlotLines_Max.value-chartProperty.yAxis_PlotLines_Min.value)/2){
+                            return this.value
+                        }
+                        else{
+                            return ''
+                        }
+                    }
+                },
+                plotLines: [//chartProperty.yAxis_PlotLines_Y,
+                    chartProperty.yAxis_PlotLines_Min,
+                    chartProperty.yAxis_PlotLines_Max]
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true,
+                        radius:5,
+                        symbol:'circle'
+                    }
+                }
+            },
+            tooltip: {
+                enabled:true,
+                formatter: function() {
+                    return '<b>'+ this.series.name +': '+ this.y +'</b>';
+                }
+            },
+            legend: {
+                enabled:false,
+                align: 'left',
+                verticalAlign: 'top',
+                x:30,
+                y: -15,
+                floating: true,
+                borderWidth: 0
+            },
+//            legend: {
+//                enabled: chartProperty.legend_enabled
+//            },
+            exporting: {
+                enabled: chartProperty.exporting_enabled
+            },
+            series:chartSeries,
+            credits:{
+                enabled:chartProperty.credits_enabled
+            }
+        });
+    }
+    function GetData(){
+        var minValue=chartProperty.yAxis_PlotLines_Min.value;
+        var maxValue=chartProperty.yAxis_PlotLines_Max.value;
+        var objData=[];
+        for(var i = 2-chartProperty.chart_PointNumber; i <=0 ;i++){
+            var y = parseInt(GetRandomValue(parseInt(minValue)- 1,parseInt(maxValue)+1));
+
+            if(y>maxValue)
+                y={y:y,marker:{fillColor:'red'}};
+            else if(y<minValue)
+                y={y:y,marker:{fillColor:'blue',width:100}};
+            else
+                y={y:y,marker:{fillColor:'red',width:100}}
+
+            objData.push(y);
+        }
+        return objData;
+    }
+    function GetRandomValue(_minValue,_maxValue){
+        var minValue=chartProperty.yAxis_PlotLines_Min.value;
+        var maxValue=chartProperty.yAxis_PlotLines_Max.value;
+        return parseInt(_minValue) + parseInt(_maxValue - _minValue) * Math.random();
+    }
+    function SetChartProperty(){
+        var min = 20;
+        var max = 280;
+        chartProperty={
+            chart_PointNumber:20,
+            chart_RenderTo:'container',
+            chart_Type:'spline',//'spline',
+            chart_MarginRight:20,
+            chart_Reflow:true,
+            title_Text:'',
+            xAxis_Type:'datetime',
+            xAxis_TickPixelInterval:150,
+            yAxis_Title_Text:'',
+            yAxis_Min:0,
+            yAxis_Max:350,
+            yAxis_PlotLines_Y:{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            },
+            yAxis_PlotLines_Min:{
+                value: min,//最小警戒线
+                width: 4,
+                color: '#FACCCC',
+                label: {
+                    align: 'right',
+                    text:"下限:"+min,
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+            },
+            yAxis_PlotLines_Max:{
+                value: max,//最大警戒线
+                width: 4,
+                color: '#CEAEFE',
+                label: {
+                    align: 'right',
+                    text:"上限:"+max,
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+            },
+            legend_enabled:false,
+            exporting_enabled:false,
+            credits_enabled:false,
+            navigation_menuItemStyle_fontSize:'10px'
+        };
+
+        chartSeries=[{
+            name: 'A',
+            data: GetData()
+        }];
+    }
+</script>

@@ -1,0 +1,293 @@
+/*属性面板样式*/
+
+/*类型属性集合*/
+.CstPCTRChart_Pro_Panel{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    /*border: 1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;*/
+}
+
+/*数据曲线*/
+.CustomprortityPanelTable {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: bold;
+    font-family: '微软雅黑', Arial;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.CustomprortityPanelTable td {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.basicprortitystytdCenter {
+    text-align: center;
+    padding: 1px;
+}
+
+.CustomprortityPanelTable td input {
+    margin-left: 0px;
+    width: 60px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+
+.CustomprortityPanelTabletd0 {
+    text-align: right;
+    padding: 1px;
+}
+.CustomprortityPanelTabletd01 {
+    text-align: right;
+    padding: 1px;
+    width:65px;
+}
+
+.CustomprortityPanelTabletd1 {
+    text-align: left;
+    padding: 1px;
+    min-width: 60px;
+}
+
+.CustomprortityPanelTabletd1 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+
+.CustomprortityPanelTabletd1 input[type='text'] {
+    width: 80px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomprortityPanelTabletd1 input[type="checkbox"] {
+    width: 30px;
+    margin-top: -2px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+
+.CustomprortityPanelTabletd2 {
+    text-align: left;
+    padding: 1px;
+}
+
+.CustomprortityPanelTabletd2 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+
+.CustomPCTRPropSavebuttonsty {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+
+.CustomPCTR_ColorControl {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 4px;
+    position: relative;
+    border: 2px solid #ffffff;
+    -webkit-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+    -moz-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+}
+
+/*基准线菜单面板样式*/
+.CustomPCTRStandline_sty {
+    float: left;
+}
+
+.CustomPCTRStandlineAdd {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/plus-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+
+.CustomPCTRStandlineSave {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+
+.CustomPCTRStandlineDelete {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/cross-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+
+.CustomPCTRStandlineredo {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/redo.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+
+/*标准线相关样式 20130815 19:39*/
+.AlarmSty {
+    position: absolute;
+    z-index: 1000;
+    font-family: '微软雅黑', '黑体', Arial;
+    font-size: 9px;
+    border-radius: 5px;
+    color: #000000;
+}
+
+.AlarmGroupSty {
+    margin: 10px auto 10px auto;
+    padding-left: 5px;
+}
+/*报警统计信息*/
+.tabsty{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial,'黑体';
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+    display:none;
+}
+.tabsty td{
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+.totalAlarmmenusty{
+    cursor:pointer;
+    text-decoration:none;
+    border-radius:5px;
+    padding: 0px 5px 0px 5px;
+    height: 20px;
+    line-height:20px;
+    margin-top: 1px;
+    font-weight:normal;
+}
+.totalAlarmmenusty:hover{
+    cursor:pointer;
+    text-decoration:none;
+    border-radius:5px;
+    padding: 0px 5px 0px 5px;
+    height: 20px;
+    line-height:20px;
+    margin-top: 1px;
+    text-shadow:rgba(50,50,50,0.5) 1px 1px 1px;
+    text-decoration:underline;
+}
+/*对照图形*/
+.AlarmStyLasgImg{
+    position: absolute;
+    font-family: '微软雅黑', '黑体', Arial;
+    font-size: 9px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    color: #3d95e6;
+    cursor:pointer;
+}
+.PCTRChartLastImgPanel{
+    border:solid 1px #ff0000;
+    display:none;
+}
+/*数据钻取*/
+.urlinput{
+    width:150px;
+}
+.ParsListHeadSty{
+    width: 100%;height:auto;display:box;display:-webkit-box;display:-moz-box;
+}
+.CustomPCTRParsCellSty{
+     box-flex:1;text-align: left;background-color:#dcdcdc;-webkit-box-flex:1;-moz-box-flex:1;padding-left: 10px;border-bottom: 1px dotted #dcdcdc;
+ }
+.CustomPCTRParsListCellSty{
+    box-flex:1;text-align: left;-webkit-box-flex:1;-moz-box-flex:1;font-weight: normal;padding-left: 10px;border-bottom: 1px dotted #dcdcdc;
+}
+.ParsListPanelsty{
+    width: 100%;height:auto;max-height:100px;overflow: auto;
+}
+/*背景设置*/
+.CustomPCTR_ColorControl{
+    width: 18px;
+    height: 18px;
+    border-radius:3px;
+    cursor: pointer;
+    margin: 4px;
+    position: relative;
+    border:2px solid #ffffff;
+    -webkit-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+    -moz-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+}
+/*20131125 markeluo 曲线设置，子组大小设置*/
+.CustomprortityPanelTabletd00{
+    text-align: right;
+    padding: 1px;
+    line-height:35px;
+}
+.CustomprortityPanelTabletd11 {
+    text-align: left;
+    padding: 1px;
+    min-width: 60px;
+    line-height:35px;
+}
+.CustomprortityPanelTabletd11 input[type='radio']{
+    margin-left:8px;
+    margin-top:0px;
+    width: 15px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomprortityPanelTabletd11 select {
+    margin-left:8px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}
+.CustomprortityPanelTabletd11 input[type='text'] {
+    margin-left:8px;
+    width: 80px;
+    font-size: 8px;
+    font-family: '微软雅黑', Arial;
+}

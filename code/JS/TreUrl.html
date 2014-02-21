@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <script type="text/javascript " src="jquery-1.7.2.js"></script>
+      <script type="text/javascript " src="jquery.ztree-2.6.js"></script>
+      <link rel="stylesheet" href="zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript">
+        var isParent = true;
+        function getDwChildren(){
+            var footNodeGroupID = "";
+            Agi.GroupManager.RGLoad('','0',function(result){
+                var AllGroup=result.GroupName;
+                if(AllGroup != null){
+                    footNodeGroupID ="[";
+                    $.each(AllGroup,function(i,val){
+                        footNodeGroupID+= "{id:"+i+",pId:-1,name:"+"'"+AllGroup[i].GroupID+"'"+",open:true,isParent:"+isParent+"},";
+                    });
+                    footNodeGroupID=footNodeGroupID.substring(0,footNodeGroupID.length-1);
+                    footNodeGroupID+="]";
+                }
+            });
+            return footNodeGroupID
+
+        }
+
+     //   var zNodes = getDwChildren();
+       var zNodes =[
+           { id:1, pId:0, name:"手机", ename:"Mobile", open:true},
+           { id:11, pId:1, name:"诺基亚", ename:"Nokia"},
+           { id:111, pId:11, name:"C6111(音乐版)", ename:"C6(Music)"},
+           { id:112, pId:11, name:"X6(导航版)", ename:"X6(GPS)"},
+           { id:113, pId:11, name:"5230(世博版)", ename:"5230(SB)"},
+           { id:114, pId:11, name:"N97mini", ename:"N97mini"},
+           { id:12, pId:1, name:"三星", ename:"Samsung"},
+           { id:121, pId:12, name:"I9000(联通版)", ename:"I9000(Unicom)"},
+           { id:122, pId:12, name:"I9000(移动版)", ename:"I9000(China Mobile)"},
+           { id:123, pId:12, name:"Galaxy Naos", ename:"Galaxy Naos"},
+           { id:124, pId:12, name:"Fascinate", ename:"Fascinate"},
+           { id:13, pId:1, name:"索爱", ename:"Sony Ericsson"},
+           { id:131, pId:13, name:"U1i(Satio)", ename:"U1i(Satio)"},
+           { id:132, pId:13, name:"U5i(Vivaz)", ename:"U5i(Vivaz)"},
+           { id:133, pId:13, name:"X10i", ename:"X10i"},
+           { id:134, pId:13, name:"Aino mini", ename:"Aino mini"},
+           { id:14, pId:1, name:"多普达", ename:"Dopod"}
+       ];
+       var zTree1;
+        var setting = {
+            isSimpleData: true,
+            treeNodeKey: "id",
+            treeNodeParentKey: "pId",
+            showLine: true,
+            root:{
+                isRoot:true,
+                nodes:[]
+            } ,
+            check: {
+                enable: true,
+                chkStyle:"checkbox",
+                chkboxType: { "Y": "Ps", "N": "Ps" } //checkbox父子关联效果
+            }
+        };
+               $(document).ready(function(){
+                   zTree1 = $("#treeDemo").zTree(setting,zNodes);
+
+               });
+
+       //-->
+
+    </script>
+</head>
+<body >
+
+<div class="zTreeDemoBackground">
+    <ul id="treeDemo" class="tree"></ul>
+</div>
+
+</body>
+</html>

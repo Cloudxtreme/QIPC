@@ -1,0 +1,177 @@
+
+ .BasicProperty_RadiusforSaFari{
+     margin:5px 4px 5px 4px;
+     cursor: pointer;
+     text-align: center;
+     float: left;
+     width:30px;
+     font-family: '微软雅黑',arial;
+     font-size: 12px;
+     font-weight: bold;
+     text-overflow:ellipsis;
+     overflow: hidden;
+     white-space:nowrap;
+ }
+
+ .Asso-controls{
+     margin-top: 10px;
+ }
+
+ #FontTextInput{
+     width:80%;
+     height:80% ;
+     font-size:12px;
+     font-family: '微软雅黑',arial;
+ }
+
+
+ .selectDivClass{
+     width: 90px;
+     height:20px;
+ }
+
+ .prortityPanelTabletd0Asso{
+     text-align: right;
+     padding-right: 5px;
+ }
+ .prortityPanelTabletd1Asso
+ {
+     text-align: left;
+     padding-left: 5px
+ }
+ .Asso_Pro_Panel
+ {
+     width: 100%;
+     height:auto;
+     border-radius: 10px;
+     border:1px solid #667c8d;
+     padding: 5px 0px 5px 0px;
+     margin:10px 0px 10px 0px;
+ }
+ .Asso_Pro_Panel input
+ {
+     height: 20px;
+ }
+ .prortityPanelTableAsso
+ {
+     width: 100%;
+     height:auto;
+     border-radius:5px;
+     font-size:12px;
+     font-weight: bold;
+     font-family: '微软雅黑',Arial;
+     border:1px solid #cccccc;
+     border-collapse:collapse;
+ }
+ .prortityPanelTableAsso td
+ {
+     border:1px solid #cccccc;
+     border-collapse:collapse;
+ }
+ .prortityPanelTableAsso td input
+ {
+     margin-left: 0px;
+     width:60px;
+     margin-bottom: 0px;
+     font-size:12px;
+     font-family: '微软雅黑',Arial;
+     height: 20px;
+ }
+ .prortityPanelTableAsso select
+ {
+     margin-left: 0px;
+     width:90%;
+     height: 20px;
+     margin-bottom: 0px;
+     font-size:12px;
+     font-family: '微软雅黑',arial;
+ }
+ .prortityPanelTabletd0Asso input[type='button']{
+     width:30%;
+     height:90% ;
+     font-size:12px;
+     font-family: '微软雅黑',arial;
+     font-weight: bold;
+     text-align: center;
+     margin-right:100px;
+     margin-bottom: 4px;
+ }
+ .prortityPanelTabletd0Asso td select
+ {
+     height: 20px;
+ }
+ .inputAssociativeClass{
+     min-width: 50px;
+     padding: 0px;
+     height: 20px;
+     border: 1px   solid  #9f9f9f;
+     border-top-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+     background:-webkit-gradient(
+         linear,
+         left bottom,
+         left top,
+         color-stop(0, #f4f4f4),
+         color-stop(1, #ffffff)
+     );
+
+ }
+ #inputAndButtonShell{
+     width: 100%
+ }
+ #inputDiv{
+     width: 100%;
+     min-width: 105px;
+     height: 100%
+ }
+ #ButtonAssociativeID{
+     height: 22px;
+     border: 1px   solid  #9f9f9f;
+     border-top-right-radius: 5px;
+     border-bottom-right-radius: 5px;
+     background:-webkit-gradient(
+         linear,
+         left bottom,
+         left top,
+         color-stop(0, #f7f7f7),
+         color-stop(1, #b9b9b9)
+     );
+ }
+ .Asso-control-label
+ {
+     font-family: '微软雅黑',Arial;
+     padding-top: 5px;
+ }
+ #PanelBgColor
+ {
+     width: 60px;
+     height: 20px;
+ }
+ #AssociativeDisplayRows
+ {
+     width: 60px
+ }
+ #PanelBorderColor
+ {
+     width: 60px
+ }
+ #PanelFontSty
+ {
+     width: 75px
+ }
+ .Asso-control-group{
+     display: -webkit-box;
+     display: -moz-box;
+     display: box;
+
+ }
+ #changeAsso{
+     font-size: 12px;
+ }
+ #PanelFontSty{
+     line-height: 14px;
+ }
+
+
+
+

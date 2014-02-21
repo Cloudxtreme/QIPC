@@ -1,0 +1,174 @@
+.selectAutoFill_PanelSty{
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height:45px;
+    height: 45px;
+}
+.selectDefault
+{
+    width: 100%;height:25px;font-family: '微软雅黑';font-size: 9px;
+}
+/*以下是对dropdown控件的拓展*/
+.dropdownlistControl{
+    background-color: #E3E3E3;
+    color: #fff;
+    --border-radius: 5px;
+    width:100%;
+    --height: 100%;
+    text-align: right;
+}
+
+.navbar,
+.navbar .nav {
+    margin: 0 0 0 0;
+}
+
+.dropdown{
+    width:100%;
+    min-width: 80px;
+    min-height: 34px;
+    z-index: 1001;
+}
+.dropdown-menu{
+    z-index: 1001;
+}
+.dropdown,
+.dropdown li{
+    text-align: right;
+}
+
+
+
+/*属性面板样式*/
+
+/*类型属性集合*/
+.BasicChart_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.BasicChart_ProTypeImgSty
+{
+    margin:5px 4px 5px 4px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    width:30px;
+    font-family: '微软雅黑',arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+.BasicChart_ProTypeImgSty img
+{
+    width:30px;height: 30px;
+}
+.BasicChart_ProTypeImgSty:hover
+{
+    -webkit-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+    -moz-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+}
+
+/*Chart 主题*/
+.BasicChart_ProTheme
+{
+    margin:5px 4px 5px 4px;cursor: pointer;text-align: center;float: left;width:63px;font-family: '微软雅黑',arial;
+    font-size: 10px;font-weight: bold;text-overflow:ellipsis;
+    overflow: hidden;white-space:nowrap;height: 63px;border-radius: 10px;
+    border:1px solid #dcdcdc;
+}
+#BasicChart_ProTheme_grid
+{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dcdcdc), to(#ffffff));
+}
+#BasicChart_ProTheme_darkblue
+{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#303060));
+}
+#BasicChart_ProTheme_darkgreen
+{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#306030));
+}
+#BasicChart_ProTheme_gray
+{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#101010), to(#606060));
+}
+.BasicChart_ProThemeItemSty:hover
+{
+    -webkit-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+    -moz-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+}
+/*数据曲线*/
+.prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:8px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.basicprortitystytdCenter{
+    text-align: center;padding: 1px;
+}
+.prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.prortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+
+
+

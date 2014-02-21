@@ -1,0 +1,137 @@
+.selectAutoFill_PanelSty{
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height:45px;
+    height: 45px;
+}
+.selectDefault
+{
+    width: 100%;height:25px;font-family: '微软雅黑';font-size: 9px;
+}
+/*以下是对dropdown控件的拓展*/
+.dropdownlistControl{
+    background-color: #E3E3E3;
+    color: #fff;
+    --border-radius: 5px;
+    width:100%;
+    --height: 100%;
+    text-align: right;
+}
+
+.navbar,
+.navbar .nav {
+    margin: 0 0 0 0;
+}
+
+.dropdown{
+    width:100%;
+    min-width: 80px;
+    min-height: 34px;
+    z-index: 1001;
+}
+.dropdown-menu{
+    z-index: 1001;
+}
+.dropdown,
+.dropdown li{
+    text-align: right;
+}
+   /*高级属性的样式*/
+.TimePickerProperty{
+    margin-top:5px;
+}
+.navbar{
+    width: 100%;
+    height: 100% ;
+}
+ /*时间DatePicker的显示样式*/
+#widgetField {/**/
+    width:100%;
+    height: 26px;
+    /*background: url(images/field.png);*/
+    overflow: hidden;
+    position: relative;
+}
+/*#widgetField a 	{*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*width: 26px;*/
+    /*height: 26px;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*background-image: url(images/field1.png);*/
+    /*text-decoration: none;*/
+    /*text-indent: -3000px;*/
+/*}*/
+.DropDownDatePick{
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 5px;
+    right: 0;
+    background-image: url(images/field2.png);
+    text-decoration: none;
+    text-indent: -3000px;
+}
+#widgetFieldClass{
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    position: absolute;
+    top: 0px;
+    height: 28px;
+    line-height: 26px;
+    left: 0px;
+    width:100%;
+    text-align: left;
+}
+/*#widgetField input*/
+/*{*/
+    /*font-size: 12px;*/
+    /*font-weight: bold;*/
+    /*color: #000;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*height: 26px;*/
+    /*line-height: 26px;*/
+    /*left: 0px;*/
+    /*width:100%;*/
+    /*text-align: center;*/
+/*}*/
+.widgetCalendar {/**/
+    position:absolute;
+    top:41px;
+    left: 0;
+    height: 0px;
+    overflow: hidden;
+    width: 588px;
+    /*background: #B9B9B9;*/
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#0000FF), to(rgba(0, 0, 255, 0.5))); *//*亮蓝色系*/
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#C0D9D9), to(#32CD99));*//*绿色系*/
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#FF2400), to(#FF7F00));*//*红色系*/
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#2F93D9), to(#236DA1));/* 蓝色系 */
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#D8BFD8), to(#4F2F4F));*//*紫色系 */
+
+}
+.widgetCalendar .datepicker {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}
+.widgetCalendar .datepickerContainer,
+.widgetCalendar .datepickerBorderT,
+.widgetCalendar .datepickerBorderB,
+.widgetCalendar .datepickerBorderL,
+.widgetCalendar .datepickerBorderR,
+.widgetCalendar .datepickerBorderTL,
+.widgetCalendar .datepickerBorderTR,
+.widgetCalendar .datepickerBorderBL,
+.widgetCalendar .datepickerBorderBR {
+    background: transparent !important;
+}
+.widgetCalendar .datepicker a:hover{
+    color: red;
+}
+

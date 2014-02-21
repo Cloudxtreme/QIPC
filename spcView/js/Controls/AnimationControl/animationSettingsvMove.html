@@ -1,0 +1,145 @@
+<style>
+    .mdiv
+    {
+        width: 450px;
+        height: 190px;
+        border-radius: 10px;
+        border: 1px solid #667c8d;
+        padding: 5px 0px 0px 0px;
+        margin: 0px 0px 0px 10px;
+    }
+    .mTable td
+    {
+        height: 30px;
+    }
+    .mTable td input
+    {
+        margin-left: 0px;
+        margin-bottom: 0px;
+        font-size: 8px;
+        font-family: '微软雅黑' ,Arial;
+    }
+    .mTableTd0
+    {
+        width: 100px;
+        text-align: center;
+        padding: 1px;
+    }
+    .mTableTd1
+    {
+        width: 150px;
+        text-align: left;
+        padding: 1px;
+    }
+    .mTableTd1 input[type='text']
+    {
+        width: 80%;
+        font-size: 8px;
+        font-family: '微软雅黑' ,Arial;
+    }
+</style>
+<div class="mdiv">
+    <table class="mTable">
+        <tr>
+            <td class="mTableTd0">
+                表达式:
+            </td>
+            <td colspan="2" class="mTableTd1">
+                <input type="text" id="expression" value="var" />
+            </td>
+        </tr>
+        <tr>
+            <td class="mTableTd0">
+            </td>
+            <td class="mTableTd1">
+                值变化
+            </td>
+            <td class="mTableTd1">
+                向上移动像素数
+            </td>
+        </tr>
+        <tr>
+            <td class="mTableTd0">
+                起点:
+            </td>
+            <td class="mTableTd1">
+                <input type="text" name="" id="Startvalue" value="0" />
+            </td>
+            <td class="mTableTd1">
+                <input type="text" name="" id="Startpixel" value="0" />
+            </td>
+        </tr>
+        <tr>
+            <td class="mTableTd0">
+                终点:
+            </td>
+            <td class="mTableTd1">
+                <input type="text" name="" id="Finallyvalue" value="100" />
+            </td>
+            <td class="mTableTd1">
+                <input type="text" name="" id="Finallypixel" value="100" />
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    //高度变化
+    //1.数据
+    //初始化宽度变化所对应的对象
+    var vMove = false;
+    //获取当前控件对象
+    var control = Agi.Edit.workspace.currentControls[0];
+    //获取属性配置
+    var PropertySettings = control.Get("PropertySettings");
+    var animations = PropertySettings.animations;
+    for (var i = 0; i < animations.length; i++) {
+        var animation = animations[i];
+        if (animation.type == "vMove") {
+            vMove = animation;
+        }
+    }
+    //2.默认值
+    if (!vMove) {
+        vMove = {
+            type: "vMove",
+            expression: "var",
+            Startvalue: 0,
+            Startpixel: 0,
+            Finallyvalue: 100,
+            Finallypixel: 100
+        }
+    }
+    //3.绑定值
+    $("#expression").val(vMove.expression);
+    $("#Startvalue").val(vMove.Startvalue);
+    $("#Startpixel").val(vMove.Startpixel);
+    $("#Finallyvalue").val(vMove.Finallyvalue);
+    $("#Finallypixel").val(vMove.Finallypixel);
+    //3、添加和删除
+    function doAnimationAdd() {
+        vMove.expression = $("#expression").val();
+        vMove.Startvalue = parseFloat($("#Startvalue").val());
+        vMove.Startpixel = parseFloat($("#Startpixel").val());
+        vMove.Finallyvalue = parseFloat($("#Finallyvalue").val());
+        vMove.Finallypixel = parseFloat($("#Finallypixel").val());
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(vMove);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            if (animation.type == "vMove") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

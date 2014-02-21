@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试页面</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.js"></script>
+    <script src="../highcharts.js"></script>
+</head>
+<body>
+<div style="width:auto;height:auto">
+    <div id="container" style="width:100%;min-width: 200px; height: 250px; margin: 0 auto"></div>
+</div>
+<div style="margin-top: 300px">
+    <input type="button" value="开始" onclick="btnStart()">
+    <input type="button" value="停止" onclick="btnStop()">
+    <input type="button" value="改变" onclick="btnChange()">
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+var myJson = [{A:1,B:2},{A:3,B:4}];
+
+function GetJsonToArray(jsonData){
+    var sJson = JSON.stringify(jsonData);
+    var aJson = sJson.split('},');
+    var rJson=[];
+    for(var j in aJson){
+        var a = aJson[j];
+        a = a.replace("{","");
+        a = a.replace("[","");
+        a = a.replace("]","");
+        a = a.replace("}","");
+        var b = a.split(",");
+        var c = [];
+        for(var m in b){
+            var t = b[m].split(":");
+            c.push(t[1]);
+        }
+        rJson.push(c);
+    }
+    return rJson;
+}
+
+GetJsonToArray(myJson,1);
+
+{
+var cp;
+var chartSeries=[];
+var checkDataSeries=[];
+
+var dataMin=[];
+var dataMiddle=[];
+var dataMax=[];
+
+var seriesMinValue = 0;
+var seriesMaxValue = 0;
+}
+
+function CheckSeriesValue(){
+    checkDataSeries = [
+        {min:0,max:30,minValue:20,maxValue:280,Names:"甲",Data:[]},
+        {min:30,max:60,minValue:50,maxValue:200,Names:"乙",Data:[]},
+        {min:60,max:90,minValue:30,maxValue:250,Names:"丙",Data:[]},
+        {min:90,max:120,minValue:70,maxValue:290,Names:"丁",Data:[]}];
+
+    for(var i = 0; i < checkDataSeries.length;i++){
+        var obj = checkDataSeries[i];
+
+        obj.Data = GetData(obj);//获取模拟数据
+
+        dataMin.push([obj.min,obj.minValue]);
+        dataMin.push([obj.max,obj.minValue]);
+        if(i != checkDataSeries.length-1) dataMin.push(null);
+
+        dataMiddle.push([obj.min,obj.minValue+(obj.maxValue-obj.minValue)/2]);
+        dataMiddle.push([obj.max,obj.minValue+(obj.maxValue-obj.minValue)/2]);
+        if(i != checkDataSeries.length-1) dataMiddle.push(null);
+
+        dataMax.push([obj.min,obj.maxValue]);
+        dataMax.push([obj.max,obj.maxValue]);
+        if(i != checkDataSeries.length-1) dataMax.push(null);
+
+        if(i === checkDataSeries.length-1){
+            seriesMinValue=obj.minValue;
+            seriesMaxValue=obj.maxValue;
+        }
+    }
+}
+
+$(document).ready(function(){
+    SetChartProperty("container");
+    SetChartDataProperty();
+    InitHighChart();
+});
+
+function SetChartProperty(_objCanvasAreaID){//初始化定义图形控件数据结构，并预设值属性，_objCanvasAreaID：画布显示区域ID
+    //图形基本结构定义
+    cp={
+        chart_PointNumber:20,//当前图形范围所显示的点位
+        chart_RenderTo:_objCanvasAreaID,//画布ID
+        chart_Type:'line',//'spline',//显示图形
+        chart_MarginTop:30,//图形距画框右边距距离
+        chart_MarginRight:80,//图形距画框右边距距离
+        chart_Reflow:true,//图形是否跟随放大
+        chart_Animation:false,//动画平滑滚动
+        chart_PlotBorderWidth:1,//数据图表区域边框宽度
+        chart_PlotBorderColor:"black",//数据图表区域边框颜色
+        chart_BackgroundColor:"#C9E8E2",//"#C9E8E2",//数据图表区域颜色
+        chart_Title_Text:'',//标题文字
+        Axis_TickColor:"black",//轴线刻度颜色
+        xAxis_Type:'datetime',//X轴数据类型
+        xAxis_TickWidth:1,//X轴刻度宽度
+        xAxis_TickWidth2:0,//X轴刻度宽度
+        xAxis_TickPosition:"outside",//X轴线刻度朝向
+        xAxis_TickPixelInterval:100,//X轴数据间隔
+        xAxis_TickInterval2:1,//伪X轴刻度间隔大小
+        xAxis_Reversed:false,//数据滚动方向
+        xAxis_LineWidth:0,//X轴轴线宽度
+        xAxis_PlotLines:[],//参考线位置，计算取得
+        xAxis_PlotLines_LineColor:"blue",//参考线颜色
+        xAxis_PlotLines_LineWidth:1,//参考线宽度
+        xAxis_PlotLines_DashStyle:"longdash",//X轴参考线显示类型 longdash：虚线
+        xAxis_LinkedTo:0,//未知，用于第二X轴，伪轴显示
+        xAxis_Opposite:true,//是否相反方向显示
+        yAxis_Title_Text:'单独值',//Y轴标题文字
+        yAxis_Min:0,//Y轴最小值
+        yAxis_Max:280,//Y轴最大值
+        yAxis_PlotLines_Max:0,//数据最大值
+        yAxis_PlotLines_Min:0,//数据最小值
+        yAxis_GridLineWidth:0,//Y轴表格线宽度显示
+        yAxis_PlotLines_MinMarkerColor:'blue',//警戒点过高
+        yAxis_PlotLines_MaxMarkerColor:'red',//警戒点过低
+        yAxis_LineWidth:0,//X轴轴线宽度
+        yAxis_TickWidth:1,
+        yAxis_TickPosition:"outside",
+        series_DataColor:'#4572A7',//数据线颜色
+        series_MinPlotLine_Color:"red",//最低参考线颜色
+        series_MinPlotLine_Enabled:true,//是否显示最低参考线
+        series_MinPlotLine_Names:"UCL",//是否显示最低参考线
+        series_MiddlePlotLine_Color:"green",//中间值参考线颜色
+        series_MiddlePlotLine_Enabled:true,//是否显示中间参考线
+        series_MiddlePlotLine_Names:"X",//是否显示最低参考线
+        series_MaxPlotLine_Color:"red",//最大参考线颜色
+        series_MaxPlotLine_Enabled:true,//是否显示最大参考线
+        series_MaxPlotLine_Names:"LCL",//是否显示最低参考线
+        series_MinPlotLine_LineWidth:0.5,//最低参考线宽度
+        series_MiddlePlotLine_LineWidth:0.5,//中间值参考线宽度
+        series_MaxPlotLine_LineWidth:0.5,//最高参考线宽度
+        tooltip_enabled:true,//是否显示提示框
+        plotOptions_Spline_Marker_enabled:true,//MARKER点位是否显示
+        plotOptions_Spline_Marker_Radius:3,//MARKER点位样式大小设置
+        plotOptions_Spline_Marker_Symbol:'circle',//数据线点位样式
+        legend_enabled:false,//是否显示名片
+        exporting_enabled:false,//是否显示打印和下载图片
+        credits_enabled:false,//是否显示出品人
+        navigation_menuItemStyle_fontSize:'10px'//NULL
+    };
+}
+
+function SetChartDataProperty(){//数据基本结构定义，在警戒范围中生成模拟数据
+    CheckSeriesValue();
+    var seriesData = [];
+    for(var i = 0; i < checkDataSeries.length;i++){
+        var obj = checkDataSeries[i];
+        seriesData = seriesData.concat(obj.Data);
+        seriesData = seriesData.concat(null);
+        if(i === 0) continue;
+        cp.xAxis_PlotLines.push({
+            color:cp.xAxis_PlotLines_LineColor,
+            width:cp.xAxis_PlotLines_LineWidth,
+            value:obj.min,
+            dashStyle:cp.xAxis_PlotLines_DashStyle
+        });
+    }
+    for(var i = 0; i < seriesData.length;i++){
+        var obj = seriesData[i];
+        if(obj){
+            cp.yAxis_PlotLines_Max = cp.yAxis_PlotLines_Max>obj.y?cp.yAxis_PlotLines_Max:obj.y;
+            cp.yAxis_PlotLines_Min = cp.yAxis_PlotLines_Min<obj.y?cp.yAxis_PlotLines_Min:obj.y;
+        }
+    }
+    chartSeries=[];
+    if(cp.series_MinPlotLine_Enabled){
+        chartSeries.push({
+            name:"min",
+            data:dataMin,
+            color:cp.series_MinPlotLine_Color,
+            lineWidth:cp.series_MinPlotLine_LineWidth,
+            marker:{
+                enabled:false
+            }
+        });
+    }
+    if(cp.series_MiddlePlotLine_Enabled){
+        chartSeries.push({
+            name:"middle",
+            data:dataMiddle,
+            color:cp.series_MiddlePlotLine_Color,
+            lineWidth:cp.series_MiddlePlotLine_LineWidth,
+            marker:{
+                enabled:false
+            }
+        });
+    }
+    if(cp.series_MaxPlotLine_Enabled){
+        chartSeries.push({
+            name:"max",
+            data:dataMax,
+            color:cp.series_MaxPlotLine_Color,
+            lineWidth:cp.series_MaxPlotLine_LineWidth,
+            marker:{
+                enabled:false
+            }
+        });
+    }
+    chartSeries.push({
+        name: 'A',
+        data: seriesData,
+        lineWidth:0.5,
+        type:"area"
+        //color:"black"//cp.series_DataColor
+    });
+}
+
+function InitHighChart(){//初始化图形控件
+    var yValue = this.GetYValue();
+    cp.yAxis_Min=cp.yAxis_PlotLines_Min-yValue/2;
+    cp.yAxis_Max=cp.yAxis_PlotLines_Max+yValue/2;
+    if(chartSeries && chartSeries && cp.chart_RenderTo){
+        Highcharts.setOptions({
+            global: {
+                useUTC: false//不使用夏令时
+            }
+        });
+        var series,chart;
+        chart = new Highcharts.Chart({
+            chart:{
+                animation:cp.chart_Animation,
+                renderTo: cp.chart_RenderTo,
+                type: cp.chart_Type,
+                marginTop:cp.chart_MarginTop,
+                marginRight:cp.chart_MarginRight,
+                plotBorderWidth:cp.chart_PlotBorderWidth,
+                plotBorderColor:cp.chart_PlotBorderColor,
+                backgroundColor:cp.chart_BackgroundColor
+            },
+            title: {
+                text: cp.chart_Title_Text
+            },
+            xAxis: [{
+                tickWidth:cp.xAxis_TickWidth,
+                tickPixelInterval:cp.xAxis_TickPixelInterval,
+                reversed:cp.xAxis_Reversed,
+                lineWidth:cp.xAxis_LineWidth,
+                tickColor:cp.Axis_TickColor,
+                tickPosition: cp.xAxis_TickPosition,
+                plotLines:cp.xAxis_PlotLines
+            },{
+                lineWidth:cp.xAxis_LineWidth,
+                linkedTo: cp.xAxis_LinkedTo,
+                opposite: cp.xAxis_Opposite,
+                tickWidth:cp.xAxis_TickWidth2,
+                tickInterval: cp.xAxis_TickInterval2,
+                labels: {
+                    formatter: function() {
+                        for(var i = 0; i < checkDataSeries.length;i++){
+                            var obj = checkDataSeries[i];
+                            if(parseInt(obj.min) + 1 === parseInt(this.value)) return '<b>'+obj.Names+'</b>';
+                        }
+                        return "";
+                    }
+                }
+            }],
+            yAxis: [{
+                lineWidth:cp.yAxis_LineWidth,
+                title: {
+                    text:cp.yAxis_Title_Text
+                },
+                min:cp.yAxis_Min,
+                max:cp.yAxis_Max,
+                gridLineWidth:cp.yAxis_GridLineWidth,
+                tickInterval:yValue,
+                tickWidth:cp.yAxis_TickWidth,
+                tickColor:cp.Axis_TickColor,
+                tickPosition: cp.yAxis_TickPosition
+                    ,labels: {
+                        formatter: function () {
+                            return getYValue(this.value.toString());
+                            function getYValue(_value){
+                                if(_value.length < 5){
+                                    return getYValue("　"+_value);
+                                }
+                                return _value;
+                            }
+                        }
+                    }
+            }
+                ,{
+                    lineWidth:cp.yAxis_LineWidth,
+                    linkedTo:cp.xAxis_LinkedTo,
+                    opposite: cp.xAxis_Opposite,
+                    gridLineWidth:cp.yAxis_GridLineWidth,
+                    tickInterval:cp.xAxis_TickInterval2,
+                    tickWidth:cp.xAxis_TickWidth2,
+                    tickPosition: cp.Axis_TickColor,
+                    tickPositions:[seriesMinValue,seriesMinValue+(seriesMaxValue-seriesMinValue)/2,seriesMaxValue],
+                    title:"",
+                    labels: {
+                        formatter: function() {
+//                            if (this.value === 111.3) return "A";
+//                            if (this.value === 55.4) return "B";
+//                            if (this.value === 22.1) return "C";
+                            switch(this.value){
+                                case seriesMinValue:
+                                    if(cp.series_MinPlotLine_Enabled)
+                                        return cp.series_MinPlotLine_Names+"="+seriesMinValue;
+                                    break;
+                                case seriesMinValue+(seriesMaxValue-seriesMinValue)/2:
+                                    if(cp.series_MiddlePlotLine_Enabled)
+                                        return cp.series_MiddlePlotLine_Names+"="+(seriesMinValue+(seriesMaxValue-seriesMinValue)/2);
+                                    break;
+                                case seriesMaxValue:
+                                    if(cp.series_MaxPlotLine_Enabled)
+                                        return cp.series_MaxPlotLine_Names+"="+seriesMaxValue;
+                                    break;
+                            }
+                            return "";
+                        }
+                    }
+                }
+            ],
+            plotOptions:{
+                spline:{
+                    marker:{
+                        enabled:cp.plotOptions_Spline_Marker_enabled,
+                        radius:cp.plotOptions_Spline_Marker_Radius,
+                        symbol:cp.plotOptions_Spline_Marker_Symbol
+                    }
+                },
+                line:{
+                    marker:{
+                        enabled:cp.plotOptions_Spline_Marker_enabled,
+                        radius:cp.plotOptions_Spline_Marker_Radius,
+                        symbol:cp.plotOptions_Spline_Marker_Symbol
+                    }
+                },
+                area:{
+                    marker:{
+                        enabled:cp.plotOptions_Spline_Marker_enabled,
+                        radius:cp.plotOptions_Spline_Marker_Radius,
+                        symbol:cp.plotOptions_Spline_Marker_Symbol
+                    }
+                }
+            },
+            tooltip:{
+                enabled:cp.tooltip_enabled,
+                formatter: function() {
+                    if(this.series.name === "min")
+                        return '<b>'+cp.series_MinPlotLine_Names+'='+this.y+'</b>';
+                    if(this.series.name === "middle")
+                        return '<b>'+cp.series_MiddlePlotLine_Names+'='+this.y+'</b>';
+                    if(this.series.name === "max")
+                        return '<b>'+cp.series_MaxPlotLine_Names+'='+this.y+'</b>';
+                    return '<b>'+ this.series.name +': '+ this.y +'</b>';
+                }
+            },
+            legend: {
+                enabled:cp.legend_enabled
+            },
+            exporting: {
+                enabled: cp.exporting_enabled
+            },
+            series:chartSeries,
+            credits:{
+                enabled:cp.credits_enabled
+            }
+        });
+    }
+}
+
+function GetYValue(){
+    var result = parseInt((cp.yAxis_PlotLines_Max-cp.yAxis_PlotLines_Min)/8);
+    return result <= 0 ? 1 : result;
+}
+function GetData(objValue){
+    var minValue=objValue.minValue;
+    var maxValue=objValue.maxValue;
+    var objData=[];
+    for(var i = 1; i <=(objValue.max - objValue.min);i++){
+        var x = objValue.min+i;
+        var y = parseInt(GetRandomValue(parseInt(minValue)-50,parseInt(maxValue)+50));
+        if(y>maxValue)
+            y={x:x,y:y,marker:{fillColor:'red'}};
+        else if(y<minValue)
+            y={x:x,y:y,marker:{fillColor:'red',width:100}};
+        else
+            y={x:x,y:y}
+        objData.push(y);
+    }
+    return objData;
+}
+function GetRandomValue(_minValue,_maxValue){
+    return parseInt(_minValue) + parseInt(_maxValue - _minValue) * Math.random();
+}
+
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+    var list = [
+        "新建页面1",
+        "新建页面2",
+        "新建页面3"
+    ];
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        $("body").append("<a href='view.html?page=" + item + "'>" + item + "</a><br>");
+    }
+</script>
+</body>
+</html>

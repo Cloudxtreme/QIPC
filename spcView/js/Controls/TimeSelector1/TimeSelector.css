@@ -1,0 +1,224 @@
+.selectorAutoFill_PanelSty{
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height:45px;
+    height: 45px;
+}
+.selectDefault
+{
+    width: 100%;height:25px;font-family: '微软雅黑';font-size: 9px;
+}
+/*以下是对dropdown控件的拓展*/
+.dropdownlistControl{
+    background-color: #E3E3E3;
+    color: #fff;
+    --border-radius: 5px;
+    width:100%;
+    --height: 100%;
+    text-align: right;
+}
+
+.selector_navbar,
+.selector_navbar .nav {
+    margin: 0 0 0 0;
+}
+
+.dropdown{
+    width:100%;
+    min-width: 80px;
+    min-height: 34px;
+    z-index: 1001;
+}
+.dropdown-menu{
+    z-index: 1001;
+}
+.dropdown,
+.dropdown li{
+    text-align: right;
+}
+   /*高级属性的样式*/
+.TimeSelectorProperty{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.prortitySelectorTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:8px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.prortitySelectorTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.prortitySelectorTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.prortitySelectorTable td input[type='text']
+{
+    width:80px;
+    text-align: center;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.prortitySelectorTabletd0{
+    text-align: right;
+    padding: 1px;
+    width:80px;
+}
+.prortitySelectorTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortitySelectorTabletd1 select
+{
+   font-size:12px;
+    font-family:'微软雅黑',Arial;
+    width: 70px;
+    margin-left: 2px;
+}
+.prortitySelectorTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortitySelectorTabletd2 select
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.selector_navbar{
+    width: 100%;
+    height: 100% ;
+}
+
+ /*时间DatePicker的显示样式*/
+#widgetField {/**/
+    width:100%;
+    height: 26px;
+    /*background: url(images/field.png);*/
+    overflow: hidden;
+    position: relative;
+}
+/*#widgetField a 	{*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*width: 26px;*/
+    /*height: 26px;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*background-image: url(images/field1.png);*/
+    /*text-decoration: none;*/
+    /*text-indent: -3000px;*/
+/*}*/
+.selector_DropDownDatePick{
+    display: block;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+      /*解决bug，日期范围选择1控件中右侧的图标超出了控件*/
+    top: 1px;
+    right: 0;
+    background-image: url(images/field1.png);
+    text-decoration: none;
+    text-indent: -3000px;
+}
+#selector_widgetFieldClass{
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    position: absolute;
+    top: 0px;
+    height: 28px;
+    line-height: 26px;
+    left: 0px;
+    width:100%;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px   solid  #9f9f9f;
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0,#f4f4f4),
+        color-stop(100, #ffffff)
+    );
+}
+/*#widgetField input*/
+/*{*/
+    /*font-size: 12px;*/
+    /*font-weight: bold;*/
+    /*color: #000;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*height: 26px;*/
+    /*line-height: 26px;*/
+    /*left: 0px;*/
+    /*width:100%;*/
+    /*text-align: center;*/
+/*}*/
+.selector_widgetCalendar {/**/
+    position:absolute;
+    top:41px;
+    left: 0;
+    height: 0px;
+    overflow: hidden;
+    width: 590px;
+    /*border:1px solid #9f9f9f;*/
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0,#ffffff),
+        color-stop(100, #f9f9f9)
+    );/*灰色系*/
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#FF2400), to(#FF7F00));*//*红色系*/
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#2F93D9), to(#236DA1));*//* 蓝色系 */
+    /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#D8BFD8), to(#4F2F4F));*//*紫色系 */
+
+}
+.selector_widgetCalendar .selector_datepicker {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}
+.selector_widgetCalendar .selector_datepickerContainer,
+.selector_widgetCalendar .selector_datepickerBorderT,
+.selector_widgetCalendar .selector_datepickerBorderB,
+.selector_widgetCalendar .selector_datepickerBorderL,
+.selector_widgetCalendar .selector_datepickerBorderR,
+.selector_widgetCalendar .selector_datepickerBorderTL,
+.selector_widgetCalendar .selector_datepickerBorderTR,
+.selector_widgetCalendar .selector_datepickerBorderBL,
+.selector_widgetCalendar .selector_datepickerBorderBR {
+    background: transparent !important;
+}
+.selector_widgetCalendar .selector_datepicker a:hover{
+    color: red;
+}
+
+.testcss{
+    position:absolute;
+    top:31px;
+    left:600px;
+}

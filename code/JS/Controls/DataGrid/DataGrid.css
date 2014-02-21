@@ -1,0 +1,115 @@
+/*#DatagridBasicSetting{*/
+/*width: 340px;*/
+/*height: auto;*/
+/*background: #e3e3e3;*/
+/*}*/
+#DatagridBasicSetting table tr>td:nth-child(odd),
+#DatagridBasicSetting2 table tr>td:nth-child(odd),
+#DatagridBasicSetting2 .specialTD
+{
+    color:#000;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    padding-left: 2px;
+    vertical-align: middle;
+
+}
+#DatagridBasicSetting table tr>td,
+#DatagridBasicSetting2 table tr>td{
+    padding: 0px;
+    vertical-align: middle;
+    padding-left: 3px;
+}
+
+#DatagridBasicSetting *,
+#DatagridBasicSetting2 *
+{
+    font-size: 12px;
+}
+.wijmo-wijgrid-filterlist{
+    z-index: 100000;
+}
+
+.ui-icon .ui-icon-grip-solid-horizontal{
+
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-handle
+{
+    border: 1px solid #c4c4c4;
+    border-radius: 3px;
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, rgb(90,89,89)), color-stop(1, rgb(13,13,13)) );
+    width:15px;
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-vbarcontainer
+{
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, rgb(203,202,202)), color-stop(1, rgb(235,233,233)) );
+    width:17px;
+    border-radius:none;
+    border:1px solid #c4c4c4;
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-vbar-buttontop
+{
+    border-bottom: 0;
+    background-color: #fff;
+    background-image: none;
+    border:0;
+    width:16px;
+    padding:2px;
+    border-right:1px solid #c4c4c4;
+}
+
+[id^="Panel_DataGrid"] .ui-widget-content
+{
+    background:none;
+    }
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-vbar-buttonbottom
+{
+    border-bottom: 0;
+    background-color: #fff;
+    background-image: none;
+    border:0;
+    width:16px;
+    padding:2px;
+    border-right:1px solid #c4c4c4;
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-vbarcontainer .ui-icon-triangle-1-n
+{
+    background: url(images/grid-scroll-up.png);
+    background-repeat:no-repeat;
+    background-position:right;
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijsuperpanel-vbarcontainer .ui-icon-triangle-1-s
+{
+    background: url(images/grid-scroll-down.png);
+    background-repeat:no-repeat;
+    background-position:center;
+}
+[id^="Panel_DataGrid"] .wijmo-wijgrid-frozener-h
+{
+    width:0;
+}
+
+[id^="Panel_DataGrid"] .wijmo-wijgrid-frozener-v
+{
+    height:0;
+}
+[id^="Panel_DataGrid"] div.wijmo-wijgrid-frozener-v,
+[id^="Panel_DataGrid"] div.wijmo-wijgrid-frozener-h{
+    background: red;
+    display: none;
+}
+.gridTdHighligh{
+    /*background:red;*/
+    color:red;
+    /*font-weight: bold;*/
+}
+
+.wijmo-wijgrid{
+    border : none;
+}

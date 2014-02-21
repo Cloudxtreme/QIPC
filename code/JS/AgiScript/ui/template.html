@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="script.editor.css" />
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+    <script src="../../../assets/js/bootstrap-transition.js"></script>
+    <script src="../../../assets/js/bootstrap-alert.js"></script>
+    <script src="../../../assets/js/bootstrap-collapse.js"></script>
+</head>
+<body>
+<div class="s-editor-container" id="s-editor-container">
+    <div class="s-editor-leftMenu">
+        <div class="s-editor-box">
+            <select id="s-editor-dropdown">
+                <option value="">canvas</option>
+            </select>
+            <ul class="dropdown-menu s-editor-eventList">
+                <li>
+                    <a href="#" key="loaded">
+                        <span class="s-state-base s-state-noEvent"></span>
+                        加载</a>
+                </li>
+            </ul>
+        </div>
+        <div class="s-editor-box">
+            <div class="accordion" id="accordion1" style="margin-bottom: 0px;">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#s-collapseOne">
+                            控件属性浏览
+                        </a>
+                    </div>
+                    <div id="s-collapseOne" class="accordion-body in collapse" style="height: auto; ">
+                        <div class="accordion-inner">
+                            aaa
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#s-collapseTwo">
+                            参数对象浏览
+                        </a>
+                    </div>
+                    <div id="s-collapseTwo" class="accordion-body collapse" style="height: 0px; ">
+                        <div class="accordion-inner">
+                            bbb
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#s-collapseThree">
+                            控件方法浏览
+                        </a>
+                    </div>
+                    <div id="s-collapseThree" class="accordion-body collapse" style="height: 0px; ">
+                        <div class="accordion-inner">
+                            ccc
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#s-collapseFour">
+                            通用方法浏览
+                        </a>
+                    </div>
+                    <div id="s-collapseFour" class="accordion-body collapse" style="height: 0px; ">
+                        <div class="accordion-inner">
+                            ddd
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="s-editor-right">
+        <div class="s-editor-right-header">
+            <div class="nav pull-left">
+                <span class="s-editor-timer">定时器周期:<input type="number" value="1" min="1" max="60" style="width: 50px;">秒</span>
+            </div>
+            <div class="nav pull-right">
+                <button class="btn btn-primary btnSave">保存</button>
+                <button class="btn btn-danger btnReset">清空</button>
+            </div>
+        </div>
+        <div class="s-editor-right-input">
+            <textarea id="s-editor-textarea"></textarea>
+        </div>
+    </div>
+</div>
+</body>
+</html>

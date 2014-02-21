@@ -1,0 +1,64 @@
+﻿/*这是一套默认的皮肤*/
+
+.main-header{
+    background-image: url(../../Img/titlecontent.jpg);
+    --background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+}
+.theme-title{
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+}
+#layoutManagement_dialog1 .ui-widget-header,/*布局设计器头部1*/
+#layoutManagement_dialog1 .ui-dialog-title,/*布局管理头部2*/
+#BasicPropertyPanel .ui-widget-header,/*控件属性面板头1*/
+#BasicPropertyPanel .ui-dialog-title,/*控件属性面板头2*/
+#DataGridAlarmSettingDialog .ui-widget-header,/*grid data rule set dialog1*/
+#DataGridAlarmSettingDialog .ui-dialog-title,/*grid data rule set dialog2*/
+#AgiColorPickerDialog1 .ui-widget-header,/*取色器控件弹出头*/
+#AgiColorPickerDialog1 .ui-dialog-title,/*取色器控件弹面板*/
+#Agi-Script-Editor .ui-widget-header,/*取色器控件弹出头*/
+#Agi-Script-Editor .ui-dialog-title,/*取色器控件弹面板*/
+#Agi-Common-DialogBox-Alert .ui-widget-header,
+#Agi-Common-DialogBox-Alert .ui-dialog-title,
+#Agi-Common-DialogBox-Confirm .ui-widget-header,
+#Agi-Common-DialogBox-Confirm .ui-dialog-title,
+#ShowVersioninfomodal .ui-widget-header,/*保存对话框*/
+#ShowVersioninfomodal .ui-dialog-title,/*保存对话框*/
+ /*盈科资源上传添加*/
+#Agi-Common-DialogBox-Prompt .ui-widget-header,
+#Agi-Common-DialogBox-Prompt .ui-dialog-title,
+#ShowVersioninfomodal .ui-widget-header,
+#ShowVersioninfomodal .ui-dialog-title,
+#PageParam .ui-widget-header,
+#PageParam .ui-dialog-title,
+#SelectWayToCreateVT .ui-widget-header,
+#SelectWayToCreateVT .ui-dialog-title,
+#VTSelectDS .ui-widget-header,
+#VTSelectDS .ui-dialog-title,
+#PROVTSelectDS .ui-widget-header,
+#PROVTSelectDS .ui-dialog-title,
+#PROVTSelectPRO .ui-widget-header,
+#PROVTSelectPRO .ui-dialog-title,
+#ProKeyModal .ui-widget-header,
+#ProKeyModal .ui-dialog-title,
+#ScVTSelectDS .ui-widget-header,
+#ScVTSelectDS .ui-dialog-title,
+#ScVTSelectVT .ui-widget-header,
+#ScVTSelectVT .ui-dialog-title,
+#keyModal .ui-widget-header,
+#keyModal .ui-dialog-title,
+#PopupSelectDataSource .ui-widget-header,
+#PopupSelectDataSource .ui-dialog-title,
+#PopupSelectVTable .ui-widget-header,
+#PopupSelectVTable .ui-dialog-title,
+#SetExpression .ui-widget-header,
+#SetExpression .ui-dialog-title,
+#OperateExcelDiv .ui-widget-header,
+#OperateExcelDiv .ui-dialog-title
+{
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    color: #ffffff;
+    margin: 0px;
+    padding: 4px;
+}
+
+

@@ -1,0 +1,75 @@
+/*�������Լ���*/
+.Panel_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+    font-size: 12px;
+}
+/*�������*/
+.Panel_prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family:'微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.Panel_prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.basicprortitystytdCenter{
+    text-align: center;padding: 1px;
+}
+.Panel_prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.Panel_prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.Panel_prortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.Panel_prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.Panel_prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.Panel_prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.Panel_prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+    <!--1.数据曲线-->
+    <div id="tab-1" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">曲线:</td>
+                <td colspan="3">
+                    <select id="CustXMRSeries" class="input-mini"></select><div id='CustXMRSeriesSave'  class='CustomXMRPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">数据颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustXMRdataColor"/></td>
+                    <td class="CustomprortityPanelTabletd0">Marker颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustXMRmarkerColor"/></td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">分组列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustXMRGrpColumn" class="input-mini"></select></td>
+                    <td class="CustomprortityPanelTabletd0">数据列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustXMRDataColumn" class="input-mini"></select></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">极差长度:</td>
+                <td class="CustomprortityPanelTabletd1" colspan="3"><input id='XMRChart_RGroupSize' type='number' value='2' defaultvalue='2' min='1' max='100' class='ControlProNumberSty'/></td>
+            </tr>
+        </table>
+    </div>
+    <!--2.标准线-->
+    <div id="tab-2" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">组名称:</td>
+                <td colspan="3" class="CustomprortityPanelTabletd1">
+                    <div class='CustomXMRStandline_sty'>
+                        <select id="CustXMRStLinegroupName" style="display:none"></select>
+                        <input id="CustXMRStLinename" style="float:left;display: block" type="text" class="input" />
+                    </div>
+                    <div id="btnGrpUndo" class='CustomXMRStandlineredo' title='取消'></div>
+                    <div id='btnSaveGrp'  class='CustomXMRStandlineSave' title='保存' opstate='0'></div>
+                    <div id='btnNewGrp'  class='CustomXMRStandlineAdd' title='新增'></div>
+                    <div id='btnEditGrp'  class='CustomXMRStandlineEdit' title='编辑'></div>
+                    <div id='btnDeleteGrp'  class='CustomXMRStandlineDelete' title='删除'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限线宽:</td>
+                <td class="CustomprortityPanelTabletd1"><input id="topWidth" type="number"  value="1" min='1' max="4"/>px</td>
+                <td class="CustomprortityPanelTabletd0">上限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="topColor" /></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限设置:</td>
+                <td class="CustomprortityPanelTabletd1"><select id="topInstall" class="select"><option value="0" >固定值</option><option value="1" >数据列</option></select> </td>
+                <td class="CustomprortityPanelTabletd0">上限值:</td>
+                <td class="CustomprortityPanelTabletd1">
+                    <input type="text" id="topValue1"/>
+                    <select id="topValue" class="select" style="display: none"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限设定修正:</td>
+                <td class="CustomprortityPanelTabletd1"><select id="topInstall_revise" class="select" disabled="disabled"><option value="+" >+</option><option value="-" >-</option><option value="*" >*</option><option value="/" >/</option></select> </td>
+                <td class="CustomprortityPanelTabletd0">修正值:</td>
+                <td class="CustomprortityPanelTabletd1">
+                    <input type="text" id="topInstall_revise_Value" disabled="disabled"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">下限线宽:</td>
+                <td class="CustomprortityPanelTabletd1"><input id="bottomWidth" type="number"  value="1"   min='1' max="4"/>px</td>
+                <td class="CustomprortityPanelTabletd0">下限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="bottomColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">下限设置:</td>
+                <td class="CustomprortityPanelTabletd1"><select id="bottomInstall" class="select"><option value="0" >固定值</option><option value="1" >数据列</option></select> </td>
+                <td class="CustomprortityPanelTabletd0">下限值:</td>
+                <td class="CustomprortityPanelTabletd1">
+                    <input type="text" id="bottomValue1"/>
+                    <select id="bottomValue" class="select" style="display: none"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">下限设定修正:</td>
+                <td class="CustomprortityPanelTabletd1"><select id="bottomInstall_revise" class="select" disabled="disabled"><option value="+" >+</option><option value="-" >-</option><option value="*" >*</option><option value="/" >/</option></select> </td>
+                <td class="CustomprortityPanelTabletd0">修正值:</td>
+                <td class="CustomprortityPanelTabletd1">
+                    <input type="text" id="bottomInstall_revise_Value" disabled="disabled"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--3.西格玛判定-->
+    <div id="tab-3" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4">
+                    点击按钮保存西格玛规则设定:<div id='CustXMRSigMaRuleSave'  class='CustomXMRPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"></td>
+                <td class="CustomprortityPanelTabletd1">仅执行选定的特殊原因检验</td>
+                <td class="CustomprortityPanelTabletd0">K</td>
+                <td class="CustomprortityPanelTabletd1">颜色</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">1</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="1" style="margin-top:-4px;width:auto;"/> 一个点，距离中心线大于K个标准差</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K1" value="3" min="1" max="6"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor1" class="SigmaRulColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">2</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="2" style="margin-top:-4px;width:auto;"/>连续K点在中心线同一侧</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K2" value="9" min="7" max="11"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor2" class="SigmaRulColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">3</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="3" style="margin-top:-4px;width:auto;"/>连续K个点，全部递增或全部递减</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K3" value="6" min="5" max="8"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor3" class="SigmaRulColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">4</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="4" style="margin-top:-4px;width:auto;"/>连续K个点，上下交错</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K4" value="14" min="12" max="14"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor4" class="SigmaRulColor"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--4.数据过滤-->
+    <!--<div id="tab-4" class="CstXMRChart_Pro_Panel">-->
+        <!--<table class="CustomprortityPanelTable">-->
+            <!--<tr>-->
+                <!--<td class="CustomprortityPanelTabletd0">过滤字段:</td>-->
+                <!--<td colspan="3">-->
+                    <!--<div class='CustomXMRStandline_sty'>-->
+                    <!--<select id="filterColumns"></select>-->
+                    <!--</div>-->
+                    <!--<div id='btnFilterSaveGrp'  class='CustomXMRStandlineSave' title='保存'></div>-->
+                    <!--<div id='btnFilterDeleteGrp'  class='CustomXMRStandlineDelete' title='删除'></div>-->
+                    <!--<div class='clearfloat'></div>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="CustomprortityPanelTabletd0">过滤规则:</td>-->
+                <!--<td class="CustomprortityPanelTabletd1"><select id="filterRule">-->
+                    <!--<option value=">">大于</option>-->
+                    <!--<option value=">=">大于等于</option>-->
+                    <!--<option value="<">小于</option>-->
+                    <!--<option value="<=">小于等于</option>-->
+                    <!--<option value="==">等于</option>-->
+                    <!--<option value="!=">不等于</option>-->
+                <!--</select></td>-->
+                <!--<td class="CustomprortityPanelTabletd0">比较源:</td>-->
+                <!--<td class="CustomprortityPanelTabletd1"><select id="compareColumns"><option value="0">固定值</option><option value="1">数据列</option></select></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td class="CustomprortityPanelTabletd0">比较值:</td>-->
+                <!--<td colspan="3">-->
+                    <!--<input type="text" id="dataValue"/>-->
+                    <!--<select style="display: none" id="dataColumns"></select>-->
+                <!--</td>-->
+
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+    <!--5.特殊报警-->
+    <div id="tab-5" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+             <tr>
+                 <td class="CustomprortityPanelTabletd0">报警列:</td>
+                 <td colspan="3">
+                     <div class='CustomXMRStandline_sty'>
+                         <select id="warnColumn"></select>
+                     </div>
+                     <div id='warnSave'  class='CustomXMRStandlineSave' title='保存'></div>
+                     <div id='warnDelete'  class='CustomXMRStandlineDelete' title='删除'></div>
+                     <div class='clearfloat'></div>
+                 </td>
+             </tr>
+             <tr>
+                 <td class="CustomprortityPanelTabletd0">报警规则:</td>
+                 <td class="CustomprortityPanelTabletd1">
+                     <select id="warnRule">
+                         <option value=">">大于</option>
+                         <option value=">=">大于等于</option>
+                         <option value="<">小于</option>
+                         <option value="<=">小于等于</option>
+                         <option value="==">等于</option>
+                         <option value="!=">不等于</option>
+                       </select>
+                 </td>
+                 <td class="CustomprortityPanelTabletd0">比较值:</td>
+                 <td class="CustomprortityPanelTabletd1"><input type="text" id="warnCompareValue"/></td>
+             </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">报警颜色:</td>
+                <td col="3"><input type="text" id="tab5Color"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--6.西格玛设置-->
+    <div id="tab-6" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <!--<tr>-->
+                <!--<td class="CustomprortityPanelTabletd0">西格玛系数:</td>-->
+                <!--<td colspan="3">-->
+                    <!--<div class='CustomXMRStandline_sty'>-->
+                        <!--<input id='CustXMRSigmaValue' type='number' value='3' defaultvalue='3' min='2' max='6' class='ControlProNumberSty'/>-->
+                    <!--</div>-->
+                    <!--<div id='CstXMRSigmaOptionSave'  class='CustomXMRStandlineSave' title='保存'></div>-->
+                    <!--<div class='clearfloat'></div>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <tr>
+                <td class="CustomprortityPanelTabletd0">是否显示:</td>
+                <td colspan="3">
+                    <div class='CustomXMRStandline_sty'>
+                        <select id="CustXMRSigmaLineState" class="input-mini"><option value="1">显示</option><option value="0">隐藏</option></select>
+                    </div>
+                    <div id='CstXMRSigmaOptionSave'  class='CustomXMRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="CustSigmatopColor" class="CustSigmaSetColor"/></td>
+                <td class="CustomprortityPanelTabletd0">下限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="CustSigmabottomColor" class="CustSigmaSetColor"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--6.数据钻取设置-->
+    <div id="tab-7" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">页面地址:</td>
+                <td colspan="3">
+                    <div class='CustomXMRStandline_sty'>
+                        <!--<input id="CustXMRExtractURL" type="text" class="input" style="width:180px" />-->
+                        <select id="CustXMRExtractURL" style="width:180px" ></select>
+                    </div>
+                    <div id='CstXMRExtractOptionSave'  class='CustomXMRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                 <td class="CustomprortityPanelTabletd0">参数编辑:</td>
+                 <td class="CustomprortityPanelTabletd1">
+                     <select id="CustomXMRParsNames" style="width:80px;"></select>
+                     <input type="text" id="CustomXMRNewParsTxt" value="">
+                     <select id="CustomXMRParsValues" style="width:80px;"></select>
+                 </td>
+                 <td colspan="2">
+                     <div id="CustomXMRParCancel" class='CustomXMRStandlineredo' title='取消'></div>
+                     <div id="CustomXMRParAdd" class='CustomXMRStandlineAdd' title='添加'></div>
+                     <div id="CustomXMRParSave" class='CustomXMRStandlineSave' title='保存'></div>
+                     <div id="CustomXMRParDel" class='CustomXMRStandlineDelete' title='删除'></div>
+                     <div class='clearfloat'></div>
+                 </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">参数列表:</td>
+                <td colspan="3">
+                    <div class="ParsListHeadSty" id="ParsListHead">
+                        <div class="CustomXMRParsCellSty">参数名称</div>
+                        <div class="CustomXMRParsCellSty">绑定数据列</div>
+                    </div>
+                     <div class="ParsListPanelsty" id="ParsListPanel">
+                     </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab-8" class="CstXMRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">图表背景:</td>
+                <td colspan="3" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomXMR_bgvalue' class='CustomXMR_ColorControl' style="float:left;background-color:#ffffff;"></div>
+                    <div id='CustomXMR_BackgroundSave' class='CustomXMRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">统计按钮背景:</td>
+                <td class='CustomprortityPanelTabletd1'>
+                    <input type="text" id="CustomXMR_Tolbgvalue" class="CustomXMRColorSty"/>
+                </td>
+                <td class="CustomprortityPanelTabletd0">统计按钮字体:</td>
+                <td class='CustomprortityPanelTabletd1'>
+                    <input type="text" id="CustomXMR_Tolbtncolor" class="CustomXMRColorSty"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">统计表格背景:</td>
+                <td class='CustomprortityPanelTabletd1'>
+                    <input type="text" id="CustomXMR_TolTabbg" class="CustomXMRColorSty"/>
+                </td>
+                <td class="CustomprortityPanelTabletd0">统计表格字体:</td>
+                <td class='CustomprortityPanelTabletd1'>
+                    <input type="text" id="CustomXMR_TolTabfontbg" class="CustomXMRColorSty"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

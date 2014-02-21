@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+    <!--6.数据钻取设置-->
+    <div id="tab-1" class="CustomControl_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr><td class="CustomControlproPanelTabletd0">钻取绑定列:</td><td colspan="3"><select id="CustomControlExtractColumns"></select></td></tr>
+            <tr><td class="CustomControlproPanelTabletd0">钻取页面:</td><td colspan="3"><select id="CustomControlExtractURL"></select></td></tr>
+            <tr><td class="CustomControlproPanelTabletd0">钻取名称:</td><td colspan="3"><input id="CustomControlExtractName" type="text" value=""/></td></tr>
+            <tr>
+                <td colspan="4" class="CustomControlproPanelTabletd1">
+                    <div id="CustomCtrlExtAdd" class='CustomControlProbtnAdd' title='新增'></div>
+                    <div id="CustomCtrlExtSave" class='CustomControlProbtnSave' title='保存'></div>
+                    <div id="CustomCtrlExtDel" class='CustomControlProbtnDelete' title='删除'></div>
+                    <div class="CustomControlProbtnfloatclear"></div>
+                    <div id="CustomControlProhidenPanel" class="CustomControlProhidenValue"></div>
+                </td>
+            </tr>
+            <tr><td colspan="4" class="CustomControlProRowtdsty">已配置钻取列表</td></tr>
+            <tr>
+                <td colspan="4">
+                    <div class="CustomCtrlExtParsHeadSty" id="ExtractPageListHead">
+                        <div class="CustomCtrlExtParsheadCellSty">钻取名称</div>
+                        <div class="CustomCtrlExtParsheadCellSty">钻取列名称</div>
+                        <div class="CustomCtrlExtParsheadCellSty">钻取页面</div>
+                    </div>
+                     <div class="CustomCtrlExtParsListPanelsty" id="ExtractPageListPanel">
+                     </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab-2" class="CustomControl_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">钻取页面列表:</td>
+                <td colspan="3">
+                    <select id="CustSigChartExtractPage" ></select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div id="CstmtrlProParsbtnAdd" class='CustomControlProbtnAdd' title='新增'></div>
+                    <div id="CstmtrlProParsbtnSave" class='CustomControlProbtnSave' title='保存'></div>
+                    <div id="CstmtrlProParsbtnDelete" class='CustomControlProbtnDelete' title='删除'></div>
+                    <div class='clearfloat'></div>
+                    <div id="CustomControlProhidenSelPars" class="CustomControlProhidenValue"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">URL参数名:</td>
+                <td colspan="3">
+                    <select id="CstmtrlProSelectParsNames"></select>
+                    <input type="text" id="CstmtrlProParsNames" value="" style="visibility:hidden;width:0px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">参数值来源:</td>
+                <td colspan="3">
+                <select id="CstmtrlProParsType">
+                    <option value="0">单行列值</option>
+                    <option value="1">固定值</option>
+                    <option value="2">整列数据</option></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">参数值:</td>
+                <td colspan="3">
+                <select id="CstmtrlProParsValue_0"></select>
+                <input  id="CstmtrlProParsValue_1" type="text" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">值格式化:</td>
+                <td colspan="3">
+                    <input type="checkbox" id="CstmtrlProFormatIsCheck" style="width:auto;">
+                    <select id="CstmtrlProParsValueFormatFun" style="width:88%;"></select>
+                </td>
+            </tr>
+            <tr><td colspan="4">参数列表</td></tr>
+            <tr>
+                <td colspan="4">
+                    <div class="ParsListHeadSty" id="ParsListHead">
+                        <div class="CustomCtrlExtParsheadCellSty">URL参数</div>
+                        <div class="CustomCtrlExtParsheadCellSty">参数值源</div>
+                        <div class="CustomCtrlExtParsheadCellSty">参数值</div>
+                    </div>
+                    <div class="CustomCtrlExtParsListPanelsty" id="ParsListPanel">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

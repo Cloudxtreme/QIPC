@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+    <!--<script type="text/javascript">
+        //ReadControlsConfig()
+    </script>
+    <script type="text/javascript" src="edit.core.js"></script>
+    <script type="text/javascript" src="edit.workspace.js"></script>
+    <script type="text/javascript" src="edit.function.js"></script>
+    <script type="text/javascript" src="edit.test.js"></script>-->
+    <!--<script type="text/javascript">
+        Agi.Edit.workspace.addParameter(name, value);
+        Agi.Edit.workspace.removeParameter(name);
+    </script>-->
+    <!--<script type="text/javascript">
+        var aaa = Agi.Edit.workspace.controlList;
+        var bbb = Agi.Edit.workspace.parameterList;
+        var ccc = Agi.Edit.workspace.currentControls;
+    </script>-->
+    <!--<script type="text/javascript">
+        Agi.Edit.workspace.addParameter(name, value);
+        Agi.Edit.workspace.removeParameter(name);
+    </script>-->
+    <!-- <script type="text/javascript">
+        setTimeout(function () {
+//            var newValue = Agi.Edit.workspace;
+//            // ignore meta key presses
+//            if (newValue != startValue) {
+//                // this could try and make a diff instead of storing snapshots
+//                stack.execute(new EditCommand(text, startValue, newValue));
+//                startValue = newValue;
+            //            }
+            alert("Liuyi");
+        }, 250);
+    </script>-->
+    <!--<script type="text/javascript">
+        var liuyi = {
+            name: "Liuyi",
+            age: "23"
+        };
+        var Jliuyi = {
+            "name": "Liuyi",
+            "age": "23"
+        };
+    </script>-->
+    <script type="text/javascript">
+        var workspace = {
+            //属性
+            editDiv: "#BottomRightCenterContentDiv",
+            name: "editWorkspace",
+            pageName: "新建页面1",
+            width: "1080px",
+            height: "444px",
+            backgroundColor: "rgb(255, 255, 255)",
+            background: "rgb(255, 255, 255) -webkit-gradient(linear, 0 0, 0 100%, color-stop(0.1, transparent), color-stop(0.1, rgba(0, 0, 0, 0.0976563)), to(rgba(0, 0, 0, 0.0976563))), -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.1, transparent), color-stop(0.1, rgba(0, 0, 0, 0.0976563)), to(rgba(0, 0, 0, 0.0976563))) repeat, repeat scroll, scroll 0% 0%, 0% 0% / 10px 10px, 10px 10px padding-box, padding-box border-box, border-box",
+            //            controlList: new Agi.Script.CArrayList(),
+            //            parameterList: new Agi.Script.CArrayList(),
+            currentControls: new Array(),
+            clipboardControls: new Array(),
+            ControlsLibs: new Array(),
+            //webservice
+            baseServer: "http://192.168.1.9/Agi_webserivce/Service1.asmx",
+            serviceSave: "/VSFileSave",
+            serviceOpen: "/VSFileReadByID",
+            serviceDelete: "/VSFileDelete",
+            Restore: function () {
+                //Agi.Edit.workspace.editDiv.empty();
+                $(workspace.editDiv).empty();
+                //
+                workspace.pageName = "新建页面1";
+
+                $("body").html();
+                //                $("#BottomRightCenterContentDiv").css("width", workspace.width);
+                //                $("#BottomRightCenterContentDiv").css("height", workspace.height);
+                //                $("#BottomRightCenterContentDiv").css("background", workspace.background);
+                //                $("#BottomRightCenterContentDiv").css("background-color", workspace.backgroundColor);
+                //
+                //                workspace.controlList.clear();
+                //                Agi.Edit.workspace.parameterList.clear();
+                //                Agi.Edit.workspace.currentControls.length = 0;
+                //                Agi.Edit.workspace.clipboardControls.length = 0;
+            }
+        };
+        var aaa = JSON.stringify(workspace);
+        alert(aaa);
+    </script>
+</head>
+<body>
+    <!--<script type="text/javascript">
+        //        var obj = jQuery.parseJSON('{"name":"John"}');
+        //        //alert(obj.name === "John");
+        //        alert(obj.name);
+        //        var d = '{ "name": "Liuyi"}';
+        //        var j = $.parseJSON(d);
+        //        alert(j.name);
+        //alert(typeof (j));
+        //        var d = { "name": "Liuyi","age":23 };
+        //        alert(d["name"]);
+        //xml
+        //        var a = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><liuyi>    <name>Liuyi</name>    <age>23</age></liuyi>";
+        //        var b = $.parseXML(a);
+        //
+        //        agi = {
+        //            edit: {
+        //                init: function () {
+        //                    alert("init!");
+        //                },
+        //                sayHello: function () {
+        //                    alert("hello!");
+        //                }
+        //            }
+        //        };
+        //
+        //        agi.edit.init();
+        //        agi.edit.sayHello();
+
+        window.Agi = {};
+        Agi.Edit = {
+            Init: function () {
+                /// <summary>初始化工作区</summary>
+            },
+            NewPage: function () {
+                /// <summary>新建页面</summary>
+            },
+            SavePage: function () {
+                /// <summary>保存页面</summary>
+            },
+            OpenPage: function () {
+                /// <summary>打开页面</summary>
+            },
+            DeleteControls: function () {
+                /// <summary>删除控件</summary>
+            },
+            CopyControls: function () {
+                /// <summary>复制控件</summary>
+            },
+            PastContols: function () {
+                /// <summary>粘贴控件</summary>
+            }
+        };
+        Agi.Edit.Init();
+        Agi.Edit.NewPage();
+
+        //        window.agi = {};
+        //        agi.edit = {
+        //            init: function () {
+        //                /// <summary>Description</summary>
+        //            }
+        //        };
+
+        //        agi.edit.init();
+
+    </script>
+    <ul>
+        <li></li>
+    </ul>-->
+</body>
+</html>

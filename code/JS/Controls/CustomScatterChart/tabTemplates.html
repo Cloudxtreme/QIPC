@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+    <!--1.背景设置-->
+    <div id="tab-1" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd01">图表背景:</td>
+                <td colspan="3" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomSCA_bgvalue' class='CustomScatter_ColorControl' style="float:left;background-color:#ffffff;"></div>
+                    <div id='CustomSCA_BackgroundSave' class='CustomSCAStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--2.数据曲线-->
+    <div id="tab-2" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">曲线:</td>
+                <td colspan="3">
+                    <select id="CustSCATSeries" class="input-mini"></select><div id='CustSCATSeriesSave'  class='CustomScatterPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">连线颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustSCATdataColor"/></td>
+                    <td class="CustomprortityPanelTabletd0">散点颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustSCATmarkerColor"/></td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">X列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustSCATGrpColumn" class="input-mini"></select></td>
+                    <td class="CustomprortityPanelTabletd0">Y列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustSCATDataColumn" class="input-mini"></select></td>
+            </tr>
+        </table>
+    </div>
+    <!--3.图形选项-->
+    <div id="tab-3" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomSCA_ChartItemsSave' class='CustomSCAStandlineSave' title='保存'></div>
+                    <div class="floattxtdiv">(选择一项或多项保存)</div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="checkbox" id="SCAChartItems_Line">连接线(C)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="checkbox" id="SCAChartItems_VLine">投影线(P)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="checkbox" id="SCAChartItems_Area">区域(A)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--4.回归分析-->
+    <div id="tab-4" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomSCA_ChartHGEnumSave' class='CustomSCAStandlineSave' title='保存'></div>
+                    <div class="floattxtdiv">(请选择对应项然后点击保存按钮)</div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartHGEnum_N" checked="checked" name="scahgenum" value="N">无(N)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartHGEnum_L" name="scahgenum" value="L">线性(L)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartHGEnum_Q" name="scahgenum" value="Q">二次(Q)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartHGEnum_C" name="scahgenum" value="C">立方(C)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--5.标题/脚注-->
+    <div id="tab-5" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomSCA_ChartTitleFootSave' class='CustomSCAStandlineSave' title='保存'></div>
+                    <div class="floattxtdiv">(请输入对应值后点击按钮保存)</div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">标题(T):</td>
+                <td colspan="3" class="CustomprortityPanelTabletd12">
+                   <input type="text" value="" id="SCAChart_Title">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">副标题 1(S):</td>
+                <td colspan="3" class="CustomprortityPanelTabletd12">
+                    <input type="text" value="" id="SCAChart_Title1">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">副标题 2(U):</td>
+                <td colspan="3" class="CustomprortityPanelTabletd12">
+                    <input type="text" value="" id="SCAChart_Title2">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">脚注 1(F):</td>
+                <td colspan="3" class="CustomprortityPanelTabletd12">
+                    <input type="text" value="" id="SCAChart_FootNote1">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">脚注 2(N):</td>
+                <td colspan="3" class="CustomprortityPanelTabletd12">
+                    <input type="text" value="" id="SCAChart_FootNote2">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--6.数据标签-->
+    <div id="tab-6" class="CustomScatterChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomSCA_ChartLableSave' class='CustomSCAStandlineSave' title='保存'></div>
+                    <div class="floattxtdiv">(请选择对应项然后点击保存按钮)</div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartLable_N" checked="checked" name="scaLabletype" value="N">无(N)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartLable_V" name="scaLabletype" value="V">使用Y值做标签(V)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartLable_R" name="scaLabletype" value="R">使用行号做标签(R)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class='CustomprortityPanelTabletd11'>
+                    <input type="radio" id="SCAChartLable_L" name="scaLabletype" value="L">使用右列值做标签(L)
+                    <select id="CustSCATLableColumn"  disabled="disabled"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

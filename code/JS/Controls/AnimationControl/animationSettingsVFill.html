@@ -1,0 +1,172 @@
+<style type="text/css">
+    .labelliuyi {
+        margin: 5px;
+        font-size: small;
+        display: inline;
+    }
+</style>
+<div style="width: 100%; margin: 5px ">
+    <table style="width: 100%; height: 290px">
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi" for="expression">表达式</label>
+                <input type="text" name="" id="expression" value="var" maxlength="20">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                填充到最大值时
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="labelliuyi" for="maxValue">对应值</label>
+                <input type="number" name="" id="maxValue" value="100" min='0' max="9999" class="numberminCheck ControlProNumberSty">
+            </td>
+            <td>
+                <label class="labelliuyi" for="maxPercentage">填充比例(%)</label>
+                <input type="number" name="" id="maxPercentage" value="100" min='0' max="9999" class="numberminCheck ControlProNumberSty">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                填充到最小值时
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="labelliuyi" for="minValue">对应值</label>
+                <input type="number" name="" id="minValue" value="0" min='0' max="9999" class="numberminCheck ControlProNumberSty">
+            </td>
+            <td>
+                <label class="labelliuyi" for="minPercentage">填充比例(%)</label>
+                <input type="number" name="" id="minPercentage" value="0" min='0' max="9999" class="numberminCheck ControlProNumberSty">
+            </td>
+        </tr>
+        <tr style="display:none">
+            <td colspan="2">
+                <label class="labelliuyi" for="bgcolor">背景色</label>
+                <!--<input type="button" value="点击设置背景色" id="bgcolor" style="width: 150px">-->
+                <input type="text" name="" id="bgcolor">
+            </td>
+        </tr>
+        <!--20130105 10:37 markeluo 新增背景是否渐变选项-->
+        <td colspan="2" >
+            <input type="checkbox" id="AnimationVFillBgCheckbox" checked='checked' value="" style="margin: -4px 0 0;"> 背景渐变
+        </td>
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi">参考点</label>
+                <input type="radio" name="align" id="top">
+                <label class="labelliuyi" for="top" checked="checked">上边</label>
+                <input type="radio" name="align" id="bottom">
+                <label class="labelliuyi" for="bottom">下边</label>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var vFillAnimation = false;
+    //１、数据
+    var control = Agi.Edit.workspace.currentControls[0];
+    var PropertySettings = control.Get("PropertySettings");
+    for (var i = 0; i < PropertySettings.animations.length; i++) {
+        var animation = PropertySettings.animations[i];
+        if (animation.type == "vFill") {
+            vFillAnimation = animation;
+        }
+    }
+    //1、1默认值
+    if (!vFillAnimation) {
+        vFillAnimation = {
+            type:"vFill",
+            expression:"var",
+            maxValue:"100",
+            minValue:"0",
+            maxPercentage:"100",
+            minPercentage:"0",
+            bgcolor:"silver",
+            align:"top"
+        }
+    }
+    //2、编辑
+    //2、1初始化
+    //
+    $("#expression").val(vFillAnimation.expression)
+    //
+    $("#maxValue").val(vFillAnimation.maxValue);
+    $("#minValue").val(vFillAnimation.minValue);
+    $("#maxPercentage").val(vFillAnimation.maxPercentage);
+    $("#minPercentage").val(vFillAnimation.minPercentage);
+    //
+    $("#bgcolor").val(vFillAnimation.bgcolor);
+    //20130105 10:37 markeluo 新增背景是否渐变选项
+    $("#AnimationVFillBgCheckbox").attr("checked",vFillAnimation.bgcolorisChange);
+
+    if (vFillAnimation.align == "top") {
+        $("input[name='align'][id='top']").attr("checked", "checked")
+    }
+    else {
+        $("input[name='align'][id='bottom']").attr("checked", "checked")
+    }
+    //
+    $("#bgcolor").spectrum({
+        showInput:true,
+        showPalette:true,
+        palette:[
+            ['black', 'white'],
+            ['blanchedalmond', 'rgb(255, 128, 0);'],
+            ['hsv 100 70 50', 'red'],
+            ['yellow', 'green'],
+            ['blue', 'violet']
+        ],
+        cancelText:"取消",
+        chooseText:"选择",
+        change:function (color) {
+            $(this).val(color.toHexString())
+        }
+    })
+    //
+    $("input[name='align']").change(function () {
+        /*单选按钮修复*/
+        vFillAnimation.align = this.id;
+    })
+    //2、2保存
+    //添加
+    function doAnimationAdd() {
+        vFillAnimation.expression = $("#expression").val();
+        vFillAnimation.maxValue = $("#maxValue").val();
+        vFillAnimation.minValue = $("#minValue").val();
+        vFillAnimation.maxPercentage = $("#maxPercentage").val();
+        vFillAnimation.minPercentage = $("#minPercentage").val();
+        vFillAnimation.bgcolor = $("#bgcolor").val();
+        //20130105 10:37 markeluo 新增背景是否渐变选项
+        //是否背景渐变
+        if($("#AnimationVFillBgCheckbox").attr("checked")==='checked'){
+            vFillAnimation.bgcolorisChange=true;
+        }else{
+            vFillAnimation.bgcolorisChange=false;
+        }
+        //vFillAnimation.align = $("input[name='align'][checked='checked']").attr("id");
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(vFillAnimation);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    //删除
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < PropertySettings.animations.length; i++) {
+            var animation = PropertySettings.animations[i];
+            if (animation.type == "vFill") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

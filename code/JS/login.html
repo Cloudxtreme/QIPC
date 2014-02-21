@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录 - 在线质量判定系统</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(images/login_01.gif);
+	overflow:hidden;
+}
+.STYLE3 {font-size: 12px; color: #FFFFFF; }
+.STYLE4 {
+	color: #FFFFFF;
+	font-family: "方正大黑简体";
+	font-size: 50px;
+}
+.txtClass {
+	height:20px;
+	background-color:#032e49; 
+	color:#88b5d1; 
+	border:solid 1px #88b5d1;
+}
+-->
+</style>
+<script language="javascript">
+  
+    function SumbitKeyClick() 
+    { 
+    	test();
+    } 
+    
+	function test() {
+		var url="http://10.3.61.8:8080/qpc-app/loginServlet?methodName=login";		
+		url=url+"&parameters="+"{userName:'"+document.getElementById("userName").value+"',userPwd:'"+document.getElementById("userPwd").value+"'}"+"&_=1372310582468&callback=callback"; 
+		addScriptTag(url);
+	}
+	
+	function callback(data) {
+		window.location.href="index.html";
+	}
+	
+ 	function addScriptTag(src){
+		   var script = document.createElement('script');
+		   script.setAttribute("type","text/javascript");
+		   script.src = src;
+		   document.body.appendChild(script);
+		}
+
+</script>
+
+</head>
+
+<body onkeydown="//SumbitKeyClick();">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td background="../../images/login_03.gif">&nbsp;</td>
+        <td width="876"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="299" valign="top" background="../../images/login_033.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td height="154">&nbsp;</td>
+                <td align="center" valign="bottom">
+	                
+						<div style="background-color:#FDF7BD; border:#F8DA63; border:thick; font-size:12px;width:260px;">
+							<font color="red">
+					
+							</font>
+						</div>
+					
+				</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td height="54"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="394" height="69" background="../../images/login_02.jpg">&nbsp;</td>
+                <td width="199" background="../../images/login_03.jpg">
+                <form  method="post" id="loginForm">	
+	                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	                  <tr>
+	                    <td width="22%" height="22"><div align="center"><span class="STYLE3">用户名</span></div></td>
+	                    <td width="51%" height="22"><input name="userName" id="userName" type="text" size="12" class="txtClass"/></td>
+	                    <td width="27%" rowspan="2">
+	                    <input name="button1" type="button" value="" id="submitButton" style="background-image: url('../../images/d1l.gif');width:46;height:52;" onClick="javascript:this.disabled=true;SumbitKeyClick();"/>
+	                  
+	                    
+	                    </td>
+	                  </tr>
+	                  <tr>
+	                    <td height="22" valign="middle"><div align="center"><span class="STYLE3">密&nbsp; 码</span></div></td>
+	                    <td height="22" valign="bottom"><input name="userPwd" id="userPwd" type="password" size="12" class="txtClass"/></td>
+	                  </tr>
+	                </table>
+	              </form>
+	             </td>
+                <td width="283" background="../../images/login_04.jpg">&nbsp;</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td height="225" background="../../images/login_05.jpg">&nbsp;</td>
+          </tr>
+        </table></td>
+        <td background="../../images/login_03.gif">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

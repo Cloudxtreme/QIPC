@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="../../../assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <style type="text/css">
+        .tab{
+            float: left;
+            margin-left: 5px;
+        }
+        #DatagridBasicSetting,
+        #DatagridBasicSetting2,
+        #DatagridBasicSetting3{
+            width: 340px;
+            height: auto;
+            background: #e3e3e3;
+        }
+        #DatagridBasicSetting table tr>td:nth-child(odd){
+            text-align: right;
+            font-size: 8px;
+            font-weight: bold;
+            font-family: '微软雅黑',Arial;
+            --background-color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+    <div id="DatagridBasicSetting">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>排序:</td>
+                <td><input title="排序" type="checkbox" /></td>
+                <td>间隔行字体色:</td>
+                <td><input title="间隔行字体色" color="color" class="input-mini" type="text"></td>
+            </tr>
+            <tr>
+                <!--<td>&nbsp;</td>-->
+                <!--<td><input title="过滤" type="checkbox" class="hide" /></td>-->
+                <td>间隔行背景色:</td>
+                <!--<td ><input title="间隔行背景色" color="color" class="input-mini" type="text"></td>-->
+                <td ><div class="ControlColorSelPanelSty" title="间隔行背景色"></div></td>
+                <td>行字体色:</td>
+                <td><input title="行字体色" color="color" class="input-mini" type="text"></td>
+            </tr>
+            <tr>
+                <td>分页:</td>
+                <td><input title="分页" type="checkbox" /></td>
+                <td>每页显示条数:</td>
+                <td><input title="每页显示条数" class="input-mini ControlProNumberSty" type="number" min="5" max="100" value="5"  defaultvalue="5" /></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>&nbsp;</td>-->
+                <!--<td><select title="主题" class="input-mini hide"><option>theme1</option></select></td>-->
+                <!--<td>&nbsp;</td>-->
+                <!--<td><input title="冻结列个数" class="input-mini hide ControlProNumberSty" style="display: none;" type="number"  min="0" max="1000" value="0"  defaultvalue="0"/></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>&nbsp;</td>-->
+                <!--<td><input title="背景色"  class="input-mini hide" style="display: none;" type="text"></td>-->
+                <!--<td>行字体色:</td>-->
+                <!--<td colspan="3"><input title="行字体色" color="color" class="input-mini" type="text"></td>-->
+            <!--</tr>-->
+            <tr>
+                <td>显示头部:</td>
+                <td><select title="显示头部" class="input-mini"><option value="true">是</option><option value="false">否</option></select></td>
+                <td>字体大小:</td>
+                <td><input title="字体大小" class="input-mini ControlProNumberSty" type="number" min="12" max="30" value="12"  defaultvalue="12"/></td>
+            </tr>
+            <tr>
+                <td>标题颜色:</td>
+                <td><input title="标题颜色" color="color" class="input-mini" type="text"></td>
+                <td>行背景色:</td>
+                <!--<td><input title="行背景色" color="color" class="input-mini" type="text"></td>-->
+                <td><div class="ControlColorSelPanelSty" title="行背景色"></div></td>
+            </tr>
+            <tr>
+                <td>标题背景:</td>
+                <!--<td><input title="标题背景" color="color" class="input-mini" type="text"></td>-->
+                <td><div class="ControlColorSelPanelSty" title="标题背景"></div></td>
+                <td>表格线显示:</td>
+                <td><select title="表格线显示" class="input-mini">
+                    <option value="all">全部</option>
+                    <option value="cols">垂直</option>
+                    <option value="rows">水平</option>
+                    <option value="none">无</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>垂直线颜色:</td>
+                <td><input title="垂直线颜色" color="color" class="input-mini" type="text"></td>
+                <td>水平线颜色:</td>
+                <td><input title="水平线颜色" color="color" class="input-mini" type="text"></td>
+            </tr>
+            <tr>
+                <td>数据文本位置:</td>
+                <td><select title="数据文本位置" class="input-mini" style="width: auto;">
+                    <option value="default">默认</option>
+                    <option value="center">居中</option>
+                    <option value="left">左对齐</option>
+                    <option value="right">右对齐</option>
+                </select></td>
+                <td>行高度:</td>
+                <td><input title="行高度" class="input-mini ControlProNumberSty" type="number" value="22"  min="22" max="100"  defaultvalue="22"/></td>
+            </tr>
+            <tr>
+                <td>滚动条:</td>
+                <td>
+                    <select title="滚动条" class="input-mini">
+                        <option value="none">无</option>
+                        <option value="auto">自动</option>
+                        <option value="horizontal">水平</option>
+                        <option value="vertical">垂直</option>
+                        <option value="both">全部</option>
+                    </select>
+                </td>
+                <td>SPC:</td>
+                <td><input title="SPC" type="checkbox"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id=DatagridBasicSetting2 style="height: auto;">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th style="width: 35%;">列</th>
+                <th colspan="2">属性</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td rowspan="100" style="vertical-align: top;">
+                    <ul class="colsList" style="list-style: none;margin-left: 3px;margin-top: 0px;">
+                        <li><button class="btn btn-info btn-mini active">列1</button></li>
+                        <li><button class="btn btn-info btn-mini">列2</button></li>
+                        <li><button class="btn btn-info btn-mini">列3</button></li>
+                        <li><button class="btn btn-info btn-mini">列4</button></li>
+                        <li><button class="btn btn-info btn-mini">列5</button></li>
+                        <li><button class="btn btn-info btn-mini">列6</button></li>
+                        <li><button class="btn btn-info btn-mini">列1</button></li>
+                        <li><button class="btn btn-info btn-mini">列2</button></li>
+                        <li><button class="btn btn-info btn-mini">列3</button></li>
+                        <li><button class="btn btn-info btn-mini">列4</button></li>
+                        <li><button class="btn btn-info btn-mini">列5</button></li>
+                        <li><button class="btn btn-info btn-mini">列6</button></li>
+                    </ul>
+                </td>
+                <td class="specialTD" style="vertical-align: middle;width: 30%;font-weight: bold;font-family: '微软雅黑',Arial;color: black;">显示名称:</td>
+                <td style="font-size: 8px;padding-left: 0px;vertical-align: middle;">
+                    <input title="显示名称" type="text" class="input"  class="ControlProTextSty" maxlength="10" ischeck="true"/></td>
+            </tr>
+            <tr style="display: none;">
+                <td>数据格式:</td>
+                <td><select title="数据格式" class="input-mini" style="width: 100%;"><option>字符</option></select></td>
+            </tr>
+            <tr>
+                <td>报警规则:</td>
+                <td style="padding: 3px 0px;"><button title="报警规则" style="width: 100%;" class="btn btn-mini btn-danger">报警规则</button></td>
+            </tr>
+            <tr>
+                <td>列宽:</td>
+                <td><input title="自动列宽" type="checkbox" checked="checked" style="margin:0px;"/>自动
+                    <input title="列宽" type="number"  class="input-mini ControlProNumberSty" value="85" min="50" max="1000"  defaultvalue="85"/></td>
+            </tr>
+            <tr>
+                <td>字号:</td>
+                <td><input title="字号" type="number" class="input-mini ControlProNumberSty" value="12" min="12" max="60" defaultvalue="12"/></td>
+            </tr>
+            <tr>
+                <td>字体样式:</td>
+                <td>
+                    <select title="字体样式">
+                        <option value="SimSun">宋体</option>
+                        <option value="SimHei">黑体</option>
+                        <option value="Microsoft YaHei">微软雅黑</option>
+                        <option value="Microsoft JhengHei">微软正黑体</option>
+                        <option value="NSimSun">新宋体</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>字体加粗:</td>
+                <td>
+                    <select title="字体加粗">
+                        <option value="normal">正常</option>
+                        <option value="bold">粗体</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>列颜色:</td>
+                <!--<td><input title="列颜色" color="color" type="text" class="input-mini" /></td>-->
+                <td><div title="列颜色" class="ControlColorSelPanelSty"></div></td>
+            </tr>
+            <tr>
+                <td>格式化:</td>
+                <td><select title="格式化" type="text" class="input-mini" style="width: 100%;"></select></td>
+            </tr>
+            <tr>
+                <td>是否可见:</td>
+                <td><input title="是否可见" type="checkbox" /></td>
+            </tr>
+            <tr>
+                <td style="display: none;">数据抓取间隔时间:</td>
+                <td style="display: none;"><input title="数据抓取间隔时间" type="text" class="input-mini" /></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="DatagridBasicSetting3" style=" width:100%;">
+            <p style="padding-top: 9px;margin-bottom:10px;">
+                <a title="报警添加" type="button" class="btn">报警添加</a><span style="margin-left: 10px;"></span>
+            </p>
+            <div style="height: 160px;overflow-y: scroll;">
+                <table class="table .table-striped">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>报警列</th>
+                            <th>比较运算</th>
+                            <th>值</th>
+                            <th>显示</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td>报警</td>
+                        <td>
+                            <select title="报警列" class="input-mini" style="width: auto;"></select>
+                        </td>
+                        <td>
+                            <select title="比较符" class="input-mini" style="width: 100%;">
+                                <option value="等于">==</option>
+                                <option value="不等于">!=</option>
+                                <option value="大于">></option>
+                                <option value="大于或等于">>=</option>
+                                <option value="小于"><</option>
+                                <option value="小于或等于"><=</option>
+                                <option value="介于">>=&<=</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input style="margin: 0;padding: 0;width: auto;" title="比较类型" type="checkbox" class="input-mini" /><span>列</span>
+                            <span title="值的比较">
+                                <input title="比较值" type="text" class="input-mini ControlProTextSty"   maxlength="5" ischeck="false"/>
+                                <input style="display: none;" title="比较值2" type="text" class="input-mini ControlProTextSty" maxlength="5" ischeck="false"/>
+                            </span>
+                            <span style="display: none;" title="列的比较">
+                                <select title="比较列" class="input-mini" style="width: auto;"></select>
+                                <select style="display: none;width: auto;" title="比较列2" class="input-mini"></select>
+                            </span>
+                        </td>
+                        <td>
+                            <!--<input title="报警颜色" class="input-mini" color="color" value="#fff"/>-->
+                            <div title="报警颜色" class="ControlColorSelPanelSty" style="float: left;"></div>
+                            <a type="button" title="删除" class="btn btn-mini" style="line-height: 30px;">删除</a>
+                        </td>
+                     </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</body>
+</html>

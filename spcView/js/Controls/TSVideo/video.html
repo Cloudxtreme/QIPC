@@ -1,0 +1,28 @@
+<div style="width: 100%;height: 100%">
+    <div id="video_html" style="display:none;width:100%; height: 100%;">
+        <video src="" style="width: 100%; height: 100%;" loop="loop" autoplay="autoplay" controls="controls"></video>
+    </div>
+    <div id=video_vlc style="display:none;width:100%; height: 100%;">
+        <embed type="application/x-vlc-plugin" autoplay="yes" loop="yes"  pluginspage="http://www.videolan.org"
+               width="100%"
+               height="100%"
+               target="">
+        </embed>
+    </div>
+    <script type="text/javascript">
+        if (Agi.Edit) {
+            $("#video_html").show();
+        }
+        else {
+            if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+                //alert("iPhone|iPad|iPod");
+                $("#video_html").show();
+                $("#video_vlc").hide();
+            }
+            else {
+                $("#video_html").hide();
+                $("#video_vlc").show();
+            }
+        }
+    </script>
+</div>

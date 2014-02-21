@@ -1,0 +1,48 @@
+#odInfoTable table{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+#odInfoTable table tr>td:nth-child(odd){
+    padding-right: 10px;
+}
+
+#odInfoTable table td
+{
+    width:8.3%
+    }
+
+#odInfoTable table tr>td:nth-child(even){
+    padding-right: 10px;
+}
+.childrenDiv
+{
+    width:100%;
+    height:35px;
+    border:1px solid #c2c2c4;
+    background-color:#f4f4f6;
+    box-shadow:0 0 1px #7c7c7c;
+    }
+    .childrenDiv1
+{
+    width:30px;
+    height:35px;
+    }
+.bigText
+{
+    text-align:center;
+    font-size:14px;
+    font-family:Î¢ÈíÑÅºÚ;
+    font-weight:bold;
+    color:#000;
+    }         
+
+.smallText
+{
+    text-align:center;
+    font-size:8px;
+    font-family:Î¢ÈíÑÅºÚ;
+    color:#6e6e6e;
+    margin-top:-6px;
+    }   
+  

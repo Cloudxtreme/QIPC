@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.css"/>
+    <style type="text/css">
+        .tempClass{
+            width:400px;height: auto;background: #5f9eff;
+        }
+    </style>
+</head>
+<body>
+<div id="property1" class="tempClass">
+<table class="Panel_prortityPanelTable" border="0" cellspacing="1" cellpadding="0">
+    <tbody>
+    <tr>
+        <td class="Panel_prortityPanelTabletd0">左上角半径:</td>
+        <td class="Panel_prortityPanelTabletd1"><input title="左上角半径" type="number" value="0" min="0" max="100"></td>
+        <td class="Panel_prortityPanelTabletd0">右上角半径</td>
+        <td class="Panel_prortityPanelTabletd1"><input title="右上角半径" type="number" value="0" min="0" max="100"></td>
+    </tr>
+    <tr>
+        <td class="Panel_prortityPanelTabletd0">左下角半径:</td>
+        <td class="Panel_prortityPanelTabletd1"><input  title="左下角半径" type="number" value="0" min="0" max="100"></td>
+        <td class="Panel_prortityPanelTabletd0">右下角半径:</td>
+        <td class="Panel_prortityPanelTabletd1"><input title="右下角半径" type="number" value="0" min="0" max="100"></td>
+    </tr>
+    <tr>
+        <td class="Panel_prortityPanelTabletd0">边框颜色:</td>
+        <td class=""><div title="边框颜色" style="background-color:rgba(0, 0, 0, 0);" class="ControlColorSelPanelSty"></div>
+        </td>
+        <td class="Panel_prortityPanelTabletd0">边框宽度:</td>
+        <td class=""><input  title="边框宽度" type="number" min="0" value="0" max="100" ></td>
+    </tr>
+    <tr>
+        <td class="Panel_prortityPanelTabletd0">背景设置:</td>
+        <td class=""><div title="背景设置" style="background-color:rgba(0, 0, 0, 0);" class="ControlColorSelPanelSty"></div></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr></tr>
+
+    </tbody>
+</table>
+</div>
+<hr />
+<div id="property2" class="tempClass">
+    <table>
+        <tr>
+            <td class="Panel_prortityPanelTabletd0">进入动画:</td>
+            <td class="">
+                <select title="进入动画" class="input-mini">
+                    <option value="none">无</option>
+                    <option value="left">从左</option>
+                    <option value="right">从右</option>
+                    <option value="up">从上</option>
+                    <option value="down">从下</option>
+                    <option value="slowIn">淡入</option>
+                </select>
+            </td>
+            <td class="Panel_prortityPanelTabletd0">动画速度:</td>
+            <td class="Panel_prortityPanelTabletd1"><input title="动画速度" type="number" value="1000" min="100" max="5000"
+                                                           class="ControlProNumberSty"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

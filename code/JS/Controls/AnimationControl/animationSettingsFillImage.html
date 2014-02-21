@@ -1,0 +1,256 @@
+<style type="text/css">
+    .labelliuyi {
+        margin: 5px;
+        font-size: small;
+        display: inline;
+    }
+</style>
+<link rel="stylesheet" href="JS/Controls/AnimationControl/paulopmx-Flexigrid-98e3351/css/flexigrid.css">
+<script type="text/javascript" src="JS/Controls/AnimationControl/paulopmx-Flexigrid-98e3351/js/flexigrid.js"></script>
+<div style="width: 100%; margin: 5px ">
+    <table style="width: 100%; height: 290px">
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi" for="expression">表达式</label>
+                <input type="text" name="" id="expression" value="var" maxlength="20">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id='GridForFill'>
+                    <table>
+                        <tr id="row_add" style="display: none;">
+                            <td>#</td>
+                            <td>
+                                <select style="width: 80px;" name="" id="relation">
+                                    <option><=</option>
+                                    <option>==</option>
+                                    <option>></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input style="width: 80px;" type="number" name="" id="percentage" value="0" min="0" max="9999" class="ControlProNumberSty">
+                            </td>
+                            <td>
+                                <input type="text" name="" id="image" value="http://*" readonly style="width:100px">
+                                <input type="button" name="" id="imageShoose" value="选择图片">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    //1.数据
+    var fillAnimation = false;
+    //
+    var control = Agi.Edit.workspace.currentControls[0];
+    var PropertySettings = control.Get("PropertySettings");
+    var animations = PropertySettings.animations;
+    for (var i = 0; i < animations.length; i++) {
+        var animation = animations[i];
+        if (animation.type == "fillImage") {
+            fillAnimation = animation;
+        }
+    }
+    //默认值
+    if (!fillAnimation) {
+        fillAnimation = {
+            type:"fillImage",
+            expression:"var",
+            images:[
+                /*{relation:"<=", percentage:"10", image:""},
+                 {relation:"<=", percentage:"90", image:""},
+                 {relation:"<=", percentage:"100", image:""}*/
+            ]
+        }
+    }
+    //
+    $("#expression").val(fillAnimation.expression)
+    //2、构建Table
+    var tableOnlyAdd = $("<p></p>").append($("#GridForFill").find("table").clone()).html()
+    var table = $("#GridForFill").find("table")
+    //2.1
+    function doBindTable(table) {
+        for (var i = 0; i < fillAnimation.images.length; i++) {
+            var obj = fillAnimation.images[i];
+            table.append("<tr>" +
+                    "<td>" + (i + 1) + "</td>" +
+                    "<td>" + obj.relation + "</td>" +
+                    "<td>" + obj.percentage + "</td>" +
+                    "<td>" + obj.image + "</td>" +
+                    "</tr>")
+        }
+    }
+    doBindTable(table)
+    //2.2
+    function doFlexiGrid(table) {
+        table.flexigrid({
+            url:'',
+            colModel:[
+                {display:'序号', name:'', width:50, align:'center'},
+                {display:'关系', name:'', width:100, align:'center'},
+                {display:'值', name:'', width:100, align:'center', sortable:true},
+                {display:'图片', name:'', width:165, align:'center'}
+            ],
+            buttons:[
+                {name:'Add', bclass:'add', onpress:GridForFillColorsOP},
+                {name:'Delete', bclass:'delete', onpress:GridForFillColorsOP},
+                {separator:true}
+            ],
+            title:'编辑填充图片',
+            resizable:false,
+            showToggleBtn:false,
+            width:465,
+            height:130
+        });
+    }
+    doFlexiGrid(table)
+    //2.3
+    $("#imageShoose").live(
+            "click",
+            function () {
+                Agi.BgImageManage.AllBackgroundImg(function (result) {
+                    if (result.result === "true") {
+                        var AllImages = result.listData;
+                        var showallserverimgzindex=parseInt($('#ShowAllServerImage').css("z-index"));
+                        if(showallserverimgzindex<9999){
+                            showallserverimgzindex=showallserverimgzindex+9999;
+                        }
+                        $('#ShowAllServerImage').css("z-index",showallserverimgzindex);
+                        //
+
+                        var AllImageStr = "<ul class='showimgfaceul' id='SelectPanelBG'>";
+                        for (var i = 0; i < AllImages.length; i++) {
+                            var path = Agi.ImgServiceAddress + AllImages[i];
+                            var imgp = path.split('/');
+                            AllImageStr += "<li title='" + imgp[5] + "'><a href='#'><img src='" + path + "'></img></a></li>";
+
+                        }
+                        AllImageStr += "</ul>";
+
+                        $("#ShowImg").html(AllImageStr);
+                        $('#ShowAllServerImage').modal({ backdrop:true, keyboard:false, show:true }); //加载弹出层
+                        $('#ShowAllServerImage').draggable({
+                            handle:".modal-header"
+                        });
+                    } else {
+                        alert("当前服务器没有可使用的图片！");
+                        return false;
+                    }
+                });
+            }
+    );
+    //
+    var selectedImage = "";
+    //
+    $("#SelectPanelBG").find("a").live('click', function () {
+        selectedImage = $(this).find("img").attr("src");
+        /* $("#" + Me.EditControlElementID).css("background-image", "url(" + $(this).find("img").attr("src") + ")");
+         $("#" + Me.EditControlElementID).css("background-position", "center");
+         $("#" + Me.EditControlElementID).css("background-repeat", "no-repeat");
+         $("#" + Me.EditControlElementID).css("background-size", "cover");*/
+    });
+    //
+    $("#SlectedImg").click(function () {
+        $("#image").val(selectedImage);
+        $("#ShowAllServerImage").modal('hide');
+    });
+    //
+    $("#CancelImg").click(function () {
+        $("#ShowAllServerImage").modal('hide');
+    });
+    //4、编辑操作
+    function GridForFillColorsOP(op, grid) {
+        switch (op) {
+            case "Add":
+                var StrPercenTageValue=$(grid).find("#row_add").find("#percentage").val();
+                if(StrPercenTageValue===""){
+                    StrPercenTageValue=0;
+                    $(grid).find("#row_add").find("#percentage").val(0);
+                }else{
+                    StrPercenTageValue=parseInt(StrPercenTageValue);
+                }
+                $(grid).find("#row_add").toggle(function () {
+                    if ($(grid).find("#row_add").css("display") == "none") {
+                        var relation = $(grid).find("#row_add").find("#relation").val();
+                        $(grid).find("#row_add").find("#relation").val("");
+                        var percentage = StrPercenTageValue;
+                        $(grid).find("#row_add").find("#percentage").val("");
+                        var image = $(grid).find("#row_add").find("#image").val();
+                        $(grid).find("#row_add").find("#image").val("");
+                        fillAnimation.images.push(
+                                {relation:relation, percentage:percentage, image:image}
+                        )
+                        $(".flexigrid").remove();
+                        $("#GridForFill").append(tableOnlyAdd);
+                        var table = $("#GridForFill").find("table")
+                        doBindTable(table)
+                        doFlexiGrid(table)
+                    }
+                });
+                break;
+            case "Delete":
+                //$(grid).find(".trSelected").remove();
+                var trs = $(grid).find(".trSelected")
+                if (trs.length > 0) {
+                    for (var i = 0; i < trs.length; i++) {
+                        var tr = $(trs[i]);
+                        var relation = tr.find("td:eq(1)").text();
+                        var percentage =parseInt(tr.find("td:eq(2)").text());
+                        var image = tr.find("td:eq(3)").text();
+                        var fill = {
+                            relation:relation,
+                            percentage:percentage,
+                            image:image
+                        }
+                        for (var j = 0; j < fillAnimation.images.length; j++) {
+                            animation = fillAnimation.images[j];
+                            animation.percentage=parseInt(animation.percentage);
+                            if (JSON.stringify(animation) == JSON.stringify(fill)) {
+                                fillAnimation.images.splice(j, 1);
+                            }
+                        }
+                    }
+                }
+                $(".flexigrid").remove();
+                $("#GridForFill").append(tableOnlyAdd);
+                var table = $("#GridForFill").find("table")
+                doBindTable(table)
+                doFlexiGrid(table)
+                break;
+        }
+    }
+    //    $("#expression").change(function () {
+    //                fillAnimation.expression = $(this).val();
+    //            }
+    //    )
+    //3、添加和删除
+    function doAnimationAdd() {
+        fillAnimation.expression = $("#expression").val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(fillAnimation);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            if (animation.type == "fillImage") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //删除最后一张背景图片
+        var fillBorder = control.Get("ProPerty").BasciObj.find("#ac_border");
+        fillBorder.css("background-image", "");
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

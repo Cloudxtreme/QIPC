@@ -1,0 +1,747 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="utf-8"/>
+    <title>PageView</title>
+    <style type="text/css">
+        .swipeGroup {
+            z-index: 500;
+            top: 0;
+            position: absolute;
+        }
+
+        .exportDiv {
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            text-align: right;
+            float: right;
+            z-index: 9999;
+            position: absolute;
+            top: 1px;
+            left: 88%;
+        }
+    </style>
+    <link href="js/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link id="lkTheme" href="js/FrameThemes/theme1.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="js/layout/themes/base/jquery.ui.all.css"/>
+    <link type="text/css" rel="stylesheet" href="customizePanel.css"/>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/EncDnc.Base64/EncDnc.Base64.js" type="text/javascript"></script>
+    <!--引用-->
+    <script type="text/javascript" src="js/Base/BaseClass.js"></script>
+    <script type="text/javascript" src="js/WebServiceConfig/AddressConfig.js"></script>
+    <script type="text/javascript" src="js/WebServiceConfig/Agi.DataAccessLayer.js"></script>
+    <!--消息模块-->
+    <script src="js/AgiMsgManage/Agi.Msg.PageOutPramatsClass.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.ParasSettingWindowUI.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.ParaBindManage.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.UrlManage.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.Trigger.js" type="text/javascript"></script>
+    <script src="js/AgiScript/Agi.Script.Base.js" type="text/javascript"></script>
+    <script src="js/AgiScript/Agi.Script.Page.js" type="text/javascript"></script>
+    <script src="js/AgiScript/Agi.Script.Utility.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.PageLoadManageClass.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.RealTimeParaBindManage.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.WebSocket/Agi.Msg.PointsManage.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.WebSocket/AndroidSocket/socket.io.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.WebSocket/AndroidSocket/Agi.Msg.AndroidSocket.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.ButtonQuery.js" type="text/javascript"></script>
+    <script src="js/AgiMsgManage/Agi.Msg.ButtonBindControlsRelation.js" type="text/javascript"></script>
+    <!--共享数据源相关 依赖消息模块-->
+    <script src="js/jquery.json.js" type="text/javascript"></script>
+    <!--    <script src="JS/AgiShareDatasource/Agi.ShareData.UI.js" type="text/javascript"></script>-->
+    <script src="js/AgiShareDatasource/Agi.ShareData.ShareDataRealTimeBindPara.js" type="text/javascript"></script>
+    <script src="js/AgiShareDatasource/Agi.ShareDataRelationManage.js" type="text/javascript"></script>
+    <script src="js/AgiShareDatasource/Agi.ShareData.FilterRelation.js" type="text/javascript"></script>
+    <script src="js/AgiShareDatasource/Agi.ShareData.Data.js" type="text/javascript"></script>
+    <!--查询按钮-->
+    <script src="js/AgiMsgManage/Agi.Msg.ButtonBindControlsRelation.js" type="text/javascript"></script>
+    <!--  //样式名称转换-->
+    <script src="js/ControlStyle/ControlNameExchange.js" type="text/javascript"></script>
+    <script src="js/Controls/BoxChart/FusionCharts.js" type="text/javascript"></script>
+    <script src="js/Controls/BoxChart/FusionCharts.HC.js" type="text/javascript"></script>
+    <script src="js/Controls/BoxChart/FusionCharts.HC.PowerCharts.js" type="text/javascript"></script>
+    <script src="js/Controls/DashboardChart/FusionCharts.HC.Widgets.js" type="text/javascript"></script>
+    <!--查看器环境js-开始-->
+    <script type="text/javascript" src="js/view/agiflow.js"></script>
+    <script type="text/javascript" src="js/view/view.test.js"></script>
+    <script type="text/javascript" src="js/view/exportExcel.js"></script>
+    <!--查看器环境js-结束-->
+    <link type="text/css" rel="stylesheet" href="js/Controls/ControlBasic.css"/>
+    <script src="js/Controls/ControlBasic.js"></script>
+    <script src="js/Controls/DataGrid/external/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="js/Controls/PCChart/jstat-0.1.0.min.js"></script>
+    <script type="text/javascript" src="js/Controls/PCChart/jquery.flot.min.js"></script>
+    <link type="text/css" rel="Stylesheet" href="js/Controls/DatePicker/zebra_datepicker_metallic.css"/>
+    <script src="js/ControlStyle/ControlStyLibs/LayoutControlSty.js" type="text/javascript"></script>
+    <script src="js/ControlStyle/Agi.layout.StyleControl.js" type="text/javascript"></script>
+    <script src="js/Controls/MultiSelect/ui.dropdownchecklist.js" type="text/javascript"></script>
+    <!--多选下拉控件-->
+    <script src="js/export/rgbcolor.js" type="text/javascript"></script>
+    <script src="js/export/canvg.js" type="text/javascript"></script>
+    <script src="js/export/html2canvas.js" type="text/javascript"></script>
+    <script src="js/export/export.js" type="text/javascript"></script>
+</head>
+<body>
+<!--markeluo 20130821 0846 markeluo 点击Chart Point菜单处理 #start-->
+<div id='pointMenu' class=" MenuDiv">
+    <!--<ul class="nav nav-list menu-second in collapse">-->
+    <!--<li data-menutype="1">1.查看源数据</li>-->
+    <!--<li data-menutype="2">2.异常点信息存入数据库</li>-->
+    <!--<li data-menutype="3"> 3.砖取查询</li>-->
+    <!--</ul>-->
+    <div class="navbar">
+        <div class="nav-collapse subnav-collapse">
+            <ul class="nav pull-left">
+                <li class="dropdown">
+                    <ul class="dropdown-menu" style="min-width: 0px">
+                        <li data-menutype="1"><a href="#"> 1.定位源数据</a></li>
+                        <li data-menutype="2"><a href="#"> 2.异常点原因录入</a></li>
+                        <!--<li data-menutype="3"><a href="#"> 3.钻取数据</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--markeluo 20130821 0846 markeluo 点击Chart Point菜单处理 #end-->
+<div class="exportDiv">
+    <div class="navbar">
+        <div class="nav-collapse subnav-collapse">
+            <ul class="nav pull-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">导出 <b
+                        class="caret"></b></a>
+                    <ul class="dropdown-menu" style="min-width: 0px">
+                        <li><a href="#">图片</a></li>
+                        <li><a href="#">Word</a></li>
+                        <li><a href="#">Excel</a></li>
+                        <!--                        <li><a href="#">PDF</a></li>
+                                                <li><a href="#">发送邮件</a></li>
+                                                <li><a href="#">Excel</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div>
+    <div id="workspace">
+    </div>
+</div>
+<!--
+<iframe style="display: none;" src="cache.html"></iframe>
+-->
+<script type="text/javascript">
+    //alert(Agi.view.getUrlParam("page"));
+    //test
+    var layoutManagement = {
+        property: {
+            type: 1
+        }
+    }
+</script>
+<!--bootstrap-->
+<script src="js/assets/js/bootstrap.min.js"></script>
+<div style="display: none; width: 600px; height: 600px;" id="plot_qwerty">
+</div>
+<link rel="stylesheet" href="js/lib/popboxV3/popbox/popbox.css"/>
+<script type="text/javascript" src="js/lib/popboxV3/popbox/jquery.popbox.js"></script>
+<script type="text/javascript" src="js/lib/popboxV3/popbox/jquery.autopopbox.js"></script>
+<script type="text/javascript" src="js/lib/iscroll.js"></script>
+<script type="text/javascript" src="js/lib/hammer/hammer.js"></script>
+<script type="text/javascript" src="js/lib/hammer/jquery.hammer.js"></script>
+<!--alert comfirm 弹出框-->
+<script src="js/AgiCommonDialogbox/Agi.Common.DialogBox.js"></script>
+<!--advance-->
+<div id="adv_main">
+    <div class="pop pop1">
+        <div class="title">图形属性</div>
+        <div class="content"></div>
+        <div class="operation">
+        </div>
+    </div>
+    <div class="pop pop2">
+        <div class="title">判异规则</div>
+        <div class="content"></div>
+        <div class="operation">
+            <button>保存</button>
+            <button>取消</button>
+        </div>
+    </div>
+    <div class="pop popExport">
+        <div class="title">导出文件</div>
+        <div class="content">
+            <div>World</div>
+            <div>PDF</div>
+            <div>Excel</div>
+            <div>Jpeg</div>
+        </div>
+    </div>
+    <div class="pop popInfo">
+        <div class="title">界面信息</div>
+        <div class="content">
+            <table style="width: 100%; height: 100%">
+                <tr>
+                    <td>界面名称：</td>
+                    <td>默认界面名称</td>
+                </tr>
+                <tr>
+                    <td>创建人：</td>
+                    <td>Liuyi</td>
+                </tr>
+                <tr>
+                    <td>创建时间：</td>
+                    <td>16:52 2013/9/9</td>
+                </tr>
+                <tr>
+                    <td>创建目的：</td>
+                    <td><input type="text" name=""/></td>
+                </tr>
+                <tr>
+                    <td>经验终结：</td>
+                    <td><input type="text" name=""/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="operation">
+            <button>保存</button>
+            <button>取消</button>
+        </div>
+    </div>
+    <div class="data">
+        <div class="toolbar">
+            <div class="left">
+                样本数据 总共有
+                <span class="count">999</span>
+                个样本数据
+            </div>
+            <div class="right">
+                <button class="delete" disabled>删除</button>
+                <button class="filter">筛选</button>
+                <button class="reset">恢复</button>
+                <button class="refresh">刷新</button>
+                <div class="close">X</div>
+            </div>
+        </div>
+        <div class="grid">
+            <table id="data_table"></table>
+            <div id="data_pager"></div>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="open_close">
+            <div class="pointer">▲</div>
+            <div class="upper"></div>
+            <div class="lower"></div>
+        </div>
+        <div class="content">
+            <div class="customPop">
+            </div>
+            <div>
+                <div class="ope_export">
+                    <img src="js/images/20130904024324268_easyicon_net_24.png">
+                    导出
+                </div>
+                <div class="ope_info">
+                    <img src="js/images/information.png">
+                    信息
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filterBox pop">
+        <div class="title">数据筛选</div>
+        <div class="content">
+            <table>
+                <tr>
+                    <td>过滤字段</td>
+                    <td>
+                        <select name="" id="filterBox_fieldNames">
+                        </select>
+                    </td>
+                    <td>过滤规则</td>
+                    <td>
+                        <select name="" id="filterBox_rule">
+                            <option value=">">大于</option>
+                            <option value="<">小于</option>
+                            <option value="==">等于</option>
+                            <option value=">=">大于等于</option>
+                            <option value="<=">小于等于</option>
+                            <option value="!=">不等于</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>比较源</td>
+                    <td>
+                        <select name="" id="filterBox_source">
+                            <option>固定值</option>
+                            <option>数据列</option>
+                        </select>
+                    </td>
+                    <td>比较值</td>
+                    <td class="filterBox_source_number">
+                        <input type="number" name="" id="filterBox_number" value="100"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="operation">
+            <button id="filterBox_save">保存</button>
+            <button id="filterBox_cancel">取消</button>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    /*main*/
+#adv_main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+}
+
+    /*filterBox*/
+.filterBox {
+    width: 400px;
+    height: 170px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -85px;
+    display: none;
+}
+
+.filterBox .content {
+    width: 400px;
+    height: 100px;
+    background-color: #ffffff;
+}
+
+.filterBox .content table {
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.filterBox .content input {
+    width: 92px;
+    height: 19px;
+}
+
+.filterBox .content select {
+    width: 100px;
+    height: 25px;
+}
+
+    /*data*/
+.data {
+    width: 100%;
+    height: 250px;
+    position: absolute;
+    left: 0;
+    bottom: -260px;
+    box-shadow: 1px 1px 10px #000000;
+    background-color: #000000;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    z-index:9999;
+}
+
+.data>.toolbar {
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    color: #ffffff;
+    line-height: 35px;
+}
+
+.data>.toolbar>.left {
+    margin-left: 10px;
+}
+
+.data>.toolbar>.right {
+    float: right;
+    margin-right: 35px;
+    margin-top: -35px;
+}
+
+.data>.toolbar .close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background: #ffffff;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    display: inline;
+    text-align: center;
+    opacity: 1;
+    font-size: 14px;
+}
+
+.data>.toolbar button {
+    display: inline;
+}
+
+.data>.grid {
+    background-color: #c0c0c0;
+    width: 100%;
+    height: 215px;
+    position: absolute;
+    left: 0;
+    top: 35px;
+}
+
+#data_table {
+    /*width: 100%;
+    height: 165px;
+    position: absolute;*/
+}
+
+#cb_data_table {
+    margin-top: -5px;
+}
+
+    /*menu*/
+.menu {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    right: -35px;
+    top: 50%;
+    margin-top: -50px;
+}
+
+.menu> .open_close {
+    background-color: #000000;
+    width: 15px;
+    height: 35px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -17.5px;
+    box-shadow: 1px 1px 10px #000000;
+    /*border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;*/
+    cursor: pointer;
+}
+
+.open_close>.pointer {
+    color: #ffffff;
+    -webkit-transform: rotate(-90deg);
+    margin-left: 2px;
+    margin-top: 9px;
+    font-size: 12px;
+}
+
+.open_close>.upper {
+    background-color: #000000;
+    width: 25px;
+    height: 15px;
+    position: absolute;
+    -webkit-transform: rotate(-45deg);
+    left: 2px;
+    top: -11px;
+    box-shadow: 1px 1px 10px #000000;
+
+}
+
+.open_close>.lower {
+    background-color: #000000;
+    width: 25px;
+    height: 15px;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    left: 2px;
+    bottom: -11px;
+    box-shadow: 1px 1px 10px #000000;
+
+}
+
+.menu>.content {
+    background-color: #000000;
+    width: 35px;
+    height: 100px;
+    position: absolute;
+    left: 15px;
+    box-shadow: 1px 1px 10px #000000;
+    color: #ffffff;
+    text-align: center;;
+}
+
+.menu> .content>div div {
+    width: 25px;
+    height: 40px;
+    overflow: hidden;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color .25s linear;
+}
+
+.menu> .content>div div>img {
+    width: 24px;
+    height: 24px;
+}
+
+.pop {
+    box-shadow: 1px 1px 10px #000000;
+    position: absolute;
+    z-index: 999999;
+}
+
+.pop>.title {
+    background-color: #000000;
+    height: 35px;
+    text-align: center;
+    color: #ffffff;
+    line-height: 35px;
+}
+
+.pop>.content {
+    font-size: 12px;
+    background-color: white;;
+}
+
+.pop>.operation {
+    background-color: #c0c0c0;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+}
+
+.pop>.operation>button {
+    margin: 0 25px;
+}
+
+.pop1 {
+    width: 200px;
+    height: 360px;
+    right: -210px;
+    top: 50%;
+    margin-top: -180px;
+}
+
+.pop1>.content {
+    height: 290px;
+}
+
+.pop2 {
+    width: 450px;
+    height: 360px;
+    right: -460px;
+    top: 50%;
+    margin-top: -180px;
+}
+
+.pop2>.content {
+    height: 290px;
+}
+
+.popExport {
+    width: 120px;
+    height: 147.5px;
+    right: -130px;
+    top: 50%;
+    margin-top: -75px;
+}
+
+.popExport>.content {
+    height: 110px;
+    text-align: center;
+}
+
+.popExport>.content>div {
+    line-height: 28px;
+    cursor: pointer;
+    transition: background-color .25s linear;
+}
+
+.popInfo {
+    width: 200px;
+    height: 280px;
+    right: -210px;
+    top: 50%;
+    margin-top: -130px;
+}
+
+.popInfo>.content {
+    height: 200px;
+}
+
+.popInfo>.content>table {
+    margin: 10px;
+}
+
+.popInfo>.content>table input {
+    width: 100px;
+}
+</style>
+<script type="text/javascript" src="js/jquery.transit.js"></script>
+<link rel="stylesheet" type="text/css" href="js/ui.jqgrid.css"/>
+<script type="text/javascript" src="js/grid.locale-cn.js"></script>
+<script type="text/javascript" src="js/jquery.jqGrid.js"></script>
+<script type="text/javascript" src="js/view.advance.js"></script>
+<!--color picker-->
+<link href="Lib/colorpicker/spectrum.css" rel="stylesheet" type="text/css"/>
+<script src="Lib/colorpicker/spectrum.js"></script>
+<!--advance-->
+</body>
+</html>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $(".dropdown-menu>li").click(function () {
+            $(".dropdown-menu").parent().removeClass('open');
+            if ($(this).find("a").text() == "图片") {
+                //useNativeAPI({ methodName:"toIMG" });
+                pageExport();
+            }
+            if ($(this).find("a").text() == "Word") {
+                getWord();
+            }
+            if ($(this).find("a").text() == "PDF") {
+                useNativeAPI({ methodName: "toPDF" });
+            }
+            if ($(this).find("a").text() == "Excel") {
+                getExcel();
+            }
+            if ($(this).find("a").text() == "发送邮件") {
+                document.location.href = "mailto:donghailovechina@126.com";
+            }
+        });
+    });
+    //判断系统类型
+    var osInfo;
+    var ua = navigator.userAgent.toLowerCase();
+    var isMacPC = (ua.indexOf("macintosh") != -1)
+    var isMacOSX = (ua.indexOf("mac os x") != -1)
+    var isiphone = (isMacOSX && ua.indexOf("iphone") != -1)
+    var isipad = (isMacOSX && ua.indexOf("ipad") != -1)
+    var isLinux = (ua.indexOf("linux") != -1)
+    var isAndroid = (isLinux && ua.indexOf("android") != -1)
+    var isWindows = (ua.indexOf("windows") != -1)
+    if (isMacPC)
+        osInfo = "MacPC";
+    else if (isiphone)
+        osInfo = "iOS";
+    else if (isipad)
+        osInfo = "iOS";
+    else if (isAndroid)
+        osInfo = "Android";
+    else if (isWindows)
+        osInfo = "Windows";
+    function deleteFile(fileName) {
+        Agi.DAL.ReadData({ "MethodName": "DeleteExportFile",
+            "Paras": JSON.stringify({ "fileName": fileName }),
+            "CallBackFunction": function () {
+            }
+        });
+    }
+    function useNativeAPI(methodNameAndParameters) {
+        if (osInfo == "Windows") {
+            if (methodNameAndParameters.methodName == "toIMG") {
+                Agi.DAL.ReadData({ "MethodName": "PageExport",
+                    "Paras": JSON.stringify({ "methodName": "HtmlToPage", "url": "www.baidu.com" }),
+                    "CallBackFunction": function (result) {
+                        //document.location.href = Agi.ImgServiceAddress + result.filePath;
+                        window.open(Agi.ImgServiceAddress + "/" + result.filePath);
+                        deleteFile(result.filePath);
+                    }
+                });
+            }
+            if (methodNameAndParameters.methodName == "toPDF") {
+                Agi.DAL.ReadData({ "MethodName": "PageExport",
+                    "Paras": JSON.stringify({ "methodName": "HtmlToPdf", "url": "www.baidu.com" }),
+                    "CallBackFunction": function (result) {
+                        //document.location.href = Agi.ImgServiceAddress + result.filePath;
+                        window.open(Agi.ImgServiceAddress + "/" + result.filePath);
+                        deleteFile(result.filePath);
+                    }
+                });
+            }
+        }
+        else if (osInfo == "iOS") {
+            var url = "objc:///" + methodNameAndParameters.methodName;
+            if (methodNameAndParameters.parameters != null) {
+                for (var i = 0; i < methodNameAndParameters.parameters.length; i++) {
+                    url = url + "/:?" + methodNameAndParameters.parameters[i];
+                }
+            }
+            alert(url);
+            document.location = url;
+        } else if (osInfo == "Android") {
+            if (methodNameAndParameters.methodName == "showPDF") {
+                document.getElementById('output').innerHTML = AliansBridge.showPDF(methodNameAndParameters.parameters[0])
+            } else if (methodNameAndParameters.methodName == "showXls") {
+                document.getElementById('output').innerHTML = AliansBridge.showXls(methodNameAndParameters.parameters[0])
+            } else if (methodNameAndParameters.methodName == "printScreen") {
+                document.getElementById('output').innerHTML = AliansBridge.printScreen()
+            } else if (methodNameAndParameters.methodName == "transToPDF") {
+                document.getElementById('output').innerHTML = AliansBridge.transToPDF()
+            } else if (methodNameAndParameters.methodName == "sendMail") {
+                document.getElementById('output').innerHTML = AliansBridge.sendMail(methodNameAndParameters.parameters[0])
+            } else if (methodNameAndParameters.methodName == "getGPS") {
+                document.getElementById('output').innerHTML = AliansBridge.getGPS()
+            }
+        } else if (osInfo == "windows phone") {
+        } else if (osInfo == "MacPC") {
+        } else {
+            alert("未知系统类型");
+        }
+    }
+</script>
+<div id="AbnormalError" class="blk1" style="display:none;">
+    <div class="main">
+        <h2>异常点错误信息选择</h2>
+        <a href="javascript:void(0)" id="closerAE" class="closeBtn">关闭</a>
+
+        <div class="RDSFrame">
+            <div class="listpanel"></div>
+            <!--<div class="saveDiv"><input type="button" id="SaveError" value="确定选择" style="margin-left:200px;width: 80px; "></div>-->
+        </div>
+    </div>
+</div>
+<div id="Abnormalpoint" class="blk" style="display:none;">
+    <div class="main">
+        <h2>异常点错误信息选择</h2>
+        <a href="javascript:void(0)" id="closerAP" class="closeBtn">关闭</a>
+
+        <div class="RDSFrame">
+            <div class="errorColumn">
+                <div>
+                    错误列：<select id="errorColumnSlect">
+                    <option>123</option>
+                </select>
+                </div>
+            </div>
+            <div class="errorList">
+                <div class="listone">
+                    <!--<input type="button" value="错误信息选择" id="errorInfoSelect">-->
+                </div>
+                <div class="listtwo">
+                    <input type="button" id="SaveError" value="确定选择" style="margin-left:20px; " class="btn btn-info">
+                </div>
+            </div>
+            <div class="Info">当前已选择<span id="numcount">0</span>个错误信息</div>
+            <div class="saveDiv"><input type="button" value="保存" id="AbnormalpointSave" class="btn btn-info"></div>
+        </div>
+    </div>
+</div>
+<!--弹出框-->
+<script type="text/javascript" src="customizePage/popup_layer.js"></script>
+<!--树形列表-->
+<link href="customizePage/tree/css/tree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="customizePage/tree/src/Plugins/jquery.tree.js"></script>
+<script src="js/Controls/highcharts.js"></script>
+<script src="js/Controls/highcharts.more.js"></script>
+<!--测试数据-->
+<script src="sigchartViewData.js" type="text/javascript"></script>

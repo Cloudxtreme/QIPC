@@ -1,0 +1,224 @@
+﻿/*  网页和主体部分样式 */
+html,body 
+{
+    margin:0px;
+    padding:0px;
+    font-family:微软雅黑;
+    font-size:14px;
+    width:100%;
+    height:100%;
+    overflow:auto;
+}
+
+
+/* 主框架样式 */
+#FameMainDiv
+{
+    margin:0px;
+    padding:0px;
+    background:#7f7f7f;
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-orient : vertical;
+    -webkit-box-orient : vertical;
+     height:100%;
+     width:100%;
+    }
+    
+/* 主框架的上边部分（导航栏部分） */
+#FrameMainTopDiv
+{
+    height:65px;
+    background:#5e91ae;
+    margin-bottom:10px;
+    border-bottom:1px solid #595a5c;
+    -webkit-box-align:center; 
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    } 
+    
+#FrameLogoDiv
+{
+    width:60px;
+    height:60px;
+    margin:5px 5px 5px 10px;
+    background-image:url(../Images/icon1.png);
+    background-size:cover;
+    }
+    
+/*  导航栏中内容样式 */    
+#FrameTopContentDiv
+{
+    height:45px;
+    width:auto;
+    margin:10px 0px 10px 15px;
+    -webkit-box-align:center; 
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    }
+
+#FrameTitleDiv
+{
+    width:auto;
+    color:White;
+    font-family:微软雅黑;
+    font-size:18px;
+    font-weight:600;
+    text-shadow: 0px 2px 1px #000000;
+    }
+
+#FrameTitleMenu
+{
+     margin:0px 0px 0px 100px;
+    width:auto;
+    height:45px;
+    -webkit-box-align:center; 
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    }    
+    
+#FrameTitleMenu div
+{
+    width:32px;
+    height:32px;
+    margin:10px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    }   
+    
+#AddDataSource{ background-image:url(../Images/copy.png);}     
+#AddDataSource:hover{opacity: 0.6;}   
+#AddTable{ background-image:url(../Images/clipboard.png);}     
+#AddTable:hover{opacity: 0.6;}   
+#AddDataSets{ background-image:url(../Images/copy.png);}     
+#AddDataSets:hover{opacity: 0.6;}   
+#AddNewPage{ background-image:url(../Images/clipboard.png);}     
+#AddNewPage:hover{opacity: 0.6;}   
+
+#FrameOperationMenu
+{
+    margin:0px 0px 0px 80px;
+    width:auto;
+    height:45px;
+    -webkit-box-align:center; 
+    display: -webkit-box;
+    -webkit-box-orient:horizontal;
+    }   
+    
+#FrameOperationMenu div
+{
+     width:32px;
+    height:32px;
+    margin:10px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    }        
+    
+#FrameBack{ background-image:url(../Images/left.png);}     
+#FrameBack:hover{opacity: 0.6;}   
+#FrameNext{ background-image:url(../Images/right.png);}     
+#FrameNext:hover{opacity: 0.6;} 
+    
+/*  主框架的下边部分 */    
+#FrameMainBottomDiv
+{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    margin:0px auto;
+    display: -moz-box;
+    display: -webkit-box;
+     -moz-box-orient : horizontal;
+     -webkit-box-orient : horizontal;
+     width:100%;
+    }    
+    
+#FrameBottomLeftDiv
+{
+    width:150px;
+    background-color:#d9d9d9;
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-orient : vertical;
+    -webkit-box-orient : vertical;
+    }    
+    
+#FrameBottomLeftTopDiv
+{
+    height:30px;
+    font-size:12px;
+    text-align:center;
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#5e91ae), to(#6d8899));
+    }    
+    
+#FrameBottomLeftCenterDiv
+{
+     -webkit-box-flex:1;
+    -moz-box-flex:1;
+    margin-top:5px;
+    }
+
+#FrameBottomLeftBottomDiv
+{
+    height:40px;
+    margin:1px;
+    background-color:#5e91ae;
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-orient : vertical;
+    -webkit-box-orient : vertical;
+    }    
+    
+#FrameHomeLogoDiv
+{
+    height:24px;
+    background-image:url(../Images/home.png);
+    background-position:center;
+    background-repeat:no-repeat;
+    }
+
+#FrameHomeDiv
+{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    text-align:center;
+    font-size:12px;
+    }    
+    
+#FrameBottomRight
+{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    margin-left:2px;
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-orient : vertical;
+    -webkit-box-orient : vertical;
+    }    
+    
+#FrameBottomRightTopDiv
+{
+    height:30px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#5e91ae), to(#6d8899));
+    } 
+    
+#FrameBottomRightTopDiv input
+{
+       width:auto;
+       color:Black;
+       font-size:12px;
+       font-family:微软雅黑;
+       background-color:Transparent;
+       border:0px;
+       text-indent:10px;
+    }    
+    
+#FrameBottomRightBottomDiv
+{
+    -webkit-box-flex:1;
+    -moz-box-flex:1;
+    margin:0px;
+    background-color:#d9d9d9;
+    text-align:center;
+    overflow:auto;
+    }
+

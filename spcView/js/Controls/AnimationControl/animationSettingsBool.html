@@ -1,0 +1,117 @@
+<style type="text/css">
+    .labelliuyi {
+        margin: 5px;
+        font-size: small;
+        display: inline;
+    }
+</style>
+<div style="width: 100%; margin: 5px ">
+    <table style="width: 100%; height:100px;">
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi" for="expression">表达式</label>
+                <input type="text" name="" id="expression" value="var">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                条件为真时
+                <input type="text" name="" id="colorTrue" value="red">
+            </td>
+            <td>
+                条件为假时
+                <input type="text" name="" id="colorFalse" value="green">
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var boolAnimation = false;
+    //１、数据
+    var control = Agi.Edit.workspace.currentControls[0];
+    var PropertySettings = control.Get("PropertySettings");
+    for (var i = 0; i < PropertySettings.animations.length; i++) {
+        var animation = PropertySettings.animations[i];
+        if (animation.type == "bool") {
+            boolAnimation = animation;
+        }
+    }
+    //1、1默认值
+    if (!boolAnimation) {
+        boolAnimation = {
+            type:"bool",
+            expression:"var>0",
+            colorTrue:"green",
+            colorFalse:"red"
+        }
+    }
+    $("#colorTrue").spectrum({
+        color:boolAnimation.colorTrue,
+        showInput:true,
+        showPalette:true,
+        palette:[
+            ['black', 'white'],
+            ['blanchedalmond', 'rgb(255, 128, 0);'],
+            ['hsv 100 70 50', 'red'],
+            ['yellow', 'green'],
+            ['blue', 'violet']
+        ],
+        cancelText:"取消",
+        chooseText:"选择",
+        change:function (color) {
+            $(this).val(color.toHexString())
+        }
+    })
+    $("#colorFalse").spectrum({
+        color:boolAnimation.colorFalse,
+        showInput:true,
+        showPalette:true,
+        palette:[
+            ['black', 'white'],
+            ['blanchedalmond', 'rgb(255, 128, 0);'],
+            ['hsv 100 70 50', 'red'],
+            ['yellow', 'green'],
+            ['blue', 'violet']
+        ],
+        cancelText:"取消",
+        chooseText:"选择",
+        change:function (color) {
+            $(this).val(color.toHexString())
+        }
+    })
+    //2、编辑
+    //2、1初始化
+    //
+    $("#expression").val(boolAnimation.expression)
+    //
+    $("#colorTrue").val(boolAnimation.colorTrue);
+    $("#colorFalse").val(boolAnimation.colorFalse);
+    //
+    //2、2保存
+    //添加
+    function doAnimationAdd() {
+        boolAnimation.expression = $("#expression").val();
+        boolAnimation.colorTrue = $("#colorTrue").val();
+        boolAnimation.colorFalse = $("#colorFalse").val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(boolAnimation);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    //删除
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < PropertySettings.animations.length; i++) {
+            var animation = PropertySettings.animations[i];
+            if (animation.type == "bool") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

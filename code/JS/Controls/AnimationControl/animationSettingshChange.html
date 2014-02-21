@@ -1,0 +1,167 @@
+<style type="text/css">
+    .hdiv 
+    {
+        width: 450px;
+        height:250px;
+        border-radius: 10px;
+        border:1px solid #667c8d;
+        padding: 5px 0px 0px 0px;
+        margin:0px 0px 0px 10px;
+    }
+    .hTable td
+    {
+        height:30px;
+    }
+    .htableTd0
+    {
+        width:60px;
+        text-align: right;
+        padding: 1px;
+    }
+     .htableTd1
+    {
+        width:130px;
+        text-align: left;
+        padding: 1px;
+    }
+    .htableTd1 input[type='text']
+    {
+        width:80%;
+        font-size:8px;
+        font-family: '微软雅黑',Arial;
+    }
+     .htableTd2
+    {
+        width:130px;
+        text-align: left;
+        padding: 1px;
+    }
+</style>
+<div class="hdiv">
+    <table class="hTable">
+        <tr>
+            <td class="htableTd0">
+                表达式:
+            </td>
+            <td class="htableTd1" colspan="3">
+                <input type="text" id="expression" value="var" maxlength="20"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd2" colspan="4">
+                在最大高度时
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd0">
+                对应值:
+            </td>
+            <td class="htableTd1">
+                <input type="number" name="" id="MaxValue" value="100" min='0' max="9999" class="numberminCheck ControlProNumberSty"/>
+            </td>
+            <td class="htableTd0">
+                百分比:
+            </td>
+            <td class="htableTd1">
+                <input type="number" min='0' name="" id="MaxPercentage" value="100" max="9999" class="numberminCheck ControlProNumberSty"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd2" colspan="4">
+                在最小高度时
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd0">
+                对应值:
+            </td>
+            <td class="htableTd1">
+                <input type="number" name="" id="MinValue" value="0"  min="0" max="9999" class="numberminCheck ControlProNumberSty"/>
+            </td>
+            <td class="htableTd0">
+                百分比:
+            </td>
+            <td class="htableTd1">
+                <input type="number" min='0' name="" id="MinPercentage" value="0" max="9999" class="numberminCheck ControlProNumberSty"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd2" colspan="4">
+                参考点
+            </td>
+        </tr>
+        <tr>
+            <td class="htableTd1" colspan="4">
+                　　　　　<input type="radio" name="Rvalue" value="0" />上
+                　　　　　<input type="radio" name="Rvalue" value="1" />中
+                　　　　　<input type="radio" name="Rvalue" value="2" />下
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    //高度变化
+    //1.数据
+    //初始化宽度变化所对应的对象
+    var hChange = false;
+    //获取当前控件对象
+    var control = Agi.Edit.workspace.currentControls[0];
+    //获取属性配置
+    var PropertySettings = control.Get("PropertySettings");
+    var animations = PropertySettings.animations;
+    for (var i = 0; i < animations.length; i++) {
+        var animation = animations[i];
+        if (animation.type == "hChange") {
+            hChange = animation;
+        }
+    }
+    //2.默认值
+    if (!hChange) {
+        hChange = {
+            type: "hChange",
+            expression: "var",
+            MinValue: 0,
+            MinPercentage: 0,
+            MaxValue: 100,
+            MaxPercentage: 100,
+            Rvalue: 0
+        }
+    }
+    //3.绑定值
+    $("#expression").val(hChange.expression);
+    $("#MinValue").val(hChange.MinValue);
+    $("#MinPercentage").val(hChange.MinPercentage);
+    $("#MaxValue").val(hChange.MaxValue);
+    $("#MaxPercentage").val(hChange.MaxPercentage);
+    $("input[name=Rvalue]:eq(" + parseInt(hChange.Rvalue) + ")").attr("checked", 'checked');
+    //3、添加和删除
+    function doAnimationAdd() {
+        debugger;
+        hChange.expression = $("#expression").val();
+        hChange.MinValue = parseInt($("#MinValue").val());
+        hChange.MinPercentage = parseInt($("#MinPercentage").val());
+        hChange.MaxValue = parseInt($("#MaxValue").val());
+        hChange.MaxPercentage = parseInt($("#MaxPercentage").val());
+        hChange.Rvalue = $('input[name="Rvalue"]:checked').val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(hChange);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            if (animation.type == "hChange") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+
+</script>

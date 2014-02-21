@@ -1,0 +1,289 @@
+.DataChartPanelSty
+{
+    -webkit-box-shadow: 0px 0px 0px #000, 0px 0px 0px #000;
+    -moz-box-shadow: 0px 0px 0px #000, 0px 0px 0px #000;
+    position: absolute;
+    height:auto;
+}
+/*编辑页面属性设置*/
+.DataChart_Pro_Panel
+{
+    width:100%;
+    height:auto;
+    border-radius: 10px;/*圆角*/
+    border:1px solid #667c8d;/*边框颜色*/
+    padding: 5px 0px 5px 0px;/*内部边距*/
+    margin:10px 0px 10px 0px;
+}
+.DataPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.DataPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.DataPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.DataChartTabletd0{
+    width: 100px;
+    text-align: right;
+    padding: 1px;
+}
+.DataChartTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+
+.DataChartTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.DataChartTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+/*保存样式*/
+.DataChartPropSavebuttonsty
+{
+    width:20px;
+    height: 20px;
+    border-radius: 10px;
+    background:url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+
+/*数据曲线pane1*/
+.DataChart_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.DataChartPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.DataChartPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.DataChartPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.DataChartPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.DataChartPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.DataChartPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.DataChartPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+
+
+/*--------------------------------------*/
+/*Chart Series面板*/
+
+.DatachartSeriesmenudivsty
+{
+    width:auto;
+    height:auto;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    color: #2F93D9;
+    font-size: 12px;
+    font-family: arial;
+    font-weight: bold;
+    text-shadow: none;
+    background:#ffffff;
+}
+.DatachartSerieslablesty{
+    cursor: pointer;font-size:1px;height:30px; line-height:30px;margin-left:8px;color:#2F93D9; padding-left:5px; padding-right:5px; vertical-align: middle;
+}
+.DatachartSeriesname{
+    float: left; width:  auto; height: 30px; line-height: 30px; margin-right: 3px; font-size:12px; margin-left:3px;
+    /*超长部分隐藏，显示省略号*/
+    width: 65px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-white-space: nowrap;
+}
+.DatachartSeriesname:hover{
+    color: #56ef1a;
+}
+.DatachartseriesImgsty{
+    width: 18px; height: 18px; line-height: 30px; background-image:url("img/ChartSeriesRemove.png") ; float: left; margin-top:6px;
+}
+.DatachartseriesImgsty:hover{
+    width: 18px; height: 18px; line-height: 30px; background-image:url("img/ChartSeriesRemove2.png") ; float: left; margin-top: 6px;
+    }
+
+/*20130523 17:14 markeluo 修改 start*/
+.DataChart_ColorControl{
+    width: 18px;
+    height: 18px;
+    border-radius:3px;
+    cursor: pointer;
+    margin: 4px;
+    position: relative;
+    border:2px solid #ffffff;
+    -webkit-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+    -moz-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+}
+/*统一的保存按钮样式：*/
+.DataChartPropSavebuttonsty
+{
+    width:20px;
+    height: 20px;
+    border-radius: 10px;
+    background:url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+/*数据曲线*/
+.dcprortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.dcprortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.dcprortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.dcprortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.dcprortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.dcprortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.dcprortityPanelTabletd1 input[type='text']
+{
+    width: 80px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.dcprortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.dcprortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+/*类型属性集合*/
+.dataChart_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+
+.DataChart_ColorControl{
+    width: 18px;
+    height: 18px;
+    border-radius:3px;
+    cursor: pointer;
+    margin: 4px;
+    position: relative;
+    border:2px solid #ffffff;
+    -webkit-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+    -moz-box-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+}

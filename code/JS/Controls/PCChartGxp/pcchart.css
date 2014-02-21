@@ -1,0 +1,324 @@
+.PCChartPanelSty {
+    /*-webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;*/
+    position: absolute;
+    height: auto;
+}
+
+.PCChartPanelheadSty {
+    width: 100%;
+    height: 10px;
+    line-height: 10px;
+}
+
+.PCChartFill_PanelSty {
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    height: 100%;
+}
+
+/*类型属性集合*/
+.PCChart_Pro_Panel {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+.PCChart_ProTypeImgSty {
+    margin: 5px 4px 5px 4px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    width: 30px;
+    font-family: '微软雅黑', arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.PCChart_ProTypeImgSty img {
+    width: 30px;
+    height: 30px;
+}
+
+.PCChart_ProTypeImgSty:hover {
+    -webkit-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+    -moz-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+}
+
+/*Chart 主题*/
+.PCChart_ProTheme {
+    margin: 5px 4px 5px 4px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    width: 63px;
+    font-family: '微软雅黑', arial;
+    font-size: 10px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 63px;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
+}
+
+#PCChart_ProTheme_grid {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dcdcdc), to(#ffffff));
+}
+
+#PCChart_ProTheme_darkblue {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#303060));
+}
+
+#PCChart_ProTheme_darkgreen {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#306030));
+}
+
+#PCChart_ProTheme_gray {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#101010), to(#606060));
+}
+
+.PCChart_ProThemeItemSty:hover {
+    -webkit-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+    -moz-box-shadow: 1px 1px 1px #667c8d, -1px -1px 1px #667c8d;
+}
+
+/*数据曲线*/
+.PCChart_prortityPanelTable {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑', Arial;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.PCChart_prortityPanelTable td {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.basicprortitystytdCenter {
+    text-align: center;
+    padding: 1px;
+}
+
+.PCChart_prortityPanelTable td input {
+    margin-left: 0px;
+    width: 60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑', Arial;
+}
+
+.PCChart_prortityPanelTabletd0 {
+    text-align: right;
+    padding: 1px;
+}
+
+.PCChart_prortityPanelTabletd1 {
+    text-align: left;
+    padding: 1px;
+}
+
+.PCChart_prortityPanelTabletd1 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑', Arial;
+}
+
+.PCChart_prortityPanelTabletd1 input[type='text'] {
+    width: 80px;
+    font-size:12px;
+    font-family: '微软雅黑', Arial;
+}
+
+.PCChart_prortityPanelTabletd2 {
+    text-align: left;
+    padding: 1px;
+}
+
+.PCChart_prortityPanelTabletd2 select {
+    margin-left: 0px;
+    width: 80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑', Arial;
+}
+
+/*基准线菜单面板样式*/
+.PCChartStandline_sty {
+    float: left;
+}
+
+.PCChartStandlineAdd {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/plus-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+/*---------------------基准线名称列表面板-------------*/
+.BschartStandardLinemenudivsty {
+    width: auto;
+    height: auto;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    color: #2F93D9;
+    font-size: 11px;
+    font-family: arial;
+    font-weight: bold;
+    text-shadow: none;
+    background: #ffffff;
+}
+
+.BschartStandardLinelablesty {
+    cursor: pointer;
+    font-size: 1px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 8px;
+    color: #2F93D9;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+.BschartStandardLinename {
+    float: left;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 3px;
+    font-size: 12px;
+    margin-left: 3px;
+}
+
+.BschartStandardLinename:hover {
+    color: #56ef1a;
+}
+
+.BschartStandardLineImgsty {
+    width: 18px;
+    height: 18px;
+    line-height: 30px;
+    background-image: url("img/ChartSeriesRemove.png");
+    float: left;
+    margin-top: 6px;
+}
+
+.BschartStandardLineImgsty:hover {
+    width: 18px;
+    height: 18px;
+    line-height: 30px;
+    background-image: url("img/ChartSeriesRemove2.png");
+    float: left;
+    margin-top: 6px;
+}
+
+/*基准线相关样式-------------------------------end*/
+.BasicChartPropSavebuttonsty
+{
+    width:20px;
+    height: 20px;
+    border-radius: 10px;
+    background:url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+
+
+.PCChartPropSavebuttonsty {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+
+
+.PCChartPropCancelbuttonsty {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: url("../img/cross-white.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 3px 0px 0px 8px;
+}
+
+.AlarmSty {
+    position: absolute;
+    z-index: 1000;
+    font-family: '宋体', Arial;
+    font-size: 9px;
+    border-radius: 5px;
+    color: #000000;
+}
+.totalAlarmmenusty{
+    cursor:pointer;
+    text-decoration:none;
+    border-radius:5px;
+    padding: 0px 5px 0px 5px;
+    height: 20px;
+    line-height:20px;
+    margin-top: 1px;
+    font-weight:normal;
+}
+.totalAlarmmenusty:hover{
+    cursor:pointer;
+    text-decoration:none;
+    border-radius:5px;
+    padding: 0px 5px 0px 5px;
+    height: 20px;
+    line-height:20px;
+    margin-top: 1px;
+    text-shadow:rgba(50,50,50,0.5) 1px 1px 1px;
+    text-decoration:underline;
+}
+
+.PCChart_propertyTable
+{
+    font-size:9px;
+    font-family: '宋体',Arial;
+    border: 1px solid #ffffff;
+    border-collapse: collapse;
+    display:none;
+
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(165,169,182)),
+    color-stop(0.53, rgb(223,225,230)), color-stop(0.98, rgb(244,245,247)), color-stop(1, rgb(255,255,255)) );
+
+}
+
+.PCChart_propertyTr
+{
+    border: 0px;
+    font-weight: bold;
+    text-align: center;
+}

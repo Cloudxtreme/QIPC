@@ -1,0 +1,125 @@
+﻿.ui-dropdownchecklist-item input 
+{
+    float: left;
+    }
+    
+[id^="Panel_MultiSelect"] .ui-dropdownchecklist-text
+{
+    text-align:left;
+    font-size: 12px;
+    color:#000;
+    vertical-align:middle;
+    }
+    
+[id^="Panel_MultiSelect"] label
+{
+    text-indent:5px;
+    margin-left:5px;
+    } 
+    
+[id^="Panel_MultiSelect"] input
+{
+    margin-left:5px;
+    }           
+    
+.ui-state-default
+{
+    --width: 98%;
+    }    
+    
+[id^="Panel_MultiSelect"] .ui-dropdownchecklist-selector
+{
+    width:200px;
+    height:25px;
+    padding:0px;
+    background:none;
+    background-color: rgb(227, 227, 227);
+    }    
+    
+    
+[id^="Panel_MultiSelect"] .ui-dropdownchecklist-selector>span
+{
+    text-align:left;
+    text-indent:2px;
+    vertical-align:middle;
+    width:100%;
+    line-height:23px;
+    }     
+    
+[id^="Panel_MultiSelect"] .ui-widget-content
+{
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2)  !important;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)  !important;
+    }
+ [id^="Panel_MultiSelect"] .ui-state-default
+ {
+     font-weight:normal;
+     box-shadow:none !important;
+     }
+    
+        
+    
+[id^="Panel_MultiSelect"] .ui-dropdownchecklist-item
+{
+    background:none !important;
+    border: 0px !important;
+    }
+    
+[id^="Panel_MultiSelect"] .ui-dropdownchecklist-item:hover
+{
+    background:#0088cc !important;
+    border: 1px solid #0088cc !important;
+    }    
+    
+    [id^="Panel_MultiSelect"] .ui-dropdownchecklist-selector-wrapper
+    {
+        display:block;
+        overflow:visible;
+        }
+/*201302226 14:38 高级属性面板表格应用 markeluo add*/
+.MultiSelect_Pro_Panel{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.MultiSelectProPanelTable{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.MultiSelectProPanelTable td{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.MultiSelectProTabtd0{
+    text-align: right;
+    padding: 1px;
+}
+.MultiSelectProTabtd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.MultiSelectProTabtd1 select{
+    margin-left: 0px;
+    width:150px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.MultiSelectProTabtd1 input[type='text']{
+    width:150px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}

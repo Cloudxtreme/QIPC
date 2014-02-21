@@ -1,0 +1,31 @@
+﻿ #custom-queue .uploadifyQueueItem {
+     background-color: #FFFFFF;
+     border: none;
+     border-bottom: 1px solid #E5E5E5;
+     border-right: 1px solid #E5E5E5;
+     font: 11px Verdana, Geneva, sans-serif;
+     height: 20px;
+     margin-top: 0;
+     padding: 10px;
+     width: 270px;
+    }
+     #custom-queue {
+         border: 1px solid #E5E5E5;
+         margin-bottom: 10px;
+         width: 280px;
+    }
+    
+     .pop_box{z-index:10; /*这个数值要足够大，才能够显示在最上层*/ display: none;position: absolute;background: #FFF;border: 1px solid #373737;}
+     .p_box_body{clear: both;padding: 5px 5px 5px 5px;}
+     .p_head{ height:30px;cursor:move; }
+     .p_h_title{float: left;height: 30px; line-height:30px;width:310px; font-size:12px;font-weight: bold; color:#fff; text-indent:10px;}
+     .p_h_x{float: right; text-align:center; height: 30px; width:30px;line-height:30px;color: #f00;font-size: 12px;font-weight: bold; cursor:pointer;}
+
+ /*** 所有图片资源浏览弹出框 ***/
+ #pop_Image_main{ background-color:#fff; font-size:12px;}
+
+ #pop_Image_main{ background:#D8eaf4; float:left; display:inline; position:relative;}
+ #pop_Image_main li{width:120px; height:120px; display:block; cursor:pointer; background:#fff; border:1px solid #999; padding:1px; position:absolute; float:left; z-index:2;}
+ #pop_Image_main li img{display:block; width:120px; height:120px;}
+ .RMImageMainLi{width:120px; height:120px; display:block; cursor:pointer; background:#fff; border:1px solid #999; padding:1px; position:absolute; float:left; z-index:2;}
+ .RMImageMainLiImage{display:block; width:120px; height:120px;}

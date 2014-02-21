@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+<!--1.标题-->
+<div id="tab-1" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0">标题内容：</td>
+            <td colspan="3">
+                <input type="text" name="" disabled id="CustomBoxChart_title" style="width: 150px"/>
+
+                <div id="CustomBoxChart_titleSave" class="BasicChartPropSavebuttonsty" title="保存"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">字体样式：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChartCustomBoxChart_fontFamily">
+                    <option>Arial</option>
+                    <option>微软雅黑</option>
+                    <option>宋体</option>
+                    <option>新宋体</option>
+                    <option>黑体</option>
+                </select>
+            </td>
+            <td class="CustomprortityPanelTabletd0">粗体样式：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChart_fontWeight">
+                    <option>normal</option>
+                    <option>bold</option>
+                    <option>bolder</option>
+                    <option>lighter</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">字体大小：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="number" name="" id="CustomBoxChart_fontSize"/>
+            </td>
+            <td class="CustomprortityPanelTabletd0">字体颜色：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="text" name="" id="CustomBoxChart_fontColor"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">标题背景：</td>
+            <td colspan="3">
+                <input type="text" name="" id="CustomBoxChart_titleBackground"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">水平方向：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChart_align">
+                    <option value="left">左</option>
+                    <option value="center">中</option>
+                    <option value="right">右</option>
+                </select>
+            </td>
+            <td class="CustomprortityPanelTabletd0">垂直方向：</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChart_vAlign">
+                    <option value="">上</option>
+                    <option value="middle">中</option>
+                    <option value="bottom">下</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">位置：</td>
+            <td colspan="3">
+                <select name="" id="CustomBoxChart_position">
+                    <option value="false">停留在area内</option>
+                    <option value="true">浮动</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">链接URL：</td>
+            <td colspan="3">
+                <input type="text" name="" id="CustomBoxChart_link" style="width: 150px"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">副标题：</td>
+            <td colspan="3">
+                <input type="text" name="" id="CustomBoxChart_subtitle" style="width: 150px"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--2.标准线-->
+<div id="tab-2" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0">组名称:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <select id="CustSigChartStLinegroupName" style="display:none"></select>
+                    <input id="CustSigChartStLinename" style="float:left;display: block" type="text" class="input"/>
+                </div>
+                <div id='btnSaveGrp' class='CustomSigChartStandlineSave' title='保存'></div>
+                <div id='btnDeleteGrp' class='CustomSigChartStandlineDelete' title='删除'></div>
+                <div id='btnNewGrp' class='CustomSigChartStandlineAdd' title='新增'></div>
+                <div class='clearfloat'></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">上限线宽:</td>
+            <td class="CustomprortityPanelTabletd1"><input id="topWidth" type="number" value="1" min='1' max="4"/>px
+            </td>
+            <td class="CustomprortityPanelTabletd0">上限颜色:</td>
+            <td class="CustomprortityPanelTabletd1"><input type="text" id="topColor"/></td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">上限设置:</td>
+            <td class="CustomprortityPanelTabletd1"><select id="topInstall" class="select">
+                <option value="0">固定值</option>
+                <option value="1">数据列</option>
+            </select></td>
+            <td class="CustomprortityPanelTabletd0">上限值:</td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="text" id="topValue1"/>
+                <select id="topValue" class="select" style="display: none"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">下限线宽:</td>
+            <td class="CustomprortityPanelTabletd1"><input id="bottomWidth" type="number" value="1" min='1' max="4"/>px
+            </td>
+            <td class="CustomprortityPanelTabletd0">下限颜色:</td>
+            <td class="CustomprortityPanelTabletd1"><input type="text" id="bottomColor"/></td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">下限设置:</td>
+            <td class="CustomprortityPanelTabletd1"><select id="bottomInstall" class="select">
+                <option value="0">固定值</option>
+                <option value="1">数据列</option>
+            </select></td>
+            <td class="CustomprortityPanelTabletd0">下限值:</td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="text" id="bottomValue1"/>
+                <select id="bottomValue" class="select" style="display: none"></select>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--3.西格玛判定-->
+<div id="tab-3" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0">
+                分组列
+            </td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChart_groupColumn" multiple>
+                </select>
+            </td>
+            <td class="CustomprortityPanelTabletd0">
+                数据列
+            </td>
+            <td class="CustomprortityPanelTabletd1">
+                <select name="" id="CustomBoxChart_dataColumn" multiple>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">
+                合并组
+            </td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="radio" name="merge" value="合并组" id="CustomBoxChart_mergeGroup"/>
+                <script>
+                   /* function cancleM1(){
+                        $("#CustomBoxChart_mergeGroup").prop("checked",false);
+                    }*/
+                </script>
+                <button onclick="cancleM1()">取消</button>
+            </td>
+            <td class="CustomprortityPanelTabletd0">
+                合并列
+            </td>
+            <td class="CustomprortityPanelTabletd1">
+                <input type="radio" name="merge" value="合并列" id="CustomBoxChart_mergeData"/>
+                <script>
+                    /*function cancleM2(){
+                        $("#CustomBoxChart_mergeData").prop("checked",false);
+                    }*/
+                </script>
+                <button onclick="cancleM2()">取消</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                重新计算
+                <div id="CustomBoxChart_columnSave" class="BasicChartPropSavebuttonsty" title="保存"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--4.数据过滤-->
+<!--<div id="tab-4" class="CstSigleChart_Pro_Panel">-->
+<!--<table class="CustomprortityPanelTable">-->
+<!--<tr>-->
+<!--<td class="CustomprortityPanelTabletd0">过滤字段:</td>-->
+<!--<td colspan="3">-->
+<!--<div class='CustomSigChartStandline_sty'>-->
+<!--<select id="filterColumns"></select>-->
+<!--</div>-->
+<!--<div id='btnFilterSaveGrp'  class='CustomSigChartStandlineSave' title='保存'></div>-->
+<!--<div id='btnFilterDeleteGrp'  class='CustomSigChartStandlineDelete' title='删除'></div>-->
+<!--<div class='clearfloat'></div>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="CustomprortityPanelTabletd0">过滤规则:</td>-->
+<!--<td class="CustomprortityPanelTabletd1"><select id="filterRule">-->
+<!--<option value=">">大于</option>-->
+<!--<option value=">=">大于等于</option>-->
+<!--<option value="<">小于</option>-->
+<!--<option value="<=">小于等于</option>-->
+<!--<option value="==">等于</option>-->
+<!--<option value="!=">不等于</option>-->
+<!--</select></td>-->
+<!--<td class="CustomprortityPanelTabletd0">比较源:</td>-->
+<!--<td class="CustomprortityPanelTabletd1"><select id="compareColumns"><option value="0">固定值</option><option value="1">数据列</option></select></td>-->
+<!--</tr>-->
+<!--<tr>-->
+<!--<td class="CustomprortityPanelTabletd0">比较值:</td>-->
+<!--<td colspan="3">-->
+<!--<input type="text" id="dataValue"/>-->
+<!--<select style="display: none" id="dataColumns"></select>-->
+<!--</td>-->
+
+<!--</tr>-->
+<!--</table>-->
+<!--</div>-->
+<!--5.特殊报警-->
+<div id="tab-5" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0">报警列:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <select id="warnColumn"></select>
+                </div>
+                <div id='warnSave' class='CustomSigChartStandlineSave' title='保存'></div>
+                <div id='warnDelete' class='CustomSigChartStandlineDelete' title='删除'></div>
+                <div class='clearfloat'></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">报警规则:</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select id="warnRule">
+                    <option value=">">大于</option>
+                    <option value=">=">大于等于</option>
+                    <option value="<">小于</option>
+                    <option value="<=">小于等于</option>
+                    <option value="==">等于</option>
+                    <option value="!=">不等于</option>
+                </select>
+            </td>
+            <td class="CustomprortityPanelTabletd0">比较值:</td>
+            <td class="CustomprortityPanelTabletd1"><input type="text" id="warnCompareValue"/></td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">报警颜色:</td>
+            <td col="3"><input type="text" id="tab5Color"/></td>
+        </tr>
+    </table>
+</div>
+<!--6.西格玛设置-->
+<div id="tab-6" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">中位数置信区间:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_zwszxqj"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">极差框:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_jck"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">异常值符号:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_yczfh"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">单值符号:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_dzfh"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">中位数符号:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_zwsfh"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">中位数连接线:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_zwsljx"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">均值符号:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_jzfh"/>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0" style="width: 100px">均值连接线:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <input type="checkbox" name="" id="CustomBoxChart_jzljx"/>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--6.数据钻取设置-->
+<div id="tab-7" class="CstSigleChart_Pro_Panel">
+    <table class="CustomprortityPanelTable">
+        <tr>
+            <td class="CustomprortityPanelTabletd0">页面地址:</td>
+            <td colspan="3">
+                <div class='CustomSigChartStandline_sty'>
+                    <!--<input id="CustBoxChartExtractURL" type="text" class="input" style="width:180px"/>-->
+                    <select id="CustBoxChartExtractURL" style="width:180px" ></select>
+                </div>
+                <div id='CstBoxChartExtractOptionSave' class='CustomSigChartStandlineSave' title='保存'></div>
+                <div class='clearfloat'></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">参数编辑:</td>
+            <td class="CustomprortityPanelTabletd1">
+                <select id="CustomBoxChartParsNames" style="width:80px;"></select>
+                <input type="text" id="CustomBoxChartNewParsTxt" value="">
+                <select id="CustomBoxChartParsValues" style="width:80px;"></select>
+            </td>
+            <td colspan="2">
+                <div id="CustomBoxChartParCancel" class='CustomSigChartStandlineredo' title='取消'></div>
+                <div id="CustomBoxChartParAdd" class='CustomSigChartStandlineAdd' title='添加'></div>
+                <div id="CustomBoxChartParSave" class='CustomSigChartStandlineSave' title='保存'></div>
+                <div id="CustomBoxChartParDel" class='CustomSigChartStandlineDelete' title='删除'></div>
+                <div class='clearfloat'></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="CustomprortityPanelTabletd0">参数列表:</td>
+            <td colspan="3">
+                <div class="ParsListHeadSty" id="ParsListHead">
+                    <div class="CustomSigChartParsCellSty">参数名称</div>
+                    <div class="CustomSigChartParsCellSty">绑定数据列</div>
+                </div>
+                <div class="ParsListPanelsty" id="ParsListPanel">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<style type="text/css">
+    .labelliuyi {
+        margin: 5px;
+        font-size: small;
+        display: inline;
+    }
+</style>
+<link rel="stylesheet" href="JS/Controls/AnimationControl/paulopmx-Flexigrid-98e3351/css/flexigrid.css">
+<script type="text/javascript" src="JS/Controls/AnimationControl/paulopmx-Flexigrid-98e3351/js/flexigrid.js"></script>
+<div style="width: 100%; margin: 5px ">
+    <table style="width: 100%; height: 290px">
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi" for="expression">表达式</label>
+                <input type="text" name="" id="expression" value="var">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id='GridForFill'>
+                    <table>
+                        <tr id="row_add" style="display: none;">
+                            <td>#</td>
+                            <td>
+                                <select style="width: 80px;" name="" id="relation">
+                                    <option><=</option>
+                                    <option>></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input style="width: 80px;" type="text" name="" id="percentage" value="必填">
+                            </td>
+                            <td>
+                                <input type="text" name="" value="black" id="color" style="width: 88px; height: 28px;">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    //1.数据
+    var borderAnimation = false;
+    //
+    var control = Agi.Edit.workspace.currentControls[0];
+    var PropertySettings = control.Get("PropertySettings");
+    var animations = PropertySettings.animations;
+    for (var i = 0; i < animations.length; i++) {
+        var animation = animations[i];
+        if (animation.type == "border") {
+            borderAnimation = animation;
+        }
+    }
+    //默认值
+    if (!borderAnimation) {
+        borderAnimation = {
+            type:"border",
+            expression:"var",
+            colors:[
+                {relation:"<=", percentage:"10", color:"red"},
+                {relation:"<=", percentage:"90", color:"yellow"},
+                {relation:"<=", percentage:"100", color:"green"}
+            ]
+        }
+    }
+    //
+    $("#expression").val(borderAnimation.expression)
+    //2、构建Table
+    var tableOnlyAdd = $("<p></p>").append($("#GridForFill").find("table").clone()).html()
+    var table = $("#GridForFill").find("table")
+    //2.1
+    function doBindTable(table) {
+        for (var i = 0; i < borderAnimation.colors.length; i++) {
+            var obj = borderAnimation.colors[i];
+            table.append("<tr>" +
+                    "<td>" + (i + 1) + "</td>" +
+                    "<td>" + obj.relation + "</td>" +
+                    "<td>" + obj.percentage + "</td>" +
+                    "<td>" + obj.color + "</td>" +
+                    "</tr>")
+        }
+    }
+    doBindTable(table)
+    //2.2
+    function doFlexiGrid(table) {
+        table.flexigrid({
+            url:'',
+            dataType:'json',
+            colModel:[
+                {display:'序号', name:'', width:50, align:'center'},
+                {display:'关系', name:'', width:100, align:'center'},
+                {display:'百分比', name:'', width:100, align:'center', sortable:true},
+                {display:'颜色', name:'', width:165, align:'center'}
+            ],
+            buttons:[
+                {name:'Add', bclass:'add', onpress:GridForFillColorsOP},
+                {name:'Delete', bclass:'delete', onpress:GridForFillColorsOP},
+                {separator:true}
+            ],
+            title:'编辑填充颜色',
+            resizable:false,
+            showToggleBtn:false,
+            width:465,
+            height:130
+        });
+    }
+    doFlexiGrid(table)
+    //2.3
+    $("#color").spectrum({
+        showInput:true,
+        showPalette:true,
+        palette:[
+            ['black', 'white'],
+            ['blanchedalmond', 'rgb(255, 128, 0);'],
+            ['hsv 100 70 50', 'red'],
+            ['yellow', 'green'],
+            ['blue', 'violet']
+        ],
+        cancelText:"取消",
+        chooseText:"选择",
+        change:function (color) {
+            $(this).val(color.toHexString())
+        }
+    })
+    //4、编辑操作
+    function GridForFillColorsOP(op, grid) {
+        switch (op) {
+            case "Add":
+                $(grid).find("#row_add").toggle(function () {
+                    if ($(grid).find("#row_add").css("display") == "none") {
+                        var relation = $(grid).find("#row_add").find("#relation").val();
+                        $(grid).find("#row_add").find("#relation").val("");
+                        var percentage = $(grid).find("#row_add").find("#percentage").val();
+                        $(grid).find("#row_add").find("#percentage").val("");
+                        var color = $(grid).find("#row_add").find("#color").val();
+                        $(grid).find("#row_add").find("#color").val("");
+                        borderAnimation.colors.push(
+                                {relation:relation, percentage:percentage, color:color}
+                        )
+                        $(".flexigrid").remove();
+                        $("#GridForFill").append(tableOnlyAdd);
+                        var table = $("#GridForFill").find("table")
+                        doBindTable(table)
+                        doFlexiGrid(table)
+                    }
+                    else {
+                        $("#color").spectrum({
+                            showInput:true,
+                            showPalette:true,
+                            palette:[
+                                ['black', 'white'],
+                                ['blanchedalmond', 'rgb(255, 128, 0);'],
+                                ['hsv 100 70 50', 'red'],
+                                ['yellow', 'green'],
+                                ['blue', 'violet']
+                            ],
+                            cancelText:"取消",
+                            chooseText:"选择",
+                            change:function (color) {
+                                $(this).val(color.toHexString())
+                            }
+                        })
+                    }
+                });
+                break;
+            case "Delete":
+                //$(grid).find(".trSelected").remove();
+                var trs = $(grid).find(".trSelected")
+                if (trs.length > 0) {
+                    for (var i = 0; i < trs.length; i++) {
+                        var tr = $(trs[i]);
+                        var relation = tr.find("td:eq(1)").text()
+                        var percentage = tr.find("td:eq(2)").text()
+                        var color = tr.find("td:eq(3)").text()
+                        var border = {
+                            relation:relation,
+                            percentage:percentage,
+                            color:color
+                        }
+                        for (var j = 0; j < borderAnimation.colors.length; j++) {
+                            animation = borderAnimation.colors[j]
+                            if (JSON.stringify(animation) == JSON.stringify(border)) {
+                                borderAnimation.colors.splice(j, 1);
+                            }
+                        }
+                    }
+                }
+                $(".flexigrid").remove();
+                $("#GridForFill").append(tableOnlyAdd);
+                var table = $("#GridForFill").find("table")
+                doBindTable(table)
+                doFlexiGrid(table)
+                break;
+        }
+    }
+    //    $("#expression").change(function () {
+    //                borderAnimation.expression = $(this).val();
+    //            }
+    //    )
+    //3、添加和删除
+    function doAnimationAdd() {
+        borderAnimation.expression = $("#expression").val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(borderAnimation);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            if (animation.type == "border") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

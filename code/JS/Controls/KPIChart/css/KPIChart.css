@@ -1,0 +1,158 @@
+.KPIChartPanelSty{
+    min-width: 300px;
+    min-height: 50px;
+overflow: hidden;
+}
+/*---------图表样式start---------*/
+
+.KPIChartPanelSty ul{
+    min-width: 300px;
+    margin:0 ;
+    background: #cccccc;
+}
+.KPIChartPanelSty ul li h2{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+}
+.KPIChartPanelSty ul li{
+    width: 100%;
+    height: 50px;
+}
+.KPIChartPanelSty ul li div{
+    width: 98%;
+    height: 42px;
+    margin:auto;
+}
+/*---------图表样式end---------*/
+/*---------标题设置start-------*/
+.KPIChartPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.KPIChartPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.KPIChartPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.KPIChartTabletd0{
+    width: 100px;
+    text-align: right;
+    padding: 1px;
+}
+.KPIChartTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+
+.KPIChartTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.KPIChartTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.KPIChartPropSavebuttonsty
+{
+    width:20px;
+    height: 20px;
+    border-radius: 10px;
+    background:url("../../img/hook2-selected.png"), -webkit-gradient(linear, 0% 0%, 0% 90%, from(#d9dadb), to(#a2a4a5));
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0px 0px -5px 8px;
+    display: inline-block;
+}
+/*---------标题设置end-------*/
+
+/*---------基本设置start-------*/
+.prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:8px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.basicprortitystytdCenter{
+    text-align: center;padding: 1px;
+}
+.prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.prortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+.prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:8px;
+    font-family: '微软雅黑',Arial;
+}
+
+/*---------属性调板end----------*/

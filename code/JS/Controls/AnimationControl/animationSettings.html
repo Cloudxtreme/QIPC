@@ -1,0 +1,229 @@
+<!--<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>-->
+<!--<script type="text/javascript" src="jstree_pre1.0_fix_1/jquery.jstree.js"></script>-->
+<script type="text/javascript" src="JS/Controls/AnimationControl/jstree_pre1.0_fix_1/jquery.jstree.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // TO CREATE AN INSTANCE
+        // select the tree container using jQuery
+        $("#SettingsMenu")
+            // call `.jstree` with the options object
+                .jstree({
+                    "core":{ "initially_open":[ "animationColor" ] },
+                    /*默认打开节点*/
+                    "ui":{"initially_select":[ "hFill" ]},
+                    /*默认选择节点*/
+                    "plugins":["themes", "html_data", "ui", "crrm"]
+                    /*插件，可编辑*/
+                })
+                .bind("loaded.jstree", function (event, data) {
+                    // you get two params - event & data - check the core docs for a detailed description
+                    doRefreshAnimationTree();
+                    /*调试*/
+                    $.jstree._focused().select_node("#hFill");
+                })
+                .bind("select_node.jstree", function (event, data) {
+                    // `data.rslt.obj` is the jquery extended node that was clicked
+                    if (data.rslt.obj.attr("id")) {
+                        $("#SettingsPage>div").remove();
+                        $('#SettingOPButton').show();
+                        switch (data.rslt.obj.attr("id")) {
+                            case "hMove":
+                            case "copy_hMove":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingshMove.html");
+                                break;
+                            case "vMove":
+                            case "copy_vMove":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsvMove.html");
+                                break;
+                            case "hChange":
+                            case "copy_hChange":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingshChange.html");
+                                break;
+                            case "wChange":
+                            case "copy_wChange":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingswChange.html");
+                                break;
+                            case "border":
+                            case "copy_border":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsBorder.html");
+                                break;
+                            case "fill":
+                            case "copy_fill":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsFill.html");
+                                break;
+                            case "fillImage":
+                            case "copy_fillImage":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsFillImage.html");
+                                break;
+                            case "hFill":
+                            case "copy_hFill":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsHFill.html");
+                                break;
+                            case "vFill":
+                            case "copy_vFill":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsVFill.html");
+                                break;
+                            case "bool":
+                            case "copy_bool":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsBool.html");
+                                break;
+                            case "flash":
+                            case "copy_flash":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsFlash.html");
+                                break;
+                            case "isVisible":
+                            case "copy_isVisible":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsVisible.html");
+                                break;
+                            case "isEnable":
+                            case "copy_isEnable":
+                                $("#SettingsPage").load("JS/Controls/AnimationControl/animationSettingsEnable.html");
+                                break;
+                            default:
+                                $('#SettingOPButton').hide();
+                                break;
+                        }
+                    }
+                })
+    });
+</script>
+<!--<div style="width: 640px; height: 360px; border: solid 1px
+#000000;  font-size: small;">-->
+<div style="width: 100%; height: 100%; border: solid 0px #000000;  font-size: small;">
+    <div style="width: 160px; height: 320px; border-right: dotted #c0c0c0 1px; float: left;overflow:scroll;">
+        <div id="SettingsMenu" class="demo" style="background: transparent; margin: 5px;">
+            <ul>
+                <li>
+                    <a href="#">尺寸相关</a>
+                    <ul>
+                        <li id="hMove">
+                            <a href="#">水平移动</a>
+                        </li>
+                        <li id="vMove">
+                            <a href="#">垂直移动</a>
+                        </li>
+                        <li id="wChange">
+                            <a href="#">宽度变化</a>
+                        </li>
+                        <li id="hChange">
+                            <a href="#">高度变化</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="animationColor">
+                    <a href="#">颜色相关</a>
+                    <ul>
+                        <li id="border">
+                            <a href="">边线</a>
+                        </li>
+                        <li id="fill">
+                            <a href="">填充</a>
+                        </li>
+                        <li id="fillImage">
+                            <a href="">填充图片</a>
+                        </li>
+                        <li id="bool">
+                            <a href="">条件</a>
+                        </li>
+                        <li id="flash">
+                            <a href="">闪烁</a>
+                        </li>
+                        <!--<li id="flow">-->
+                            <!--<a href="">流动</a>-->
+                        <!--</li>-->
+                        <li id="hFill">
+                            <a href="">水平填充</a>
+                        </li>
+                        <li id="vFill">
+                            <a href="">垂直填充</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">其他</a>
+                    <ul>
+                        <li id="isVisible">
+                            <a href="">是否可见</a>
+                        </li>
+                        <li id="isEnable">
+                            <a href="">是否禁用</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="AnimationSelected">
+                    <a href="#">已选动画</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="width: 479px; height: 320px; float: left;">
+        <div id="SettingsPage" style="width: 100%; height: 290px"></div>
+        <div id="SettingOPButton" style="margin-left: 5px">
+            <button id="animationOPAdd" style="width: 150px" onclick="doAnimationAdd()">添加</button>
+            <button id="animationOPDel" style="width: 150px" onclick="doAnimationDelete()">删除</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    /*初始化已选动画*/
+    var control = Agi.Edit.workspace.currentControls[0];
+    var propertySettings = control.Get("propertySettings");
+    if (!propertySettings) {
+        propertySettings = {
+            animationSelected:[]
+        }
+    }
+</script>
+<script type="text/javascript">
+    //刷新动画树
+    function doRefreshAnimationTree() {
+        /*先清除*/
+        $("#SettingsMenu").jstree("remove", "#AnimationSelected > ul > li")
+        /*后添加*/
+        var animations = Agi.Edit.workspace.currentControls[0].Get("PropertySettings").animations
+        for (var i = 0; i < animations.length; i++) {
+            var animation = animations[i];
+            switch (animation.type) {
+                case "vMove":
+                    $("#SettingsMenu").jstree("move_node", "#vMove", "#AnimationSelected", "inside", true);
+                    break;
+                case "hMove":
+                    $("#SettingsMenu").jstree("move_node", "#hMove", "#AnimationSelected", "inside", true);
+                    break;
+                case "wChange":
+                    $("#SettingsMenu").jstree("move_node", "#wChange", "#AnimationSelected", "inside", true);
+                    break;
+                case "hChange":
+                    $("#SettingsMenu").jstree("move_node", "#hChange", "#AnimationSelected", "inside", true);
+                    break;
+                case "border":
+                    $("#SettingsMenu").jstree("move_node", "#border", "#AnimationSelected", "inside", true);
+                    break;
+                case "fill":
+                    $("#SettingsMenu").jstree("move_node", "#fill", "#AnimationSelected", "inside", true);
+                    break;
+                case "fillImage":
+                    $("#SettingsMenu").jstree("move_node", "#fillImage", "#AnimationSelected", "inside", true);
+                    break;
+                case "hFill":
+                    $("#SettingsMenu").jstree("move_node", "#hFill", "#AnimationSelected", "inside", true);
+                    break;
+                case "vFill":
+                    $("#SettingsMenu").jstree("move_node", "#vFill", "#AnimationSelected", "inside", true);
+                    break;
+                case "bool":
+                    $("#SettingsMenu").jstree("move_node", "#bool", "#AnimationSelected", "inside", true);
+                    break;
+                case "flash":
+                    $("#SettingsMenu").jstree("move_node", "#flash", "#AnimationSelected", "inside", true);
+                    break;
+                case "isVisible":
+                    $("#SettingsMenu").jstree("move_node", "#isVisible", "#AnimationSelected", "inside", true);
+                    break;
+                case "isEnable":
+                    $("#SettingsMenu").jstree("move_node", "#isEnable", "#AnimationSelected", "inside", true);
+                    break;
+            }
+        }
+    }
+</script>

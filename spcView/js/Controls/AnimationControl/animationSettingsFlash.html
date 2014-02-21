@@ -1,0 +1,97 @@
+<style type="text/css">
+    .labelliuyi {
+        margin: 5px;
+        font-size: small;
+        display: inline;
+    }
+</style>
+<div style="width: 100%; margin: 5px ">
+    <table style="width: 100%; height:100px;">
+        <tr>
+            <td colspan="2">
+                <label class="labelliuyi" for="expression">表达式</label>
+                <input type="text" name="" id="expression" value="var">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                或隐或现
+            </td>
+        </tr>
+        <tr>
+            <td>速度</td>
+            <td>
+                <input type="radio" name="speed" id="slow"> <label class="labelliuyi" for="slow">慢</label>
+                <input type="radio" name="speed" id="normal" checked="checked">
+                <label class="labelliuyi" for="normal">中</label> <input type="radio" name="speed" id="fast">
+                <label class="labelliuyi" for="fast">快</label>
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript">
+    var flashAnimation = false;
+    //１、数据
+    var control = Agi.Edit.workspace.currentControls[0];
+    var PropertySettings = control.Get("PropertySettings");
+    for (var i = 0; i < PropertySettings.animations.length; i++) {
+        var animation = PropertySettings.animations[i];
+        if (animation.type == "flash") {
+            flashAnimation = animation;
+        }
+    }
+    //1、1默认值
+    if (!flashAnimation) {
+        flashAnimation = {
+            type:"flash",
+            expression:"var>0",
+            speed:"normal"
+        }
+    }
+    //
+    $("input[name=speed]").change(function () {
+        flashAnimation.speed = this.id;
+    })
+    //2、编辑
+    //2、1初始化
+    //
+    $("#expression").val(flashAnimation.expression);
+    //
+    switch (flashAnimation.speed) {
+        case "slow" :
+            $("input[name=speed][id=slow]").attr("checked", "checked");
+            break;
+        case "normal" :
+            $("input[name=speed][id=normal]").attr("checked", "checked");
+            break;
+        case "fast" :
+            $("input[name=speed][id=fast]").attr("checked", "checked");
+            break;
+    }
+    //
+    //2、2保存
+    //添加
+    function doAnimationAdd() {
+        flashAnimation.expression = $("#expression").val();
+        //删除
+        doAnimationDelete();
+        //添加
+        PropertySettings.animations.push(flashAnimation);
+        control.Set("PropertySettings", PropertySettings);
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+    //删除
+    function doAnimationDelete() {
+        //删除
+        for (var i = 0; i < PropertySettings.animations.length; i++) {
+            var animation = PropertySettings.animations[i];
+            if (animation.type == "flash") {
+                PropertySettings.animations.splice(i, 1);
+            }
+            control.Set("PropertySettings", PropertySettings);
+        }
+        //刷新Tree
+        doRefreshAnimationTree();
+    }
+</script>

@@ -1,0 +1,189 @@
+﻿
+.CheckBoxForm{ border:1px solid #e3e3e3; padding: 5px; margin-bottom: 10px; background: #e3e3e3;-webkit-border-radius: 0px; font: 14px/18px 'HelveticaNeue-Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; color: #000;}
+.CheckBoxForm label {cursor: pointer;padding-bottom: 5px;position:relative; margin-right:15px;}
+.labeldisplay{ display:block;}
+.has-js .label_check { padding-left: 26px; padding-right:10px; }
+/*.has-js .label_check    { background: url(images/check-off.png) no-repeat; }
+.has-js label.c_on      { background: url(images/check-on.png) no-repeat; }*/
+.has-js .label_check input{ position: absolute; left: -9999px; }
+.has-js div
+{
+    width: 20px;
+height: 20px;
+line-height: 20px;
+background-color: #fff;
+float: left;
+margin-left: -25px;
+margin-right: 6px;
+border-radius: 3px;
+--border:1px solid #e3e3e3;
+position:absolute;
+left:25px;
+top:-2px;
+    }
+.c_on
+{
+    background: url(images/hook-checkbox.png) no-repeat;
+    background-position:center;
+    }
+
+/*�������Լ���*/
+.NewCheckBox_Pro_Panel
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+    font-size: 12px;
+}
+/*�������*/
+.NewCheckBox_prortityPanelTable
+{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family:'微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.NewCheckBox_prortityPanelTable td
+{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.basicprortitystytdCenter{
+    text-align: center;padding: 1px;
+}
+.NewCheckBox_prortityPanelTable td input
+{
+    margin-left: 0px;
+    width:60px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.NewCheckBox_prortityPanelTabletd0{
+    text-align: right;
+    padding: 1px;
+}
+.NewCheckBox_prortityPanelTabletd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.NewCheckBox_prortityPanelTabletd1 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.NewCheckBox_prortityPanelTabletd1 input[type='text']
+{
+    width:95%;
+    font-size:12px;
+    font-family:'微软雅黑',Arial;
+}
+.NewCheckBox_prortityPanelTabletd2
+{
+    text-align: left;
+    padding: 1px;
+}
+.NewCheckBox_prortityPanelTabletd2 select
+{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+
+.NewCheckBox_Pro_Panel1
+{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+    font-size: 12px;
+    display:-webkit-box;
+    -webkit-box-orient:horizontal;
+}
+
+.NewCheckBox_Small_Panel
+{
+    width: 40%;
+    height:auto;
+    border-top:1px solid #667c8d;
+    --border-bottom:0px;
+    --padding: 5px 0px 0px 5px;
+    margin:10px 0px 0px 10px;
+    font-size: 12px;
+    text-align:center;
+}
+.NewCheckBox_Small_Panel div
+{
+    height:20px;
+    width:100%;
+    border:1px solid #667c8d;
+    border-top:0px;
+    color:#000;
+    text-align:center;
+    cursor:pointer;
+    }
+    
+.divclick
+{
+    background: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(196,211,237)),
+	color-stop(1, rgb(179,198,218))
+);    
+    }    
+    
+.NewCheckBox_SmallR_Panel
+{
+    --width: 60%;
+     -webkit-box-flex:1;
+    height:auto;
+    --border:1px solid #667c8d;
+    border-bottom:0px;
+    --padding: 5px 0px 0px 5px;
+    margin:10px 10px 0px 10px;
+    font-size: 12px;
+    text-align:left;
+    }    
+    
+.NewCheckBox_SmallR_Panel input[type='text']
+{
+     width:100px;
+     height:20px;
+     margin-bottom:3px;
+    }    
+    
+.NewCheckBox_SmallR_Panel input[type='button']
+{
+     width:60px;
+     height:23px;
+     font-size:10px;
+     font-family:微软雅黑;
+     margin-bottom:3px;
+     margin-left:5px;
+     background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0,rgb(185,185,185)),
+	color-stop(1,rgb(247,247,247))
+);
+border:1px solid #ccc;
+border-radius:5px;
+    }        

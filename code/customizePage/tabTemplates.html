@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <style type="text/css">
+        #AgiColorPickerDialog_tabs {
+            width: 600px;
+            height: 480px;
+        }
+
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+<link rel="stylesheet" href="../layout/themes/base/jquery.ui.all.css"/>
+<script type="text/javascript" src="../layout/ui/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.resizable.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.position.js"></script>
+<script type="text/javascript" src="../layout/ui/jquery.ui.tabs.js"></script>
+
+<div id="customizePropertyTab">
+    <ul>
+        <li><a href="#tab-1"><span>数据曲线</span></a></li>
+        <li><a href="#tab-2"><span>标准线</span></a></li>
+        <li><a href="#tab-3"><span>判异规则</span></a></li>
+        <li><a href="#tab-4"><span>数据过滤</span></a></li>
+        <li><a href="#tab-5"><span>特殊报警设置</span></a></li>
+    </ul>
+    <div id="tab-1">
+        <table class="normalLine">
+            <tr>
+                    <td>数据颜色:</td>
+                    <td><input type="text" id="dataColor"/></td>
+                    <td>Marker颜色:</td>
+                    <td><input type="text" id="markerColor"/></td>
+            </tr>
+            <tr>
+                    <td>分组列:</td>
+                    <td> <select id="groupColumn"></select></td>
+                    <td>数据列:</td>
+                    <td> <select id="dataColumn"></select></td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab-2">
+        <table class="normalLine">
+            <tr>
+                <td>组名称:</td>
+                <td colspan="3"><select id="groupName" style="display:none"></select><input id="name" style="float:left;display: block" type="text" class="input" />
+                    <input type="button" id="btnNew" value="新增" class="btn btn-primary">
+                    <input type="button" id="btnSave" value="保存" class="btn btn-info">
+                    <input type="button" id="btnDelete" value="删除" class="btn btn-danger"></td>
+            </tr>
+            <tr>
+                <td>上限线宽:</td>
+                <td><input id="topWidth" type="number"  value="1" min='1' max="4"/>px</td>
+                <td>上限颜色:</td>
+                <td ><input type="text" id="topColor" /></td>
+            </tr>
+            <tr>
+                <td>上限设置:</td>
+                <td><select id="topInstall" class="select"><option value="0" >固定值</option><option value="1" >数据列</option></select> </td>
+                <td>上限值:</td>
+                <td>
+                    <input type="text" id="topValue1"/>
+                    <select id="topValue" class="select" style="display: none"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>下限线宽:</td>
+                <td><input id="bottomWidth" type="number"  value="1"   min='1' max="4"/>px</td>
+                <td>下限颜色:</td>
+                <td><input type="text" id="bottomColor"/></td>
+            </tr>
+            <tr>
+                <td>下限设置:</td>
+                <td><select id="bottomInstall" class="select"><option value="0" >固定值</option><option value="1" >数据列</option></select> </td>
+                <td>下限值:</td>
+                <td>
+                    <input type="text" id="bottomValue1"/>
+                    <select id="bottomValue" class="select" style="display: none"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab-3">
+        <table class="Sigmtabsty">
+            <tr>
+                <td></td>
+                <td>&nbsp;<select style="width: 220px"><option>仅执行选定的特殊原因检验</option></select></td>
+                <td>K</td>
+                <td>颜色</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="checkbox" name="ruleNum" value="1" style="margin-top:-4px;"/> 一个点，距离中心线大于K个标准差</td>
+                <td><input type="number" style="width: 40px" id="K1" value="3" min="1" max="6"/></td>
+                <td><input type="text" id="color1"/></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="checkbox" name="ruleNum" value="2" style="margin-top:-4px;"/>连续K点在中心线同一侧</td>
+                <td><input type="number" style="width: 40px" id="K2" value="9" min="7" max="11"/></td>
+                <td><input type="text" id="color2"/></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="checkbox" name="ruleNum" value="3" style="margin-top:-4px;"/>连续K个点，全部递增或全部递减</td>
+                <td><input type="number" style="width: 40px" id="K3" value="6" min="5" max="8"/></td>
+                <td><input type="text" id="color3"/></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><input type="checkbox" name="ruleNum" value="4" style="margin-top:-4px;"/>连续K个点，上下交错</td>
+                <td><input type="number" style="width: 40px" id="K4" value="14" min="12" max="14"/></td>
+                <td><input type="text" id="color4"/></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><input type="checkbox" name="ruleNum" value="5" style="margin-top:-4px;"/>K+1个点中有K个点，距离中心线（同侧）大于2个标准差</td>
+                <td><input type="number" style="width: 40px" id="K5" value="2" min="2" max="4"/></td>
+                <td><input type="text" id="color5"/></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><input type="checkbox" name="ruleNum" value="6" style="margin-top:-4px;"/>K+1个点中有K个点，距离中心线（同侧）大于1个标准差</td>
+                <td><input type="number" style="width: 40px" id="K6" value="4" min="3" max="6"/></td>
+                <td><input type="text" id="color6"/></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><input type="checkbox" name="ruleNum" value="7" style="margin-top:-4px;"/>连续K个点，距离中心线（任一侧）1个标准差内</td>
+                <td><input type="number" style="width: 40px" id="K7" value="15" min="12" max="15"/></td>
+                <td><input type="text" id="color7"/></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><input type="checkbox" name="ruleNum" value="8" style="margin-top:-4px;"/>连续K个点，距离中心线（任一侧）大于1个标准差</td>
+                <td><input type="number" style="width: 40px" id="K8"  value="8" min="6" max="10"/></td>
+                <td><input type="text" id="color8"/></td>
+            </tr>
+        </table>
+    </div>
+    <div id="tab-4">
+        <table class="normalLine">
+            <tr>
+                <td>过滤字段:</td>
+                <td colspan="3"><select id="filterColumns"></select>
+                    <input type="button" value="保存" id="filterSave" class="btn btn-info">
+                    <input type="button" value="删除" id="filterDelete" class="btn btn-danger" ></td>
+            </tr>
+            <tr>
+                <td>过滤规则:</td>
+                <td><select id="filterRule">
+                    <option value=">">大于</option>
+                    <option value=">=">大于等于</option>
+                    <option value="<">小于</option>
+                    <option value="<=">小于等于</option>
+                    <option value="==">等于</option>
+                    <option value="!=">不等于</option>
+                </select></td>
+                <td>比较源:</td>
+                <td><select id="compareColumns"><option value="0">固定值</option><option value="1">数据列</option></select></td>
+            </tr>
+            <tr>
+                <td>比较值:</td>
+                <td colspan="3">
+                    <input type="text" id="dataValue"/>
+                    <select style="display: none" id="dataColumns"></select>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div id="tab-5">
+        <table class="normalLine">
+             <tr><td>报警列:</td><td colspan="3"><select id='warnColumn'></select> <input type="button" id="warnSave" value="保存" class="btn btn-info"> <input type="button" value="删除" id="warnDelete" class="btn btn-danger" ></td></tr>
+             <tr><td>报警规则:</td><td><select id="warnRule">
+                 <option value=">">大于</option>
+                 <option value=">=">大于等于</option>
+                 <option value="<">小于</option>
+                 <option value="<=">小于等于</option>
+                 <option value="==">等于</option>
+                 <option value="!=">不等于</option>
+             </select></td><td>比较值:</td><td><input type="text" id="warnCompareValue"/></td></tr>
+            <tr><td>报警颜色:</td><td col="3"><input type="text" id="tab5Color"/></td></tr>
+        </table>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $('#customizePropertyTab').tabs();
+</script>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>测试页面</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.js"></script>
+    <script src="../highcharts.js"></script>
+    <script src="highstock.js"></script>
+</head>
+<body>
+<div style="width:auto;height:auto">
+    <div id="container" style="width:100%;min-width: 200px; height: 450px; margin: 0 auto"></div>
+</div>
+<div style="margin-top: 300px">
+    <input type="button" value="开始" onclick="btnStart()">
+    <input type="button" value="停止" onclick="btnStop()">
+    <input type="button" value="改变" onclick="btnChange()">
+</div>
+</body>
+</html>
+<script>
+
+    $(document).ready(function(){
+
+        var str2 = (new Date()).getTime();
+
+        var strDate = "2009-08-24 16:25:33";
+        var strDate2 = "abcdefg";
+
+        var Date1 = strDateTime(strDate);
+        var Date2 = strDateTime(strDate2);
+
+        var str = "123";
+
+        function strDateTime(str)
+        {
+            var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/;
+            var r = str.match(reg);
+            if(r==null)return null;
+            var d= new Date(r[1], r[3]-1,r[4],r[5],r[6],r[7]);
+            //(d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4]&&d.getHours()==r[5]&&d.getMinutes()==r[6]&&d.getSeconds()==r[7]);
+            return d.getFullYear();
+        }
+    })
+
+
+    var chartProperty;
+    var chartSeries;
+    $(document).ready(function(){
+        SetChartProperty();
+        InitHighCharts();
+    });
+    var series;
+    var IntervalID;
+    var myChart;
+    function btnStart(){
+
+    }
+    function btnStop(){
+
+    }
+    function btnChange(){
+
+    }
+    function InitHighCharts(){
+//        Highcharts.setOptions({
+//            global: {
+//                useUTC: false
+//            }
+//        });
+        myChart = new Highcharts.StockChart({
+            chart : {
+                animation:chartProperty.chart_Animation,
+                renderTo :chartProperty.chart_RenderTo,
+                type:chartProperty.chart_Type,
+                marginRight:20,
+                marginRight:chartProperty.chart_MarginRight,
+                reflow:chartProperty.chart_Reflow
+            },
+            colors: [
+                '#4572A7',
+                '#89A54E',
+                '#80699B',
+                '#3D96AE',
+                '#92A8CD',
+                '#A47D7C',
+                '#B5CA92'
+            ],
+            title : {
+                text : chartProperty.title_Text
+            },
+            rangeSelector : {
+                enabled:chartProperty.rangeSelector_Enabled,
+                selected : chartProperty.rangeSelector_Selected
+            },
+            plotOptions:{
+                spline:{
+                    marker:{
+                        enabled:chartProperty.plotOptions_Spline_Marker_enabled,
+                        radius:chartProperty.plotOptions_Spline_Marker_Radius,
+                        symbol:chartProperty.plotOptions_Spline_Marker_Symbol
+                    }
+                },
+                line:{
+                    marker:{
+                        enabled:chartProperty.plotOptions_Spline_Marker_enabled,
+                        radius:chartProperty.plotOptions_Spline_Marker_Radius,
+                        symbol:chartProperty.plotOptions_Spline_Marker_Symbol
+                    }
+                }
+            },
+            navigator : {
+                enabled : false
+            },
+            scrollbar:{
+                enabled:false
+            },
+            credits:{
+                enabled:chartProperty.credits_enabled
+            },
+            xAxis: {
+                labels: {
+                    enabled: true,
+                    rotation:70,
+                    formatter:function() {
+                        Test(this);
+                        var s="";
+//                        for(var i = 0;i<chartSeries.length;i++){
+//                            if(chartSeries[i]){
+//                                //s+=chartSeries[i].data[this.value][0]+'</br>'
+//                            }
+//                        }
+                        xxx =this.value;
+                        return strXName[this.value];
+                    }
+               },
+                tickWidth:5
+                //tickPixelInterval:100
+                //reversed:chartProperty.xAxis_Reversed
+            },
+            tooltip: {
+                enabled:chartProperty.tooltip_enabled,
+                formatter: function() {
+                    var s="";
+                    $.each(this.points, function(i, point) {
+                        //s += '<b>'+chartSeries[i].data[point.x][0]+'：</b>'+ point.y+'<br/>';
+                        s+='<b>'+ getChinaDate(point.x) +'：</b>'+point.y+'<br/>';
+                        console.log(getChinaDate(point.x));
+                    });
+
+                    return s;
+                }
+            },
+            series :chartSeries
+        });
+    }
+    function Test(_obj){
+        var str = "123";
+    }
+    function SetChartProperty(){
+        chartProperty={
+            chart_PointNumber:20,//当前图形范围所显示的点位
+            chart_RenderTo:"container",//画布ID
+            chart_Type:'spline',//'spline',//显示图形
+            chart_MarginRight:20,//图形距画框右边距距离
+            //chart_Reflow:true,//图形是否跟随放大
+            chart_Animation:false,//动画平滑滚动
+            rangeSelector_Selected:0,
+            rangeSelector_Enabled:false,
+            title_Text:'',//标题文字
+            //xAxis_Type:'string',//X轴数据类型
+            xAxis_TickWidth:1,//X轴刻线
+            xAxis_TickPixelInterval:1,//X轴数据间隔
+            //xAxis_Reversed:true,//数据滚动方向
+            yAxis_Title_Text:'',//Y轴标题文字
+            yAxis_Min:0,//Y轴最小值
+            yAxis_Max:280,//Y轴最大值
+            yAxis_GridLineWidth:0,//Y轴表格线宽度显示
+            yAxis_PlotLines_Y:{//Y轴基本线定义
+                value: 0,
+                width: 2,
+                color: '#808080'
+            },
+            yAxis_PlotLines_Min:{//Y轴最小境界线定义
+                value: 20,
+                width: 4,
+                color: '#FACCCC',
+                label: {
+                    align: 'right',
+                    text:"下限:"+20,
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+            },
+            yAxis_PlotLines_MinMarkerColor:'blue',
+            yAxis_PlotLines_Max:{//Y轴最大境界线定义
+                value: 280,
+                width: 4,
+                color: '#CEAEFE',
+                label: {
+                    align: 'right',
+                    text:"上限:"+280,
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+            },
+            yAxis_PlotLines_MaxMarkerColor:'red',
+            tooltip_enabled:true,
+            plotOptions_Spline_Marker_enabled:false,//MARKER点位是否显示
+            plotOptions_Spline_Marker_Radius:3,//MARKER点位样式大小设置
+            plotOptions_Spline_Marker_Symbol:'circle',
+            legend_enabled:true,//是否显示名片
+            exporting_enabled:false,//是否显示打印和下载图片
+            credits_enabled:false,//是否显示出品人
+            navigation_menuItemStyle_fontSize:'10px'//NULL
+        };
+
+        dtNow = (new Date()).getTime();
+
+        chartSeries=[{
+            name : 'One',
+            data :GetData(0,200,20),
+            tooltip: {
+                valueDecimals: 2
+            }
+        }
+        ];
+    }
+    var xxx = 0;
+    var strXName=[]
+    var dtNow = (new Date()).getTime();
+    function GetData(_minValue,_maxValue,_dataCount){
+        var myData=[];
+        var x = 1001865600000;
+        for(var i = 0; i < _dataCount;i++){
+            //var x = dtNow - (200-i)*100000;
+            //var x = "A"+i.toString();
+//            var x1 = "A" + GetRandomValue(_minValue,_maxValue).toString();
+//            strXName.push(x1);
+//            var x=i;
+//            myData.push([ x,GetRandomValue(_minValue,_maxValue)]);//1001865600000
+            x+=1000
+            myData.push([ x,GetRandomValue(_minValue,_maxValue)]);//1001865600000
+        }
+        return myData;
+    }
+    function GetRandomValue(_minValue,_maxValue){
+        return _minValue+parseInt((_maxValue-_minValue)*Math.random());
+    }
+    function getChinaDate(mydate){
+        var date = new Date(mydate)
+        var year = date.getFullYear();
+        var month = date.getMonth()+1; //js从0开始取
+        var date1 = date.getDate();
+        var hour = date.getHours();
+        var minutes = date.getMinutes();
+        var second = date.getSeconds();
+        return year+"年"+month+"月"+date1+"日"+hour+"时"+minutes +"分"+second+"秒" ;
+    }
+</script>

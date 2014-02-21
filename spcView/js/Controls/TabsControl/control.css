@@ -1,0 +1,206 @@
+.BasicChart_Pro_Lable {
+    /*width: 100%;
+ height:auto;
+ border-radius: 10px;
+ border:1px solid #667c8d;
+ padding: 5px 0px 5px 0px;
+ margin:10px 0px 10px 0px;*/
+
+    margin: 5px 4px 5px 4px;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    width: 30px;
+    font-family: '微软雅黑', arial;
+    font-size: 6px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.AutoFill_PanelSty {
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height: 45px;
+    height: 45px;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.RadiusTable {
+    width: 100%;
+}
+
+.RadiusTable td {
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+}
+
+.RadiusTable td input {
+    margin-left: 0px;
+    width: 80%;
+    height: 98%;
+    margin-bottom: 0px;
+    font-size: 6px;
+    font-family: '微软雅黑', arial;
+}
+
+.prortityTabsControlTabletd0 {
+    text-align: center;
+    padding: 1px;
+}
+
+.prortityTabsControlTabletd0 select {
+    margin-left: 0px;
+    width: 90%;
+    height: 98%;
+    margin-bottom: 0px;
+    font-size: 6px;
+    font-family: '微软雅黑', arial;
+}
+
+.prortityTabsControlTabletd1 {
+    text-align: left;
+    padding: 1px;
+}
+
+.prortityTabsControlTabletd1 select {
+    margin-left: 0px;
+    width: 90%;
+    height: 98%;
+    margin-bottom: 0px;
+    font-size: 6px;
+    font-family: '微软雅黑', arial;
+}
+
+.prortityTabsControlTabletd1 input[type='text'] {
+    width: 80%;
+    height: 80%;
+    font-size: 6px;
+    font-family: '微软雅黑', arial;
+}
+
+/*#FontTextInput{*/
+/*width:80%;*/
+/*height:80% ;*/
+/*font-size:6px;*/
+/*font-family: '微软雅黑',arial;*/
+/*}*/
+.prortityTabsControlTabletd0 input[type='button'] {
+    /*width: 30%;*/
+    height: 90%;
+    font-size: 6px;
+    font-family: '微软雅黑', arial;
+    text-align: center;
+    margin-right: 100px;
+}
+
+.colorTrID {
+    height: 35px;
+}
+
+.colorDivClass {
+    margin-top: 0;
+}
+
+#IsLink {
+    display: inline;
+    margin-right: 5px;
+}
+
+#IsLink, #LinkAddress {
+    width: 45px;
+    height: 20px;
+}
+
+.BasicProperty_Radius {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+.BasicProperty_TypeFace {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+.FilterFrameColor {
+    width: 30px;
+}
+
+.selectDivClass {
+    width: 90px;
+    height: 20px;
+}
+
+.TabsControlPor {
+    /*margin-left:5px;*/
+    /*margin-right: 5px;*/
+    /*margin-top: 5px;*/
+    /*margin-bottom: 5px;*/
+    -webkit-border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /*border:solid;*/
+    /*固定高度*/
+    /*width:100%;*/
+    /*height:160px;*/
+    /*line-height: 160px;*/
+    /*overflow: hidden;*/
+    /*display: inline;*/
+    /*text-align: center;*/
+    /*border:solid;*/
+
+    /*//display:table;*/
+    /*overflow: hidden;*/
+    /*border:solid;*/
+    /*border-width: 0px;*/
+    /*cursor:pointer;*/
+    /*display:block;*/
+    /*text-decoration:underline;*/
+}
+
+.tdClass0 {
+    margin-left: 2px;
+    text-align: left;
+    padding: 1px;
+    font-family: '微软雅黑', arial;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tdClass1 {
+    text-align: left;
+    font-family: '微软雅黑', arial;
+    font-size: 10px;
+}
+
+#TabsControlObjId {
+    width: auto;
+    height: 160px;
+    line-height: 160px;
+    overflow: hidden;
+    display: inline;
+    text-align: center;
+    background-color: transparent;
+    /*border:solid;*/
+    /*border:solid;*/
+    /*border-width: 0px;*/
+    /*line-height: 160px;*/
+    /*overflow: hidden;*/
+    /*display: inline;*/
+    /*vertical-align:middle;*/
+}
+

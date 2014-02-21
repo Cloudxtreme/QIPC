@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+    <!--1.数据曲线-->
+    <div id="tab-1" class="CstPCTRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">曲线:</td>
+                <td colspan="3">
+                    <select id="CustPCTRSeries" class="input-mini"></select><div id='CustPCTRSeriesSave'  class='CustomPCTRPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">数据颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustPCTRdataColor"/></td>
+                    <td class="CustomprortityPanelTabletd0">Marker颜色:</td>
+                    <td class="CustomprortityPanelTabletd1"><input type="text" id="CustPCTRmarkerColor"/></td>
+            </tr>
+            <tr>
+                    <td class="CustomprortityPanelTabletd0">分组列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustPCTRGrpColumn" class="input-mini"></select></td>
+                    <td class="CustomprortityPanelTabletd0">数据列:</td>
+                    <td class="CustomprortityPanelTabletd1"> <select id="CustPCTRDataColumn" class="input-mini"></select></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd00">子组设置:</td>
+                <td class="CustomprortityPanelTabletd11" colspan="3">
+                    <input type="radio" name="PCTR_SubGrp" value="0" id="PCTR_SubGrp_0" checked="checked"/>固定值
+                    <input type="radio" name="PCTR_SubGrp" value="1" id="PCTR_SubGrp_1"/>字段列
+                    <input type="text" id="XMRChart_RGroupSize" value="0"/>
+                    <select id="PCTR_SubGrpColumns" style="display: none;"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--2.标准线-->
+    <div id="tab-2" class="CstPCTRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">显示控制:</td>
+                <td colspan="3">
+                    <div class='CustomPCTRStandline_sty'>
+                        标准差的这些倍数(T):<input id='PCTRChart_BZSize' type='number' value='3' defaultvalue='3' min='1' max='6'/>
+                    </div>
+                    <div id='btnSaveGrp'  class='CustomPCTRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限设置:</td>
+                <td class="CustomprortityPanelTabletd1" colspan="3"><input id="CustmaxEnable" type="checkbox" value=""><input type="text" id="topValue1"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">上限线宽:</td>
+                <td class="CustomprortityPanelTabletd1"><input id="topWidth" type="number"  value="1" min='1' max="4"/>px</td>
+                <td class="CustomprortityPanelTabletd0">上限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="topColor" /></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">下限设置:</td>
+                <td class="CustomprortityPanelTabletd1" colspan="3"><input id="CustminEnable" type="checkbox" value=""><input type="text" id="bottomValue1"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">下限线宽:</td>
+                <td class="CustomprortityPanelTabletd1"><input id="bottomWidth" type="number"  value="1"   min='1' max="4"/>px</td>
+                <td class="CustomprortityPanelTabletd0">下限颜色:</td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="bottomColor"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--3.西格玛判定-->
+    <div id="tab-3" class="CstPCTRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td colspan="4">
+                    点击按钮保存西格玛规则设定:<div id='CustPCTRSigMaRuleSave'  class='CustomPCTRPropSavebuttonsty' title='保存'></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0"></td>
+                <td class="CustomprortityPanelTabletd1">仅执行选定的特殊原因检验</td>
+                <td class="CustomprortityPanelTabletd0">K</td>
+                <td class="CustomprortityPanelTabletd1">颜色</td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">1</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="1" style="margin-top:-4px;width:auto;" checked="checked"/> 一个点，距离中心线大于K个标准差</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K1" value="3" min="1" max="6"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor1" class="SigmaRulColor" value="#ff0000"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">2</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="2" style="margin-top:-4px;width:auto;"/>连续K点在中心线同一侧</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K2" value="9" min="7" max="11"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor2" class="SigmaRulColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">3</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="3" style="margin-top:-4px;width:auto;"/>连续K个点，全部递增或全部递减</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K3" value="6" min="5" max="8"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor3" class="SigmaRulColor"/></td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">4</td>
+                <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="4" style="margin-top:-4px;width:auto;"/>连续K个点，上下交错</td>
+                <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K4" value="14" min="12" max="14"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor4" class="SigmaRulColor"/></td>
+            </tr>
+        </table>
+    </div>
+    <!--4.数据钻取设置-->
+    <div id="tab-4" class="CstPCTRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd0">页面地址:</td>
+                <td colspan="3">
+                    <div class='CustomPCTRStandline_sty'>
+                        <!--<input id="CustPCTRExtractURL" type="text" class="input" style="width:180px" />-->
+                        <select id="CustMRExtractURL" style="width:180px" ></select>
+                    </div>
+                    <div id='CstPCTRExtractOptionSave'  class='CustomPCTRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+            <tr>
+                 <td class="CustomprortityPanelTabletd0">参数编辑:</td>
+                 <td class="CustomprortityPanelTabletd1">
+                     <select id="CustomPCTRParsNames" style="width:80px;"></select>
+                     <input type="text" id="CustomPCTRNewParsTxt" value="">
+                     <select id="CustomPCTRParsValues" style="width:80px;"></select>
+                 </td>
+                 <td colspan="2">
+                     <div id="CustomPCTRParCancel" class='CustomPCTRStandlineredo' title='取消'></div>
+                     <div id="CustomPCTRParAdd" class='CustomPCTRStandlineAdd' title='添加'></div>
+                     <div id="CustomPCTRParSave" class='CustomPCTRStandlineSave' title='保存'></div>
+                     <div id="CustomPCTRParDel" class='CustomPCTRStandlineDelete' title='删除'></div>
+                     <div class='clearfloat'></div>
+                 </td>
+            </tr>
+            <tr>
+                <td class="CustomprortityPanelTabletd0">参数列表:</td>
+                <td colspan="3">
+                    <div class="ParsListHeadSty" id="ParsListHead">
+                        <div class="CustomPCTRParsCellSty">参数名称</div>
+                        <div class="CustomPCTRParsCellSty">绑定数据列</div>
+                    </div>
+                     <div class="ParsListPanelsty" id="ParsListPanel">
+                     </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--4.图形背景-->
+    <div id="tab-5" class="CstPCTRChart_Pro_Panel">
+        <table class="CustomprortityPanelTable">
+            <tr>
+                <td class="CustomprortityPanelTabletd01">图表背景:</td>
+                <td colspan="3" class='CustomprortityPanelTabletd1'>
+                    <div id='CustomPCTR_bgvalue' class='CustomPCTR_ColorControl' style="float:left;background-color:#ffffff;"></div>
+                    <div id='CustomPCTR_BackgroundSave' class='CustomPCTRStandlineSave' title='保存'></div>
+                    <div class='clearfloat'></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+.selectAutoFill_PanelSty{
+    -webkit-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
+    width: 100%;
+    line-height:45px;
+    height: 45px;
+}
+.selectDefault
+{
+    width: 100%;height:25px;font-family: '微软雅黑';font-size: 9px;
+}
+/*以下是对dropdown控件的拓展*/
+.dropdownlistControl{
+    background-color: transparent;
+    color: #fff;
+    width:100%;
+    border-radius: 3px;
+    text-align: right;
+}
+.dropdownControlShell{
+    z-index: 2000;
+}
+.navbar,
+.navbar .nav {
+    margin: 0 0 0 0;
+}
+
+.dropdown{
+    width:100%;
+    min-width: 80px;
+    min-height: 25px;
+    z-index: 1001;
+}
+.dropdown-menu{
+    z-index: 1001;
+}
+.dropdown,
+.dropdown li{
+    text-align: right;
+}
+
+.dropdown-theme1-a{
+    height:25px;
+    /*width :110px;*/
+    /*color: #000000;
+    font-size: 12px;
+    border-radius: 3px;
+    /*渐变：从上到下  0%  #ededed ; 100%  # cbcbcb内阴影：（上下左右）# ffffff  1px    75% 不透明度;*/
+   /* background: -webkit-gradient(linear, 0% 0%, 0% 75%, from(#ededed), to(#cbcbcb));
+    /*投影：（下） # ffffff  1px    75%透明度;*/
+    /*border:1px  solid  #a7a7a7;
+    -webkit-box-shadow:1px 1px 1px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow:1px 1px 1px rgba(255, 255, 255, 0.75);*/
+}
+
+.dropdown-theme1-ic{
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(237,237,237)),
+        color-stop(1, rgb(180,180,180))
+    );
+    border:1px  solid  #a7a7a7;
+    border-top-right-radius:3px;
+    border-bottom-right-radius:3px;
+    -webkit-box-shadow:2px 2px 2px #fff;
+    -moz-box-shadow:2px 2px 2px #fff;
+}
+
+
+.downArrow{
+    display: inline-block;
+    background: transparent url(images/dropdown-down.png) no-repeat 50% 50%;
+    border: 1px solid #A7A7A7;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    width: 20px;
+    height: 100%;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+}
+/*20130226 14:20 属性面板应用表格样式 markeluo add*/
+.DropDownList_Pro_Panel{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.DropDownListProPanelTable{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.DropDownListProPanelTable td{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+/*20130715 markeluo 新增(关于下拉列表，列表面板显示滚动条的支持)*/
+#DropDownlist_ListSty
+{
+    width:120px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+}

@@ -1,0 +1,1625 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>AgiVis</title>
+    <link href="CSS/GridCss/examples-offline.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/GridCss/kendo.common.min.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/GridCss/kendo.silver.min.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/NewMainFrame.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/NewDataPage.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/SCVTCSS.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/farbtastic.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="layout/themes/base/jquery.ui.all.css"/>
+    <link type="text/css" rel="stylesheet" href="layout/AgiVis.LayoutDesigner.css"/>
+    <link href="CSS/TabSty.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/Tabs.css" rel="stylesheet" type="text/css"/>
+    <link href="CSS/modernizr.custom.css" rel="stylesheet" type="text/css"/>
+    <link href="JS/Controls/DatePicker/zebra_datepicker_metallic.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return (r[2]); return null;
+        }
+//        var dev = getQueryString('dev'); 
+//        if(dev !=='true' && window.navigator.userAgent.indexOf('OpenWebKitSharp') <0 ){
+//            document.location.href = 'blank.html';
+//        }
+    </script>
+    <script type="text/javascript" src="JS/Base/BaseClass.js"></script>
+    <link type="text/css" rel="stylesheet" href="JS/Controls/ControlBasic.css"/>
+    <link id="lkTheme" href="CSS/FrameThemes/theme1.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="JS/zTreeStyle/zTreeStyle.css"/>
+    <link type="text/css" rel="stylesheet" href="Lib/flexigrid/css/flexigrid.css"/>
+    <script src="JS/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="JS/EncDnc.Base64/EncDnc.Base64.js" type="text/javascript"></script>
+    <!-- 将JS对象直接转换成json字符串-->
+    <script src="JS/jquery.json.js" type="text/javascript"></script>
+    <script src="WebServiceConfig/AddressConfig.js" type="text/javascript"></script>
+    <script src="WebServiceConfig/Agi.DataAccessLayer.js" type="text/javascript"></script>
+    <script type="text/javascript" src="JS/Controls/ControlBasic.js"></script>
+    <script src="JS/GridJS/kendo.web.min.js" type="text/javascript"></script>
+    <script src="JS/GridJS/console.js" type="text/javascript"></script>
+    <script type="text/javascript" src="JS/Controls/PCChart/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="JS/Controls/PCChart/jstat-0.1.0.min.js"></script>
+    <script src="JS/Controls/DatePicker/zebra_datepicker.src.js" type="text/javascript"></script>
+    <!--消息模块-->
+    <script src="JS/AgiMsgManage/Agi.Msg.WebDatabase.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.PageOutPramatsClass.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.ParasSettingWindowUI.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.ParaBindManage.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.UrlManage.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.Trigger.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.PageLoadManageClass.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.RealTimeParaBindManage.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.WebSocket/Agi.Msg.PointsManage.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/iscroll.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Drag.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.ButtonQuery.js" type="text/javascript"></script>
+    <script src="JS/AgiMsgManage/Agi.Msg.ButtonBindControlsRelation.js" type="text/javascript"></script>
+    <!--脚本模块-->
+    <script src="JS/AgiScript/Agi.Script.Base.js" type="text/javascript"></script>
+    <script src="JS/AgiScript/Agi.Script.Page.js" type="text/javascript"></script>
+    <script src="JS/AgiScript/Agi.Script.Classlib.js" type="text/javascript"></script>
+    <script src="JS/GridJS/people.js" type="text/javascript"></script>
+    <script src="JS/RightMenu/RightMenu.js" type="text/javascript"></script>
+    <script src="JS/NewMainFrame.js" type="text/javascript"></script>
+    <script src="JS/modernizr.custom.js" type="text/javascript"></script>
+    <script src="JS/AddNewFunc.js" type="text/javascript"></script>
+    <script src="JS/FlexToggle.js" type="text/javascript"></script>
+    <script src="JS/jquery.ztree-2.6.js" type="text/javascript"></script>
+    <script src="JS/OperateExcel.js" type="text/javascript"></script>
+    <script src="JS/TabJs.js" type="text/javascript"></script>
+    <script src="JS/farbtastic.js" type="text/javascript"></script>
+    <script src="JS/Controls/HeatMapChart/FusionCharts.js" type="text/javascript"></script>
+    <script src="JS/Controls/HeatMapChart/FusionCharts.HC.js" type="text/javascript"></script>
+    <script src="JS/Controls/HeatMapChart/FusionCharts.HC.PowerCharts.js" type="text/javascript"></script>
+    <script src="JS/Controls/DashboardChart/FusionCharts.HC.Widgets.js" type="text/javascript"></script>
+    <!--编辑器环境js-->
+    <script src="JS/edit/agiflow.js" type="text/javascript"></script>
+    <script src="JS/edit/edit.test.js" type="text/javascript"></script>
+    <!--编辑器环境js-结束-->
+    <script src="JS/AgiLorManage/Agi_DCManager.js" type="text/javascript"></script>
+    <script src="JS/AgiLorManage/Agi_VTManager.js" type="text/javascript"></script>
+    <script src="JS/AgiLorManage/Agi_DatasetsManager.js" type="text/javascript"></script>
+    <script src="JS/AgiLorManage/Agi_RTDSManager.js" type="text/javascript"></script>
+    <script src="JS/AgiLorManage/Agi_GroupManager.js" type="text/javascript"></script>
+    <script src="JS/Agi.MenuManagement.js" type="text/javascript"></script>
+    <script src="JS/AgiBgImageManage/Agi_BgImageManage.js" type="text/javascript"></script>
+    <script src="JS/ControlStyle/Agi.layout.StyleControl.js" type="text/javascript"></script>
+    <script src="JS/ControlStyle/ControlStyLibs/LayoutControlSty.js" type="text/javascript"></script>
+    <script src="JS/AgiLorManage/Agi_PageManager.js" type="text/javascript"></script>
+    <!--共享数据源模块-->
+    <script src="JS/AgiShareDatasource/Agi.ShareData.UI.js" type="text/javascript"></script>
+    <script src="JS/AgiShareDatasource/Agi.ShareData.ShareDataRealTimeBindPara.js" type="text/javascript"></script>
+    <script src="JS/AgiShareDatasource/Agi.ShareDataRelationManage.js" type="text/javascript"></script>
+    <script src="JS/AgiShareDatasource/Agi.ShareData.Filter.js" type="text/javascript"></script>
+    <script src="JS/AgiShareDatasource/Agi.ShareData.FilterRelation.js" type="text/javascript"></script>
+    <script src="JS/AgiShareDatasource/Agi.ShareData.Data.js" type="text/javascript"></script>
+    <!--  //样式名称转换-->
+    <script src="JS/ControlStyle/ControlNameExchange.js" type="text/javascript"></script>
+</head>
+<body onselectstart="return false;">
+<div id="progressbar1" class="background" style="display: none; ">
+    <div class="progressBar">
+        <button style="position: absolute;left: 186px;top: -4px;" type="button" class="close" data-dismiss="alert">×
+        </button>
+        <div class="progress progress-striped active borderFlash">
+            <div class="bar" style="width: 100%;"></div>
+        </div>
+        <span>正在载入...</span>
+    </div>
+</div>
+<div id="MainFrameDiv">
+<div id="MainTopDiv">
+    <div id="LogoDiv"></div>
+    <div id="TopContentDiv" class="main-header">
+        <div id="TopOneDiv">
+            <div id="TitleTextDiv"></div>
+            <div id="FrameTitleMenuDiv">
+                <div id="FrameTitleMenuLeftDiv" style=" display:none;">
+                    <div id="home2" title="主页">
+                        <img alt="home2" src="Img/TopIcon/home2.png"/></div>
+                    <div id="back" onclick="javascript:goStack.canUndo() && goStack.undo();" title="返回">
+                        <img alt="back" src="Img/TopIcon/back.png"/></div>
+                    <div id="forward" onclick="javascript:goStack.canRedo()&&goStack.redo();" title="前进">
+                        <img alt="forward" src="Img/TopIcon/forward.png"/></div>
+                </div>
+                <div id="FrameTitleMenuRightDiv">
+                    <div id="database_plus" title="新建数据源">
+                        <img alt="database_plus" src="Img/TopIcon/database_plus.png"/></div>
+                    <div id="virtual" title="新建虚拟表">
+                        <img alt="virtual-plus" src="Img/TopIcon/virtual-plus.png"/></div>
+                    <div id="dataset" title="新建Datasets">
+                        <img alt="dataset-plus" src="Img/TopIcon/dataset-plus.png"/></div>
+                    <div id="dashboard" title="新建页面">
+                        <img alt="dashboard-plus" src="Img/TopIcon/dashboard-plus.png"/></div>
+                    <div id="dashboardspc" title="新建SPC页面">
+                        <img alt="dashboardspc-plus" src="Img/TopIcon/dashboardspc-plus.png"/></div>
+                    <div id="Point_plus" title="新建点位" style="display: none;">
+                        <img alt="database_plus" src="Img/TopIcon/database_plus.png"/></div>
+                    <div id="TagGroupConfig_plus" title="新建关系配置" style="display: none;">
+                        <img alt="database_plus" src="Img/TopIcon/database_plus.png"/></div>
+                    <div id="powerPerson" title="权限">
+                        <img alt="database_plus" src="Img/TopIcon/test.png"/></div>
+                </div>
+            </div>
+            <div id="TitleSpaceDiv"></div>
+            <div id="TitleMenuDiv">
+                <div id="TopLeftMenuDiv">
+                    <div id="new" title="新建">
+                        <img alt="new" src="Img/TopIcon/dashboard-plus.png"/></div>
+                    <div id="save" title="保存(Ctrl+S)">
+                        <img alt="save" src="Img/TopIcon/save.png"/></div>
+                    <div id="undo" title="撤销(Ctrl+Z)" style="display: none;">
+                        <img alt="undo" src="Img/TopIcon/undo.png"/></div>
+                    <div id="redo" title="重做(Ctrl+Y)" style="display: none;">
+                        <img alt="redo" src="Img/TopIcon/redo.png"/></div>
+                    <div id="preview" title="预览(Ctrl+Q)">
+                        <img alt="preview" src="Img/TopIcon/preview.png"/></div>
+                </div>
+                <div id="TopRightMenuDiv">
+                    <div id="delete" title="删除">
+                        <img alt="delete" src="Img/TopIcon/delete.png"/></div>
+                    <div id="duplicate" title="复制">
+                        <img alt="duplicate" src="Img/TopIcon/duplicate.png"/></div>
+                    <div id="paste" title="粘贴">
+                        <img alt="paste" src="Img/TopIcon/paste.png"/></div>
+                    <div id="left_indent" title="对齐方式">
+                        <img id="left_indent_img" alt="left_indent" src="Img/TopIcon/left_indent.png"/>
+                    </div>
+                    <div id="parameter" title="参数配置">
+                        <img alt="parameter" src="Img/TopIcon/p.png"/></div>
+                    <div id="URLP" title="URL参数配置">
+                        <img alt="URLP" src="Img/TopIcon/u.png"/></div>
+                    <!--<div id="ScriptPage" title="脚本配置" onclick="scriptEditor.open();">-->
+                        <!--<img alt="ScriptPage" src="Img/TopIcon/script.png"/></div>-->
+                </div>
+                <div id="alignmentMenuContainer">
+                    <div id="alignmentMenu" style="right: 135px;z-index: 999; width: 120px; height: 255px; background-color: White; position: absolute; top: 64px; margin-left: -72px; border-radius: 5px; box-shadow: 0px 0px 3px #000000;">
+                        <ul style="margin-left: 40px; margin-top: 5px;">
+                            <li id="liLeft" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="cursor: pointer; list-style-image: url('Img/TopIcon/left_indent.png'); vertical-align: top;">
+                                左对齐
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #c9d0d6; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liLeftRight" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/leftright_align.png')">左右居中
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #c9d0d6; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liRight" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/right_indent.png')">右对齐
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #325d7b; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liTop" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/top_indent.png')">上对齐
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #c9d0d6; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liTopBottom" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/topbottom_align.png')">上下居中
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #c9d0d6; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liBottom" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/bottom_indent.png')">下对齐
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #325d7b; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liH" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/V_distribute.png')">横向排列
+                                <div style="margin: -5px 0px 5px -30px; border-bottom-color: #c9d0d6; border-bottom-width: 1px; border-bottom-style: solid; width: 100px; height: 4px"></div>
+                            </li>
+                            <li id="liV" onmouseover="LiMouseOver($(this))" onmouseout="LiMouseOut($(this))" style="list-style-image: url('Img/TopIcon/H_distribute.png')">纵向排列</li>
+                        </ul>
+                    </div>
+                    <script type="text/javascript">
+                        //20140217 当鼠标移动到菜单的某一项上面时，高亮显示该项 start
+                        function LiMouseOver(obj) {
+                            obj.css("background-color", "#006dcc");
+                            //                            obj.children().css("background-color", "#006dcc");
+                        }
+
+                        function LiMouseOut(obj) {
+                            obj.css("background-color", "white");
+                            //                           obj.children().css("background-color", "white");
+                        }
+                        //end
+
+                        var menu = $("#alignmentMenu");
+                        menu.hide();
+                        $("#alignmentMenu li").css("cursor", "pointer");
+                        $("#alignmentMenu li").css("vertical-align", "top");
+                        $("#left_indent").click(
+                                function () {
+                                    menu.slideToggle();
+                                }
+                        );
+                        $("#alignmentMenu li").click(
+                                function () {
+                                    menu.slideUp();
+                                }
+                        );
+
+//                        document.getElementById('alignmentMenu').onblur = function(){
+//                            menu.slideUp();
+//                            return false;
+//                        }
+                        $('body').bind('click',function(o){
+                            if(typeof(o.srcElement) != "undefined" && (o.srcElement.id == "left_indent" || o.srcElement.id == "left_indent_img")){
+                               return;
+                            }
+                            menu.slideUp();
+                        });
+                    </script>
+                </div>
+                <script type="text/javascript">
+                    //$("#alignmentMenuContainer").load("JS/edit/alignmentMenu.htm");
+                </script>
+            </div>
+        </div>
+        <div id="TopTwoDiv"></div>
+    </div>
+    <!--主题切换-->
+    <div class="navbar themeSwitch" title="皮肤">
+        <ul class="nav pull-right">
+            <li class="dropdown">
+                <a href="#" id="skinSwitch" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <span><img id="skinSwitch-img" src="Img/TopIcon/skin.png" alt="皮肤"></span> </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="skinSwitch">
+<!--                20130223 倪飘 解决页面-点击页面右上方的皮肤按钮，简洁蓝和酷黑的文字位置显示错误问题（盈科bug1037）-->
+                    <li data-type="2"><a tabindex="-1" href="#" style=" text-align:center;">酷黑</a></li>
+                    <li class="divider"></li>
+                    <li data-type="1"><a tabindex="-1" href="#" style=" text-align:center;">简洁蓝</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="MainBottomDiv">
+<div id="BottomLeftDiv">
+    <div id="BottomLeftTopDiv" class="theme-title">
+        <span style="margin:5px 0px 0px 5px;color:#fff;font-size:15px;font-family:'微软雅黑';background-color:Transparent;font-weight:bold;border:0px;text-indent:10px;line-height: 30px;">组态资源管理</span></div>
+    <div id="BottomLeftCenterDiv">
+        <div id="FrameShowListDiv"></div>
+        <div id="ShowListDiv">
+            <div class="accordion" id="accordion-agivis">
+                <!--RealTimePoint-->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a title="实时数据源" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#RealTimeDC">
+                            <span><img src="Img/LeftIcon/database.png" alt="实时数据源"></span> 实时数据源 </a>
+                    </div>
+                    <div id="RealTimeDC" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="accordion" id="RealTimeListContaner">
+                                <!--实时数据源-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--DataSets-->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a title="DataSets" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseOne">
+                            <span><img src="Img/LeftIcon/datasets.png" alt="DataSets"></span> DataSets </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <!--实体-->
+                        </div>
+                    </div>
+                </div>
+                <!--KPIS--><!--<div class="accordion-group">--><!--<div class="accordion-heading">--><!--<a title="KPIS" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseTwo">--><!--<span><img src="Img/lefticon/kpi.png" alt="KPIS"></span>--><!--KPIS--><!--</a>--><!--</div>--><!--<div id="collapseTwo" class="accordion-body collapse">--><!--<div class="accordion-inner">--><!--&lt;!&ndash;KPI&ndash;&gt;--><!--</div>--><!--</div>--><!--</div>-->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a title="控件库" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseShareData">
+                            <span><img src="Img/LeftIcon/controls.png" alt="控件库"></span> 共享数据源 </a>
+                    </div>
+                    <div id="collapseShareData" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="accordion" id="PageShareDataList">
+                                <ul class="sub-menu" style="display: block; " id="ShareDataUL"></ul>
+                                <!--控件s-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--控件库-->
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a title="控件库" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseThree">
+                            <span><img src="Img/LeftIcon/controls.png" alt="控件库"></span> 控件库 </a>
+                    </div>
+                    <div id="collapseThree" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="accordion" id="controlsListContaner">
+                                <!--控件s-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a title="样式库" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseFour">
+                            <span><img src="Img/LeftIcon/css.png" alt="样式库"></span> 样式库 </a>
+                    </div>
+                    <div id="collapseFour" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="accordion" id="stylesListContaner">
+                                <!--样式-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="BottomLeftBottomDiv" title="首页" class="theme-title">
+        <img alt="首页" src="Img/home-white.png"/>
+    </div>
+</div>
+<div id="BottomRightDiv">
+    <div id="BottomRightTopDiv" class="theme-title">
+        <span id="BottomRightText" style="width:98%;">主页</span></div>
+    <div id="FrameBottomRightBottomContentDiv">
+        <div id="MainDatasourceDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/datasource.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    数据源
+                </div>
+                <div class="SmallText">
+                    建立sql server,oracle,excel数据源，允许测试数据连接，并查询出数据库中的表与视图
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+        <div id="MainVirtualtableDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/VTable.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    虚拟表
+                </div>
+                <div class="SmallText">
+                    建立需要展示的数据
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+        <div id="MainDatasetsDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/datasets-big.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    Datasets
+                </div>
+                <div class="SmallText">
+                    建立业务数据的KPI
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+        <div id="MainPageDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/dashboard.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    页面
+                </div>
+                <div class="SmallText">
+                    使用图表，网格和更多的数据可视化组件通过拖放的方式创建我们的展示页面
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+        <div id="MainSPCPageDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/dashboard_spc.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    SPC业务页面
+                </div>
+                <div class="SmallText">
+                    使用SPC业务控件及图表，网格和更多的数据可视化组件通过拖放的方式创建我们的展示页面
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+        <!-- <div id="MainPointInfoDiv">
+               <div class="MainIMG">
+                   <img src="Img/MainBigIcon/datasource.png"/></div>
+               <div class="MainDetails">
+                   <div class="BigText">
+                       点位信息
+                   </div>
+                   <div class="SmallText">
+                       点位信息的增删改查
+                   </div>
+               </div>
+           </div>
+       <div class="LineDiv">
+       </div>-->
+        <div id="MainSourceDiv">
+            <div class="MainIMG">
+                <img src="Img/MainBigIcon/resource.png"/></div>
+            <div class="MainDetails">
+                <div class="BigText">
+                    资源
+                </div>
+                <div class="SmallText">
+                    浏览已经创建的控件，页面模板，以及上传的图片
+                </div>
+            </div>
+        </div>
+        <div class="LineDiv"></div>
+    </div>
+    <div id="BottomRightCenterOthersContentDiv" style="background:#D8eaf4;"></div>
+    <div id="BottomRightCenterDiv">
+        <div id="expdiv">
+            <div id="BottomRightCenterContentDiv"></div>
+        </div>
+    </div>
+    <div id="BottomRightBottomDiv">
+        <div id="AspectRatioDiv">
+            显示比例：<span id="Proportion">100%</span><img id="AspectRatioImg" src="Img/arrow3.png"/></div>
+        <div id="PlaceholderDiv">
+            <!-- 布局：
+             <div>
+                 <div id="layoutSwitch" class="btn-group" data-toggle="buttons-radio" style="margin-left: 2px;">
+                     <button class="layoutActived" name="1" title="自定义布局">
+                         <img src="Img/layout1.png" alt="布局1"></button>
+                     <button class="layoutUnactived" name="2" title="网格布局">
+                         <img src="Img/layout2.png" alt="布局1"></button>
+                 </div>
+             </div>-->
+        </div>
+        <div id="PageSizeDiv">
+            页面大小：<span id="PageSizeText" style="cursor: pointer;"></span>
+        </div>
+        <div id="BackGroundDiv">
+            背景：<img id="BackGroundImg" src="Img/arrow3.png"/></div>
+        <div id="BgImgDiv">
+            背景图片：<img id="BGroundImg" src="Img/arrow3.png"/></div>
+        <div id="GridlinesDiv">
+            网格线：<span id="Gridlines">10</span><img id="GridlinesImg" src="Img/arrow3.png"/></div>
+        <div id="ControlpropertiesDiv">
+            <img id="ControlpropertiesImg" src="Img/CP.jpg"/></div>
+    </div>
+</div>
+</div>
+</div>
+<!--   右键菜单-->
+<div class="contextMenu" id="newdsright">
+    <ul>
+        <li id="newdss"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建关系数据源</li>
+    </ul>
+</div>
+<div class="contextMenu" id="dsopp">
+    <ul>
+        <li id="dsedit"><span><img src="Img/LeftIcon/edit.png"/></span>数据源编辑</li>
+        <li id="testlink"><span><img src="Img/LeftIcon/data_link.png"/></span>测 试 连 接</li>
+        <li id="dsdelete"><span><img src="Img/LeftIcon/delete2.png"/></span>数据源删除</li>
+    </ul>
+</div>
+<div class="contextMenu" id="listtable">
+    <ul>
+        <li id="tlist"><span><img src="Img/LeftIcon/table.png"/></span>表清单</li>
+    </ul>
+</div>
+<div class="contextMenu" id="listview">
+    <ul>
+        <li id="vlist"><span><img src="Img/LeftIcon/view.png"/></span>视图清单</li>
+    </ul>
+</div>
+<div class="contextMenu" id="listproc">
+    <ul>
+        <li id="plist"><span><img src="Img/LeftIcon/procedure1.png"/></span>存储过程清单</li>
+    </ul>
+</div>
+<div class="contextMenu" id="desS">
+    <ul>
+        <li id="desserch"><span><img src="Img/LeftIcon/table-detail.png"/></span>明细查询</li>
+    </ul>
+</div>
+<!--页面管理右键菜单---->
+<div class="contextMenu" id="pageManagement">
+    <ul id="pageManagement-list">
+        <li class="page-contextMenu" id="pageManagement-edit">
+            <span><img src="Img/LeftIcon/edit.png"></span>编辑
+        </li>
+        <li class="page-contextMenu" id="pageManagement-view">
+            <span><img src="Img/LeftIcon/view.png"/></span>预览
+        </li>
+        <li class="page-contextMenu" id="pageManagement-delete">
+            <span><img src="Img/LeftIcon/delete2.png"/></span>删除
+        </li>
+        <li class="folder-contextMenu" id="pageManagement-delete2">
+            <span><img src="Img/LeftIcon/delete2.png"/></span>删除
+        </li>
+        <li class="folder-contextMenu" id="pageManagement-VersionManage">
+            <span><img src="Img/LeftIcon/edit.png"/></span>版本管理
+        </li>
+        <li class="pageRoot-contextMenu" id="pageManagement-refreshRoot">
+            <span><img src="Img/LeftIcon/refresh.png"/></span>刷新
+        </li>
+        <li class="pageRoot-contextMenu PageGroupMenu"  id="pageManagement-addGroupFolder">
+            <span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建分组
+        </li>
+        <li class="PageGroupMenu"  id="pageManagement-EditGroupFolder">
+            <span><img src="Img/LeftIcon/dataset-plus2.png"/></span>编辑分组
+        </li>
+        <li class="PageGroupMenu"  id="pageManagement-DelGroupFolder">
+            <span><img src="Img/LeftIcon/dataset-plus2.png"/></span>删除分组
+        </li>
+    </ul>
+</div>
+<!--点位右键--><!--<div class="contextMenu" id="AddPoint">--><!--<ul>--><!--<li id="NewPoint"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建点位</li>--><!--</ul>--><!--</div>-->
+<div class="contextMenu" id="PointDrop">
+    <ul>
+        <li id="NewPoint"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建点位</li>
+        <li id="PointEdit"><span><img src="Img/LeftIcon/edit.png"/></span>编辑点位</li>
+        <li id="PointDelete"><span><img src="Img/LeftIcon/delete2.png"/></span>删除点位</li>
+    </ul>
+</div>
+<!--end--><!--关系配置-->
+<div class="contextMenu" id="AddTagGroupConfig">
+    <ul>
+        <li id="NewTagGroupConfig"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建关系配置</li>
+        <li id="GroupConfigEdit"><span><img src="Img/LeftIcon/edit.png"/></span>编辑关系配置</li>
+        <li id="GroupConfigDelete"><span><img src="Img/LeftIcon/delete2.png"/></span>删除关系配置</li>
+    </ul>
+</div>
+<!--<div class="contextMenu" id="GroupConfigDrop">--><!--<ul>--><!--<li id="GroupConfigEdit"><span><img src="Img/LeftIcon/edit.png"/></span>编辑关系配置</li>--><!--<li id="GroupConfigDelete"><span><img src="Img/LeftIcon/delete2.png"/></span>删除关系配置</li>--><!--</ul>--><!--</div>--><!--end--><!--虚拟表右键菜单-->
+<div class="contextMenu" id="AVTManage">
+    <ul>
+        <li id="AddVTManage"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建标准虚拟表</li>
+        <li id="AddStandardVT"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建混合虚拟表</li>
+        <li id="AddStandardPRO"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建存储过程虚拟表</li>
+    </ul>
+</div>
+<div class="contextMenu" id="AddNewBZVT">
+    <ul>
+        <li id="addnewbzvts"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建标准虚拟表</li>
+    </ul>
+</div>
+<div class="contextMenu" id="AddNewSCVTs">
+    <ul>
+        <li id="addnewscvtss"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建混合虚拟表</li>
+    </ul>
+</div>
+<div class="contextMenu" id="AddNewPROs">
+    <ul>
+        <li id="addnewpross"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>新建存储过程虚拟表</li>
+    </ul>
+</div>
+<div class="contextMenu" id="AStandardVT">
+    <ul>
+        <li id="AddRNewDs"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建Datasets</li>
+        <li id="EditStandardVT"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>混合虚拟表编辑</li>
+        <li id="DeleteStandardVT"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>混合虚拟表删除</li>
+    </ul>
+</div>
+
+<div class="contextMenu" id="AStandardProVT">
+    <ul>
+        <li id="AddProNewDS"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建Datasets</li>
+        <li id="EditPro"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>存储过程虚拟表编辑</li>
+        <li id="DletePro"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>存储过程虚拟表删除</li>
+    </ul>
+</div>
+
+<div class="contextMenu" id="OperationVTManage">
+    <ul>
+        <li id="RNewDs"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建Datasets</li>
+<!--        //20130114 倪飘 解决右键点击标准虚拟表名称，右键菜单中显示的"虚拟表编辑""虚拟表删除"应该是"标准虚拟表编辑""标准虚拟表删除"问题-->
+        <li id="EVTManage"><span><img src="Img/LeftIcon/edit.png"/></span>标准虚拟表编辑</li>
+        <li id="DVTManage"><span><img src="Img/LeftIcon/delete2.png"/></span>标准虚拟表删除</li>
+    </ul>
+</div>
+<!--共享数据源右键菜单-->
+<div class="contextMenu" id="SharedDatasourceRightMenu">
+    <ul>
+        <li id="NewShare"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>创建共享数据源</li>
+    </ul>
+</div>
+<div class="contextMenu" id="OPSD">
+    <ul>
+        <li id="editshare"><span><img src="Img/LeftIcon/edit.png"/></span>编辑共享数据源</li>
+        <li id="deleteshare"><span><img src="Img/LeftIcon/delete2.png"/></span>删除共享数据源</li>
+    </ul>
+</div>
+<div class="contextMenu" id="RelationCancel">
+    <ul>
+        <li id="RelationCancels"><span><img src="Img/LeftIcon/delete2.png"/></span>解除绑定关系</li>
+    </ul>
+</div>
+<!--资源--><!--"图片资源"右键菜单--->
+<div class="contextMenu" id="ImgRManage">
+    <ul>
+        <li id="uploadRM"><span><img src="Img/arrowUp.png"/></span>上传</li>
+        <li id="previewRM"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>预览</li>
+    </ul>
+</div>
+<!--"图片列表"右键菜单--->
+<div class="contextMenu" id="ImgRightMenu">
+    <ul>
+        <li id="imgPreview"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>预览</li>
+        <li id="imgDelete"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>删除</li>
+        <li id="imgRename"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>重命名</li>
+    </ul>
+</div>
+<!--"图片列表"右键菜单--->
+<div class="contextMenu" id="ImgRightMenuForAll">
+    <ul>
+        <li id="imgDelete1"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>删除</li>
+        <li id="imgRename1"><span><img src="Img/LeftIcon/virtual-plus2.png"/></span>重命名</li>
+    </ul>
+</div>
+<!--右键菜单-->
+<link rel="stylesheet" type="text/css" href="JS/edit/jeegoocontext_1_3/jeegoocontext/skins/cm_default/style.css"/>
+<script type="text/javascript" src="JS/edit/jeegoocontext_1_3/jeegoocontext/jquery.jeegoocontext.min.js"></script>
+<script type="text/javascript" src="JS/edit/jeegoocontext_1_3/jquery.livequery.js"></script>
+<ul id="menu" class="jeegoocontext cm_default" style="z-index: 9999">
+    <li class="icon" onclick="Agi.Edit.LockControls();"><span class="icon file"></span>锁定控件</li>
+    <li class="icon" onclick="Agi.Edit.UnLockControls();"><span class="icon file"></span>解锁控件</li>
+    <li class="separator"></li>
+    <li class="icon" onclick="Agi.Edit.DeleteControls();"><span class="icon file"></span>删除</li>
+    <li class="icon" onclick="Agi.Edit.CopyControls();"><span class="icon file"></span>复制</li>
+    <li class="icon" onclick="Agi.Edit.PastContols();"><span class="icon file"></span>粘贴</li>
+    <li class="separator"></li>
+    <!--<li class="icon" onclick="Agi.Edit.startScriptEditor();"><span class="icon file"></span>启动脚本编辑器</li>-->
+    <!--<li class="separator"></li>-->
+    <li class="icon"><span class="icon file"></span>对齐
+        <ul>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentLeft();"><span class="icon ok"></span>左对齐</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentLeftRight();"><span class="icon ok"></span>左右居中</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentRight();"><span class="icon ok"></span>右对齐</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentTop();"><span class="icon ok"></span>上对齐</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentTopBottom();"><span class="icon ok"></span>上下居中</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentBottom();"><span class="icon ok"></span>下对齐</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentHList();"><span class="icon ok"></span>横向排列</li>
+            <li class="icon" onclick="Agi.Edit.doControlsAlignmentVList();"><span class="icon ok"></span>纵向排列</li>
+        </ul>
+    </li>
+</ul>
+<div class="contextMenu" id="OPDas">
+    <ul>
+        <!--        <li id="adddas"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>Datasets新建</li>-->
+        <li id="eddas"><span><img src="Img/LeftIcon/edit.png"/></span>Datasets编辑</li>
+        <li id="dedas"><span><img src="Img/LeftIcon/delete2.png"/></span>Datasets删除</li>
+    </ul>
+</div>
+<div class="contextMenu" id="ANDS">
+    <ul>
+        <li id="adddas"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建Datasets</li>
+        <li id="addNewGrpFolder"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建分组</li>
+    </ul>
+</div>
+<div class="contextMenu" id="DSGroupFolder">
+    <ul>
+        <li id="addGrpFolder"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建分组</li>
+        <li id="DelGrpFolder"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>删除分组</li>
+        <li id="EditGrpFolder"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>重命名</li>
+    </ul>
+</div>
+<div class="contextMenu" id="AddNewRandreDatasource">
+    <ul>
+        <li id="AnewRDatasource"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建实时数据源</li>
+        <li id="AnewReDatasource"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>新建关系数据源</li>
+    </ul>
+</div>
+<!--实时数据源-->
+<div class="contextMenu" id="RTDBNew">
+    <ul>
+        <li id="newrtdb"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建实时数据源</li>
+    </ul>
+</div>
+<div class="contextMenu" id="RTDBEdit">
+    <ul>
+        <li id="pointfind"><span><img src="Img/LeftIcon/view.png"/></span>点位管理</li>
+        <li id="editrtdb"><span><img src="Img/LeftIcon/edit.png"/></span>实时数据源编辑</li>
+        <li id="testrtdb"><span><img src="Img/LeftIcon/data_link.png"/></span>测 试 连 接</li>
+        <li id="deletertdb"><span><img src="Img/LeftIcon/delete2.png"/></span>实时数据源删除</li>
+    </ul>
+</div>
+<!--分组管理--><!--<div class="contextMenu" id="GroupNew">
+    <ul>
+        <li id="newgroup1"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建分组</li>
+    </ul>
+</div>-->
+<div class="contextMenu" id="GroupEdit">
+    <ul>
+        <li id="newgroup"><span><img src="Img/LeftIcon/database_plus2.png"/></span>新建分组</li>
+        <li id="editgroup"><span><img src="Img/LeftIcon/edit.png"/></span>分 组 编 辑</li>
+        <li id="deletegroup"><span><img src="Img/LeftIcon/delete2.png"/></span>分 组 删 除</li>
+    </ul>
+</div>
+<!--显示比例选择层-->
+<div id="SelectAspectRatioDiv">
+    <!--  <div>
+          <input type="radio" name="SelectAspectRatio" value="适应"/>自适应
+      </div>--><!-- <div>
+         <input type="radio" name="SelectAspectRatio" value="400%"  class="int1"/>400%&nbsp;&nbsp;<input type="radio"
+                                                                                           name="SelectAspectRatio"
+                                                                                           value="75%"  class="int1"/>75%
+     </div>
+     <div>
+         <input type="radio" name="SelectAspectRatio" value="200%"  class="int1"/>200%&nbsp;&nbsp;<input type="radio"
+                                                                                           name="SelectAspectRatio"
+                                                                                           value="50%"  class="int1"/>50%
+     </div>
+     <div>
+         <input type="radio" name="SelectAspectRatio" value="100%"  class="int1"/>100%&nbsp;&nbsp;<input type="radio"
+                                                                                           name="SelectAspectRatio"
+                                                                                           value="25%"  class="int1"/>25%
+     </div>-->
+    <table id="tab">
+        <tr class="tr1">
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="400%" class="int1"></td>
+            <td class="td1">400%</td>
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="75%" class="int1"></td>
+            <td class="td1">75%</td>
+        </tr>
+        <tr class="tr1">
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="200%" class="int1"></td>
+            <td class="td1">200%</td>
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="50%" class="int1"></td>
+            <td class="td1">50%</td>
+        </tr>
+        <tr class="tr1">
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="100%" class="int1"></td>
+            <td class="td1">100%</td>
+            <td class="td1"><input type="radio" name="SelectAspectRatio" value="25%" class="int1"></td>
+            <td class="td1">25%</td>
+        </tr>
+    </table>
+</div>
+<!--显示屏幕分辨率选择层-->
+<div id="ChangePageSizeDiv">
+    <!--<div id="sizeDiv">
+    <span style="margin-left: 0px; margin-right:2px"></span>自适应: <input id="fitWindow" type="checkbox" style="width: 32px;"></div>
+       -->
+    <table>
+        <tr>
+            <td style="text-align: right">分辨率：</td>
+            <td><select id="SelectPageSize">
+                <option id="fitWindow">自适应</option>
+                <option>1024 * 768</option>
+                <option>1280 * 600</option>
+                <option>1280 * 720</option>
+                <option>1280 * 768</option>
+                <option>1280 * 800</option>
+                <option>1366 * 768</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td style="text-align: right">移除多余宽度：</td>
+            <td><input id="SurplusWithText" type="number" value="0" min="0" max="100" class='ControlProNumberSty' defaultvalue='0'/>px</td>
+        </tr>
+        <tr>
+            <td style="text-align: right">移除多余高度：</td>
+            <td><input id="SurplusHeightText" type="number" value="0" min="0" max="100" class='ControlProNumberSty' defaultvalue='0'/>px</td>
+        </tr>
+    </table>
+</div>
+<!--显示背景颜色选择层-->
+<div id="ChangeBackGroundDiv">
+    <div id="colorpicker"></div>
+</div>
+<!--显示网格线的间距选择层-->
+<div id="ChangeGridlinesDiv">
+    间距： <select id="SelectGridlines">
+    <option>5</option>
+    <option selected="selected">10</option>
+    <option>15</option>
+    <option>20</option>
+    <option>25</option>
+    <option>30</option>
+</select>
+</div>
+<!--背景图片选择-->
+<div class="modal hide" id="ShowBgImage">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+       <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            背景图片</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup1">
+            <div id="ShowAllImg"></div>
+            <div class="BtnDiv1">
+                <input type="button" value="确     定" id="ConfirmImg" class="PopupBtn"/><input type="button" value="取     消" id="AbolishImg" class="PopupBtn"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!--参数配置窗口   add by lj 2012-08-21---------------------------------------------------------------->
+<div class="modal hide" id="SettingModal">
+    <div class="modal-header paramHeader2 theme-title">
+        <button type="button" class="close" data-dismiss="modal">
+            ×
+        </button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            参数配置面板</p>
+    </div>
+    <div id="app_ParamDiv">
+        <!--tab1-->
+        <div id="app_tab1" class="paramBody1">
+            <div id="wrapper" class="wrapper" style="overflow:auto; width: 175px; height: 320px">
+                <div class="scroller">
+                    <div id="app_ControlParamDiv" style="float: left; width: 100%; height: 100%; margin: 0px 0px 0px 0px"></div>
+                </div>
+            </div>
+            <div id="wrapper1" class="wrapper1">
+                <div class="scroller">
+                    <div id="app_selectedParamDiv" style="float: right; width: 100%; height: 100%; margin: 0px 0px 0px 0px"></div>
+                </div>
+            </div>
+        </div>
+        <!--tab2-->
+        <div id="app_tab2" class="paramBody1" style="display:none">
+            <div id="wrapper2" class="wrapper">
+                <div class="scroller">
+                    <div id="app_ControlOutputParamDiv" style="float: left; width: 100%; height: 100%; margin: 0px 0px 0px 0px"></div>
+                </div>
+            </div>
+            <div id="wrapper3" class="wrapper1">
+                <div class="scroller">
+                    <div id="app_ControlInuputParamDiv" style="float: right; width: 100%; height: 100%; margin: 0px 0px 0px 0px"></div>
+                </div>
+            </div>
+        </div>
+        <!--tab3-->
+        <div id="app_tab3" class="paramBody1" style="display:none">
+            <div id="wrapper4" class="wrapper">
+                <div class="scroller">
+                    <div id="app_ControlShareDataParamDiv" style="float: left; width: 100%; height: 100%; margin: 0px 0px 0px 0px"></div>
+                </div>
+            </div>
+            <div id="wrapper5" class="wrapper1">
+                <div class="scroller">
+                    <div id="app_ControlFilterParamDiv" style="float: right; width: 100%; height: 100%; margin: 0px 0px 0px 0px">
+                        <table id="PShareFilterTable">
+                            <thead>
+                            <tr>
+                                <th style=" width:80px; text-align:center; padding:0px 2px 0px 2px;">列名</th>
+                                <th style=" width:60px; text-align:center;">过滤符号</th>
+                                <th style=" width:160px; text-align:center;">值</th>
+                                <th style=" width:60px; text-align:center;">逻辑符号</th>
+                                <th style=" width:60px; text-align:center;">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan=5 style=" text-align:right;">
+                                    <input class="btn" type="button" id="ShareDataFilterSave" value="保存" style=" width:20%; border-radius:5px; border:1px solid #ccc;"/>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="para_tab">
+        <div id="para_tab1" class="para_tabClass" onclick="tab_click('app_tab1')">
+            关系数据源
+        </div>
+        <div id="para_tab2" class="para_tabClass" onclick="tab_click('app_tab2')">
+            实时数据源
+        </div>
+        <div id="para_tab3" class="para_tabClass" onclick="tab_click('app_tab3')">
+            共享数据源过滤
+        </div>
+    </div>
+</div>
+<!--SQL参数配置-->
+<div class="modal hide" id="keyModal">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             SQL参数配置面板</p>
+    </div>
+    <div id="SQL" class="paramBody">
+        <div id="SQLlEFT">
+            <select size="6" id="sqlKeyValues" class="SQLc"> </select>
+        </div>
+        <div id="SQLRIGHT">
+            <div>名称: <input type='text' id='sqlkeyValue' class="SQLc"/></div>
+            <div>类型:<select id='sqlKeyType' class="SQLc">
+                <option value='DATETIME'>DATETIME</option>
+                <option value='NUMBER'>NUMBER</option>
+                <option value='NVARCHAR2'>NVARCHAR2</option>
+                <option value='CURSOR'>CURSOR</option>
+            </select>
+            </div>
+            <div>　值: <input type='text' id='txtKeyValue' class="SQLc" class='ControlProTextSty' maxlength='50' ischeck='true'/></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="查询" id="btnSqlSelect" class="btnclass"/><input type="button" onclick="dialogs._keyModal.dialog('close');" value="关闭" data-dismiss="modal" class="btnclass"/>
+    </div>
+</div>
+<!--配 置 表 达 式-->
+<div class="modal hide" id="SetExpression">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             配 置 表 达 式</p>
+    </div>
+    <div class="exprssionpo">
+    <!--//20130216 倪飘 解决异常操作-添加计算列的表达式列名称输入字符过长，预览页面点击预览时，页面一直显示正在载入状态问题，添加长度限制-->
+        <div id="excloum">表达式列名称:<input type="text" id="txtCloumnName"  maxlength="12" value=" " class="extextname"/></div>
+        <br/>
+<!--        20130216 倪飘 解决Datasets-新建datasets-表达式列名称和所有可选列，输入框没有对齐问题-->
+
+        <div id="exselect"> 所有可选择列: <select id='DropExpression' class="extextname" style="margin-left: 16px;"></select></div>
+        <br/>
+
+        <div id="extexts"><textarea id='txtExpression' rows="6" cols="40" style="resize: none;"></textarea></div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="确定" id="btnSaveExpression" class="btnclass"/>
+        <input type="button" value="关闭" data-dismiss="modal" class="btnclass" onclick="dialogs._SetExpression.dialog('close');"/>
+    </div>
+</div>
+<!--查看SQL语句-->
+<div class="modal hide" id="GetViewSql">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif"> 
+            查 询 语 句</p>
+    </div>
+    <div class="seesql">
+        <div id="extext"><textarea id='txtViewSQl' rows="6" cols="50"></textarea></div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" id="btnViewOK" class="btnclass" value="确定"/><input type="button" data-dismiss="modal" class="btnclass" value="关闭"/>
+    </div>
+</div>
+<!--弹出框选择数据源-->
+<div class="modal hide" id="PopupSelectDataSource">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif"> 
+            选 择 数 据 源</p>
+    </div>
+    <div id="PopupSelectDBody" class="paramBody">
+        <div class="Popup">
+            <div id="PopupSelectDGrid"></div>
+            <!--   <div class="BtnDiv"><input  type="button" value="下 一  步" id="PDOK" class="PopupBtn"/><input type="button"  value="取     消" id="PDCancel" class="PopupCBtn"/></div>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="下 一  步" id="PDOK" class="PopupBtn"/><input type="button" value="取     消" id="PDCancel" class="PopupCBtn"/>
+    </div>
+</div>
+<!--弹出框选择虚拟表-->
+<div class="modal hide" id="PopupSelectVTable">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+       <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            选择虚拟表</p>
+    </div>
+    <div id="PopupSelectVBody" class="paramBody">
+        <div class="Popup">
+            <div id="PopupSelectVGrid"></div>
+            <!--<div class="BtnDiv"><input  type="button" value="确     定" id="PVOK" class="PopupBtn"/><input  type="button" value="上 一 步" id="PVPrevious" class="PopupBtn"/><input type="button"  value="取     消" id="PVCancel" class="PopupBtn"/></div>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="上 一 步" id="PVPrevious" class="PopupBtn"/><input type="button" value="下 一 步" id="PVOK" class="PopupBtn"/><input type="button" value="取     消" id="PVCancel" class="PopupBtn"/>
+    </div>
+</div>
+<!--Excel数据源-->
+<div class="modal hide" id="OperateExcelDiv">
+    <form name="excelUpload" method="post" enctype='multipart/form-data' target="excelUploadHideFrame">
+        <div class="modal-header paramHeader theme-title">
+            <button type="button" class="close" data-dismiss="modal"> ×</button>
+            <p id="ExcelName" style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">上传Excel</p>
+            <input type="hidden" name="ExcelName">
+        </div>
+        <div class="paramBody">
+            <p id="ExistingTableLabel" class="Excelmodalp" style="display: none;">已有的表</p>
+
+            <div id="ExistingTable" class="ExcelmodalTabel" style="display: none;"></div>
+            <p class="Excelmodalp">上传的表</p>
+
+            <div id="uploadingTable" class="ExcelmodalTabel"></div>
+        </div>
+        <div class="modal-footer">
+            <div id="file">
+                <input type="text" name="fileName" value="未选择文件" id="textAddress" readonly style="float: left;"/>
+                <input type="file" accept="application/vnd.ms-excel" name="fileData" id="fileAddress"/>
+                <input type="button" value="浏览" style="display: none;" />
+            </div>
+            <!--<input type="file" value="file" id="fileAddress" multiple size="80" class='fileAddresasBtn' style="line-height: 0px;height: 22px;"/>--><!--<input type="button" id="excelAddressBtn" value="                  ..."/> -->
+            <div style="width: 200px;float: left; text-align: left;">
+                <input type="button" id='upExcelBtn' class='ExcelOperateBtn1' value='上传'/>
+                <!--<input type="button" id='addExcelBtn' class='ExcelOperateBtn1' value='添加'/>
+                <input type="button" id='coverExcelBtn' class='ExcelOperateBtn1' value='覆盖'/>-->
+            </div>
+        </div>
+    </form>
+</div>
+<iframe style="width: 0;height: 0;display: none" name="excelUploadHideFrame" id="excelUploadHideFrame"></iframe>
+<!--<div id="SCTabTopTwo" style="display: -webkit-box;"><div class="newdatastitle" style=" margin-bottom:10px;">数据源</div><div class="DStructure"> 数据结构<div><input type="button" value="添加数据结构" id="AddDStructure" class="NextVirtualBtn"></div><div id="SCDatastructureGrid" data-role="grid" class="k-grid k-widget" tabindex="0" style="height: 120px;"><table cellspacing="0" style="height: auto;" class="k-focusable k-selectable" data-role="selectable"><colgroup><col style="width:80px"><col style="width:80px"><col style="width:80px"><col style="width:80px"><col style="width:80px"></colgroup><thead class="k-grid-header"><tr><th data-field="_GuidName" data-title="别名" class="k-header">别名</th><th data-field="_DataSource" data-title="数据源" class="k-header">数据源</th><th data-field="_DSVT" data-title="虚拟表" class="k-header">虚拟表</th><th data-field="_Function" data-title="方法" class="k-header">方法</th><th data-field="_Operation" data-title="操作" class="k-header">操作</th></tr></thead><tbody><tr data-uid="f57704dc-924d-4963-8c00-655103245c7f"><td>DD3</td><td>HTML5APP</td><td>st_1</td><td>Default</td><td><button id="DeleteDStructure" class="GridDelBtn"></button></td></tr><tr class="k-alt" data-uid="070dfc00-0060-4586-9708-ba2d44f7d3d7"><td>DD4</td><td>HTML5APP</td><td>st_2</td><td>Default</td><td><button id="DeleteDStructure" class="GridDelBtn"></button></td></tr></tbody></table></div></div><div class="BRelationships">数据关系<div><input type="button" value="建立关系" id="AddBRelationships" class="NextVirtualBtn"></div><div id="BuildrelationshipsGrid" data-role="grid" class="k-grid k-widget" tabindex="0" style="height: 120px;"><table cellspacing="0" style="height: auto;" class="k-focusable k-selectable" data-role="selectable"><colgroup><col style="width:80px"><col style="width:80px"><col style="width:80px"><col style="width:80px"><col style="width:80px"><col style="width:80px"></colgroup><thead class="k-grid-header"><tr><th data-field="Name" data-title="关系名称" class="k-header">关系名称</th><th data-field="JoinType" data-title="关系类型" class="k-header">关系类型</th><th data-field="PGuidName" data-title="父表" class="k-header">父表</th><th data-field="CGuidName" data-title="子表" class="k-header">子表</th><th data-field="Edit" data-title="编辑" class="k-header">编辑</th><th data-field="Delete" data-title="删除" class="k-header">删除</th></tr></thead><tbody><tr data-uid="808300a8-d090-4475-b770-a0bbb81db844"><td>链表</td><td>inner join</td><td>DD3</td><td>DD4</td><td><button id="EditBRelationships" class="GridEditBtn"></button></td><td><button id="DeleteBRelationships" class="GridDelBtn"></button></td></tr></tbody></table></div></div></div>--><!--实时Label配置-->
+<div class="modal hide" id="RealTimeLableParam">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            实时Label配置</p>
+    </div>
+    <div class="RealTimeLableRulesPanle">
+        <table id="ParamTable" class="prortityParamTable" border="0" cellspacing="1" cellpadding="0">
+            <tr>
+                <td class="prortityRealTimeTabletd"><input type="checkbox" id="_Start"/></td>
+                <td class="prortityRealTimeTabletd">
+                    <input type="button" id="_AddParam" value="+"/><input type="button" id="_DelParam" value="-"/></td>
+                <td class="prortityRealTimeTabletd">规则个数:</td>
+            </tr>
+        </table>
+        <div class="prortityParamTable" id="GridParame" style="height:360px;"></div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary" id="btnSaveParam">确定</a><a class="btn btn-primary" data-dismiss="modal">关闭</a>
+    </div>
+</div>
+<!--页面参数配置-->
+<div class="modal hide" id="PageParam">
+    <div class="modal-header paramHeader1 theme-title">
+        <button type="button" class="close" data-dismiss="modal">
+            ×
+        </button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            页面参数配置</p>
+    </div>
+    <div class="paramBody1">
+        <div class="pageOut">
+            <div class="PageParam">
+                <div class="pageareadiv">
+                    <select size="11" style="width:100%; font-size:18px" id="urlParaItems">
+                        <!--           <option value="volvo">Volvo</option>
+                                   <option value="saab">Saab</option>
+                                   <option value="mercedes">Mercedes</option>
+                                   <option value="audi">Audi</option>-->
+                    </select>
+                </div>
+                <div>
+                    <input id='urlText' type="text" style=" width:120px; margin-right:30px;" class='ControlProTextSty' maxlength='50' ischeck='false'/>
+                    <input id="urlAdd" type="button" class="PopupBtn" style=" width:60px; height:25px;" value="添加"/>
+                    <input id="deleteUrl" type="button" class="PopupBtn" style=" width:60px; height:25px;" value="删除"/>
+                </div>
+            </div>
+            <div style=" padding-bottom:20px; display:none">
+                <input type="button" value="应   用" class="PopupBtn"/><input type="button" value="取   消" class="PopupCBtn"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!--选择背景图片-->
+<div class="modal hide" id="ShowAllServerImage">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            背景图片</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup1">
+            <div id="ShowImg"></div>
+            <!--    <div class="BtnDiv1"><input  type="button" value="确     定" id="SlectedImg" class="PopupBtn"/><input  type="button" value="取     消" id="CancelImg" class="PopupBtn"/></div>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span id="selectImageAlert" style="color: red;float: left"></span>
+        <input type="button" value="确     定" id="SlectedImg" class="PopupBtn"/><input type="button" value="取     消" id="CancelImg" class="PopupBtn"/>
+    </div>
+</div>
+<!--弹出框从ApI获取点位信息-->
+<div class="modal hide" id="ApiSelectDataSource">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal" id='closeBtn'>
+            ×
+        </button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            批量添加点位信息</p>
+    </div>
+    <div id="ApiSelectDBody" class="paramBodyA">
+        <div id='showLoad' style="text-align:center;height: 400px;">数据加载中...</div>
+        <div id='showData'>
+            <div style="margin-bottom: 2px;"><input type='text' id='textApiPoint' class='ControlProTextSty' maxlength='20' ischeck='false'/>
+                <input type='button' class='toolBtn' id='textOneApiPointBtn' value='搜   索'/>
+                <input type="button" value="批量添加" id="batchAdd" class="PopupBtn"/>
+                <!--<input type="button" value="全选"id="AllCheckedBtn" class="PopupBtn"/>-->
+            </div>
+            <div id="ApiSelectDGrid" style='width:550px;height:500px; overflow-y: auto;'></div>
+            <!--<div class="BtnAddDiv"><input type="button" value="批量添加" id="batchAdd" class="PopupBtn"/><input--><!--type="button" value="全选" id="AllCheckedBtn" class="PopupBtn"/></div>-->
+        </div>
+    </div>
+</div>
+<!--版本信息保存-->
+<div class="modal hide" id="ShowVersioninfomodal">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">
+            x
+        </button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            信息提示</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup1">
+            <div id="ShowVersioninfoDiv">
+                <table align="left" id="VersionMangeTabel">
+                    <tr>
+                        <td class="VersionTd1">页面名称：</td>
+                        <td class="VersionTd2">
+                            <input type="text" class="PageNameinputText ControlProTextSty" id="InputPageName" value="新建页面1" maxlength='50' ischeck='true'/></td>
+                    </tr>
+                    <tr class="PageSaveSPCRow">
+                        <td class="VersionTd1">创建人：</td>
+                        <td class="VersionTd2"><input type="text" class="PageNameinputText ControlProTextSty" id="CreatePageAuth" maxlength='20' ischeck='true'/></td>
+                    </tr>
+                    <tr class="PageSaveSPCRow">
+                        <td class="VersionTd1">创建目的：</td>
+                        <td class="VersionTd2"><textarea type="text" class="PageTextAreaSty ControlProTextSty" style="font-size:12px;font-family: '微软雅黑',arial;resize:vertical;" id="CreatePageGoal" maxlength='100' ischeck='true'></textarea></td>
+                    </tr>
+                    <tr class="PageSaveNoSPCRow">
+                        <td class="VersionTd1">说明：</td>
+                        <td class="VersionTd2"><textarea type="text" class="PageTextAreaSty ControlProTextSty" style="font-size:12px;font-family: '微软雅黑',arial;resize:vertical;" id="InputDescription" maxlength='100' ischeck='true'></textarea></td>
+                    </tr>
+                    <tr id="isCoverVersion">
+                        <td class="VersionTd1">是否覆盖版本：</td>
+                        <td class="VersionTd2"><select id="VersionSelect"></select></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" id="Versionfooter">
+        <input type="button" value="确     定" id="SelectVersionBtn" class="PopupBtn"/><input type="button" value="取     消" id="CancelVersionBtn" class="PopupBtn"/>
+    </div>
+</div>
+<!------虚拟表操作块弹出窗口-------------------------------------------------------------------------><!--新建标准虚拟表弹出窗口-->
+<div class="modal hide" id="VTSelectDS">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            选 择 数 据 源</p>
+
+        <p style=" font-size:10px; margin:0px; margin-top:-10px;">选择定义当前实体所用的数据源</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='DataSourcegrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='上一步' id='VirtualPre' class='NextVirtualBtn'/>
+        <input type='button' value='下一步' id='VirtualOK' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='CancelVirtualBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--新建混合虚拟表弹出窗口--><!--选择建立虚拟表的方式-->
+<div class="modal hide" id="SelectWayToCreateVT" title="实 体 配 置 向 导">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+       <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            实 体 配 置 向 导</p>
+    </div>
+    <div class="paramBody">
+        <div id="SelectWayBody">
+            <div>
+                <div style=" font-size:14px; font-weight:bold;">
+                    <input type="radio" name="VTWay" id="WayOne" value="WayOne" checked="checked"/>用户自定义虚拟表
+                </div>
+                <div style=" font-size:12px;margin-left:20px;">通过直接编写的SQL方式定义实体</div>
+            </div>
+            <div>
+                <div style=" font-size:14px; font-weight:bold;">
+                    <input type="radio" name="VTWay" id="WayTwo" value="WayTwo"/>创建混合虚拟表
+                </div>
+                <div style=" font-size:12px; margin-left:20px;">通过选择不同数据下面的虚拟表来创建虚拟表</div>
+            </div>
+            <div>
+                <div style=" font-size:14px; font-weight:bold;">
+                    <input type="radio" name="VTWay" id="WayThree" value="WayThree"/>创建存储过程虚拟表
+                </div>
+                <div style=" font-size:12px; margin-left:20px;">通过选择存储过程来创建虚拟表</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='下一步' id='SelectWayNext' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='SelectWayCancel' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--存储过程虚拟表弹出窗口块代码-->
+<!--选择数据源窗口-->
+<div class="modal hide" id="PROVTSelectDS">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            选 择 数 据 源</p>
+
+        <p style=" font-size:10px; margin:0px; margin-top:-10px;">选择定义当前实体所用的数据源</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='ProDataSourcegrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='上一步' id='PROVirtualPre' class='NextVirtualBtn'/>
+        <input type='button' value='下一步' id='PROVirtualOK' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='PROCancelVirtualBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--选择存储过程窗口-->
+<div class="modal hide" id="PROVTSelectPRO">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            选 择 存 储 过 程</p>
+
+        <p style=" font-size:10px; margin:0px; margin-top:-10px;"></p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='ProListgrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='上一步' id='PROListPre' class='NextVirtualBtn'/>
+        <input type='button' value='下一步' id='PROListOK' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='PROListCancel' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--生成语句并查询窗口-->
+<div class="modal hide" id="ProKeyModal">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             SQL参数配置面板</p>
+    </div>
+    <div id="ProSQL" class="paramBody">
+        <div id="ProSqlLeft">
+            <select size="6" id="ProsqlKeyValues" class="SQLc"> </select>
+        </div>
+        <div id="ProSqlRight">
+            <div>名称: <input type='text' id='ProsqlkeyValue' class="SQLc"/></div>
+            <div>类型:<select id='ProsqlKeyType' class="SQLc">
+                <option value='DATETIME'>DATETIME</option>
+                <option value='NUMBER'>NUMBER</option>
+                <option value='NVARCHAR2'>NVARCHAR2</option>
+                <option value='NVARCHAR'>NVARCHAR</option>
+                <option value='CURSOR'>CURSOR</option>
+                 <option value='INT'>INT</option>
+                  <option value='VARCHAR'>VARCHAR</option>
+            </select>
+            </div>
+            <div>　值: <input type='text' id='ProtxtKeyValue' class="SQLc" class='ControlProTextSty' maxlength='50' ischeck='true'/></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="查询" id="ProbtnSqlSelect" class="btnclass"/><input type="button" onclick="dialogs._ProKeyModal.dialog('close');" value="关闭" data-dismiss="modal" class="btnclass"/>
+    </div>
+</div>
+<!--存储过程虚拟表弹出窗口块代码-->
+<!--数据源选择-->
+<div class="modal hide" id="ScVTSelectDS">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             选 择 数 据 源</p>
+
+        <p style=" font-size:10px; margin:0px; margin-top:-10px;">选择定义当前实体所用的数据源</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='ScDataSourcegrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='上一步' id='ScDsPreBtn' class='NextVirtualBtn'/>
+        <input type='button' value='下一步' id='ScDsNextBtn' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='ScDsCancelBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--实体选择-->
+<div class="modal hide" id="ScVTSelectVT">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             选 择 实 体</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='ScVTSourcegrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='上一步' id='ScVTPreBtn' class='NextVirtualBtn'/>
+        <input type='button' value='下一步' id='ScVTNextBtn' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='ScVTCancelBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--输入参数面板-->
+<div class="modal hide" id="ScVTMethodParams">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             参 数 赋 值 </p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='MethodParams'>
+                <div style=" float:left;">
+                    <select size="8" id="AllVTParamsSelect"></select>
+                </div>
+                <div style=" float:left; margin-left:20px;">
+                    <div style=" text-align:left; margin-bottom:25px;">名称:
+                        <input type='text' id='PName' disabled="disabled" style="height:23px; margin-left:5px; border-radius:5px;"/>
+                    </div>
+                    <div style=" text-align:left; margin-bottom:25px;">类型:<select id='TypeSelect' style="height:23px; margin-left:10px; border-radius:5px;">
+                        <option value='DATETIME'>DATETIME</option>
+                        <option value='NUMBER'>NUMBER</option>
+                        <option value='NVARCHAR2'>NVARCHAR2</option>
+                        <option value='CURSOR'>CURSOR</option>
+                    </select>
+                    </div>
+                    <div style=" text-align:left; margin-bottom:20px;">值:
+                        <input type='text' id='PValue' style="height:23px; margin-left:20px; border-radius:5px;"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="padding-top:6px;">
+        <input type='button' value='确  定' id='ParamsOKBtn' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='ParamsCancelBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--添加数据结构-->
+<div class="modal hide" id="DataStructure">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+             选 择 实 体</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='DataStructureGrid'></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='确   定' id='DataStructureOKBtn' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='DataStructureCancelBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--添加数据关系-->
+<div class="modal hide" id="DataRelationship">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p id="RelationsTitleName" style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            添 加 数 据 关 系 </p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='DataRelationshipBody'>
+                <div id="RDiv">
+                    为现有的字表结构定义关系
+                    <div>
+                        父表：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <select id="SCEntityNameList1" class="RInput"></select>
+                    </div>
+                    <div>
+                        子表：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <select id="SCEntityNameList2" class="RInput"></select>
+                    </div>
+                    <div>
+                        关系名称： <input type="text" id="SCRelationName" class="RInput ControlProTextSty" maxlength='10' ischeck='true'/>
+                    </div>
+                    <div>
+                        引用关系： <select class="RInput" id="SCEntityRelation"></select>
+                    </div>
+                    <div>
+                        <div id="RGrid" style=" width:97%;height:20px;">
+                            <table id="SCRelationTable">
+                                <tr>
+                                    <td>父列</td>
+                                    <td>子列</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="button" id="AddRelation" value="添加关系" style=" width:100px; height:23px; font-size:12px;" class='NextVirtualBtn'/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='确  定' id='RDOK' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='RDCancel' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--列过滤操作处理-->
+<div class="modal hide" id="ColumnfilterFrame">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal"></button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            过滤器----->列:数量的过滤</p>
+    </div>
+    <div class="paramBody">
+        <div class="Popup">
+            <div id='ColumnfilterBody' style="text-align:left;">
+                过滤器可以让你指定参数名称，参数的类型，参数的操作符
+                <div id="ColumnfilterTop">
+                    <div>参数名：&nbsp;&nbsp;&nbsp;<input id="SinglePName" class="RInput"/></div>
+                    <div>参数类型：<select id="SinglePType" class="RInput"></select></div>
+                    <div>操作符号：<select id="SinglePOperationSymbols" class="RInput"></select></div>
+                    <div><input type="radio" id="SingleP" name="ParamSelectShow" value="SingleP" checked="true"/> 单个参数
+                        <input type="radio" name="ParamSelectShow" id="DoubleP" value="DoubleP" style="margin-left:10px;"/>区间参数
+                    </div>
+                </div>
+                <div id="Columnfilterbottom" style=" display:none;">
+                    <div>参数名：&nbsp;&nbsp;&nbsp;<input id="DoublePName" class="RInput"/></div>
+                    <div>参数类型：<select id="DoublePType" class="RInput"></select></div>
+                    <div>操作符号：<select id="DoublePOperationSymbols" class="RInput"></select></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='确   定' id='ColumnfilterOKBtn' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='ColumnfilterCancelBtn' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<!--共享数据源弹出窗口-->
+<div class="modal hide" id="ShareDataOperationPanel">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            共享数据源配置面板</p>
+    </div>
+    <div class="paramBodyShare">
+        <div class="Popup">
+            <div class="ShareLine" style="margin-bottom:10px;">
+                <div class="shareParaTips">基本信息（必填）</div>
+            </div>
+            <div class="BaseInfo">
+                <div>DataSet名称：<input type="text" disabled="disabled" id="sharedatasetname" style=" border-radius:5px; padding:0px; margin-left:35px;"/>
+                </div>
+                <div>共享数据源名称：<input type="text" id="sharedataname" style=" border-radius:5px; padding:0px;" class='ControlProTextSty' maxlength='10' ischeck='true'/></div>
+            </div>
+            <div class="ShareLine" style="margin-top:20px;">
+                <div class="shareParaTips">参数配置</div>
+            </div>
+            <div class="DataInfo">
+                <div class="ShareWrapper" id="ShareWrapper1">
+                    <div id="ControlsList" class="ControlsList"></div>
+                </div>
+                <div class="ShareWrapper" id="ShareWrapper2">
+                    <div id="ParamsList" class="ParamsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type='button' value='保   存' id='ShareDataOK' class='NextVirtualBtn'/>
+        <input type='button' value='取   消' id='ShareDataCancel' class='CancelVirtualBtn'/>
+    </div>
+</div>
+<div id="PagePerson" class="modal hide">
+    <div class="modal-header paramHeader theme-title">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            权限设置</p>
+    </div>
+    <div class="paramBody"style="width: 100%;height: 97%">
+        <div class="Popup" >
+            <div id="PagePersonItemContent" style="width: 100%;height: 96%">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-----------------------------------------------------------------------------------------------------><!----------------------------------------------------------------------------------------------------->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!--liuyi-->
+<div style="display: none;width:600px; height: 600px;" id="plot_qwerty"></div>
+<!--控件通用属性窗口-->
+<div id="controlPropertyHost"></div>
+<!--图片上传控件-->
+<div id='pop_div' class="pop_box" style="width:310px;height:400px;">
+    <div class="p_head">
+        <div class="p_h_title theme-title">图片资源上传
+            <span style="padding-left:50px"></span>
+            <a class="p_h_x"  onclick="closeUpLoadDiv('pop_div');" title="关闭窗口"  onmouseOver="mouseOver()"   onmouseOut="mouseOut()">
+                <img style="margin-right: 5px" id="close_img_id"  name="close_img" src="JS/jquery.uploadify-v2.1.0/close.png">
+            </a>
+        </div>
+    </div>
+    <!--<table width="100%">-->
+        <!--<tr></tr>-->
+        <!--<td><input id="custom_file_upload" type="file" name="Filedata" value="添加"/>-->
+        <!--</td>-->
+        <!--<td align="left"><input type="image" alt="上传" src="JS/jquery.uploadify-v2.1.0/upload.jpg" onclick="fupload()"/>-->
+        <!--</td>-->
+        <!--<td align="left"><input type="image" alt="放弃" src="JS/jquery.uploadify-v2.1.0/cancel.jpg" onclick="fgiveUp()"/>-->
+        <!--</td>-->
+        <!--<td align="left">-->
+            <!--<input type="image" alt="清空" src="JS/jquery.uploadify-v2.1.0/clear.jpg" onclick="fclearQueue()"/></td>-->
+        <!--</tr>-->
+    <!--</table>-->
+    <table width="100%">
+        <tr>
+            <td align="left"><img name="add_img"  src="JS/jquery.uploadify-v2.1.0/add.png" id="custom_file_upload"  value="添加" onmouseOver="addmouseOver()"   onmouseOut="addmouseOut()"/>
+            </td>
+   <!--         解决bug，资源图片上传，当鼠标移动到"上传"和"清空"按钮时，应显示手型-->
+            <td align="left"><img style=" cursor:pointer;" name="upload_img" alt="上传" src="JS/jquery.uploadify-v2.1.0/upload.png" onclick="fupload()" onmouseOver="uploadmouseOver()"   onmouseOut="uploadmouseOut()"/>
+            </td>
+            <td align="left"><img style=" cursor:pointer;" name="cancel_img"  alt="放弃" src="JS/jquery.uploadify-v2.1.0/cancel1.png" onclick="fgiveUp()" onmouseOver="cancelmouseOver()"   onmouseOut="cancelmouseOut()"/>
+            </td>
+        </tr>
+    </table>
+    <div class="p_box_body" id="p_b_body" style="width:300px;height:320px;overflow:auto">
+        <div id="custom-queue"></div>
+        <div id="uploadComplete"></div>
+    </div>
+</div>
+<!--浏览所有图片资源-->
+<!--<div id="pop_Image_content" style="width:100%;height:0px;overflow:auto;background:#D8eaf4;">-->
+<div id="pop_Image_content" style="width:100%;height:550px;background:#D8eaf4;">
+    <div id="pop_Image_main">
+        <ul id="ulImageList"></ul>
+    </div>
+</div>
+</body>
+<!--拖动,缩放-->
+<script type="text/javascript" src="JS/AgiVis.SimpleDragDrop.js"></script>
+<script type="text/javascript" src="JS/Expand/AgiVis.DragDropManager.js"></script>
+<script src="layout/ui/jquery.ui.core.js"></script>
+<script src="layout/ui/jquery.ui.widget.js"></script>
+<script src="layout/ui/jquery.ui.mouse.js"></script>
+<script src="layout/ui/jquery.ui.draggable.js"></script>
+<script src="layout/ui/jquery.ui.resizable.js"></script>
+<!--布局管理-->
+<script src="layout/ui/jquery.ui.position.js"></script>
+<script src="layout/ui/jquery.ui.dialog.js"></script>
+<script src="layout/AgiVis.LayoutDesigner.js"></script>
+<!--alert comfirm 弹出框-->
+<script src="JS/AgiCommonDialogbox/Agi.Common.DialogBox.js"></script>
+<!--快捷键应用-->
+<script src="JS/Expand/Agi.Script.KeyBordEvent.js"></script>
+<!--Jquery Flexigrid引用-->
+<script src="Lib/flexigrid/js/flexigrid.js" type="text/javascript"></script>
+<!--color picker-->
+<link href="Lib/colorpicker/spectrum.css" rel="stylesheet" type="text/css"/>
+<script src="Lib/colorpicker/spectrum.js"></script>
+<!--脚本编辑器界面-->
+<!--<script type="text/javascript" src="JS/Controls/AnimationControl/jstree_pre1.0_fix_1/jquery.jstree.js"></script>-->
+<!--<link rel="stylesheet" href="JS/AgiScript/ui/script.editor.css"/>-->
+<!--<script type="text/javascript" src="JS/AgiScript/ui/config.js"></script>-->
+<!--<script type="text/javascript" src="JS/AgiScript/ui/script.editor.js"></script>-->
+<!--jqui-->
+<script type="text/javascript" src="layout/ui/jquery.ui.tabs.js"></script>
+<!--图片上传控件-->
+<link type="text/css" rel="stylesheet" href="JS/jquery.uploadify-v2.1.0/uploadAndDragDiv.css"/>
+<link type="text/css" rel="stylesheet" href="JS/jquery.uploadify-v2.1.0/uploadify.css"/>
+<script src="JS/jquery.uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js" type="text/javascript"></script>
+<script src="JS/jquery.uploadify-v2.1.0/dragenable.js" type="text/javascript"></script>
+<script src="JS/jquery.uploadify-v2.1.0/MyUpload.js" type="text/javascript"></script>
+<script src="JS/jquery.uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+<script src="JS/AgiLorManage/Agi_ResourcesManager.js" type="text/javascript"></script>
+<script src="JS/Controls/highcharts.js"></script>
+<script src="JS/Controls/highcharts.more.js"></script>
+<link rel="Stylesheet" type="text/css" href="JS/AgiColorPicker/jpicker/css/jPicker-1.1.6.min.css"/>
+<script src="JS/AgiColorPicker/jpicker/jpicker-1.1.6.min.js" type="text/javascript"></script>
+<!--取色控件-->
+<link rel="stylesheet" href="JS/AgiColorPicker/Agi.ColorPicker.css"/>
+<script type="text/javascript" src="JS/AgiColorPicker/Agi.ColorPicker.js"></script>
+<script type="text/javascript" src="JS/Controls/Container/Container.js"></script>
+<!--测试信息-->
+<!--加载函数格式化-->
+<script type="text/javascript" src="Lib/FunLibrary.js"></script>
+</html>

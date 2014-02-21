@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>单值图</title>
+    <link href="../js/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link type="text/css" rel="stylesheet" href="../js/layout/themes/base/jquery.ui.all.css"/>
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/Controls/highcharts.js"></script>
+    <script src="../js/Controls/DataGrid/external/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="../js/Base/BaseClass.js"></script>
+
+    <script type="text/javascript" src="../js/view/agiflow.js"></script>
+    <script type="text/javascript" src="../js/Base/BaseClass.js"></script>
+    <script type="text/javascript" src="../js/WebServiceConfig/AddressConfig.js"></script>
+
+
+    <link type="text/css" rel="stylesheet" href="../js/Controls/DataGrid/themes/bootstrap/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="../js/Controls/DataGrid/themes/wijmo/jquery.wijmo-open.2.2.1.css"/>
+    <link type="text/css" rel="stylesheet" href="../js/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijpager.css"/>
+    <link type="text/css" rel="stylesheet" href="../js/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijinput.css"/>
+    <link type="text/css" rel="stylesheet" href="../js/Controls/DataGrid/themes/wijmo/jquery.wijmo.wijgrid.css"/>
+
+    <script type="text/javascript" src="../js/Controls/DataGrid/external/jquery-ui-1.8.23.custom.min.js"></script>
+
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.plugin.wijtextselection.min.js"></script>
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputcore.min.js"></script>
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputdate.min.js"></script>
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputmask.min.js"></script>
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijinputnumber.min.js"></script>
+
+    <script type="text/javascript" src="../js/Controls/DataGrid/external/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="../js/Controls/DataGrid/external/jquery.wijmo-open.all.2.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijpager.min.js"></script>
+    <script type="text/javascript"
+            src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijdatasource.min.js"></script>
+    <script type="text/javascript" src="../js/Controls/DataGrid/wijmo/minified/jquery.wijmo.wijgrid.min.js"></script>
+    <link rel="stylesheet" href="customizePanel.css"/>
+    <link href="../js/lib/colorpicker/spectrum.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/lib/colorpicker/spectrum.js"></script>
+    <link href="customizePanel.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="../js/Controls/ControlBasic.css"/>
+    <script src="../js/Controls/ControlBasic.js"></script>
+    <link rel="stylesheet" href="CustomSingleChart.css"/>
+    <script type="text/javascript" src="CustomSingleChart.js"></script>
+    <script type="text/javascript" src="../js/WebServiceConfig/Agi.DataAccessLayer.js"></script>
+
+    <script src="../js/export/rgbcolor.js" type="text/javascript"></script>
+    <script src="../js/export/canvg.js" type="text/javascript"></script>
+    <script src="../js/export/html2canvas.js" type="text/javascript"></script>
+    <!--加密解密引用-->
+    <script src="../js/EncDnc.Base64/EncDnc.Base64.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../customizePage/TestJSONData.js"></script>
+    <!--弹出框-->
+    <script type="text/javascript" src="popup_layer.js"></script>
+    <!--树形列表-->
+    <link href="tree/css/tree.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="tree/src/Plugins/jquery.tree.js"></script>
+
+</head>
+<body>
+<div class="exportDiv">
+    <div class="navbar">
+        <div class="nav-collapse subnav-collapse">
+            <ul class="nav pull-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">导出 <b
+                        class="caret"></b></a>
+                    <ul class="dropdown-menu" style="min-width: 0px">
+                        <li><a href="#">图片</a></li>
+                        <li><a href="#">Excel</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="width:100%;height:100%">
+    <div id="headPanel" style="width:100%;height:40px;background-color:#f2f2f2;padding-top:7px;">
+        <input id="propertyPanel" type="button" value="属性设置" class="btn btn-info">
+        <select name="" id="datasetList"></select>
+    </div>
+    <div id="container" style="position: relative;"></div>
+</div>
+<div id="AbnormalError" class="blk1" style="display:none;">
+    <div class="main">
+        <h2>异常点错误信息选择</h2>
+        <a href="javascript:void(0)" id="closerAE" class="closeBtn">关闭</a>
+        <div class="RDSFrame">
+            <div class="listpanel"></div>
+            <!--<div class="saveDiv"><input type="button" id="SaveError" value="确定选择" style="margin-left:200px;width: 80px; "></div>-->
+        </div>
+    </div>
+</div>
+
+<div id="Abnormalpoint" class="blk" style="display:none;">
+    <div class="main">
+        <h2>异常点错误信息选择</h2>
+        <a href="javascript:void(0)" id="closerAP" class="closeBtn">关闭</a>
+        <div class="RDSFrame">
+            <div class="errorColumn">
+                <div>
+                    错误列：<select id="errorColumnSlect"><option>123</option></select>
+                </div>
+            </div>
+            <div class="errorList">
+                <div class="listone">
+                    <!--<input type="button" value="错误信息选择" id="errorInfoSelect">-->
+                </div>
+                <div class="listtwo">
+                    <input type="button" id="SaveError" value="确定选择" style="margin-left:20px; " class="btn btn-info">
+                </div>
+            </div>
+            <div class="Info">当前已选择<span id="numcount">0</span>个错误信息</div>
+            <div class="saveDiv"><input type="button" value="保存" id="AbnormalpointSave" class="btn btn-info"></div>
+        </div>
+    </div>
+</div>
+<!--markeluo 20130821 0846 markeluo 点击Chart Point菜单处理 #start-->
+<div id= 'pointMenu' class=" MenuDiv">
+    <!--<ul class="nav nav-list menu-second in collapse">-->
+        <!--<li data-menutype="1">1.查看源数据</li>-->
+        <!--<li data-menutype="2">2.异常点信息存入数据库</li>-->
+        <!--<li data-menutype="3"> 3.砖取查询</li>-->
+    <!--</ul>-->
+    <div class="navbar">
+        <div class="nav-collapse subnav-collapse">
+            <ul class="nav pull-left">
+                <li class="dropdown">
+                    <ul class="dropdown-menu" style="min-width: 0px">
+                        <li data-menutype="1"><a href="#"> 1.定位源数据</a></li>
+                        <li data-menutype="2"><a href="#"> 2.异常点原因录入</a></li>
+                        <li data-menutype="3"><a href="#"> 3.钻取数据</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--markeluo 20130821 0846 markeluo 点击Chart Point菜单处理 #end-->
+</body>
+</html>
+<!--bootstrap-->
+<script type="text/javascript">
+    var layoutManagement = {
+        property: {
+            type: 1
+        }
+    };
+
+    $(document).ready(function () {
+        //0.页面画布初始化
+        $('.dropdown').click(function(){
+            $('.dropdown-menu').toggle();
+        });
+
+        //region markeluo 20130821 08:46 markeluo 点击Chart Point菜单处理 #start
+        $('body').click(function(){
+            $('#pointMenu').hide();
+        });
+        //region markeluo 20130821 08:46 markeluo 点击Chart Point菜单处理 #end
+
+        $("#container").width($("#headPanel").width());
+        $("#container").height($(window).height() - 80);
+
+        //1.初始化得到控件对象类
+        var NewControl = Agi.Controls.InitCustomSingleChart();
+        //2.初始化参数(让控件和页面上下左右保持一定间隙)
+        var InitConfig = { Position: { Left: 0, Right: 0, Top: 0, Bottom: 0} };
+        //3.控件显示到的位置(显示在哪个DIV中)
+        var PanelDIVID = "container"; //这个根据实际页面容器DIV的id修改
+        //4.初始化显示控件
+        NewControl.Init(PanelDIVID, InitConfig.Position); //初始化显示
+
+
+        agi.using(['../../customizePanel','../../function','../../chartGridInteractive','../../Abnormalpoint'],
+                function (pPanel,func,chartGridInteractive,Abnormalpoint) {
+            NewControl.chartGridInteractive = chartGridInteractive;
+            NewControl.func = func;
+            pPanel.initial();//初始化属性面板（不弹出）
+            func.bindDataSetList("datasetList",NewControl);//绑定dataset列表到下拉控件上，选择项改变后控件NewControl的 ReadData会触发
+            pPanel.setControl();//将控件对象传给面板
+            //异常点面板相关代码与控件建立连接关系
+            NewControl.Abnormalpoint=Abnormalpoint;
+
+            $('.dropdown-menu>li').click(function(){
+                if($(this).find('a').text()=="图片")
+                {
+                    var exportType ="1";
+                    func.exportPortal(exportType, NewControl);
+                }
+                if($(this).find('a').text()=="Excel")
+                {
+                    var exportType ="2";
+                    func.exportPortal(exportType, NewControl);
+                }
+
+             });
+        });
+        //点击按钮弹出面板
+        $('#propertyPanel').bind('click', function () {
+            agi.using(['../../customizePanel'], function (panel) {
+                panel.open({}, function (config) {
+                    NewControl.theConfig = panel.returnDataLine();
+                    debugger;
+
+                    //region 1.筛选DataSet数据
+                    if(config.filterData!=null && config.filterData.dataValue!=""){//判断是否存在规则
+                        var entity = NewControl.Get('Entity')[0];
+                        var data =entity.Data;
+                        var data1=[];
+                            for(var i = 0;i<data.length;i++){
+                            //data[i][config.]
+
+                                if(config.filterData.compareColumns==1)
+                                {
+                                    var bool=eval('"'+data[i][config.filterData.filterColumns]+'"'+config.filterData.filterRule+ '"'+data[0][config.filterData.dataValue]+'"');
+                                    if(bool)
+                                    {
+                                        data1.push(data[i]);
+                                    }
+                                }
+                                else {
+                                    var bool=eval('"'+data[i][config.filterData.filterColumns]+'"'+config.filterData.filterRule+'"'+config.filterData.dataValue+'"');
+                                    if(bool)
+                                    {
+                                        data1.push(data[i]);
+                                    }
+                                }
+                         }
+                        NewControl.FilterDataUpShow(data1);
+                    }
+                    else
+                    {
+                        var entity = NewControl.Get('Entity')[0];
+                        var data =entity.Data;
+                        var data1=[];
+                        for(var i = 0;i<data.length;i++){
+                            data1.push(data[i]);
+                        }
+                        NewControl.FilterDataUpShow(data1);
+                    }
+                    //endregion
+
+                    //region 2.应用判异规则
+                    //Custom.FilterDataUpShow(data1);
+                    NewControl.UpSigmConditions(config.rule);//更新控件标准线信息
+                    //endregion
+
+                    //region 3.应用标准线信息 20130817 8:15 markeluo
+                    NewControl.UpPlotLineGroups(config.standardLine); //更新控件标准线信息
+                    //endregion
+
+                    //region 4.应用曲线设置信息 20130817 8:15 markeluo
+                    NewControl.UpSeriesBindInfo(config.dataLine); //更新曲线设置信息
+                    //endregion
+
+                    //region 5.应用特殊报警规则 20130819 19:59 markeluo
+                      //warnColumn,warnRule,warnCompareValue,warnColor
+                    NewControl.UpChartwarnRule(config.warnRule); //更新曲线设置信息
+                    //endregion
+
+                    NewControl.RefreshByProPanelUp();//属性更新后统一更新图形显示
+                    //endregion
+
+                });
+            });
+        });
+    });
+
+
+</script>
