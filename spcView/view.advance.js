@@ -9,24 +9,7 @@
     var menu_state;
 //开关菜单
     $(".open_close").click(function () {
-        if (!menu_state) {
-            $(".menu").transit({x: -35});
-            menu_state = !menu_state;
-            $(".pointer").transit({rotate: 90});
-            $(".data").transit({y: 0});
-            $("#workspace").parent().css(
-                {
-                    height: "auto",
-                    overflow: "hidden"
-                }
-            );
-        }
-        else {
-            $(".menu").transit({x: 0});
-            menu_state = !menu_state;
-            $(".pointer").transit({rotate: -90});
-            $(".pop").transit({x: 0});
-        }
+        Agi.view.advance.RightMenuOPenClose(menu_state);
     });
 //点击菜单按钮
     $(".menu>.content>div div").live("click", function () {
@@ -89,9 +72,49 @@
     $(".popExport>.content>div").mouseleave(function () {
         $(this).css("backgroundColor", "transparent");
     });
+    $(".popExport>.content>div").click(function () {
+        switch (this.innerText.trim()) {
+            case "Word":
+                getWord();
+                break;
+            case "PDF":
+                // window.useNativeAPI({ methodName: "toPDF" });
+                getPDF();
+                break;
+            case "Excel":
+                getExcel();
+                break;
+            case "Jpeg":
+                pageExport();
+                break;
+        }
+    });
+    //保存页面信息
+    $(".popInfo div").click(function () {
+        switch (this.innerText.trim()) {
+            case "保存":
+                Agi.view.functions.upPageinfo({
+                    VCreateAim:$("#spcviewcreataim").find("textarea").val(),
+                    VSummary:$("#spcviewcreatsummary").find("textarea").val()
+                },function(_result){
+                    if (_result.result == "true") {
+                        AgiCommonDialogBox.Alert(_result.message);
+                        $(".pop").transit({x: 0});
+                    }else{
+                        AgiCommonDialogBox.Alert(_result.message);
+                    }
+                });
+                break;
+            case "取消":
+                $(".pop").transit({x: 0});
+                break;
+        }
+    });
 //数据表格
     var editedCells = [];
     var lastEditRowID;
+    var PageDataDrillPars =null;
+    var CellPageDataDrillItem=null;
     var gridOptions = {
         datatype: "local",
         autowidth: true,
@@ -116,8 +139,8 @@
         viewrecords: true,
         ondblClickRow: function (rowID) {
             if (rowID && rowID !== lastEditRowID) {
-                jQuery('#data_table').jqGrid('restoreRow', lastEditRowID);
-                jQuery('#data_table').jqGrid('editRow', rowID, true, null, null, "clientArray", null, function () {
+                $('#data_table').jqGrid('restoreRow', lastEditRowID);
+                $('#data_table').jqGrid('editRow', rowID, true, null, null, "clientArray", null, function () {
                         //修改后的数据变化颜色
                         ////判断
                         var rowData = $("#data_table").jqGrid('getRowData');
@@ -157,12 +180,166 @@
                 $(".toolbar button").eq(0).attr("disabled", "disabled");
             }
         },
+        loadComplete: function () {
+            //
+//            $("tr.jqgrow", this).contextMenu('data_menu', {
+//                bindings: {
+//                    'add': function (trigger) {
+//                        //数据钻取
+//                        var selectedRow = $("#data_table").jqGrid('getGridParam', 'selarrrow');
+//                        var selectedData = $("#data_table").jqGrid('getRowData', selectedRow);
+//                        delete selectedData["标识"];
+//                        var PageDataDrillPars = Agi.view.advance.currentControl.SPCViewDataExtractURLGet(selectedData);
+//                        //格式:[{drillname:"硅钢统计月数据钻取日数据",drillcolumn:"统计时间",drillpage:"硅钢日统计",drillpars:[{parsname:"AA",parstype:"0",parsvalue:"column1"}]}]
+//                        if(PageDataDrillPars!=null && PageDataDrillPars.length>0){
+//                            AgiCommonDialogBox.Alert("未配置钻取参数信息，无法完成钻取操作!");
+//                            return;
+//                        }
+//                        var url=Agi.SPCViewServiceAddress+PageDataDrillPars.PageName+"_"+PageDataDrillPars.Vesion+"&isView=true&";
+//
+//                        //window.open(url);
+//                        if(PageDataDrillPars.Pars!=null && PageDataDrillPars.Pars.length>0){
+//                            for(var i=0;i<PageDataDrillPars.Pars.length;i++){
+//                                url+=PageDataDrillPars.Pars[i].ParsName+"="+PageDataDrillPars.Pars[i].ParsValue+"&";
+//                            }
+//                        }
+//                        url+="ID=";
+//
+//                        Agi.PageDataDrill.GetPageFilePath(PageDataDrillPars.PageName,PageDataDrillPars.Vesion,function(_result){
+//                            if(_result.result && _result.result=="true"){
+//                                url+=_result.data.ID;
+//                                //20131129 15:44 添加钻取权限管理，判断目标页面是否有权限
+//                                GetDrillPageAuth(url,function(_result){
+//                                    if(_result){
+//                                        window.open(url);
+//                                    }else{
+//                                        AgiCommonDialogBox.Alert("您对目标页面没有权限，请联系管理员!");
+//                                    }
+//                                })
+//                            }
+//                        });
+//                    }
+//                },
+//                onContextMenu: function (event/*, menu*/) {
+//                    var rowId = $(event.target).closest("tr.jqgrow").attr("id");
+//                    $("#data_table").jqGrid("resetSelection");
+//                    $('#data_table').jqGrid("setSelection", rowId);
+//                    return true;
+//                }
+//            });
+            $("#gview_data_table tr.jqgrow td").contextRMenu("data_menu", {
+                onContextMenu: function(event) {
+                    CellPageDataDrillItem=null;
+                    PageDataDrillPars = Agi.view.advance.currentControl.SPCViewDataExtractURLGet();
+                    //格式:[{drillname:"硅钢统计月数据钻取日数据",drillcolumn:"统计时间",drillpage:"硅钢日统计",drillpars:[{parsname:"AA",parstype:"0",parsvalue:"column1"}]}]
+                    if(PageDataDrillPars!=null && PageDataDrillPars.length>0){
+                        var rowtdcellindex=event.currentTarget.cellIndex;
+                        if(rowtdcellindex>1){
+                            var tdColumnName=$("#gview_data_table .ui-jqgrid-htable th div")[rowtdcellindex].innerText;
+                            var liItems="";
+                            for(var i=0;i<PageDataDrillPars.length;i++){
+                                if(PageDataDrillPars[i].drillcolumn==tdColumnName){
+                                    CellPageDataDrillItem=PageDataDrillPars[i];
+                                    liItems+="<li class='Drilldatamenuitem' title='"+PageDataDrillPars[i].drillname+"'>"+PageDataDrillPars[i].drillname+"</li>";
+                                }
+                            }
+                            if(liItems!=""){
+                                $("#data_menu").find("ul").html(liItems);
+                            }else{
+//                                AgiCommonDialogBox.Alert("该列未配置钻取信息，无法完成钻取操作!");
+                                $("#data_menu").find("ul").html("<li class='DrilldataTipsty'>该列无钻取信息！</li>");;
+                            }
+                        }
+                    }else{
+                        $("#data_menu").find("ul").html("<li class='DrilldataTipsty'>该控件未配置钻取信息！</li>");
+                    }
+                    return true;
+                },
+                bindings: {
+                    ".Drilldatamenuitem": function(trigger,tar,item) {//选中钻取项，执行钻取操作
+                        PageDataDrillPars = Agi.view.advance.currentControl.SPCViewDataExtractURLGet();
+                        //格式:[{drillname:"硅钢统计月数据钻取日数据",drillcolumn:"统计时间",drillpage:"硅钢日统计",drillpars:[{parsname:"AA",parstype:"0",parsvalue:"column1"}]}]
+                        var CellDrillName=$(item).attr("title");
+                        for(var i=0;i<PageDataDrillPars.length;i++){
+                            if(CellDrillName==PageDataDrillPars[i].drillname){
+                                CellPageDataDrillItem=PageDataDrillPars[i];
+                                break;
+                            }
+                        }
+                        var CellDrillURL="";
+                        if(CellPageDataDrillItem!=null){
+                            CellDrillURL=Agi.SPCViewServiceAddress+CellPageDataDrillItem.drillpage+"&isView=true&";
+                            if(CellPageDataDrillItem.drillpars!=null && CellPageDataDrillItem.drillpars.length>0){
+                                var ThisParsValue="";
+                                var selectedRow =trigger.parentNode;
+                                var selectedData =[];
+                                if(selectedRow!=null && selectedRow.children!=null && selectedRow.children.length>0){
+                                    var Itemstr=null;
+                                    for(var j=0;j<selectedRow.children.length;j++){
+                                        selectedData.push({ColumnName:trigger.parentNode.children[j].getAttribute("aria-describedby").replace("data_table_",""),Value:trigger.parentNode.children[j].innerText});
+                                    }
+                                }
+
+                                for(var i=0;i<CellPageDataDrillItem.drillpars.length;i++){
+                                    ThisParsValue="";
+                                    if(CellPageDataDrillItem.drillpars[i].parstype=="1"){
+                                        CellDrillURL+=CellPageDataDrillItem.drillpars[i].parsname+"="+Agi.Controls.AdvanceDataGrid.FormatParsValue(CellPageDataDrillItem.drillpars[i].parsvalue,CellPageDataDrillItem.drillpars[i].parsvaluefun)+"&";
+                                    }else{
+                                        if(CellPageDataDrillItem.drillpars[i].parstype=="0"){
+                                            for(var z=0;z<selectedData.length;z++){
+                                                if(selectedData[z].ColumnName==CellPageDataDrillItem.drillpars[i].parsvalue){
+                                                    ThisParsValue=selectedData[z].Value;
+                                                    break;
+                                                }
+                                            }
+                                            CellDrillURL+=CellPageDataDrillItem.drillpars[i].parsname+"="+Agi.Controls.AdvanceDataGrid.FormatParsValue(ThisParsValue,CellPageDataDrillItem.drillpars[i].parsvaluefun)+"&";
+                                        }else{
+                                            var allRowData = $("#data_table").jqGrid("getGridParam", "data");
+                                            ThisParsValue="";
+                                            if(allRowData!=null &&allRowData.length>0){
+                                                for(var Rindex=0;Rindex<allRowData.length;Rindex++){
+                                                    ThisParsValue+=allRowData[Rindex][CellPageDataDrillItem.drillpars[i].parsvalue]+",";
+                                                }
+                                            }
+                                            CellDrillURL+=CellPageDataDrillItem.drillpars[i].parsname+"="+Agi.Controls.AdvanceDataGrid.FormatParsValue(ThisParsValue,CellPageDataDrillItem.drillpars[i].parsvaluefun)+"&";
+                                        }
+                                    }
+                                }
+                                ThisParsValue=selectedRow=selectedData=null;
+                            }
+                            CellDrillURL+="ID=";
+
+                            var DrillPageName=CellPageDataDrillItem.drillpage.substr(0,CellPageDataDrillItem.drillpage.lastIndexOf("_"));
+                            var DrillPageVesion=CellPageDataDrillItem.drillpage.substr((CellPageDataDrillItem.drillpage.lastIndexOf("_")+1));
+
+                            //根据页面名称和版本号获取页面ID
+                            Agi.PageDataDrill.GetPageFilePath(DrillPageName,DrillPageVesion,function(_result){
+                                if(_result.result && _result.result=="true"){
+                                    CellDrillURL+=_result.data.ID;
+
+                                    //20131129 15:44 添加钻取权限管理，判断目标页面是否有权限
+                                    GetDrillPageAuth(CellDrillURL,function(_result){
+                                        if(_result){
+                                            window.open(CellDrillURL);
+                                        }else{
+                                            AgiCommonDialogBox.Alert("您对目标页面没有权限，请联系管理员!");
+                                        }
+                                        DrillPageName=DrillPageVesion=null;
+                                    })
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        },
         gridComplete: function () {
-            var ids = $("#data_table").jqGrid("getDataIDs");
-            $(".toolbar .count").text(ids.length);
+//            var ids = $("#data_table").jqGrid("getDataIDs");
+//            $(".toolbar .count").text(ids.length);
+            $(".toolbar .count").text($("#data_table").jqGrid("getGridParam", "data").length);
         },
         afterInsertRow: function (rowID, rowData, rowElement) {
-//报警信息
+            //报警信息
             for (var i = 0; i < alarmCells.length; i++) {
                 var cell = alarmCells[i];
                 if (rowData["标识"] === cell.Row + 1) {
@@ -207,8 +384,18 @@
     /*for (var i = 0; i <= myData.length; i++) {
      $("#data_table").jqGrid('addRowData', i + 1, myData[i]);
      }*/
+    //全选按钮
+    $("#cb_data_table").live("click", function () {
+        var selectedRows = $("#data_table").jqGrid('getGridParam', 'selarrrow');
+        if (selectedRows.length > 0) {
+            $(".toolbar button").eq(0).removeAttr("disabled");
+        }
+        else {
+            $(".toolbar button").eq(0).attr("disabled", "disabled");
+        }
+    });
 //显示表格
-    $(".PanelSty").live("dblclick", function () {
+    $(".SPCPanelSty").live("dblclick", function () {
 //    $("#adv_main").live("dblclick", function (e) {
 //        if (e.srcElement.id !== "adv_main")return;
         //绑定数据
@@ -223,7 +410,7 @@
     });
 //    $(".PanelSty").live("click", function () {
     //mousedown
-    $(".PanelSty").live("mouseup", function () {
+    $(".SPCPanelSty").live("mouseup", function () {
 //    $("#adv_main").live("click", function (e) {
 //        if (e.srcElement.id !== "adv_main")return;
         var control = Agi.Controls.FindControlByPanel(this.id);
@@ -272,9 +459,11 @@
         switch ($(this).text().trim()) {
             case "删除":
                 var selectedRows = $("#data_table").jqGrid('getGridParam', 'selarrrow');
+                selectedRows=Agi.Controls.AdvanceDataGrid.NumberArrayConvertSort(selectedRows);
                 for (var i = selectedRows.length - 1; i >= 0; i--) {
-                    var selectedRow = selectedRows[i];
+                    var selectedRow = selectedRows[i]-i;
                     $("#data_table").jqGrid('delRowData', selectedRow);
+                    $("#data_table").trigger("reloadGrid");
                     $(this).attr("disabled", "disabled");
                     delete myData[selectedRow];
                 }
@@ -303,11 +492,12 @@
                 Agi.view.advance.currentControl.SPCViewDataRestore();
                 break;
             case "刷新":
-                var rowData = $("#data_table").jqGrid('getRowData');
-                for (var i = 0; i < rowData.length; i++) {
-                    var data = rowData[i];
-                    delete data["标识"];
-                }
+                // var rowData = $("#data_table").jqGrid('getRowData');
+                var rowData = $("#data_table").jqGrid("getGridParam", "data");
+//                for (var i = 0; i < rowData.length; i++) {
+//                    var data = rowData[i];
+//                    delete data["标识"];
+//                }
 //                var control = Agi.Controls.FindControl(this.id);//此方法错误，需要传入控件的ID
                 Agi.view.advance.currentControl.SPCViewRefreshByGridData(rowData);
                 break;
@@ -330,8 +520,25 @@
                 var newData = [];
                 for (var i = 0; i < myData.length; i++) {
                     var data = myData[i];
-                    var statement = data[columnName] + rule + number;
-                    if (eval(statement)) {
+                    var statement =data[columnName]+ rule+number;
+                    var BolSucced=false;
+                    if(isNaN(number)){//字符串
+                        try{
+                            statement = "'"+data[columnName]+"'" + rule + "'"+number+"'";
+                            BolSucced=eval(statement);
+                        }catch(ev){
+                            statement =data[columnName]+ rule+number;
+                            BolSucced=eval(statement);
+                        }
+                     }else{//数值
+                        try{
+                            BolSucced=eval(statement);
+                        }catch(ev){
+                            statement = "'"+data[columnName]+"'" + rule + "'"+number+"'";
+                            BolSucced=eval(statement);
+                        }
+                    }
+                    if (BolSucced) {
                         newData.push(data);
                     }
                 }
@@ -344,8 +551,26 @@
                 var newData = [];
                 for (var i = 0; i < myData.length; i++) {
                     var data = myData[i];
-                    var statement = data[columnName] + rule + data[number];
-                    if (eval(statement)) {
+                    var statement =data[columnName]+ rule +data[number];
+                    var BolSucced=false;
+                    if(isNaN(number)){//字符串
+                        try{
+                            statement ="'"+data[columnName]+"'" + rule + "'"+data[number]+"'";
+                            BolSucced=eval(statement);
+                        }catch(ev){
+                            statement =data[columnName]+ rule +data[number];
+                            BolSucced=eval(statement);
+                        }
+                    }else{//数值
+                        try{
+                            BolSucced=eval(statement);
+                        }catch(ev){
+                            statement ="'"+data[columnName]+"'" + rule + "'"+data[number]+"'";
+                            BolSucced=eval(statement);
+                        }
+                    }
+
+                    if (BolSucced) {
                         newData.push(data);
                     }
                 }
@@ -380,12 +605,15 @@
         refreshGridData: function (data) {
             //
             $(".data").transit({y: -260});
-            $("#workspace").parent().css(
-                {
-                    height: parseInt($("#workspace").parent().height()) - 250,
-                    overflow: "scroll"
-                }
-            );
+            //判断是否减小高度
+            if ($("#workspace").parent().height() === $("#workspace").height()) {
+                $("#workspace").parent().css(
+                    {
+                        height: parseInt($("#workspace").parent().height()) - 250,
+                        overflow: "scroll"
+                    }
+                );
+            }
             //列
             var columnNames = ["标识"];
             var columnModels = [
@@ -423,87 +651,50 @@
             if (!isNaN(myPage)) {
                 $("#data_table").jqGrid("setGridParam", {page: myPage}).trigger("reloadGrid");
             }
+
+            $(".popupLayer").hide();//隐藏异常点录入功能弹出窗口
+        },
+        RightMenuOPenClose:function(ShowState){
+            if(!ShowState){
+                $(".menu").transit({x: 0});
+                $(".pointer").transit({rotate: -90});
+                $(".pop").transit({x: 0});
+            }else{
+                $(".menu").transit({x: -35});
+                $(".pointer").transit({rotate: 90});
+                $(".data").transit({y: 0});
+                $("#workspace").parent().css(
+                    {
+                        height: "auto",
+                        overflow: "hidden"
+                    }
+                );
+            }
+            menu_state = !menu_state;
         }
     }
-//模拟测试
-    var testGridData = {
-        ChartData: [
-            {"GroupName": "甲班", "重量": 12, "厚度": 0.85},
-            {"GroupName": "甲班", "重量": 8, "厚度": 0.84},
-            {"GroupName": "乙班", "重量": 9, "厚度": 0.85},
-            {"GroupName": "乙班", "重量": 11, "厚度": 0.80}
-        ],//SPC控件对应的数据
-        AlarmCells: [
-            {Row: 0, Col: 1, AlarmColor: "#ff6699"},
-            {Row: 1, Col: 1, AlarmColor: "#994c00"}
-        ],//报警点信息
-        AbnormalRows: [
-            0, 3
-        ]//异常点信息
-    };
-    testGridData = {
-        "ChartData": [
-            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "1", "标识": 1},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "2", "标识": 2},
-            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "3", "标识": 3},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "4", "标识": 4},
-            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "5", "标识": 5},
-            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "6", "标识": 6},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "7", "标识": 7},
-            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "8", "标识": 8},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "9", "标识": 9},
-            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "10", "标识": 10},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "11", "标识": 11},
-            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "12", "标识": 12},
-            {"SHIFT": "甲", "VALUE": "11.9", "VALUE_ORDER": "13", "标识": 13},
-            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "14", "标识": 14},
-            {"SHIFT": "甲", "VALUE": "11", "VALUE_ORDER": "15", "标识": 15},
-            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "16", "标识": 16},
-            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "17", "标识": 17},
-            {"SHIFT": "甲", "VALUE": "6.9", "VALUE_ORDER": "18", "标识": 18},
-            {"SHIFT": "甲", "VALUE": "5.5", "VALUE_ORDER": "19", "标识": 19},
-            {"SHIFT": "甲", "VALUE": "7.8", "VALUE_ORDER": "20", "标识": 20},
-            {"SHIFT": "甲", "VALUE": "8.9", "VALUE_ORDER": "21", "标识": 21},
-            {"SHIFT": "甲", "VALUE": "7", "VALUE_ORDER": "22", "标识": 22},
-            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "23", "标识": 23},
-            {"SHIFT": "甲", "VALUE": "7", "VALUE_ORDER": "24", "标识": 24},
-            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "25", "标识": 25},
-            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "26", "标识": 26},
-            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "27", "标识": 27},
-            {"SHIFT": "甲", "VALUE": "10.1", "VALUE_ORDER": "28", "标识": 28},
-            {"SHIFT": "甲", "VALUE": "10.2", "VALUE_ORDER": "29", "标识": 29},
-            {"SHIFT": "甲", "VALUE": "10.3", "VALUE_ORDER": "30", "标识": 30},
-            {"SHIFT": "甲", "VALUE": "10.4", "VALUE_ORDER": "31", "标识": 31},
-            {"SHIFT": "甲", "VALUE": "10.5", "VALUE_ORDER": "32", "标识": 32},
-            {"SHIFT": "甲", "VALUE": "10.6", "VALUE_ORDER": "33", "标识": 33},
-            {"SHIFT": "甲", "VALUE": "13.4", "VALUE_ORDER": "34", "标识": 34},
-            {"SHIFT": "甲", "VALUE": "13.5", "VALUE_ORDER": "35", "标识": 35}
-        ],
-        "AlarmCells": [
-            {"Row": 1, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 3, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 6, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 8, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 10, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 11, "Col": 1, "AlarmColor": "#ff0"},
-            {"Row": 12, "Col": 1, "AlarmColor": "#ff0"},
-            {"Row": 13, "Col": 1, "AlarmColor": "#ff0"},
-            {"Row": 15, "Col": 1, "AlarmColor": "#ff0"},
-            {"Row": 17, "Col": 1, "AlarmColor": "#ee82ee"},
-            {"Row": 18, "Col": 1, "AlarmColor": "#ee82ee"},
-            {"Row": 19, "Col": 1, "AlarmColor": "#ee82ee"},
-            {"Row": 21, "Col": 1, "AlarmColor": "#ee82ee"},
-            {"Row": 23, "Col": 1, "AlarmColor": "#ee82ee"},
-            {"Row": 25, "Col": 1, "AlarmColor": "#fd5530"},
-            {"Row": 28, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 29, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 30, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 31, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 32, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 33, "Col": 1, "AlarmColor": "#34fd43"},
-            {"Row": 34, "Col": 1, "AlarmColor": "#34fd43"}
-        ],
-        "AbnormalRows": [29]}
-//测试
-//    Agi.view.advance.refreshGridData(testGridData);
+
 })();
+
+//region 20131220 10:22 markeluo 数据处理
+Namespace.register("Agi.Controls.AdvanceDataGrid");
+//判断Number类型数据是否为空，若为空则进行替换
+Agi.Controls.AdvanceDataGrid.NumberArrayConvertSort=function(_OldArray){
+    if(_OldArray!=null &&_OldArray.length>0){
+        var ConvertArray=[];
+        for(var i=0;i<_OldArray.length;i++){
+            ConvertArray.push(eval(_OldArray[i]));
+        }
+       return ConvertArray.sort();
+    }
+    return [];
+}
+//格式化钻取参数值，并返回格式化后的值
+Agi.Controls.AdvanceDataGrid.FormatParsValue=function(_OldValue,_FormatFunName){
+    if(_FormatFunName!=null && _FormatFunName!=""){
+        var FormatFun=eval("Agi.FunLibrary.Items."+_FormatFunName);
+        _OldValue=FormatFun(_OldValue);
+    }
+    return _OldValue;
+}
+//endregion

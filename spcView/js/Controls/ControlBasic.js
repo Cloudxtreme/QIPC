@@ -2107,7 +2107,7 @@ Agi.Controls.CustomControl_ExtractDataPageListMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('js/Controls/controltabtemplates.html #tab-1', function () {
+    ItemContentPanel.load('JS/Controls/controltabtemplates.html #tab-1', function () {
         //0.默认选项隐藏
         $("#CstmtrlProParsNewParsTxt").width(0).hide();
 
@@ -2303,7 +2303,7 @@ Agi.Controls.CustomControl_ExtractDataParsListMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('js/Controls/controltabtemplates.html #tab-2', function () {
+    ItemContentPanel.load('JS/Controls/controltabtemplates.html #tab-2', function () {
         //1.加载已保存的配置
         Agi.Controls.CustomControl_ExtractDataPageListItems(ChartExtractConfig);
         $("#CstmtrlProParsValue_1").hide();
@@ -2316,6 +2316,14 @@ Agi.Controls.CustomControl_ExtractDataParsListMenu=function(_Panel,_Control){
             $("#CstmtrlProParsValue_0").find("option[value='"+ChartEntityColumns[0]+"']").attr("selected","selected");
         }
         $("#CustomControlProhidenSelPars").html("");
+        //3.绑定参数值格式化函数列表
+        if(Agi.FunLibrary.ItemNames!=null &&Agi.FunLibrary.ItemNames.length>0){
+            var strExtractParsFormatFuns="";
+            for(var i=0;i<Agi.FunLibrary.ItemNames.length;i++){
+                strExtractParsFormatFuns+="<option value='"+Agi.FunLibrary.ItemNames[i].FunName+"' title='"+Agi.FunLibrary.ItemNames[i].FunTitle+"'>"+Agi.FunLibrary.ItemNames[i].FunTitle+"</option>";
+            }
+            $("#CstmtrlProParsValueFormatFun").html(strExtractParsFormatFuns);
+        }
 
         var ThisSelItemObj=null;
         //4.事件绑定
@@ -2331,6 +2339,9 @@ Agi.Controls.CustomControl_ExtractDataParsListMenu=function(_Panel,_Control){
                     }
                 }
                 if(ThisSelItemObj!=null){
+                    //钻取页选中更改，重新当前钻取页的URL参数列表 (20140219 8:52 markeluo 新增)
+                    Agi.Controls.CustomControl_ExtractPageParsLoad(ThisSelItemObj.drillpage);
+
                     Agi.Controls.CustomControl_ExtractDataPageParsLoad(ThisSelItemObj);
                 }
             }
@@ -2406,6 +2417,9 @@ Agi.Controls.CustomControl_ExtractDataPageListItems=function(_DrillConfigs){
     $("#CustSigChartExtractPage").html(strDrillPags);
     if(SelectedItem!=null){
         $("#CustSigChartExtractPage").find("option[value='"+SelectedItem.drillname+"']").attr("selected","selected");
+        //钻取页选中更改，重新当前钻取页的URL参数列表(20140219 8:52 markeluo 新增)
+        Agi.Controls.CustomControl_ExtractPageParsLoad(SelectedItem.drillpage);
+
         Agi.Controls.CustomControl_ExtractDataPageParsLoad(SelectedItem);
     }
 }
@@ -2413,12 +2427,18 @@ Agi.Controls.CustomControl_ExtractDataPageListItems=function(_DrillConfigs){
 Agi.Controls.CustomControl_ExtractDataPageParsLoad=function(_DrillConfigIem){
     var strDrillPageParsItems="";
     if(_DrillConfigIem!=null && _DrillConfigIem.drillpars!=null && _DrillConfigIem.drillpars.length>0){
-        //parsname,parstype,parsvalue
+        //parsname,parstype,parsvalue,parsvaluefun
         for(var i=(_DrillConfigIem.drillpars.length-1);i>=0;i--){
-            strDrillPageParsItems+="<div class='CustomCtrlExtParsitem'><div class='CustomCtrlExtParsCellSty' title='"+_DrillConfigIem.drillpars[i].parsname+"'>"+_DrillConfigIem.drillpars[i].parsname
-                +"</div><div class='CustomCtrlExtParsCellSty' title='"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)
+            if(_DrillConfigIem.drillpars[i].parsvaluefun==null){
+                _DrillConfigIem.drillpars[i].parsvaluefun="";
+            }
+            strDrillPageParsItems+="<div class='CustomCtrlExtParsitem'>" +
+                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsname+"'>"+_DrillConfigIem.drillpars[i].parsname
+                +"</div><div class='CustomCtrlExtParsheadMinCell' title='"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)
                 +"'>"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)+"</div>" +
-                "<div class='CustomCtrlExtParsCellSty' title='"+_DrillConfigIem.drillpars[i].parsvalue+"'>"+_DrillConfigIem.drillpars[i].parsvalue+"</div></div>";
+                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsvalue+"'>"+_DrillConfigIem.drillpars[i].parsvalue+"</div>" +
+                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsvaluefun+"'>"+_DrillConfigIem.drillpars[i].parsvaluefun+"</div>" +
+                "</div>";
         }
     }
     $("#ParsListPanel").html(strDrillPageParsItems);
@@ -2428,7 +2448,8 @@ Agi.Controls.CustomControl_ExtractDataPageParsLoad=function(_DrillConfigIem){
         Agi.Controls.CustomControl_ExtractPagParsSelChanged({
             parsname:$(this).find("div")[0].innerText,
             parstype:Agi.Controls.CustomControl_ExtraParsTypeName($(this).find("div")[1].innerText,1),
-            parsvalue:$(this).find("div")[2].innerText
+            parsvalue:$(this).find("div")[2].innerText,
+            parsvaluefun:$(this).find("div")[3].innerText
         });
     });
 }
@@ -2507,12 +2528,16 @@ Agi.Controls.CustomControl_ExtraParsGetItemObj=function(){
     var newParsobj={
         parsname:$("#CstmtrlProParsNames").val(),
         parstype:$("#CstmtrlProParsType").val(),
-        parsvalue:""
+        parsvalue:"",
+        parsvaluefun:""
     };
     if(newParsobj.parstype=="1"){
         newParsobj.parsvalue=$("#CstmtrlProParsValue_1").val();
     }else{
         newParsobj.parsvalue=$("#CstmtrlProParsValue_0").val();
+    }
+    if($("#CstmtrlProFormatIsCheck").attr("checked")=="checked"){
+        newParsobj.parsvaluefun=$("#CstmtrlProParsValueFormatFun").val();
     }
     return newParsobj;
 }
@@ -2537,6 +2562,7 @@ Agi.Controls.CustomControl_ExtraParsSave=function(_ExtractConfigItem,_newitem,_t
                     _ExtractConfigItem.drillpars[i].parsname=_newitem.parsname;
                     _ExtractConfigItem.drillpars[i].parstype=_newitem.parstype;
                     _ExtractConfigItem.drillpars[i].parsvalue=_newitem.parsvalue;
+                    _ExtractConfigItem.drillpars[i].parsvaluefun=_newitem.parsvaluefun;
                     break;
                 }
             }
@@ -2587,7 +2613,38 @@ Agi.Controls.CustomControl_ExtractPagParsSelChanged=function(_SelObj){
     Agi.Controls.CustomControl_ExtraParsValShowByType(_SelObj.parstype,_SelObj.parsvalue);
 
     $("#CstmtrlProParsNames").val(_SelObj.parsname);
+    $("#CstmtrlProSelectParsNames").find("option[value='"+_SelObj.parsname+"']").attr("selected","selected");
     $("#CustomControlProhidenSelPars").html(_SelObj.parsname);
+    $("#CustomControlProhidenSelPars").html(_SelObj.parsname);
+    //参数值格式化
+    if(_SelObj.parsvaluefun!=null && _SelObj.parsvaluefun!=""){
+        $("#CstmtrlProFormatIsCheck").attr('checked',true);
+        $("#CstmtrlProParsValueFormatFun").find("option[value='"+_SelObj.parsvaluefun+"']").attr("selected","selected");
+    }else{
+        $("#CstmtrlProFormatIsCheck").attr('checked',false);
+    }
+}
+//23.钻取页面选中更改，获取被钻取页面的URL参数列表并显示（20140219 8:48 markeluo 新增）
+Agi.Controls.CustomControl_ExtractPageParsLoad=function(_SelObj,CallBack){
+    var PageName=_SelObj.substr(0,_SelObj.lastIndexOf("_"));
+    var PageVesion=_SelObj.substr(_SelObj.lastIndexOf("_")+1);
+    Agi.PageDataDrill.GetPageContenURL(PageName,PageVesion,function(_result){
+        if(_result.result && _result.result=="true"){
+            var strCustSigChartExtractURLPars="";
+            if(_result.data!=null && _result.data.urlpars!=null){
+                var ParsArray=_result.data.urlpars.split(",");
+                if(ParsArray!=null && ParsArray.length>0){
+                    for(var i=0;i<ParsArray.length;i++){
+                        strCustSigChartExtractURLPars+="<option value='"+ParsArray[i]+"' title='"+ParsArray[i]+"'>"+ParsArray[i]+"</option>";
+                    }
+                    $("#CstmtrlProParsNames").val(ParsArray[0]);
+                    $("#CstmtrlProSelectParsNames").html(strCustSigChartExtractURLPars);
+                    $("#CstmtrlProSelectParsNames").change(function(){
+                        $("#CstmtrlProParsNames").val($(this).val());
+                    });
+                }
+            }
+        }
+    })
 }
 //endregion
-

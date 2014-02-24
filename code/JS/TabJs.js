@@ -94,7 +94,12 @@ function BindGrid1() {
             title: "是否分组",
             template: "<input type='checkbox' id='dsGroup' value='' />"
 
-        }
+        },{
+             field: "aliases",
+             width: 90,
+             title: "别名",
+             template: "<input type='text' id='aliases' value=''/>"
+         }
         ]
     });
     var dsgridone = $("#gridone").data("kendoGrid");
@@ -111,7 +116,11 @@ function BindGrid1() {
             //20130111 倪飘 解决Datasets-添加计算列-重新编辑带有计算列的Dataset，计算列在编辑页面消失问题
             $(dsgridtbodytrs[i]).find("td")[5].innerText = "";
         }
-
+        //20140221 范金鹏 新建dataset时直接将列名绑定到别名列
+        var dsgridonetbotytrstemp = null;
+        dsgridonetbotytrstemp = $(dsgridone.tbody.find("tr")[i]);
+        dsgridonetbotytrstemp.find("#aliases").val(dsgridone.dataSource._data[i].aliases);  
+        //end                
     }
     dsgridtbodytrs=null;//DOM查询优化，临时变量清空
 }
@@ -292,7 +301,8 @@ function GetAllVTData(dsname, vtname) {
                                 dstype: dsdata[i].colType,
                                 dsaggregate: null,
                                 dsshow: false,
-                                dsexpression: ""
+                                dsexpression: "",
+                                aliases:dsdata[i].colName
                             });
                             Data1Column = dataone;
                             datatwo.push({
@@ -398,7 +408,8 @@ function GetAllSCData(dsname, vtname) {
                                 dstype: datatype,
                                 dsaggregate: null,
                                 dsshow: dsshow,
-                                dsexpression: ""
+                                dsexpression: "",
+                                aliases:columname
                             });
                             datatwo.push({
                                 dscolums: columname,
@@ -533,7 +544,8 @@ function GetAllProData(dsname, vtname) {
                                 dstype: dsdata[i].colType,
                                 dsaggregate: null,
                                 dsshow: false,
-                                dsexpression: ""
+                                dsexpression: "",
+                                aliases: dsdata[i].colName
                             });
                             Data1Column = dataone;
                             datatwo.push({
@@ -611,6 +623,9 @@ $("#DataSetSave").live('click', function () {
             var boolShow = $(ThisGridonetbodytrs[i]).find("#dsshow").attr("checked") == "checked" ? "true" : "false"; //是否显示
             var _expression = $(ThisGridonetbodytrs[i]).find("#EValue").val() == undefined ? "" : $(ThisGridonetbodytrs[i]).find("#EValue").val(); //表达式
             var _IsGroupBy = $(ThisGridonetbodytrs[i]).find("#dsGroup").attr("checked") == "checked" ? "true" : "false"; //是否分组
+            //20140220 范金鹏 获取别名信息
+            var aliases = $(ThisGridonetbodytrs[i]).find("#aliases").val() == undefined ? "" : $(ThisGridonetbodytrs[i]).find("#aliases").val(); //别名
+            //end
             if (_columName == _columName2) {
                 //循环获取表格里面的数据
                 if (_Aggregate == "请选择") { _Aggregate = "" }
@@ -621,7 +636,8 @@ $("#DataSetSave").live('click', function () {
                         DataType: _type,
                         Aggregator: _Aggregate,
                         GroupBy: _IsGroupBy,
-                        Visible: boolShow
+                        Visible: boolShow,
+                        Aliases: aliases
                     });
                 }
                 //如果表达式为空，说明是虚拟表自有列
@@ -699,10 +715,15 @@ $("#DataSetSave").live('click', function () {
         //20130730 倪飘 20130723 首自信qpc项目接口参数更改
         Agi.DatasetsManager.DSSUpdate(_DsName, _Remark, _DataSourceName, _VTType, _VTTableName, _DContrl, 0, "root", DataColumn, CalColumn, ClumnOrder, SortingRules, function (result) {
             if (result.result) {
-                AddAllDatasets();//刷新主界面的DataSet列表
-                menuManagement.loadDataSource($('#accordion-agivis #collapseOne>.accordion-inner'));//刷新新建页面左侧的DataSet列表
-                AgiCommonDialogBox.Alert(result.message, null);
-                boolIsSave = true;
+                //2014-02-20 coke 移动dataset
+                MoveNewDataSetGroup(function(){
+
+                    AddAllDatasets();//刷新主界面的DataSet列表
+                    menuManagement.loadDataSource($('#accordion-agivis #collapseOne>.accordion-inner'));//刷新新建页面左侧的DataSet列表
+                    AgiCommonDialogBox.Alert(result.message, null);
+                    boolIsSave = true;
+                });
+
             }
             else {
                 AgiCommonDialogBox.Alert(result.message, null);
@@ -725,15 +746,19 @@ $("#DataSetSave").live('click', function () {
                 //20130730 倪飘 20130723 首自信qpc项目接口参数更改
                 Agi.DatasetsManager.DSSSave(_DsName, _Remark, _DataSourceName,_VTType, _VTTableName, _DContrl, 0, "root", DataColumn, CalColumn, ClumnOrder, SortingRules, function (result) {
                     if (result.result) {
-                        AddAllDatasets();
-                        //更新组态环境页面的dataset
-                        menuManagement.loadDataSource($('#accordion-agivis #collapseOne>.accordion-inner'));
-                        $("#DataSetSave").attr("disabled", true);
-                        //20130114 倪飘 解决新建混合虚拟表和新建datasets保存以后，保存按钮会变成不可选中状态，但是当鼠标移上去的时候还是可以看到按钮的变化问题
-                        //$('#DataSetSave').css('background-image', 'none')
-                        $('#DataSetSave').removeClass("btnclass");
-                        AgiCommonDialogBox.Alert(result.message, null);
-                        boolIsSave = true;
+                        //2014-02-20 coke 移动dataset
+                        MoveNewDataSetGroup(function(){
+                            AddAllDatasets();
+                            //更新组态环境页面的dataset
+                            menuManagement.loadDataSource($('#accordion-agivis #collapseOne>.accordion-inner'));
+                            $("#DataSetSave").attr("disabled", true);
+                            //20130114 倪飘 解决新建混合虚拟表和新建datasets保存以后，保存按钮会变成不可选中状态，但是当鼠标移上去的时候还是可以看到按钮的变化问题
+                            //$('#DataSetSave').css('background-image', 'none')
+                            $('#DataSetSave').removeClass("btnclass");
+                            AgiCommonDialogBox.Alert(result.message, null);
+                            boolIsSave = true;
+                        });
+
                     }
                     else {
                         AgiCommonDialogBox.Alert(result.message, null);
@@ -749,7 +774,32 @@ $("#DataSetSave").live('click', function () {
     }
 
 });
+/*
+* 2014-02-20  coke 将dataset移至选中组别名称;
+* */
+function MoveNewDataSetGroup(CallBack)
+{
 
+    var parentID=$("#GroupNameID").val();
+    if(parentID=="0")
+    {
+        //没有选择移动组别id
+        CallBack();
+        return;
+    }
+    var pageid=$("#dsetname").val().toString().trim();
+
+    Agi.DatasetsManager.DSNodeMove({DataSetsKey:pageid,ParentKey:parentID},function(result){
+        if(result.result=="true"){
+           // AgiCommonDialogBox.Alert("移动成功！", null);
+
+        }else{
+            AgiCommonDialogBox.Alert(result.message, null);
+        }
+        CallBack();
+    });
+
+}
 
 //编辑DataSet页面
 function EditDatasetsFun(dsname) {
@@ -921,7 +971,9 @@ function EditDatasetsFun(dsname) {
                         var _Aggregator = DataColumn[i].Aggregator;
                         var _Visible = DataColumn[i].Visible;
                         var _GroupBy = DataColumn[i].GroupBy;
-
+                        //20140220 范金鹏 获取别名信息
+                        var _Aliases = DataColumn[i].Aliases;
+                        //end
                         var dsgridonetbotytrstemp = null;
                         for (var j = 0; j < dsgridone.dataSource._data.length; j++) {
                             dsgridonetbotytrstemp = $(dsgridone.tbody.find("tr")[j]);
@@ -929,6 +981,15 @@ function EditDatasetsFun(dsname) {
                             if (_columnName == DataColumn[i].ID) {
                                 //绑定聚合函数列内容
                                 dsgridonetbotytrstemp.find("#dsaggregate").val(_Aggregator);
+                                //20140220 范金鹏 将别名绑定编辑表格，如果没有别名直接绑定列名
+                                //以前的数据在没有修改前别名为undefined，修改后保存没有赋值的话为空
+                                if (_Aliases == undefined || _Aliases == "") {
+                                    dsgridonetbotytrstemp.find("#aliases").val(_columnName);
+                                }
+                                else {
+                                    dsgridonetbotytrstemp.find("#aliases").val(_Aliases);
+                                }
+                                //end
                                 //绑定是否显示列内容
                                 if (_Visible == "true") {
                                     dsgridonetbotytrstemp.find("#dsshow").attr("checked", true);

@@ -54,7 +54,13 @@
                     <div id="CustomControlProhidenSelPars" class="CustomControlProhidenValue"></div>
                 </td>
             </tr>
-            <tr><td class="CustomControlproPanelTabletd0max">URL参数名:</td><td colspan="3"><input type="text" id="CstmtrlProParsNames" value=""/> </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">URL参数名:</td>
+                <td colspan="3">
+                    <select id="CstmtrlProSelectParsNames"></select>
+                    <input type="text" id="CstmtrlProParsNames" value="" style="visibility:hidden;width:0px;"/>
+                </td>
+            </tr>
             <tr>
                 <td class="CustomControlproPanelTabletd0max">参数值来源:</td>
                 <td colspan="3">
@@ -71,13 +77,21 @@
                 <input  id="CstmtrlProParsValue_1" type="text" value=""/>
                 </td>
             </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">值格式化:</td>
+                <td colspan="3">
+                    <input type="checkbox" id="CstmtrlProFormatIsCheck" style="width:auto;">
+                    <select id="CstmtrlProParsValueFormatFun" style="width:88%;"></select>
+                </td>
+            </tr>
             <tr><td colspan="4">参数列表</td></tr>
             <tr>
                 <td colspan="4">
                     <div class="ParsListHeadSty" id="ParsListHead">
-                        <div class="CustomCtrlExtParsheadCellSty">URL参数</div>
-                        <div class="CustomCtrlExtParsheadCellSty">参数值源</div>
-                        <div class="CustomCtrlExtParsheadCellSty">参数值</div>
+                        <div class="CustomCtrlExtParsheadMinCell">URL参数</div>
+                        <div class="CustomCtrlExtParsheadMinCell">参数值源</div>
+                        <div class="CustomCtrlExtParsheadMinCell">参数值</div>
+                        <div class="CustomCtrlExtParsheadMinCell">格式化</div>
                     </div>
                     <div class="CustomCtrlExtParsListPanelsty" id="ParsListPanel">
                     </div>

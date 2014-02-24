@@ -18,6 +18,9 @@
     background: -webkit-gradient(linear, 0% 0%, 0% 90%, from(#2F93D9), to(#236DA1));
     color: #fff;
     cursor: move;
+    overflow: hidden;
+	/*position: absolute;*/
+	z-index: 1;
 }
 .selectPanelBodySty{
     width: 100%;
@@ -399,5 +402,17 @@ text-align:center;
 }
 .CustomControlProhidenValue{
     display: none;width:0px;height:0px;font-size:0px;
+}
+.CustomCtrlExtParsheadCellSty{
+    text-align: left;
+    background-color:#dcdcdc;
+    padding-left: 10px;
+    width:102px;
+}
+.CustomCtrlExtParsheadMinCell{
+    text-align: left;
+    background-color:#dcdcdc;
+    padding-left: 10px;
+    width:74px;
 }
 /*SCP 控件钻取，属性面板样式信息 end*/

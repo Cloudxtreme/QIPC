@@ -81,7 +81,9 @@ Agi.Msg.UrlManage = function () {
             this.Paras = strArray.split(',');
             this.value = [];
             for (var i = 0; i < this.Paras.length; i++) {
-                this.value.push({ Name: this.Paras[i], Value: decodeURI(this.getParameter(this.Paras[i])) });
+                if(this.Paras[i]){
+                    this.value.push({ Name: this.Paras[i], Value: decodeURI(this.getParameter(this.Paras[i])) });
+                }
             }
             Agi.Msg.PageOutPramats.AddPramats({ 'Type': Agi.Msg.Enum.Url, 'Key': 'Url参数', 'ChangeValue': this.value });
 
@@ -108,7 +110,9 @@ Agi.Msg.UrlManage = function () {
     this.toString = function () {
         var str = "";
         for (var i = 0; i < this.Paras.length; i++) {
-            str += this.Paras[i] + ",";
+            if(this.Paras[i]){
+                str += this.Paras[i] + ",";
+            }
         }
         if (str.length > 0) {
             str = str.substring(0, str.length - 1);

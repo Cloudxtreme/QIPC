@@ -12,6 +12,7 @@ agi.jsloader
             /*初始化工作区（画布）*/
             /*已过时*/
             //Agi.Edit.Init($("#BottomRightCenterContentDiv"));
+            Agi.Edit.workspace.canvas = $("#BottomRightCenterContentDiv");
             /*加载控件列表*/
             Agi.Edit.getControlList();
             /*事件*/
@@ -23,6 +24,7 @@ agi.jsloader
             );
             /*版本管理*/
             var TextpageName; //文本框显示的页面名称
+            //var GroupName="";//选中组别编号
             $("#save").click(
                 function () {
                     // Agi.Edit.SavePage();
@@ -30,6 +32,10 @@ agi.jsloader
                     var Versioninfomodal = document.getElementById("ShowVersioninfomodal");
                     $("#isCoverVersion").removeClass("isCoverVersionBlock");
                     $("#isCoverVersion").addClass("isCoverVersionNone");
+
+                    //获取树形节点
+                   RequestPageData();
+
                     // $("#InputPageName").val(workspace.pageName);//获得页面名称
                     if (isEdite) {
                         $("#VersionSelect").empty(); //$("#sel").empty()
@@ -87,6 +93,142 @@ agi.jsloader
                     }
                 }
             );
+
+            /*2014-02-20  coke
+            * 获取组别名称
+            *
+            * */
+            function RequestPageData(dataContent,BackFunction)
+            {
+
+                //var arryList=$("#PageManage").find('li[data-filetype="group"]');
+                var direction = "";
+                var Enumtype="";
+                var id = 0;
+                var jsonData = {
+                    "url": direction, //"PageManager"
+                    "ID": id,
+                    "enum":Enumtype
+                };
+
+                 if(dataContent!=undefined)
+                 {
+                     jsonData.url=dataContent.rslt.obj.attr("id");
+                     jsonData.enum="group";
+                 }else{
+                     $("#SetGroupData").empty();
+                 }
+
+                if(Agi.WebServiceConfig.Type== "JAVA" && jsonData.url!=""){
+                    jsonData.ID=jsonData.url;
+                }
+                var jsonString = JSON.stringify(jsonData);
+                var Methname="FMGetFileByParent_SG";
+                if (Agi.WebServiceConfig.Type== "JAVA") {
+                    Methname="SPC_FMGetFileByParent";
+                }
+                Agi.DAL.ReadData({
+                    "MethodName":Methname,
+                    "Paras": jsonString, //json字符串
+                    "CallBackFunction": function (result) {     //回调函数
+                        if (result.result!="true") {
+                            BackFunction([]); //无效返回值
+                            return;
+                        }
+                        if(result.data.length<0){
+                            BackFunction([]); //无效返回值
+                            return;
+                        }
+                        if(dataContent==undefined){
+                            //产生树形节点
+                            //第一次加载的时候执行
+
+                            CreateTreeNode(result.data);
+                        }else{
+                            //点击树形节点执行此代码
+                            var data=result.data;
+                            var position = 'inside';
+                            var parent = $('#SetGroupData').jstree('get_selected');
+                            for(var s= 0,len=data.length;s<len;s++)
+                            {
+                                if(data[s].enum=="group")
+                                {
+                                    var em={
+                                        "data": {title:data[s].id },
+                                        'attr': {title:data[s].id ,ID:data[s].path},
+                                        "metadata": { id:data[s].path, type: 'commonLib' }
+                                    }
+                                   dataContent.inst.create_node(parent, position, em, false, false);//添加节点
+                                }
+                            }
+                            dataContent.inst.open_node();//打开节点
+                            BackFunction(data); //返回实体下次使用
+                        }
+
+                    }
+                });
+            }
+/*2014-02-20  coke
+* 产生树形节点
+*
+* */
+           function CreateTreeNode(dataList)
+           {
+               var dataIn = [];
+               var data=dataList;
+               for(var s= 0,len=data.length;s<len;s++)
+               {
+                   if(data[s].enum=="group")
+                   {
+                       var em={
+                           "data": {title:data[s].id },
+                           'attr': {title:data[s].id ,ID:data[s].path},
+                           "metadata": { id:data[s].path, type: 'commonLib' },
+                           children: []
+                       }
+                       dataIn.push(em);
+                   }
+               }
+               if(dataIn.length<0){return;}
+               var temp="";
+               $("#SetGroupData") .jstree({
+                   json_data: {data: dataIn },
+                   plugins: ["themes", "json_data", "ui"]
+               }).bind("select_node.jstree",function (event, data1) {
+                   //点击获取组别
+                   $("#GroupNameID").val(data1.rslt.obj.attr("ID"));
+                       //删除节点
+                       data1.rslt.obj.children(2).eq(2).remove();
+                       if(temp!=data1.rslt.obj.attr("title"))
+                       {
+                           temp=data1.rslt.obj.attr("title");
+                           RequestPageData(data1,function(ev){
+                               data=ev;
+                           });
+
+                       }else{
+                           var position = 'inside';
+                           var parent = $('#SetGroupData').jstree('get_selected');
+                           for(var s= 0,len=data.length;s<len;s++)
+                           {
+                               if(data[s].enum=="group")
+                               {
+                                   var em={
+                                       "data": {title:data[s].id },
+                                       'attr': {title:data[s].id ,ID:data[s].path},
+                                       "metadata": { id:data[s].path, type: 'commonLib' }
+                                   }
+                                   data1.inst.create_node(parent, position, em, false, false);
+                               }
+                           }
+                           data1.inst.open_node();
+                       }
+
+                   }).delegate("a", "click", function (event, data) {
+                       event.preventDefault();
+                   }).bind("loaded.jstree",function(e,data){ })
+           }
+
             $("#SelectVersionBtn").live('click', function () {  //点击确定
                 if ($("#InputPageName").val().trim() == "") {
                     AgiCommonDialogBox.Alert("页面名称不能为空!", null);
@@ -94,8 +236,74 @@ agi.jsloader
                 }
                 //$('#ShowVersioninfomodal').hide();
                 dialogs._save.dialog('close');
-                Agi.Edit.SavePage();
+                Agi.Edit.SavePage(function(){
+                    //2014-02-20  coke 保存完成移动页面
+
+                    MovePage();
+                });
+
+
             });
+/*
+* 2014-02-20  coke  移动页面到指定组别中
+* */
+            function MovePage()
+            {
+                var vl=$("#GroupNameID").val();//选中组别名称
+                if(vl=="0")
+                {
+                    //没有选中组别
+                    return;
+                }
+
+                var jsonData = {
+                    "url": "", //"PageManager"
+                    "ID":0,
+                    "enum":""
+                };
+
+                if(Agi.WebServiceConfig.Type== "JAVA" && jsonData.url!=""){
+                    jsonData.ID=jsonData.url;
+                }
+                var jsonString = JSON.stringify(jsonData);
+                var Methname="FMGetFileByParent_SG";
+                if (Agi.WebServiceConfig.Type== "JAVA") {
+                    Methname="SPC_FMGetFileByParent";
+                }
+                Agi.DAL.ReadData({
+                    "MethodName":Methname,
+                    "Paras": jsonString, //json字符串
+                    "CallBackFunction": function (result) {     //回调函数
+                       if (result.result!="true") {return;}
+                        var  data=result.data;
+                        if(data.length<0){return;}
+                        var pagename=$("#InputPageName").val();
+                        var pageID=0;
+                        for(var s= 0,len=data.length;s<len;s++)
+                        {
+                            if(data[s].id==pagename)
+                            {
+                                pageID=data[s].path;
+                            }
+                        }
+                        if(pageID==0)
+                        {
+                            return;
+                        }
+                        //移动页面
+                        Agi.PageGroupManager.VSPageMove({ Key:pageID,Parent:vl},function(result){
+                            if(result.result=="true"){
+                               // AgiCommonDialogBox.Alert("移动成功！", null);
+                                //刷新列表显示方法
+                                RefreshAllPagescallbak();
+                            }else{
+                                AgiCommonDialogBox.Alert(result.message, null);
+                            }
+                        });
+                    }
+                });
+            }
+
             $("#CancelVersionBtn").live('click', function () {//点击取消
 //                $('#ShowVersioninfomodal').hide();
 //                return;
@@ -209,7 +417,8 @@ agi.jsloader
                             return;
                         }
                         event.returnvalue = false;
-                        //Agi.Edit.DeleteControls();
+                        //2014-02-21  coke 打开
+                        Agi.Edit.DeleteControls();
                     }
                     //Ctrl+Q
                     else if (event.ctrlKey == true && event.keyCode == 81) {
@@ -279,15 +488,17 @@ agi.jsloader
                         event.returnvalue = false;
                         //Agi.Edit.reDo();
                     }
+                    //2014-02-21  coke 打开
                     //Ctrl+C
                     else if (event.ctrlKey == true && event.keyCode == 67) {
                         event.returnvalue = false;
-                        //Agi.Edit.CopyControls();
+                        Agi.Edit.CopyControls();
                     }
+                    //2014-02-21  coke 打开
                     //Ctrl+V
                     else if (event.ctrlKey == true && event.keyCode == 86) {
                         event.returnvalue = false;
-                        //Agi.Edit.PastContols();
+                        Agi.Edit.PastContols();
                     }
                     //20130228  倪飘 解决武汉bug所有控件，属性编辑页面，鼠标能输入的位置，按键盘上下左右键，
                     //属性编辑界面中控件位置都会跟着改变，但是右下角控件属性中值未改变问题（编号：ZHZS-289）

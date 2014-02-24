@@ -179,17 +179,17 @@ Agi.Controls.TimeSplider = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $(this.Get("HTMLElement")).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewTimeSplider = new Agi.Controls.TimeSplider();
-                NewTimeSplider.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewTimeSplider;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $(this.Get("HTMLElement")).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewTimeSplider = new Agi.Controls.TimeSplider();
+//                NewTimeSplider.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewTimeSplider;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();

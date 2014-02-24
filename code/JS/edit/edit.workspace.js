@@ -3,7 +3,7 @@
     Agi.Edit.workspace = {
         //属性
         editDiv: "#BottomRightCenterContentDiv",
-        canvas : $("#BottomRightCenterContentDiv"),
+        canvas : null,
         name: "editWorkspace",
         pageName: "新建页面1",
         width: screen.width,

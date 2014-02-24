@@ -11,8 +11,8 @@ Namespace.register("Agi.FunLibrary");
 //函数库名称列表
 Agi.FunLibrary.ItemNames =
     [
-    {"FunName":"ToMonthFirstDay","FunTitle":"月份第一天"},
-    {"FunName":"ToMonthLastDay","FunTitle":"月份最后一天"}
+    {"FunName":"ToMonthFirstDay","FunTitle":"获取月份第一天"},
+    {"FunName":"ToMonthLastDay","FunTitle":"获取月份最后一天"}
     ];
 
 //函数库子列表

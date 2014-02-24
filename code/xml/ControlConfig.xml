@@ -94,7 +94,13 @@
         </Files>
       </Control>
        
-       
+        <Control id='1' ControlType='TimePicker' ControlName='时间选择控件' IcoURL='JS/Controls/ControlsImages/DatePicker.png'
+              Initialize="Agi.Controls.InitTimePicker">
+        <Files>
+			<File Type='js' Path='JS/Controls/NewTimePicker/TimePicker.css'></File>
+			<File Type='js' Path='JS/Controls/NewTimePicker/TimePicker.js'></File>
+        </Files>
+      </Control>
        
         
     </Group>
@@ -275,61 +281,6 @@
             </Files>
         </Control>
     </Group>
-    <Group Name="业务控件" IcoURL='JS/Controls/ControlsImages/FunctionControl.png'>
-        <Control id='1' ControlType='PCChart' ControlName='过程能力图表' IcoURL='JS/Controls/ControlsImages/PCChart.png'
-                 Initialize="Agi.Controls.InitPCChart">
-            <Files>
-                <File Type='css' Path='JS/Controls/PCChart/pcchart.css'></File>
-                <File Type='js' Path='JS/Controls/PCChart/pcchart.js'></File>
-            </Files>
-        </Control>
-        <Control id='1' ControlType='PCLabel' ControlName='过程能力摘要' IcoURL='JS/Controls/ControlsImages/ODInfoTable.png'
-                 Initialize="Agi.Controls.InitPCLabel">
-            <Files>
-              <File Type='css' Path='JS/Controls/PCLabel/PCLabel.css'></File>
-              <File Type='js' Path='JS/Controls/PCLabel/PCLabel.js'></File>
-            </Files>
-        </Control>
-        <Control id='1' ControlType='ODChart' ControlName='均值 极差图' IcoURL='JS/Controls/ControlsImages/ODChart.png'
-                 Initialize="Agi.Controls.InitODChart">
-            <Files>
-                <File Type="js" Path="JS/Controls/CustomizeControls/Spc.Data.Process.js"></File>
-                <File Type="css" Path="JS/Controls/CustomizeControls/ODChart/ODChart.css"></File>
-                <File Type="js" Path="JS/Controls/CustomizeControls/ODChart/ODChart.js"></File>
-            </Files>
-        </Control>
-        <Control id='1' ControlType='ODInfoTable' ControlName='过程能力信息' IcoURL='JS/Controls/ControlsImages/ODInfoTable.png'
-                 Initialize="Agi.Controls.InitODInfoTable">
-            <Files>
-                <File Type="js" Path="JS/Controls/CustomizeControls/Spc.Data.Process.js"></File>
-                <File Type="css" Path="JS/Controls/CustomizeControls/ODInfoTable/ODInfoTable.css"></File>
-                <File Type="js" Path="JS/Controls/CustomizeControls/ODInfoTable/ODInfoTable.js"></File>
-            </Files>
-        </Control>
-        <Control id='1' ControlType='BoxChart1' ControlName='箱线图表' IcoURL='JS/Controls/ControlsImages/BoxChart.png'
-                 Initialize="Agi.Controls.InitBoxChart1">
-            <Files>
-                <File Type='css' Path='JS/Controls/BoxChart/css/BoxChart.css'></File>
-                <File Type='css' Path='JS/Controls/BoxChart/css/prettify.css'></File>
-                <File Type='css' Path='JS/Controls/BoxChart/css/style.css'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.HC.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.HC.PowerCharts.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/FusionCharts.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/BoxChart.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/json2.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/lib.js'></File>
-                <File Type='js' Path='JS/Controls/BoxChart/prettify.js'></File>
-              <File Type='js' Path='JS/Controls/BoxChart/boxStyle/boxStyle.js'></File>
-            </Files>
-        </Control>
-        <Control id='1' ControlType='SPCSingleChart' ControlName='单值图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
-                 Initialize="Agi.Controls.InitSPCSingleChart">
-            <Files>
-                <File Type='css' Path='JS/Controls/SPCSingleChart/SPCSingleChart.css'></File>
-                <File Type='js' Path='JS/Controls/SPCSingleChart/SPCSingleChart.js'></File>
-            </Files>
-        </Control>
-    </Group>
     <Group Name="SPC控件" IcoURL='JS/Controls/ControlsImages/FunctionControl.png'>
         <Control id='1' ControlType='CustomSingleChart' GroupName="SPC" ControlName='单值图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
                  Initialize="Agi.Controls.InitCustomSingleChart">
@@ -426,15 +377,6 @@
                 <File Type='css' Path='JS/Controls/CustomCChart/CustomCChart.css'></File>
                 <File Type='js' Path='JS/Controls/CustomCChart/CustomCChart.js'></File>
                 <File Type='js' Path='JS/Controls/CustomCChart/CCRrule.js'></File>
-            </Files>
-        </Control>
-        <Control id='13' ControlType='FreeShape' GroupName="SPC" ControlName='预定义图形' IcoURL='JS/Controls/ControlsImages/Freeshape.png'
-                 Initialize="Agi.Controls.InitFreeShape">
-            <Files>
-                <File Type='css' Path='JS/Controls/FreeShape/FreeShape.css'></File>
-                <File Type='js' Path='JS/Controls/FreeShape/FreeShapeCore.js'></File>
-                <File Type='js' Path='JS/Controls/FreeShape/BasicShape.js'></File>
-                <File Type='js' Path='JS/Controls/FreeShape/FreeShape.js'></File>
             </Files>
         </Control>
         <Control id='14' ControlType='EdgeDataView' GroupName="SPC" ControlName='边降数据控件' IcoURL='JS/Controls/ControlsImages/Freeshape.png'

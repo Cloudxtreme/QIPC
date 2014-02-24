@@ -289,17 +289,17 @@ Agi.Controls.RealTimeLable = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         CustomProPanelShow:function () {
             Agi.Controls.RealTimeLableProrityInit(this);
         },
-        Copy:function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newRealTimeLablePositionpars = { Left:parseFloat(PostionValue.Left), Top:parseFloat(PostionValue.Top) }
-                var NewRealTimeLable = new Agi.Controls.RealTimeLable();
-                NewRealTimeLable.Init(ParentObj, newRealTimeLablePositionpars);
-                newRealTimeLablePositionpars = null;
-                return NewRealTimeLable;
-            }
-        },
+//        Copy:function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newRealTimeLablePositionpars = { Left:parseFloat(PostionValue.Left), Top:parseFloat(PostionValue.Top) }
+//                var NewRealTimeLable = new Agi.Controls.RealTimeLable();
+//                NewRealTimeLable.Init(ParentObj, newRealTimeLablePositionpars);
+//                newRealTimeLablePositionpars = null;
+//                return NewRealTimeLable;
+//            }
+//        },
         PostionChange:function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();

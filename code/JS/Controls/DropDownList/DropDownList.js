@@ -299,17 +299,17 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var Newdropdownlist = new Agi.Controls.DropDownList();
-                Newdropdownlist.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return Newdropdownlist;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var Newdropdownlist = new Agi.Controls.DropDownList();
+//                Newdropdownlist.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return Newdropdownlist;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();

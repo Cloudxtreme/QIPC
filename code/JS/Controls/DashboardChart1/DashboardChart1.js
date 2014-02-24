@@ -94,10 +94,10 @@ Agi.Controls.DashboardChart1 = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var chart = null;
             var Me = this;
             var MePrority = Me.Get("ProPerty");
-            var HTMLElement = Me.Get("HTMLElement")
+            var HTMLElement = this.shell.Container.find('#'+this.shell.BasicID)[0];//Me.Get("HTMLElement");
             var DashboardChart1Json = MePrority.BasciObj;
             //20130507 倪飘 解决bug，半圆仪表盘拖入共享数据源，控件无反应，页面报错
-            var DashboardChart1Id = $(HTMLElement)[0].id;
+            var DashboardChart1Id = HTMLElement.id;
             if (FusionCharts("_" + DashboardChart1Id)) {
                 FusionCharts("_" + DashboardChart1Id).dispose();
             }
@@ -211,8 +211,17 @@ Agi.Controls.DashboardChart1 = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 background:null
             };
             var ID = "DashboardChart1" + Agi.Script.CreateControlGUID();
-            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty DashboardChart1PanelSty'><div id='children_" + ID + "' style='width:100%;height:100%'></div></div>");
+            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty DashboardChart1PanelSty'></div>");
             HTMLElementPanel.css('padding-bottom', '0px');
+            HTMLElementPanel.css('padding-bottom', '0px');
+            this.shell = new Agi.Controls.Shell({
+                ID: ID,
+                width: 300,
+                height: 200,
+                divPanel: HTMLElementPanel
+            });
+            var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+            this.shell.initialControl(BaseControlObj[0]);
             var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
@@ -384,17 +393,17 @@ Agi.Controls.DashboardChart1 = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewDashboardChart1 = new Agi.Controls.DashboardChart1();
-                NewDashboardChart1.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewDashboardChart1;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewDashboardChart1 = new Agi.Controls.DashboardChart1();
+//                NewDashboardChart1.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewDashboardChart1;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
@@ -552,8 +561,17 @@ Agi.Controls.DashboardChart1 = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     var RealTimePoint = _Config.RealTimePoint;
                     var ClassName = _Config.ClassName;
                     var DashboardChart1ProPerty = _Config.DashboardChart1;
-                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty DashboardChart1PanelSty'><div id='children_" + ID + "' style='width:100%;height:100%'></div></div>");
+                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty DashboardChart1PanelSty'></div>");
                     HTMLElementPanel.css('padding-bottom', '0px');
+                    HTMLElementPanel.css('padding-bottom', '0px');
+                    this.shell = new Agi.Controls.Shell({
+                        ID: ID,
+                        width: 300,
+                        height: 200,
+                        divPanel: HTMLElementPanel
+                    });
+                    var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+                    this.shell.initialControl(BaseControlObj[0]);
                     var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
                     var obj = null;
                     if (typeof (_Target) == "string") {

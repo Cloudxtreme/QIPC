@@ -258,6 +258,12 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             }
         }
 
+        // 2014-02-19  coke  删除实体默认值步长
+       var ChartOptions=Me.Get("ChartOptions");
+        ChartOptions.xAxis.tickInterval=1;//默认值
+        Me.Set("ChartOptions",ChartOptions);
+        $("#basicChart_XAxisTickInterval").val(ChartOptions.xAxis.tickInterval);//设置x轴步长
+
         Me.RefreshStandLines(); //更新基准线显示
 
     }, //移除实体Entity
@@ -277,6 +283,17 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         var ID = "BasicChart" + Agi.Script.CreateControlGUID();
         var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty BasicChartPanelSty'></div>");
         HTMLElementPanel.css('padding-bottom', '0px');
+        //20140219 范金鹏 添加拖动句柄
+        this.shell = new Agi.Controls.Shell({
+            ID: ID,
+            width: 300,
+            height: 200,
+            divPanel: HTMLElementPanel
+        });
+        var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+        this.shell.initialControl(BaseControlObj[0]);
+        this.Set("HTMLElement", this.shell.Container[0]);
+        //end
 
         var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
 
@@ -391,17 +408,17 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         var Me = this;
         return Me.Get("ProPerty").BasciObj;
     }, //返回第三方highchart 对象
-    Copy: function () {
-        if (layoutManagement.property.type == 1) {
-            var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-            var PostionValue = this.Get("Position");
-            var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-            var Newdropdownlist = new Agi.Controls.BasicChart();
-            Newdropdownlist.Init(ParentObj, PostionValue);
-            newPanelPositionpars = null;
-            return Newdropdownlist;
-        }
-    },
+//    Copy: function () {
+//        if (layoutManagement.property.type == 1) {
+//            var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//            var PostionValue = this.Get("Position");
+//            var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//            var Newdropdownlist = new Agi.Controls.BasicChart();
+//            Newdropdownlist.Init(ParentObj, PostionValue);
+//            newPanelPositionpars = null;
+//            return Newdropdownlist;
+//        }
+//    },
     PostionChange: function (_Postion, IsResizable) {
         var Me = this;
         if (IsResizable != null && IsResizable) {
@@ -487,7 +504,8 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         var ChartInitOption = {
             colors: ChartOptions.colors,
             chart: {
-                renderTo: HtmlElementID,
+                //renderTo: HtmlElementID,
+                renderTo:MePrority.ID,
                 style: {
                     zIndex: 0
                 },
@@ -702,7 +720,15 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 var ID = _Config.ControlID;
                 var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty BasicChartPanelSty'></div>");
                 HTMLElementPanel.css('padding-bottom', '0px');
-
+                //20140219 范金鹏 添加拖动句柄
+                this.shell = new Agi.Controls.Shell({
+                    ID: ID,
+                    width: 300,
+                    height: 200,
+                    divPanel: HTMLElementPanel
+                });
+                var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+                this.shell.initialControl(BaseControlObj[0]);
                 var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
 
                 var obj = null;

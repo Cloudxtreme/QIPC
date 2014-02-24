@@ -1,0 +1,49 @@
+/*20130226 15:11 高级属性面板 表格 markeluo add*/
+.TimePickerPro_Panel{
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+    border:1px solid #667c8d;
+    padding: 5px 0px 5px 0px;
+    margin:10px 0px 10px 0px;
+}
+.TimePickerPro_Tab_Panel{
+    width: 100%;
+    height:auto;
+    border-radius:5px;
+    font-size:12px;
+    font-weight: bold;
+    font-family: '微软雅黑',Arial;
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+}
+.TimePickerPro_Tab_Panel td{
+    border:1px solid #cccccc;
+    border-collapse:collapse;
+ }
+.TimePickerPro_Tabtd0{
+    text-align: right;
+    padding: 1px;
+}
+.TimePickerPro_Tabtd1
+{
+    text-align: left;
+    padding: 1px;
+}
+.TimePickerPro_tab_td1 select{
+    margin-left: 0px;
+    width:80px;
+    margin-bottom: 0px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.TimePickerPro_tab_td1 input{
+    width:80px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}
+.TimePickerPro_Tabtd1 input[type='text']{
+    width:80px;
+    font-size:12px;
+    font-family: '微软雅黑',Arial;
+}

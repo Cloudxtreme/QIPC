@@ -458,17 +458,17 @@ Agi.Controls.SpcDemoODChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewDataGrid = new Agi.Controls.SpcDemoODChart();
-                NewDataGrid.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewDataGrid;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewDataGrid = new Agi.Controls.SpcDemoODChart();
+//                NewDataGrid.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewDataGrid;
+//            }
+//        },
         PostionChange: function (_Postion) {
             var self = this;
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {

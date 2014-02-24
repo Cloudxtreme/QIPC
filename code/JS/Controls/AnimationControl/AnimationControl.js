@@ -810,18 +810,18 @@ Agi.Controls.AnimationControl = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         CustomProPanelShow: function () {
             Agi.Controls.AnimationControlPropertyInit(this);
         },
-        Copy: function () {
-            //20130530 倪飘 解决bug，动画控件不能粘贴复制，按F12页面报错
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newAnimationControlPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewAnimationControl = new Agi.Controls.AnimationControl();
-                NewAnimationControl.Init(ParentObj, PostionValue);
-                newAnimationControlPositionpars = null;
-                return NewAnimationControl;
-            }
-        },
+//        Copy: function () {
+//            //20130530 倪飘 解决bug，动画控件不能粘贴复制，按F12页面报错
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newAnimationControlPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewAnimationControl = new Agi.Controls.AnimationControl();
+//                NewAnimationControl.Init(ParentObj, PostionValue);
+//                newAnimationControlPositionpars = null;
+//                return NewAnimationControl;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();

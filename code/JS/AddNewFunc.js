@@ -5144,6 +5144,9 @@ function AddDataSets(dsname, vtname, state) {
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:140px;'/></div>" +
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:140px;'/></div>" +
         "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:145px;'></select></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'>组别：</label>" +
+        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width: 140px; text-align:left;overflow-y: scroll;'></div>"+
+        "<input type='hidden'  id='GroupNameID' value='0'></div>" +
         "</div><div id='dstop2'><div class='newdatastitle'>列 信 息</div><div class='calccloum'><input type='button' id='btnExpression' value='添加计算列' class='btnclass'/><input type='button' id='btnCheck' value='列显示全选' class='btnclass'/><input type='button' id='btnUp' value='上移' class='btnclass'  /><input type='button' id='btnDown' value='下移'  class='btnclass' />" +
         "</div><div id='gridone' class='dsdridsty'></div></div><div id='dstop3'><div class='newdatastitle'>列 排 序 </div><div class='opcloum'>" +
         "</div><div id='gridtwo' class='dsdridsty'>" +
@@ -5204,6 +5207,10 @@ function AddDataSets(dsname, vtname, state) {
         });
         ControlTypesArray = null;//20121226 22:51 markeluo 新建DataSet 时，默认控件类型下拉列表中重复控件类型去除
     });
+
+    //2014-02-20  COKE 添加节点
+    CreateNewNode();
+
     //标准
     if (state == undefined) {
         GetAllVTData(dsname, vtname);
@@ -5217,6 +5224,78 @@ function AddDataSets(dsname, vtname, state) {
         GetAllProData(dsname, vtname);
     }
     boolCheck = true;
+}
+
+/*2014-02-20  COKE
+* 添加节点
+* */
+function CreateNewNode()
+{
+    $("#SetDataSetGroup").empty();
+    //添加节点
+    var ArryList=$("#DatasetsManage").find('li[isfolder="true"]');
+    var dataIn = [];
+    var Listdata=null;
+    var temp="";
+    for(var  s= 0,len=ArryList.length;s<len;s++)
+    {
+        var em={
+            "data": {title:$(ArryList[s].children[0]).attr("title") },
+            'attr': {title:$(ArryList[s].children[0]).attr("title") ,ID:$(ArryList[s]).attr("id")},
+            "metadata":{ id:$(ArryList[s]).attr("id"), type: 'commonLib' },
+            children: []
+        }
+        dataIn.push(em);
+    }
+    if(dataIn.length<0){return;}
+    $("#SetDataSetGroup") .jstree({
+        json_data: {data: dataIn },
+        plugins: ["themes", "json_data", "ui"]
+    }).bind("select_node.jstree",function (event, data1) {
+            $("#GroupNameID").val(data1.rslt.obj.attr("id"));//存放组别id；
+            data1.rslt.obj.children(2).eq(2).remove();//移除子节点
+            if(temp!=data1.rslt.obj.attr("id"))
+            {
+                temp=data1.rslt.obj.attr("id");
+                Agi.DatasetsManager.DSAllDataSet_SG({perid:temp},function(result){
+                    if (result.result!="true") {return;}
+                    Listdata=result.Data.groups;
+                    if(Listdata.length<1){return;}
+                    var position = 'inside';
+                    var parent = $('#SetDataSetGroup').jstree('get_selected');
+                    for(var s= 0,len=Listdata.length;s<len;s++)
+                    {
+                        var em={
+                            "data": {title:Listdata[s].ID },
+                            'attr': {title:Listdata[s].id ,ID:Listdata[s].path},
+                            "metadata": { id:Listdata[s].path, type: 'commonLib' }
+                        }
+                        data1.inst.create_node(parent, position,em, false, false);
+                    }
+                    data1.inst.open_node();
+                    position=parent=null;
+                })
+            }else{
+                if(Listdata.length<1){return;}
+                var position = 'inside';
+                var parent = $('#SetDataSetGroup').jstree('get_selected');
+                for(var s= 0,len=Listdata.length;s<len;s++)
+                {
+                    var em={
+                        "data": {title:Listdata[s].ID },
+                        'attr': {title:Listdata[s].id ,ID:Listdata[s].path},
+                        "metadata": { id:Listdata[s].path, type: 'commonLib' }
+                    }
+                    data1.inst.create_node(parent, position, em, false, false);
+                }
+                data1.inst.open_node();
+                position=parent=null;
+            }
+
+        }).delegate("a", "click", function (event, data) {
+            event.preventDefault();
+        }).bind("loaded.jstree",function(e,data){ })
+    ArryList=dataIn=null;
 }
 //编辑DataSet页面
 function EditDataSets(dsname) {
@@ -5233,6 +5312,11 @@ function EditDataSets(dsname) {
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:140px;'/></div>" +
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:140px;'/></div>" +
         "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:145px;'></select></div>" +
+
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'>组别：</label>" +
+        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width: 140px; text-align:left;overflow-y: scroll;'></div>"+
+        "<input type='hidden'  id='GroupNameID' value='0'></div>" +
+
         "</div><div id='dstop2'><div class='newdatastitle'>列 信 息</div><div class='calccloum'><input type='button' id='btnExpression' value='添加计算列' class='btnclass'/><input type='button' id='btnCheck' value='列显示全选' class='btnclass'/><input type='button' id='btnUp' value='上移' class='btnclass'  /><input type='button' id='btnDown' value='下移'  class='btnclass' />" +
         "</div><div id='gridone' class='dsdridsty'></div></div><div id='dstop3'><div class='newdatastitle'>列 排 序 </div><div class='opcloum'>" +
         "</div><div id='gridtwo' class='dsdridsty'>" +
@@ -5278,6 +5362,8 @@ function EditDataSets(dsname) {
         });
     });
 
+    //2014-02-20  COKE 添加节点
+    CreateNewNode();
 
     //绑定需要编辑的DataSet的数据
     EditDatasetsFun(dsname);
@@ -6099,6 +6185,7 @@ function AddDataSetsGroup(_groupInfo,RefreshCallback) {
                     if(data.result=="true"){
                         AgiCommonDialogBox.Alert("添加成功!", null);
                         RefreshCallback();
+
                     }else{
                         AgiCommonDialogBox.Alert("添加失败!"+data.message, null);
                     }

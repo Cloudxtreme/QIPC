@@ -93,16 +93,16 @@ Agi.Controls.ThermometerChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var chart = null;
             var Me = this;
             var MePrority = Me.Get("ProPerty");
-            var HTMLElement = Me.Get("HTMLElement");
+            var HTMLElement = this.shell.Container.find('#'+this.shell.BasicID)[0];//Me.Get("HTMLElement");
             var ThermometerChartJson = MePrority.BasciObj;
-            var ThermometerChartId = $(HTMLElement).find('div')[0].id;
+            var ThermometerChartId = HTMLElement.id;
             if (FusionCharts("_" + ThermometerChartId)) {
                 FusionCharts("_" + ThermometerChartId).dispose();
             }
             chart = new FusionCharts("JS/Controls/ThermometerChart/image/Thermometer.swf", "_" + ThermometerChartId, "100%", "100%", "0", "1");
             chart.setTransparent(true);
             chart.setJSONData(ThermometerChartJson);
-            chart.render($(HTMLElement).find('div')[0]);
+            chart.render(HTMLElement);
             Me.chart = chart;
         },
         AddEntity: function (_entity) {
@@ -186,8 +186,17 @@ Agi.Controls.ThermometerChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             Me.Set("Entity", []);
             Me.Set("ControlType", "ThermometerChart");
             var ID = "ThermometerChart" + Agi.Script.CreateControlGUID();
-            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty ThermometerChartPanelSty'><div id='children_" + ID + "' style='width:100%;height:100%'></div></div>");
+            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty ThermometerChartPanelSty'></div>");
             HTMLElementPanel.css('padding-bottom', '0px');
+            HTMLElementPanel.css('padding-bottom', '0px');
+            this.shell = new Agi.Controls.Shell({
+                ID: ID,
+                width: 300,
+                height: 200,
+                divPanel: HTMLElementPanel
+            });
+            var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+            this.shell.initialControl(BaseControlObj[0]);
             var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
@@ -338,17 +347,17 @@ Agi.Controls.ThermometerChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewThermometerChart = new Agi.Controls.ThermometerChart();
-                NewThermometerChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewThermometerChart;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewThermometerChart = new Agi.Controls.ThermometerChart();
+//                NewThermometerChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewThermometerChart;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
@@ -526,8 +535,17 @@ Agi.Controls.ThermometerChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     var RealTimePoint = _Config.RealTimePoint;
                     var BackGround = _Config.BackGround;
                     var ThermometerChartProPerty = _Config.ThermometerChart;
-                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty ThermometerChartPanelSty'><div id='children_" + ID + "' style='width:100%;height:100%'></div></div>");
+                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty ThermometerChartPanelSty'></div>");
                     HTMLElementPanel.css('padding-bottom', '0px');
+                    HTMLElementPanel.css('padding-bottom', '0px');
+                    this.shell = new Agi.Controls.Shell({
+                        ID: ID,
+                        width: 300,
+                        height: 200,
+                        divPanel: HTMLElementPanel
+                    });
+                    var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+                    this.shell.initialControl(BaseControlObj[0]);
                     HTMLElementPanel.css(BackGround.value);
                     var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
                     var obj = null;

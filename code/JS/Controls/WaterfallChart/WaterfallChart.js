@@ -466,17 +466,17 @@ Agi.Controls.WaterfallChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var Me = this;
             return Me.Get("ProPerty").BasciObj;
         }, //返回第三方highchart 对象
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var Newdropdownlist = new Agi.Controls.WaterfallChart();
-                Newdropdownlist.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return Newdropdownlist;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var Newdropdownlist = new Agi.Controls.WaterfallChart();
+//                Newdropdownlist.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return Newdropdownlist;
+//            }
+//        },
         PostionChange: function (_Postion, IsResizable) {
             var Me = this;
             if (IsResizable != null && IsResizable) {

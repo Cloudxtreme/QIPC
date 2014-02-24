@@ -2,105 +2,113 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title></title>
     <style type="text/css">
-        #AgiColorPickerDialog_tabs{
+        #AgiColorPickerDialog_tabs
+        {
             width: 600px;
             height: 480px;
         }
     </style>
 </head>
 <body>
-<script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
-<link rel="stylesheet" href="../../layout/themes/base/jquery.ui.all.css" />
-<script type="text/javascript" src="../../layout/ui/jquery.ui.core.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.resizable.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.position.js"></script>
-<script type="text/javascript" src="../../layout/ui/jquery.ui.tabs.js"></script>
-
-<link rel="Stylesheet" type="text/css" href="jpicker/css/jpicker-1.1.6.min.css" />
-<link rel="Stylesheet" type="text/css" href="jpicker/jPicker.css" />
-<script src="jpicker/jpicker-1.1.6.min.js" type="text/javascript"></script>
-
-<script src="jpicker/jpicker-1.1.6.min.js" type="text/javascript"></script>
-<link rel="stylesheet" href="Agi.ColorPicker.css" />
-<div id="AgiColorPickerDialog_tabs">
-    <ul>
-        <li><a href="#colorPickerTab-1"><span>纯色填充</span></a></li>
-        <li><a href="#colorPickerTab-2"><span>线性填充</span></a></li>
-        <li><a href="#colorPickerTab-3"><span>图片填充</span></a></li>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" href="../../layout/themes/base/jquery.ui.all.css" />
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.mouse.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.draggable.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.resizable.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="../../layout/ui/jquery.ui.tabs.js"></script>
+    <link rel="Stylesheet" type="text/css" href="jpicker/css/jpicker-1.1.6.min.css" />
+    <link rel="Stylesheet" type="text/css" href="jpicker/jPicker.css" />
+    <script src="jpicker/jpicker-1.1.6.min.js" type="text/javascript"></script>
+    <script src="jpicker/jpicker-1.1.6.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="Agi.ColorPicker.css" />
+    <div id="AgiColorPickerDialog_tabs">
+        <ul>
+            <li><a href="#colorPickerTab-1"><span>纯色填充</span></a></li>
+            <li><a href="#colorPickerTab-2"><span>线性填充</span></a></li>
+            <li><a href="#colorPickerTab-3"><span>图片填充</span></a></li>
         </ul>
-    <div id="colorPickerTab-1">
-        <span id="Alpha">
-
-        </span>
-    </div>
-    <div id="colorPickerTab-2">
-        <div style="height: 25px;">
-            <label for="colorPickerGradientType">渐变样式:</label>
-            <select name="" id="colorPickerGradientType" style="margin-left: 13px;">
+        <div id="colorPickerTab-1">
+            <span id="Alpha"></span>
+        </div>
+        <div id="colorPickerTab-2">
+            <div style="height: 25px;">
+                <label for="colorPickerGradientType">
+                    渐变样式:</label>
+                <select name="" id="colorPickerGradientType" style="margin-left: 13px;">
                     <option value="horizontal">水平&nbsp;&nbsp;→</option>
                     <option value="vertical">垂直&nbsp;&nbsp;↓</option>
                     <option value="diagonal">对角&nbsp;&nbsp;↘</option>
                     <option value="diagonal-bottom">对角&nbsp;&nbsp;↗</option>
                     <option value="radial">放射&nbsp;&nbsp;○</option>
-            </select>
-        </div>
-        <div style="height: 68px;min-height: 68px;">
-            <label >渐变梯度:</label>
-            <div class="gradientViewArea"></div>
-            <div  class="gradientDragArea">
-                <div class="stop-marker stop-marker-0" title="Color stop" style="left: 85px;z-index: 1;">
-                    <div class="color"></div>
+                </select>
+            </div>
+            <div style="height: 68px; min-height: 68px;">
+                <label>
+                    渐变梯度:</label>
+                <div class="gradientViewArea">
                 </div>
-                <div class="stop-marker active stop-marker-1" title="Color stop" style="left: 160px;z-index: 2">
-                    <div class="color"></div>
+                <div class="gradientDragArea">
+                    <div class="stop-marker stop-marker-0" title="Color stop" style="left: 85px; z-index: 1;">
+                        <div class="color">
+                        </div>
+                    </div>
+                    <div class="stop-marker active stop-marker-1" title="Color stop" style="left: 160px;
+                        z-index: 2">
+                        <div class="color">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: block; width: 100%; height: auto; border: 0px solid red;">
+                <div id="Alpha2" class="gradientLeft">
+                </div>
+                <div class="gradientRight">
                 </div>
             </div>
         </div>
-        <div style="display: block; width:100%;height: auto;border:0px solid red;">
-            <div id="Alpha2" class="gradientLeft"></div>
-            <div class="gradientRight"></div>
+        <div id="colorPickerTab-3">
+            <div style="height: 380px; overflow-y: scroll; overflow-x: hidden">
+            </div>
         </div>
-        </div>
-    <div id="colorPickerTab-3">
-        <div style="height: 380px;overflow-y: scroll; overflow-x: hidden">
-        </div>
+        <div id="currentColor" style="display:block">
+            <label>最近使用的颜色：</label>
+            <input type="button" style="width: 50px; display: none;" id="colorValue0" />
+            <input type="button" style="width: 50px; display: none;" id="colorValue1" />
+            <input type="button" style="width: 50px; display: none;" id="colorValue2" />
         </div>
     </div>
+    <script type="text/javascript">
+        $('#AgiColorPickerDialog_tabs').tabs();
 
-<script type="text/javascript">
-    $('#AgiColorPickerDialog_tabs').tabs();
-
-    $.fn.jPicker.defaults.images.clientPath='jpicker/images/';
-    $('#Alpha').jPicker({
-                window:{expandable:false,title:' ',alphaSupport:true
+        $.fn.jPicker.defaults.images.clientPath = 'jpicker/images/';
+        $('#Alpha').jPicker({
+            window: { expandable: false, title: ' ', alphaSupport: true
             },
-             color:{
-                 active:new $.jPicker.Color({ahex:'99330099'})}
-            },
-            function(color, context)
-            {
+            color: {
+                active: new $.jPicker.Color({ ahex: '99330099' })
+            }
+        },
+            function (color, context) {
                 //debugger;
                 var all = color.val('all');
                 alert('Color chosen - hex: ' + (all && '#' + all.hex || 'none') + ' - alpha: ' + (all && all.a + '%' || 'none'));
                 //$('#Commit').css({ backgroundColor: all && '#' + all.hex || 'transparent' });
             },
-            function(color, context)
-            {
+            function (color, context) {
                 //if (context == LiveCallbackButton.get(0)) alert('Color set from button');
                 //var hex = color.val('hex');
                 //LiveCallbackElement.css({ backgroundColor: hex && '#' + hex || 'transparent' });
             },
-            function(color, context)
-            {
+            function (color, context) {
                 //alert('"Cancel" Button Clicked');
             }
     );
-</script>
+    </script>
 </body>
 </html>

@@ -26,8 +26,8 @@ Agi.Controls.ODInfoTable = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 obj = $(_Target);
             }
             this.shell.Container.appendTo(obj);
-            this.shell.Title.hide().removeClass('selectPanelheadSty');
-            this.shell.Footer.hide();
+//            this.shell.Title.hide().removeClass('selectPanelheadSty');
+//            this.shell.Footer.hide();
 
             self.shell.Container.height(self.shell.Container.height() - 17);
             if (Agi.Edit) {
@@ -235,17 +235,17 @@ Agi.Controls.ODInfoTable = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewDataGrid = new Agi.Controls.ODInfoTable();
-                NewDataGrid.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewDataGrid;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewDataGrid = new Agi.Controls.ODInfoTable();
+//                NewDataGrid.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewDataGrid;
+//            }
+//        },
         PostionChange: function (_Postion) {
             var self = this;
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {

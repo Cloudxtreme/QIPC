@@ -64,7 +64,7 @@ Agi.Controls.PCLabel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         var MePrority = Me.Get("ProPerty");
         var data = MePrority.BasciObj.data;
         var MeProrityData = MePrority.BasciObj.propertyData;
-        var label = $(Me.Get("HTMLElement")).find('div')[0];
+        var label = Me.shell.Container.find('#'+Me.shell.BasicID)[0];
         var pctype = MeProrityData.pctype;
         //        $(label).find("h6").remove();
         //        $(label).find("table").remove();
@@ -342,8 +342,16 @@ Agi.Controls.PCLabel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         Me.Set("Entity", []);
         Me.Set("ControlType", "PCLabel");
         var ID = "PCLabel" + Agi.Script.CreateControlGUID();
-        var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCLabelPanelSty'><div id='children_" + ID + "'  class='children'></div></div>");
+        var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCLabelPanelSty'></div>");
         HTMLElementPanel.css('padding-bottom', '0px');
+        this.shell = new Agi.Controls.Shell({
+            ID: ID,
+            width: 130,
+            height: 130,
+            divPanel: HTMLElementPanel
+        });
+        var BaseControlObj = $('<div class="children" id="' + ID + '">' + '</div>');
+        this.shell.initialControl(BaseControlObj[0]);
         var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
         var obj = null;
         if (typeof (_Target) == "string") {
@@ -585,8 +593,16 @@ Agi.Controls.PCLabel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 var CloumnName = _Config.CloumnName;
                 var RealTimePoint = _Config.RealTimePoint;
                 var PCLabelProPerty = _Config.PCLabel;
-                var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCLabelPanelSty'><div id='children_" + ID + "' class='children'></div></div>");
+                var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCLabelPanelSty'></div>");
                 HTMLElementPanel.css('padding-bottom', '0px');
+                this.shell = new Agi.Controls.Shell({
+                    ID: ID,
+                    width: 130,
+                    height: 130,
+                    divPanel: HTMLElementPanel
+                });
+                var BaseControlObj = $('<div class="children" id="' + ID + '">' + '</div>');
+                this.shell.initialControl(BaseControlObj[0]);
                 var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
                 var obj = null;
                 if (typeof (_Target) == "string") {
@@ -662,14 +678,15 @@ Agi.Controls.PCLabel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
 * */
 Agi.Controls.PCLabel.OptionsAppSty = function (_StyConfig, _PCLabel) {
     if (_StyConfig != null) {
-        var conObj = _PCLabel.Get("HTMLElement").id;
-        $('#' + conObj + ' .children').css('background-color', 'none');
-        $('#' + conObj + ' .children').css('border', _StyConfig.border);
-        $('#' + conObj + ' .children').css('background', _StyConfig.background);
-        $('#' + conObj + ' .children').css('font-size', _StyConfig.fontSize);
-        $('#' + conObj + ' .children').css('color', _StyConfig.color);
-        $('#' + conObj + ' .children>div').css('background', _StyConfig.titlebackground);
-        $('#' + conObj + ' .children>div').css('border-bottom', _StyConfig.borderbottom);
+        //var conObj = _PCLabel.Get("HTMLElement").id;
+        var label = _PCLabel.shell.Container.find('#'+_PCLabel.shell.BasicID);
+       label.css('background-color', 'none');
+       label.css('border', _StyConfig.border);
+       label.css('background', _StyConfig.background);
+       label.css('font-size', _StyConfig.fontSize);
+       label.css('color', _StyConfig.color);
+       label.css('background', _StyConfig.titlebackground);
+       label.css('border-bottom', _StyConfig.borderbottom);
     }
 }
 /*BasicChart参数更改处理方法*/

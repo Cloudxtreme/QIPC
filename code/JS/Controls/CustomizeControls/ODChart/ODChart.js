@@ -26,9 +26,9 @@ Agi.Controls.ODChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 obj = $(_Target);
             }
             self.shell.Container.appendTo(obj);
-            self.shell.Title.hide().removeClass('selectPanelheadSty');
+            //self.shell.Title.hide().removeClass('selectPanelheadSty');
 
-            this.shell.Footer.hide();
+            //this.shell.Footer.hide();
             self.chartOption = {
                 chart: {
                     renderTo: this.shell.BasicID,
@@ -455,17 +455,17 @@ Agi.Controls.ODChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewDataGrid = new Agi.Controls.ODChart();
-                NewDataGrid.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewDataGrid;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewDataGrid = new Agi.Controls.ODChart();
+//                NewDataGrid.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewDataGrid;
+//            }
+//        },
         PostionChange: function (_Postion) {
             var self = this;
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {

@@ -17,6 +17,9 @@
     <link href="CSS/Tabs.css" rel="stylesheet" type="text/css"/>
     <link href="CSS/modernizr.custom.css" rel="stylesheet" type="text/css"/>
     <link href="JS/Controls/DatePicker/zebra_datepicker_metallic.css" rel="stylesheet" type="text/css"/>
+	 <link href="JS/Controls/NewTimePicker/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css"/>
+	 <link href="JS/Controls/NewTimePicker/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css"/>
+
     <script type="text/javascript">
         function getQueryString(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -100,6 +103,10 @@
     <script src="JS/AgiShareDatasource/Agi.ShareData.Data.js" type="text/javascript"></script>
     <!--  //样式名称转换-->
     <script src="JS/ControlStyle/ControlNameExchange.js" type="text/javascript"></script>
+	<!--  //日期时间控件引用-->
+	<script src="JS/Controls/NewTimePicker/jquery-ui-1.8.17.custom.min.js" type="text/javascript"></script>
+	<script src="JS/Controls/NewTimePicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+	<script src="JS/Controls/NewTimePicker/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></script>
 </head>
 <body onselectstart="return false;">
 <div id="progressbar1" class="background" style="display: none; ">
@@ -134,8 +141,8 @@
                         <img alt="virtual-plus" src="Img/TopIcon/virtual-plus.png"/></div>
                     <div id="dataset" title="新建Datasets">
                         <img alt="dataset-plus" src="Img/TopIcon/dataset-plus.png"/></div>
-                    <div id="dashboard" title="新建页面">
-                        <img alt="dashboard-plus" src="Img/TopIcon/dashboard-plus.png"/></div>
+                    <!--<div id="dashboard" title="新建页面">-->
+                        <!--<img alt="dashboard-plus" src="Img/TopIcon/dashboard-plus.png"/></div>-->
                     <div id="dashboardspc" title="新建SPC页面">
                         <img alt="dashboardspc-plus" src="Img/TopIcon/dashboardspc-plus.png"/></div>
                     <div id="Point_plus" title="新建点位" style="display: none;">
@@ -393,19 +400,19 @@
                 </div>
             </div>
         </div>
-        <div class="LineDiv"></div>
-        <div id="MainPageDiv">
-            <div class="MainIMG">
-                <img src="Img/MainBigIcon/dashboard.png"/></div>
-            <div class="MainDetails">
-                <div class="BigText">
-                    页面
-                </div>
-                <div class="SmallText">
-                    使用图表，网格和更多的数据可视化组件通过拖放的方式创建我们的展示页面
-                </div>
-            </div>
-        </div>
+        <!--<div class="LineDiv"></div>-->
+        <!--<div id="MainPageDiv">-->
+            <!--<div class="MainIMG">-->
+                <!--<img src="Img/MainBigIcon/dashboard.png"/></div>-->
+            <!--<div class="MainDetails">-->
+                <!--<div class="BigText">-->
+                    <!--页面-->
+                <!--</div>-->
+                <!--<div class="SmallText">-->
+                    <!--使用图表，网格和更多的数据可视化组件通过拖放的方式创建我们的展示页面-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="LineDiv"></div>
         <div id="MainSPCPageDiv">
             <div class="MainIMG">
@@ -1168,6 +1175,10 @@
                         <td class="VersionTd1">是否覆盖版本：</td>
                         <td class="VersionTd2"><select id="VersionSelect"></select></td>
                     </tr>
+                    <tr class="PageSaveNoSPCRow" >
+                        <td class="VersionTd1">设置分组：</td>
+                        <td class="VersionTd2"><input type="hidden" id="GroupNameID"><div id="SetGroupData" class="jstree jstree-1 jstree-default jstree-focused" style="height:50px; text-align:left;overflow-y: scroll; "></div></td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -1597,7 +1608,7 @@
 <link href="Lib/colorpicker/spectrum.css" rel="stylesheet" type="text/css"/>
 <script src="Lib/colorpicker/spectrum.js"></script>
 <!--脚本编辑器界面-->
-<!--<script type="text/javascript" src="JS/Controls/AnimationControl/jstree_pre1.0_fix_1/jquery.jstree.js"></script>-->
+<script type="text/javascript" src="JS/Controls/AnimationControl/jstree_pre1.0_fix_1/jquery.jstree.js"></script>
 <!--<link rel="stylesheet" href="JS/AgiScript/ui/script.editor.css"/>-->
 <!--<script type="text/javascript" src="JS/AgiScript/ui/config.js"></script>-->
 <!--<script type="text/javascript" src="JS/AgiScript/ui/script.editor.js"></script>-->
@@ -1620,6 +1631,6 @@
 <script type="text/javascript" src="JS/AgiColorPicker/Agi.ColorPicker.js"></script>
 <script type="text/javascript" src="JS/Controls/Container/Container.js"></script>
 <!--测试信息-->
-<!--加载函数格式化-->
+<!--参数值格式化函数库-->
 <script type="text/javascript" src="Lib/FunLibrary.js"></script>
 </html>

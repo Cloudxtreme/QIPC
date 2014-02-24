@@ -620,6 +620,17 @@ Agi.Controls.PCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var ID = "PCChart" + Agi.Script.CreateControlGUID();
             var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'></div>");
             HTMLElementPanel.css('padding-bottom', '0px');
+            //20140219 范金鹏 添加拖动句柄
+            this.shell = new Agi.Controls.Shell({
+                ID: ID,
+                width: 300,
+                height: 200,
+                divPanel: HTMLElementPanel
+            });
+            var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+            this.shell.initialControl(BaseControlObj[0]);
+            this.Set("HTMLElement", this.shell.Container[0]);
+            //end
             var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
@@ -749,17 +760,17 @@ Agi.Controls.PCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var Newdropdownlist = new Agi.Controls.PCChart();
-                Newdropdownlist.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return Newdropdownlist;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var Newdropdownlist = new Agi.Controls.PCChart();
+//                Newdropdownlist.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return Newdropdownlist;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
@@ -828,7 +839,8 @@ Agi.Controls.PCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var BaseControlObj = new Highcharts.Chart({
                 colors: ChartOptions.colors,
                 chart: {
-                    renderTo: HtmlElementID,
+                    //renderTo: HtmlElementID,
+                    renderTo: MePrority.ID,
                     style: {
                         zIndex: 0
                     },
@@ -1111,6 +1123,14 @@ Agi.Controls.PCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     var ID = _Config.ControlID;
                     var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'></div>");
                     HTMLElementPanel.css('padding-bottom', '0px');
+                    this.shell = new Agi.Controls.Shell({
+                        ID: ID,
+                        width: 300,
+                        height: 200,
+                        divPanel: HTMLElementPanel
+                    });
+                    var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+                    this.shell.initialControl(BaseControlObj[0]);
                     var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
                     var obj = null;
                     if (typeof (_Target) == "string") {

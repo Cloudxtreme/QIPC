@@ -401,4 +401,17 @@ text-align:center;
 .DrilldataTipsty{
     color:#ff0000;
 }
+
+.CustomCtrlExtParsheadCellSty{
+    text-align: left;
+    background-color:#dcdcdc;
+    padding-left: 10px;
+    width:102px;
+}
+.CustomCtrlExtParsheadMinCell{
+    text-align: left;
+    background-color:#dcdcdc;
+    padding-left: 10px;
+    width:74px;
+}
 /*SCP 控件钻取，属性面板样式信息 end*/

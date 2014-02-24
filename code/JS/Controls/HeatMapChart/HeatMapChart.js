@@ -410,18 +410,18 @@ Agi.Controls.HeatMapChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-        //20130524 倪飘 解决bug，热图控件不能被复制，粘贴
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewHeatMapChart = new Agi.Controls.HeatMapChart();
-                NewHeatMapChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewHeatMapChart;
-            }
-        },
+//        Copy: function () {
+//        //20130524 倪飘 解决bug，热图控件不能被复制，粘贴
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewHeatMapChart = new Agi.Controls.HeatMapChart();
+//                NewHeatMapChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewHeatMapChart;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();

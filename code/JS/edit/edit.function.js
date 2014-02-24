@@ -46,7 +46,7 @@ edit.ChangeEdit = function () {
     $("#InputPageName").val("新建页面1");
 }
 //保存
-edit.SavePage = function () {
+edit.SavePage = function (callBack) {
     /*  $("#isCoverVersion").removeClass("isCoverVersionBlock");
     $("#isCoverVersion").addClass("isCoverVersionNone");
     if(isEdite){
@@ -198,6 +198,9 @@ edit.SavePage = function () {
             "Paras": jsonString,
             "CallBackFunction": function (result) {
                 AgiCommonDialogBox.Alert(result.message, null);
+                if(callBack){
+                    callBack();
+                }
                 //alert(result.message);
                 if (result.result) {
                     boolIsSave = true;

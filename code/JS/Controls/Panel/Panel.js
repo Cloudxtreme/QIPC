@@ -156,17 +156,17 @@ Agi.Controls.Panel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         CustomProPanelShow: function () {
             Agi.Controls.PanelProrityInit(this);
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewPanel = new Agi.Controls.Panel();
-                NewPanel.Init(ParentObj, newPanelPositionpars);
-                newPanelPositionpars = null;
-                return NewPanel;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewPanel = new Agi.Controls.Panel();
+//                NewPanel.Init(ParentObj, newPanelPositionpars);
+//                newPanelPositionpars = null;
+//                return NewPanel;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();

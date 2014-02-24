@@ -826,8 +826,16 @@ Agi.Controls.PCChartGxp = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             this.Set("Entity", []);
             this.Set("ControlType", "PCChartGxp");
             var ID = "PCChartGxp" + Agi.Script.CreateControlGUID();
-            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'><div id='Panel_chart_" + ID + "' class='pcchartpanel' style='float:left;height:100%;'></div><div id='Panel_MenuObj_" + ID + "' class='pcchartmenu'  style='width:0px;height:100%;float:right;'></div><div style='clear:both;width:0px;height: 0px;font-size: 0px;'></div>");
+            var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'><div style='clear:both;width:0px;height: 0px;font-size: 0px;'></div>");
             HTMLElementPanel.css('padding-bottom', '0px');
+            this.shell = new Agi.Controls.Shell({
+                ID: ID,
+                width: 600,
+                height: 400,
+                divPanel: HTMLElementPanel
+            });
+            var BaseControlObj = $("<div id='Panel_chart_" + ID + "' class='pcchartpanel' style='float:left;height:100%;'></div><div id='Panel_MenuObj_" + ID + "' class='pcchartmenu'  style='width:0px;height:100%;float:right;'></div>");
+            this.shell.initialControl(BaseControlObj);
             var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
@@ -987,17 +995,17 @@ Agi.Controls.PCChartGxp = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var Newdropdownlist = new Agi.Controls.PCChart();
-                Newdropdownlist.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return Newdropdownlist;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var Newdropdownlist = new Agi.Controls.PCChart();
+//                Newdropdownlist.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return Newdropdownlist;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
@@ -1559,9 +1567,16 @@ Agi.Controls.PCChartGxp = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     this.ReadData(_Config.Entity[0]);//获取数据
 
                     var ID = _Config.ControlID;
-                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'>" +
-                        "<div id='Panel_chart_" + ID + "' class='pcchartpanel' style='float:left;height:100%;'></div><div id='Panel_MenuObj_" + ID + "' class='pcchartmenu'  style='width:0px;height:100%;float:right;'></div><div style='clear:both;width:0px;height: 0px;font-size: 0px;'></div>");
+                    var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PCChartPanelSty'><div style='clear:both;width:0px;height: 0px;font-size: 0px;'></div>");
                     HTMLElementPanel.css('padding-bottom', '0px');
+                    this.shell = new Agi.Controls.Shell({
+                        ID: ID,
+                        width: 600,
+                        height: 400,
+                        divPanel: HTMLElementPanel
+                    });
+                    var BaseControlObj = $("<div id='Panel_chart_" + ID + "' class='pcchartpanel' style='float:left;height:100%;'></div><div id='Panel_MenuObj_" + ID + "' class='pcchartmenu'  style='width:0px;height:100%;float:right;'></div>");
+                    this.shell.initialControl(BaseControlObj);
 
                     var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
                     var obj = null;

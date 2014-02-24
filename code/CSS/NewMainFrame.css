@@ -1631,6 +1631,9 @@ over-flow:hidden;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.1, transparent), color-stop(.1, rgba(0, 0, 0, .1)), to(rgba(0, 0, 0, .1))),
     -webkit-gradient(linear, 0 0, 100% 0, color-stop(.1, transparent), color-stop(.1, rgba(0, 0, 0, .1)), to(rgba(0, 0, 0, .1)));
 }
+.EditContentTopLeftSty .selectPanelheadSty{
+    display: none;
+}
 #ControlEditPageCustomProPanel form .control-group .control-label{
     width: 60px;
 }

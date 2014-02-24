@@ -2362,7 +2362,11 @@ function AddRightMenu() {
             'addNewGrpFolder':function(t){//20130621 10:37 markeluo 新增,DataSets文件夹新增
                 AddDataSetsGroup(null,function(data){
                     var  NodeInfo={perid:"root"};
-                    LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
+                    LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2,function(){
+                        //2014-02-20   COKE
+                        CreateNewNode();//添加组别重新获取组别名称;
+                    });
+
                 });
             }
         }
@@ -2673,6 +2677,7 @@ function AddAllDatasets() {
                             var  NodeInfo={perid:t.id};
                             LoadDataSetsAndGrpList(NodeInfo,t,(parseInt($(t).attr("LayerIndex"))+1));
                         }
+
                     });
                 },
                 'DelGrpFolder':function(t){
@@ -3988,7 +3993,7 @@ function GobakFramePage() {
 //region 20130618 16:43 markeluo 新增 DataSet 分组文件夹 相关处理
 
     //1.加载DataSet列表和分组列表
-    function LoadDataSetsAndGrpList(NodeInfo,ElementObj,LayerIndex)
+    function LoadDataSetsAndGrpList(NodeInfo,ElementObj,LayerIndex,_CallBack)
     {
         Agi.DatasetsManager.DSAllDataSet_SG(NodeInfo,function(result){
             AllDS = result.Data;
@@ -4060,6 +4065,12 @@ function GobakFramePage() {
                     }
 
                     BindDataSetsGroupClickEvent($(ElementObj).find(".MyDataSetGroup"));
+
+                    //2014-02-20  coke 重新读取组别名称；
+                    if(_CallBack)
+                    {
+                        _CallBack();
+                    }
                     //绑定可拖拽
                     Agi.MenuManagement.BindDataSetsGroupDrag($("#DatasetsManage").find(".MyDataSetss,.MyDataSetGroup"),$("#DatasetsManage").find(".MyDataSetGroup"));
                     //隐藏进度条

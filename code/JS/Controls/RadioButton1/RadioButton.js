@@ -306,18 +306,18 @@ Agi.Controls.RadioButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic, {
         Agi.Controls.RadioButtonProrityInit(this);
     },
 
-    Copy: function () {
-        console.log("调用" + "Copy");
-        if (layoutManagement.property.type == 1) {
-            var ParentObj = this.shell.Container.parent();
-            var PostionValue = this.Get("Position");
-            var newRadioButtonPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-            var NewRadioButton = new Agi.Controls.RadioButton();
-            NewRadioButton.Init(ParentObj, newRadioButtonPositionpars);
-            newRadioButtonPositionpars = null;
-            return NewRadioButton;
-        }
-    },
+//    Copy: function () {
+//        console.log("调用" + "Copy");
+//        if (layoutManagement.property.type == 1) {
+//            var ParentObj = this.shell.Container.parent();
+//            var PostionValue = this.Get("Position");
+//            var newRadioButtonPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//            var NewRadioButton = new Agi.Controls.RadioButton();
+//            NewRadioButton.Init(ParentObj, newRadioButtonPositionpars);
+//            newRadioButtonPositionpars = null;
+//            return NewRadioButton;
+//        }
+//    },
 
     PostionChange: function (_Postion) {
         console.log("调用" + "PostionChange");

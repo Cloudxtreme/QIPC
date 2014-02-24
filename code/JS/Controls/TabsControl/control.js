@@ -289,17 +289,17 @@ Agi.Controls.TabsControl = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         CustomProPanelShow: function () {
             Agi.Controls.TabsControlPropertyInit(this);
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newTabsControlPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewTabsControl = new Agi.Controls.TabsControl();
-                NewTabsControl.Init(ParentObj, newPanelPositionpars);
-                newTabsControlPositionpars = null;
-                return NewTabsControl;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newTabsControlPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewTabsControl = new Agi.Controls.TabsControl();
+//                NewTabsControl.Init(ParentObj, newPanelPositionpars);
+//                newTabsControlPositionpars = null;
+//                return NewTabsControl;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $("#" + this.Get("HTMLElement").id).parent();

@@ -707,18 +707,18 @@ Agi.Controls.DataChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this
         }, //删除
-        Copy: function () {
-            //20130520 倪飘 解决bug，大数据图表不能复制粘贴，按F12页面报错
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left:parseFloat(PostionValue.Left), Top:parseFloat(PostionValue.Top) }
-                var NewDataChart = new Agi.Controls.DataChart();
-                NewDataChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewDataChart;
-            }
-        }, // 复制
+//        Copy: function () {
+//            //20130520 倪飘 解决bug，大数据图表不能复制粘贴，按F12页面报错
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left:parseFloat(PostionValue.Left), Top:parseFloat(PostionValue.Top) }
+//                var NewDataChart = new Agi.Controls.DataChart();
+//                NewDataChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewDataChart;
+//            }
+//        }, // 复制
         RemoveSeries:function (_SeriesName) {
             var Me = this;
             var THisChartDataArray = Me.Get("ChartData");//获取原图表Data

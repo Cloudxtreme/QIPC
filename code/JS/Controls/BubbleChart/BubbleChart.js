@@ -400,18 +400,18 @@ Agi.Controls.BubbleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         var Me = this;
         return Me.Get("ProPerty").BasciObj;
     }, //返回第三方highchart 对象
-    Copy: function () {
-        //20130530 倪飘 解决bug,气泡图不能复制，粘贴，按F12页面报错
-        if (layoutManagement.property.type == 1) {
-            var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
-            var PostionValue = this.Get("Position");
-            var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-            var NewBubbleChart = new Agi.Controls.BubbleChart();
-            NewBubbleChart.Init(ParentObj, PostionValue);
-            newPanelPositionpars = null;
-            return NewBubbleChart;
-        }
-    },
+//    Copy: function () {
+//        //20130530 倪飘 解决bug,气泡图不能复制，粘贴，按F12页面报错
+//        if (layoutManagement.property.type == 1) {
+//            var ParentObj = $("#" + this.Get("HTMLElement").id).parent();
+//            var PostionValue = this.Get("Position");
+//            var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//            var NewBubbleChart = new Agi.Controls.BubbleChart();
+//            NewBubbleChart.Init(ParentObj, PostionValue);
+//            newPanelPositionpars = null;
+//            return NewBubbleChart;
+//        }
+//    },
     PostionChange: function (_Postion, IsResizable) {
         var Me = this;
         if (IsResizable != null && IsResizable) {

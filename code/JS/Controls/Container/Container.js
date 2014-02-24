@@ -239,19 +239,19 @@ Agi.Controls.Container = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.htmlElement.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) };
-                var NewContainer = new Agi.Controls.Container();
-                NewContainer.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewContainer;
-            } else {
-
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.htmlElement.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) };
+//                var NewContainer = new Agi.Controls.Container();
+//                NewContainer.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewContainer;
+//            } else {
+//
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();
