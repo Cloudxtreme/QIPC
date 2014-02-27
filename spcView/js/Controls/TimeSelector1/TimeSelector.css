@@ -10,33 +10,7 @@
     width: 100%;height:25px;font-family: '微软雅黑';font-size: 9px;
 }
 /*以下是对dropdown控件的拓展*/
-.dropdownlistControl{
-    background-color: #E3E3E3;
-    color: #fff;
-    --border-radius: 5px;
-    width:100%;
-    --height: 100%;
-    text-align: right;
-}
 
-.selector_navbar,
-.selector_navbar .nav {
-    margin: 0 0 0 0;
-}
-
-.dropdown{
-    width:100%;
-    min-width: 80px;
-    min-height: 34px;
-    z-index: 1001;
-}
-.dropdown-menu{
-    z-index: 1001;
-}
-.dropdown,
-.dropdown li{
-    text-align: right;
-}
    /*高级属性的样式*/
 .TimeSelectorProperty{
     width: 100%;
@@ -221,4 +195,7 @@
     position:absolute;
     top:31px;
     left:600px;
+}
+input[readonly].selector_widgetFieldClass{
+       cursor: pointer;
 }

@@ -120,6 +120,7 @@ Agi.Controls.RadioButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,{
             FontColor:"#000",
             FontFamily:["微软雅黑","宋体","黑体","楷体_GB2312","Arial","Times New Roman"],
             FontIndex:0,
+			FontSize:12,
             BorderColor:"#9f9f9f",//边框颜色
             CheckedBackgroundColor:{value:{background:"-webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(237,237,237)),color-stop(1, rgb(215,215,215)))"}},//选中背景颜色(填充渐变结束的颜色值)
             CheckedButtonColor:"#dedede"//选中按钮颜色(填充渐变结束的颜色值)
@@ -525,6 +526,7 @@ Agi.Controls.RadioButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,{
                     $("#"+tableID+" table td").css(_Value.BackgroundColor.value).css({
                         "color":_Value.FontColor,
                         "font-family":_Value.FontFamily[_Value.FontIndex],
+						"font-size": _Value.FontSize+'px',
                         "border-color":_Value.BorderColor
                     });
                     var BasePanel=$(_RadioButtonobj.Get("HTMLElement"));

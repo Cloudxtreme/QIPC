@@ -887,7 +887,7 @@ Agi.Controls.MultiSelectProrityInit = function (MultiSelectControl) {
     ItemContent.append("<tr>");
     //20140218 范金鹏 删除文字缩进colspan=3，添加字体样式选择框
     ItemContent.append("<td class='MultiSelectProTabtd0'>文字缩进：</td><td class='MultiSelectProTabtd1'><input type='number' title='文字缩进' min='0' max='30' defaultvalue='0' value='0' id='MultiSel_TxtIndent' class='MultiSelectNumberSty'/></td>");
-    ItemContent.append("<td>字体样式：</td><td><div><select id='FontFamilySelect'>" +
+    ItemContent.append("<td class='MultiSelectProTabtd0'>字体样式：</td><td><div><select id='FontFamilySelect'>" +
         '<option selected value="微软雅黑">微软雅黑</option>' +
         "<option value='宋体'>宋体</option>" +
         "<option value='楷体'>楷体</option>" +

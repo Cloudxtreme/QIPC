@@ -637,7 +637,7 @@ Agi.Controls.PieChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         click: function () {
                             Me.Set("OutPramats", { "XValue": this.name, "Yvalue": this.y }); /*输出参数更改*/
                         }
-                    }
+                    };
 
                     if (_Config.ChartOptions.tooltip != null) {
                         _Config.ChartOptions.tooltip.formatter = function () { return '<span style="color:' + this.point.color + '">' + this.point.name + ':(' + Math.round(this.percentage) + '%)</span>' };
@@ -650,7 +650,15 @@ Agi.Controls.PieChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     var ID = _Config.ControlID;
                     var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty PieChartPanelSty'></div>");
                     HTMLElementPanel.css('padding-bottom', '0px');
-
+                    this.shell = new Agi.Controls.Shell({
+                        ID: ID,
+                        width: 300,
+                        height: 200,
+                        divPanel: HTMLElementPanel
+                    });
+                    var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto">' + '</div>');
+                    this.shell.initialControl(BaseControlObj[0]);
+                    this.Set("HTMLElement", this.shell.Container[0]);
                     var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
 
                     var obj = null;
@@ -914,7 +922,7 @@ Agi.Controls.PieChartProrityInit=function(_PieChart){
         ItemContent.append("<table class='prortityPanelTable'>");
         ItemContent.append("<tr>");
         ItemContent.append("<td class='prortityPanelTabletd0'>曲线：</td>");
-        ItemContent.append("<td colspan='3' class='prortityPanelTabletd2'><input id='TxtProPanelLineName' type='text'  value='"+ThisChartData[0].name+"' class='ControlProTextSty' maxlength='10' ischeck='true'><div id='PieChartSeriesLineSave'  class='PieChartPropSavebuttonsty' title='保存'></div></td>");
+        ItemContent.append("<td colspan='3' class='prortityPanelTabletd2'><input id='TxtProPanelLineName' type='text'  value='"+ThisChartData[0].name+"' class='ControlProTextSty' maxlength='20' ischeck='true'><div id='PieChartSeriesLineSave'  class='PieChartPropSavebuttonsty' title='保存'></div></td>");
         ItemContent.append("</tr>");
         ItemContent.append("<tr>");
         ItemContent.append("<td class='prortityPanelTabletd0'>标签：</td><td class='prortityPanelTabletd1'><select id='PieChartLine_Lable'><option selected='selected' value='false'>禁用</option><option  value='true'>启用</option></select></td>");

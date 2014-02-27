@@ -23,7 +23,7 @@ var NewVirtualTableDBTypeDes = ""; //
 var _strSQL = "";                 //
 //SQL语句需要传入的值              //
 var arrayKeyValue = [];          //
-var PresqlKeyValues = "";//传入参数
+var PresqlKeyValues = ""; //传入参数
 //自动生成的列，保存的时候需要用到 //
 var Columns = [];                 //
 //查询状态,false为没有查询过       //
@@ -121,7 +121,7 @@ function EditDataSourceOP(dbname) {
             $("#NewExeclPage").show();
             var OperateExceldata = [];
             var str = result.dataSourceName + '\\' + result.excelFileName;
-            var jsonData = { "fileName":str };
+            var jsonData = { "fileName": str };
             var jsonString = JSON.stringify(jsonData);
             Agi.DCManager.ExcelDataSourceGetAll("DSExcelGetSheetName", jsonString, function (result) {
                 if (result.result == "true") {
@@ -132,8 +132,8 @@ function EditDataSourceOP(dbname) {
                         }
                         ;
                         OperateExceldata.push({
-                            tableName:tableName + "",
-                            tableExplain:tableExplain + ""
+                            tableName: tableName + "",
+                            tableExplain: tableExplain + ""
                         })
                     }
                 } else {
@@ -181,8 +181,8 @@ function BindDataSourceOP(result) {
     $("#DBUserName").val(DBUserName);
     $("#DBPassword").val(DBPassword);
     $("#DB").val(DB);
-    $("#DBDescription").val(result.dbdescription);//20121224 14:40 markeluo 新增，备注信息读取
-    $("#DBPort").val(result.port);//20121224 14:40 markeluo 新增，端口号读取
+    $("#DBDescription").val(result.dbdescription); //20121224 14:40 markeluo 新增，备注信息读取
+    $("#DBPort").val(result.port); //20121224 14:40 markeluo 新增，端口号读取
     //    $('#DBType').change(function () {
     //        if ($("#DBType").val() == "Oracle") {
     //            $('#database').hide();
@@ -336,8 +336,8 @@ $("#NewExcelSaveBtn").live('click', function myfunction() {
         AgiCommonDialogBox.Alert("名称不能为空!");
         return false;
     }
-    if(window.ExcelDsName!=='' && window.ExcelDsName !== dataSourceName){
-        if(!window.reUpload){
+    if (window.ExcelDsName !== '' && window.ExcelDsName !== dataSourceName) {
+        if (!window.reUpload) {
             AgiCommonDialogBox.Alert("请重新上传Excel文件!");
             return false;
         }
@@ -377,17 +377,17 @@ function AddNwePointInformation(_rtdbID, _IsNewOrUpdataPoint) {
     ShowOperationData();
     $("#BottomRightCenterOthersContentDiv").html(""); //<div id='tagNameDiv'> </div>
     $("#BottomRightCenterOthersContentDiv").html("" +
-        //"<div id='tagTabPage'><div id='tagtop'>" +
-        // "<div id='tagtop1'>" +
+    //"<div id='tagTabPage'><div id='tagtop'>" +
+    // "<div id='tagtop1'>" +
         "<div class='TagBorderClass'>" +
         "<div id='toolboxDiv' style='margin-bottom: 2px'>" +
         "<div id='focus'>" + //<input type='text' class='input_txt' value='请输入点位号'/><input type='button' class='toolBtn1' id='findOnePointBtn' value='查  询'/>
         "<input id='deleteBtn' class='toolBtn1' type='button' value='删  除'/>" +
-        // "<input id='CkeckedAllTagBtn' class='toolBtn1' type='button' value='全 选'/>" +
+    // "<input id='CkeckedAllTagBtn' class='toolBtn1' type='button' value='全 选'/>" +
         "<input id='achieveBtn' class='toolBtn' type='button' value='从API获取点位'/></div></div>" +
         "<div class='tagDataTabel' style='width:100%;height:230px '></div>" +
         "<div class='box'>" +
-        // "<div class='newConfigtitle'><input style='display: inline;' id='addPointBtn' class='toolBtn1' type='button' value='新  增'/><input type='button' value='' id='showPointBtn'/></div>" +
+    // "<div class='newConfigtitle'><input style='display: inline;' id='addPointBtn' class='toolBtn1' type='button' value='新  增'/><input type='button' value='' id='showPointBtn'/></div>" +
         "<div class='borderClassDiv1'id='AddpointDivID' style='display:none;'><div class='strToCennter'>" +
         "<div class='newConfigtitle'><label id='showtitletool' >新建点位</label></div>" +
         "<table class='showAddandEidentPointTabelClass'>" +
@@ -405,7 +405,7 @@ function AddNwePointInformation(_rtdbID, _IsNewOrUpdataPoint) {
         "<input style='display: inline;' id='CancelPointBtn' class='ToolConfigbtn' type='button' value='取消'/></td></tr>" +
         "</table>" +
         "</div></div>" +
-        //   /* *//*    "<div class='box'>"+
+    //   /* *//*    "<div class='box'>"+
         "<div class='borderClassDiv1'id='EdeitpointDivID' style='display:none;'><div class='strToCennter'>" +
         "<div class='newConfigtitle'><label id='showtitletool' >编辑点位</label></div>" +
         "<table class='showAddandEidentPointTabelClass'>" +
@@ -442,9 +442,9 @@ $("#addPointBtn").live('click', function () {
     $("#showtitletool").text("新建点位");
     PointInfoManageState = "save";
     /* var Flextoggle = new _toggle(new Agi.Msg.OpenFlexToggleManage.id("AddpointDivID"),"fast");
-     new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
-     Flextoggle.toggle();
-     }*/
+    new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
+    Flextoggle.toggle();
+    }*/
     //隐藏伸缩
 });
 function showFlextWindow() {
@@ -452,30 +452,30 @@ function showFlextWindow() {
     var list = grid.select().text();
     if (list != "") {
         /*  $("#EdeitpointDivID").show();
-         $("#AddpointDivID").hide();*/
+        $("#AddpointDivID").hide();*/
         $("#showtitletool").text("编辑点位");
         PointInfoManageState = "update";
         $("#NewPointInfoBtn").val("修改");
         /*  var Flextoggle = new _toggle(new Agi.Msg.OpenFlexToggleManage.id("EdeitpointDivID"),"fast");
-         new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
-         Flextoggle.toggle();
-         }*/
+        new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
+        Flextoggle.toggle();
+        }*/
         //隐藏伸缩
         var data = list.split(" ");
         var vartag = data[0];
         // alert(vartag);
         EditPointInfoOP(RtdbName, vartag.trim());
-    } 
+    }
     else {
         /*   $("#EdeitpointDivID").hide();
-         $("#AddpointDivID").show();*/
+        $("#AddpointDivID").show();*/
         $("#showtitletool").text("新建点位");
         PointInfoManageState = "save";
         $("#NewPointInfoBtn").val("添加");
         /*  var Flextoggle = new _toggle(new Agi.Msg.OpenFlexToggleManage.id("AddpointDivID"),"fast");
-         new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
-         Flextoggle.toggle();
-         }*/
+        new Agi.Msg.OpenFlexToggleManage.id("showPointBtn").onclick = function(){
+        Flextoggle.toggle();
+        }*/
         //隐藏伸缩
     }
 
@@ -549,15 +549,15 @@ function findTagSource(_rtdid) {//点位数据整理成含有表头的数组
                 AllpointByRtdbID.push(DBtag);
                 dataColumns.push({
                     //   dbrtdb:DBrtdb +" ",
-                    dbtag:DBtag + " ",
-                    dbtagType:DBtagType + " ",
-                    dbtagDescrption:DBtagDescrption + " ",
-                    dbunitOfMeasure:DBunitOfMeasure + " ",
-                    dbgroup:DBgroup + " ",
-                    dbarea:DBarea + " ",
-                    dbunit:DBunit + " ",
-                    dbconsole:DBconsole + " ",
-                    dboperator:DBoperator + " "
+                    dbtag: DBtag + " ",
+                    dbtagType: DBtagType + " ",
+                    dbtagDescrption: DBtagDescrption + " ",
+                    dbunitOfMeasure: DBunitOfMeasure + " ",
+                    dbgroup: DBgroup + " ",
+                    dbarea: DBarea + " ",
+                    dbunit: DBunit + " ",
+                    dbconsole: DBconsole + " ",
+                    dboperator: DBoperator + " "
                 });
             }
             FindTagColumnsData(dataColumns);
@@ -651,15 +651,15 @@ function FindOnePoint(_rtdid, _tag) {//查找单条点位信息
                 }
                 dataColumns.push({
                     // dbrtdb: "<input type='checkbox' />"+" ",
-                    dbtag:DBtag + " ",
-                    dbtagType:DBtagType + " ",
-                    dbtagDescrption:DBtagDescrption + " ",
-                    dbunitOfMeasure:DBunitOfMeasure + " ",
-                    dbgroup:DBgroup + " ",
-                    dbarea:DBarea + " ",
-                    dbunit:DBunit + " ",
-                    dbconsole:DBconsole + " ",
-                    dboperator:DBoperator + " "
+                    dbtag: DBtag + " ",
+                    dbtagType: DBtagType + " ",
+                    dbtagDescrption: DBtagDescrption + " ",
+                    dbunitOfMeasure: DBunitOfMeasure + " ",
+                    dbgroup: DBgroup + " ",
+                    dbarea: DBarea + " ",
+                    dbunit: DBunit + " ",
+                    dbconsole: DBconsole + " ",
+                    dboperator: DBoperator + " "
                 });
             }
         } else {
@@ -673,81 +673,81 @@ function FindOnePoint(_rtdid, _tag) {//查找单条点位信息
 function FindTagColumnsData(dataColumns) { //用表格的形式展示点位数据
     $(".tagDataTabel").html("");
     $(".tagDataTabel").kendoGrid({
-        dataSource:{
-            data:dataColumns
+        dataSource: {
+            data: dataColumns
             // pageSize: 5
         },
-        height:230,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:false,
+        height: 230,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: false,
 
         // filterable: false,//筛选
-        columns:[
+        columns: [
             {
-                template:'&nbsp' + '<input type="checkbox" class="isDelete"/>',
-                width:30,
+                template: '&nbsp' + '<input type="checkbox" class="isDelete"/>',
+                width: 30,
 
-                title:'&nbsp'
+                title: '&nbsp'
                 //            field: "dbrtdb",
                 //            width: 50,
                 //            title: "实时数据"
             },
             {
-                field:"dbtag",
-                width:80,
+                field: "dbtag",
+                width: 80,
 
-                title:"位号名称"
+                title: "位号名称"
             },
             {
-                field:"dbtagType",
+                field: "dbtagType",
 
-                width:50,
-                title:"数据类型"
+                width: 50,
+                title: "数据类型"
             },
             {
-                field:"dbtagDescrption",
+                field: "dbtagDescrption",
 
-                width:50,
-                title:"位号描述"
+                width: 50,
+                title: "位号描述"
             },
             {
-                field:"dbunitOfMeasure",
+                field: "dbunitOfMeasure",
 
-                width:50,
-                title:"计量单位"
+                width: 50,
+                title: "计量单位"
             },
             {
-                field:"dbgroup",
+                field: "dbgroup",
 
-                width:50,
-                title:"分组"
+                width: 50,
+                title: "分组"
             },
             {
-                field:"dbarea",
+                field: "dbarea",
 
-                width:50,
-                title:"区域"
+                width: 50,
+                title: "区域"
             },
             {
-                field:"dbunit",
-                width:50,
+                field: "dbunit",
+                width: 50,
 
-                title:"单元"
+                title: "单元"
             },
             {
-                field:"dbconsole",
+                field: "dbconsole",
 
-                width:50,
-                title:"操作台"
+                width: 50,
+                title: "操作台"
             },
             {
-                field:"dboperator",
+                field: "dboperator",
 
-                width:50,
-                title:"操作工"
+                width: 50,
+                title: "操作工"
             }
         ]
     });
@@ -776,14 +776,14 @@ $("#savetextRtdbID").live('chang', function () {
     $("#savetextRtdbID").val($("#savetextRtdbID").find("option:selected").text);
 });
 /*
- $("#EditTag").live('click',function(){
- var grid = $(".tagDataTabel").data("kendoGrid");
- var list = grid.select().text();
- var data = list.split(" ");
- var varrtdbID = data[0];
- var vartag = data[1];
- EditPointInfoOP(varrtdbID,vartag);
- });  */
+$("#EditTag").live('click',function(){
+var grid = $(".tagDataTabel").data("kendoGrid");
+var list = grid.select().text();
+var data = list.split(" ");
+var varrtdbID = data[0];
+var vartag = data[1];
+EditPointInfoOP(varrtdbID,vartag);
+});  */
 //点击编辑读取点位详细信息并进行绑定
 function EditPointInfoOP(_rtdid, _tag) {
     // this.PointInfoManageState = "update";
@@ -853,15 +853,15 @@ function EditPointInfoOP(_rtdid, _tag) {
                     pointOperator = "";
                 }
                 /*   $("#textRtdbID").val(pointRtdbID);
-                 $("#textTag").val(pointTag);
-                 $('#textTagType').val(pointTagType);
-                 $('#textTagDescrption').val(pointTagDescrption);
-                 $('#textUnitOfMeasure').val(pointUnitOfMeasure);
-                 $('#textGroup').val(pointGroup);
-                 $('#textArea').val(pointArea);
-                 $('#textUnit').val(pointUnit);
-                 $('#textConsole').val(pointConsole);
-                 $('#textOperator').val(pointOperator);*/
+                $("#textTag").val(pointTag);
+                $('#textTagType').val(pointTagType);
+                $('#textTagDescrption').val(pointTagDescrption);
+                $('#textUnitOfMeasure').val(pointUnitOfMeasure);
+                $('#textGroup').val(pointGroup);
+                $('#textArea').val(pointArea);
+                $('#textUnit').val(pointUnit);
+                $('#textConsole').val(pointConsole);
+                $('#textOperator').val(pointOperator);*/
                 $("#savetextRtdbID").val(pointRtdbID);
                 $("#savetextTag").val(pointTag);
                 $("#savetextTag").attr("readonly", "readonly");
@@ -919,23 +919,23 @@ $("#NewPointInfoBtn").live('click', function () {
         pointUnit = $('#savetextUnit').val();
         pointConsole = $('#savetextConsole').val();
         pointOperator = $('#savetextOperator').val();
-        if (pointRtdbID == '' || pointTag == '' ) { //|| pointTagType == '' || pointTagDescrption==''|| pointUnitOfMeasure=="" || pointGroup==''|| pointArea==''||pointUnit==''||pointConsole==''||pointOperator==''){
+        if (pointRtdbID == '' || pointTag == '') { //|| pointTagType == '' || pointTagDescrption==''|| pointUnitOfMeasure=="" || pointGroup==''|| pointArea==''||pointUnit==''||pointConsole==''||pointOperator==''){
             AgiCommonDialogBox.Alert("位号名称不能为空!");
             $("#NewPointInfoBtn").removeAttr("disabled");
             return false;
         }
-    } 
+    }
     else if (PointInfoManageState == "update") {
         /* pointRtdbID = $("#textRtdbID").val();
-         pointTag = $("#textTag").val();
-         pointTagType = $('#textTagType').val();
-         pointTagDescrption = $('#textTagDescrption').val()
-         pointUnitOfMeasure = $('#textUnitOfMeasure').val();
-         pointGroup = $('#textGroup').val();
-         pointArea = $('#textArea').val();
-         pointUnit = $('#textUnit').val();
-         pointConsole = $('#textConsole').val();
-         pointOperator = $('#textOperator').val();*/
+        pointTag = $("#textTag").val();
+        pointTagType = $('#textTagType').val();
+        pointTagDescrption = $('#textTagDescrption').val()
+        pointUnitOfMeasure = $('#textUnitOfMeasure').val();
+        pointGroup = $('#textGroup').val();
+        pointArea = $('#textArea').val();
+        pointUnit = $('#textUnit').val();
+        pointConsole = $('#textConsole').val();
+        pointOperator = $('#textOperator').val();*/
         pointRtdbID = $("#savetextRtdbID").val();
         pointTag = $("#savetextTag").val();
         pointTagType = $('#savetextTagType').val();
@@ -948,24 +948,24 @@ $("#NewPointInfoBtn").live('click', function () {
         pointOperator = $('#savetextOperator').val();
 
 
-//        if (pointTagType == '') {
-//            AgiCommonDialogBox.Alert("点位类型不能为空!");
-//            $("#NewPointInfoBtn").removeAttr("disabled");
-//            return false;
-//        }
+        //        if (pointTagType == '') {
+        //            AgiCommonDialogBox.Alert("点位类型不能为空!");
+        //            $("#NewPointInfoBtn").removeAttr("disabled");
+        //            return false;
+        //        }
     }
     var tagData = [
         {
-            'rtdbID':pointRtdbID,
-            'Tag':pointTag,
-            'TagType':pointTagType,
-            'TagDescrption':pointTagDescrption,
-            'UnitOfMeasure':pointUnitOfMeasure,
-            'Group':pointGroup,
-            'Area':pointArea,
-            'Unit':pointUnit,
-            'Console':pointConsole,
-            'Operator':pointOperator
+            'rtdbID': pointRtdbID,
+            'Tag': pointTag,
+            'TagType': pointTagType,
+            'TagDescrption': pointTagDescrption,
+            'UnitOfMeasure': pointUnitOfMeasure,
+            'Group': pointGroup,
+            'Area': pointArea,
+            'Unit': pointUnit,
+            'Console': pointConsole,
+            'Operator': pointOperator
         }
     ]
     Agi.DCManager.DCPointInfoSaveSave(PointInfoManageState, tagData, function (_reslut) {
@@ -1019,7 +1019,7 @@ $("#NewPointInfoBtn").live('click', function () {
             pointArea = pointUnit = pointConsole = pointOperator = null;
         }
 
-        
+
     });
 }); //end点击点位信息保存
 
@@ -1079,49 +1079,49 @@ function GetApiPoints() {//点位数据整理成含有表头的数组
             for (var n = 0; n < AllapiPoint.length; n++) {
                 var pointApi = AllapiPoint[n]
                 dataColumns.push({
-                    dbtag:pointApi + " "
+                    dbtag: pointApi + " "
                 });
             }
         }
         $("#showLoad").hide();
         $("#showData").show();
         ApiPointsTotabel(dataColumns);
-        $("#batchAdd").removeAttr("disabled");//启用批量添加按钮
+        $("#batchAdd").removeAttr("disabled"); //启用批量添加按钮
     });
 }
 function ApiPointsTotabel(dataColumns) { //用表格的形式展示点位数据
     $("#ApiSelectDGrid").empty();
     $("#ApiSelectDGrid").kendoGrid({
-        dataSource:{
-            data:dataColumns,
-            pageSize:10
+        dataSource: {
+            data: dataColumns,
+            pageSize: 10
         },
-        height:405,
-        change:onChange,
-        dataBound:onDataBound, //20121225 14:34 zhangpeng 添加
-        selectable:"single row",
+        height: 405,
+        change: onChange,
+        dataBound: onDataBound, //20121225 14:34 zhangpeng 添加
+        selectable: "single row",
         // filterable: true,
-        groupable:false,
-        scrollable:true,
-        sortable:true,
+        groupable: false,
+        scrollable: true,
+        sortable: true,
         //        scrollable: false,
         //        sortable: false,
-        pageable:true,
+        pageable: true,
         //    pageable: false,
-        columns:[
+        columns: [
             {
-                field:"boolAdd",
-                sortable:false,
-                template:'<input type="checkbox" id="boolAdd" class="editable" />',
-                width:20,
+                field: "boolAdd",
+                sortable: false,
+                template: '<input type="checkbox" id="boolAdd" class="editable" />',
+                width: 20,
                 // filterable: false,
                 // title: "多选添加"   var selected = grid.table.find("tr").find("td:first input:checked").closest("tr");
-                title:"&nbsp"
+                title: "&nbsp"
             },
             {
-                field:"dbtag",
-                width:110,
-                title:"位号名称"
+                field: "dbtag",
+                width: 110,
+                title: "位号名称"
             }
         ]
     });
@@ -1189,11 +1189,11 @@ $("#textOneApiPointBtn").live('click', function () {
 $("#achieveBtn").live('click', function () {
     //$('#ApiSelectDataSource').draggable();
 
-//    $('#ApiSelectDataSource').draggable({
-//        handle: ".modal-header", containment: "#MainFrameDiv"
-//    });
+    //    $('#ApiSelectDataSource').draggable({
+    //        handle: ".modal-header", containment: "#MainFrameDiv"
+    //    });
 
-    $("#ApiSelectDataSource").modal({ backdrop:false, keyboard:false, show:true });
+    $("#ApiSelectDataSource").modal({ backdrop: false, keyboard: false, show: true });
     $('#ApiSelectDataSource').draggable("disable");
     $("#showLoad").show();
     $("#showData").hide();
@@ -1207,7 +1207,7 @@ $("#closeBtn").live('', function () { //X点击关闭
 /*全选、反选*/
 //$("#AllCheckedBtn").live('click', function () {
 $("#selectAll").live('click', function () {
-    var ThisApiSelectDGridtbodytrs=$("#ApiSelectDGrid").find("tbody>tr");
+    var ThisApiSelectDGridtbodytrs = $("#ApiSelectDGrid").find("tbody>tr");
     if ($(this).attr("checked") == "checked") {
         //$("#AllCheckedBtn").val("反选");
         for (var i = 0; i < ThisApiSelectDGridtbodytrs.length; i++) {
@@ -1220,7 +1220,7 @@ $("#selectAll").live('click', function () {
             $(ThisApiSelectDGridtbodytrs[i]).find("#boolAdd").attr("Checked", false);
         }
     }
-    ThisApiSelectDGridtbodytrs=null;//DOM查询优化,清空临时变量
+    ThisApiSelectDGridtbodytrs = null; //DOM查询优化,清空临时变量
 
 });
 //批量添加
@@ -1283,7 +1283,7 @@ $("#batchAdd").live('click', function () {
 /*删除的全选、反选*/
 //$("#CkeckedAllTagBtn").live('click', function () {
 $("#IsDeleteAll").live('click', function () {
-    var ThisTagDataTabeltrs=$(".tagDataTabel").find("tbody>tr");
+    var ThisTagDataTabeltrs = $(".tagDataTabel").find("tbody>tr");
     if ($(this).attr("checked") == "checked") {
         //$("#CkeckedAllTagBtn").val("反选");
         for (var i = 0; i < ThisTagDataTabeltrs.length; i++) {
@@ -1296,13 +1296,13 @@ $("#IsDeleteAll").live('click', function () {
             $(ThisTagDataTabeltrs[i]).find(".isDelete").attr("checked", false); //是否添加
         }
     }
-    ThisTagDataTabeltrs=null;//DOM查询优化,临时变量清空
+    ThisTagDataTabeltrs = null; //DOM查询优化,临时变量清空
 });
 
 //点击按钮删除点位
 $("#deleteBtn").live('click', function () {
     var vartagList = []
-    var tagDataTabelTbodytrArray=$(".tagDataTabel").find("tbody>tr");
+    var tagDataTabelTbodytrArray = $(".tagDataTabel").find("tbody>tr");
     for (var i = 0; i < tagDataTabelTbodytrArray.length; i++) {
         var _columName = $(tagDataTabelTbodytrArray[i]).find("td")[1].innerText; //点位名称
         var isCkeck = $(tagDataTabelTbodytrArray[i]).find(".isDelete").attr("checked") == "checked" ? "true" : "false"; //是否添加
@@ -1311,7 +1311,7 @@ $("#deleteBtn").live('click', function () {
             vartagList.push(_columName.trim());
         }
     }
-    tagDataTabelTbodytrArray=null;//DOM查询优化,临时变量清空
+    tagDataTabelTbodytrArray = null; //DOM查询优化,临时变量清空
 
     if (vartagList.length > 0) {
         var content = "确定删除点位：" + vartagList + "?";
@@ -1469,23 +1469,23 @@ function zTreeView() {
     var zTreeObj;
     var treeNode = eval(footNodeGroupID);
     var setting = {
-        isSimpleData:true,
-        treeNodeKey:"id",
-        treeNodeParentKey:"pId",
-        showLine:true,
-        expandSpeed:false,
-        checkable:true,
-        root:{
-            isRoot:true,
-            nodes:[]
+        isSimpleData: true,
+        treeNodeKey: "id",
+        treeNodeParentKey: "pId",
+        showLine: true,
+        expandSpeed: false,
+        checkable: true,
+        root: {
+            isRoot: true,
+            nodes: []
         },
-        check:{
+        check: {
             //enable: true,
-            chkStyle:"checkbox",
-            chkboxType:{ "Y":"Ps", "N":"Ps" } //checkbox父子关联效果
+            chkStyle: "checkbox",
+            chkboxType: { "Y": "Ps", "N": "Ps"} //checkbox父子关联效果
         },
-        callback:{
-            click:zTreeOnClick
+        callback: {
+            click: zTreeOnClick
         }
     };
     zTreeObj = ($("#treeDemo").zTree(setting, treeNode));
@@ -1753,9 +1753,9 @@ function GetNamesByID() {
                 _DBName = NamesList[i],
                 _DBOpe = "";
             dataNames.push({
-                Structuretype:_DBType + " ",
-                TablesName:_DBName + " ",
-                Operating:_DBOpe + " "
+                Structuretype: _DBType + " ",
+                TablesName: _DBName + " ",
+                Operating: _DBOpe + " "
             });
         }
         BindNameData(dataNames);
@@ -1775,10 +1775,10 @@ function GetColumnsByID(nameID, PageType) {
                     _dtype = array[i].dataType;
                 _remark = null;
                 Columndata.push({
-                    TName:_tname + " ",
-                    LName:_lname + " ",
-                    DType:_dtype + " ",
-                    Remark:_remark + " "
+                    TName: _tname + " ",
+                    LName: _lname + " ",
+                    DType: _dtype + " ",
+                    Remark: _remark + " "
                 });
             }
             //debugger;
@@ -1795,12 +1795,12 @@ function GetColumnsByID(nameID, PageType) {
 }
 //新建虚拟表
 function AddNewVirtualTable() {
-//    $("#VTSelectDS").modal({ backdrop:false, keyboard:false, show:true });
-////    $('#VTSelectDS').draggable({
-////        handle: ".modal-header"
-////    });
-//    $('#VTSelectDS').draggable("disable");
-    if(!dialogs._VTSelectDS.dialog('isOpen')){
+    //    $("#VTSelectDS").modal({ backdrop:false, keyboard:false, show:true });
+    ////    $('#VTSelectDS').draggable({
+    ////        handle: ".modal-header"
+    ////    });
+    //    $('#VTSelectDS').draggable("disable");
+    if (!dialogs._VTSelectDS.dialog('isOpen')) {
         dialogs._VTSelectDS.dialog('open');
     }
     GetDataSourceToVT("标准");
@@ -1808,7 +1808,7 @@ function AddNewVirtualTable() {
 
 //新建虚拟表的取消操作
 $("#CancelVirtualBtn").live('click', function () {
-//    $("#VTSelectDS").modal('hide');
+    //    $("#VTSelectDS").modal('hide');
     dialogs._VTSelectDS.dialog('close');
     boolIsSave = true;
     ShowMainFramePage();
@@ -1827,7 +1827,7 @@ $("#VirtualOK").live('click', function () {
     NewVirtualTableDBType = data[1];
     NewVirtualTableDBTypeDes = data[2];
     //    alert(NewVirtualTableDBName + " " + NewVirtualTableDBType + " " + NewVirtualTableDBTypeDes);
-//    $("#VTSelectDS").modal('hide');
+    //    $("#VTSelectDS").modal('hide');
     dialogs._VTSelectDS.dialog('close');
     AddVTManage(NewVirtualTableDBName, NewVirtualTableDBType);
 });
@@ -1859,6 +1859,7 @@ function AddVTManage(_dataSourceName, _DBType) {
     //    $("#btnSave").attr('disabled', true);
 
 }
+
 //检查Sql语句是否错误
 var SqlIsReturnValue = true;
 //生成语句并查询事件
@@ -1878,8 +1879,8 @@ $("#VTSelect").live('click', function () {
     if (arrayKeyValue.length > 0) {
         $("#sqlKeyValues").find("option").remove();
         //弹出窗体
-//        $('#keyModal').modal({ backdrop:false, keyboard:false, show:true });
-        if(!dialogs._keyModal.dialog('isOpen')){
+        //        $('#keyModal').modal({ backdrop:false, keyboard:false, show:true });
+        if (!dialogs._keyModal.dialog('isOpen')) {
             dialogs._keyModal.dialog('open');
         }
         //验证SQL语句是否需要传入值 
@@ -1931,7 +1932,7 @@ $("#btnSave").live('click', function () {
             _paraName = _paraName.substring(3, _paraName.length);
             var _paraType = arrayKeyValue[i].type;
             var _paraValue = arrayKeyValue[i].value;
-            if(Agi.WebServiceConfig.Type==".NET"){
+            if (Agi.WebServiceConfig.Type == ".NET") {
                 if (NewVirtualTableDBType == "SQLServer") {
                     _paraType = "NVARCHAR";
                 } else if (NewVirtualTableDBType == "Excel") {
@@ -1940,15 +1941,14 @@ $("#btnSave").live('click', function () {
                 else {
                     _paraType = "NVARCHAR2";
                 }
-            }else{
+            } else {
                 if (NewVirtualTableDBType == "SQLServer") {
                     _paraType = "NVARCHAR";
                 } else if (NewVirtualTableDBType == "Excel") {
                     _paraType = "VARCHAR";
                 }
                 else {
-                    switch(_paraType)
-                    {
+                    switch (_paraType) {
                         case "DATETIME":
                             _paraType = "DATE";
                             break;
@@ -1965,17 +1965,17 @@ $("#btnSave").live('click', function () {
                 }
             }
             //markeluo 20130903 15:18 修改 由于.NET 后台访问实体组件需要"[,,]%DBTYPE格式，而JAVA不需要，所以区分处理"
-            if(Agi.WebServiceConfig.Type==".NET"){
+            if (Agi.WebServiceConfig.Type == ".NET") {
                 para.push({
-                    paraName:_paraName,
-                    paraType:_paraType + "[,,]%DBTYPE",
-                    Default:_paraValue
+                    paraName: _paraName,
+                    paraType: _paraType + "[,,]%DBTYPE",
+                    Default: _paraValue
                 })
-            }else{
+            } else {
                 para.push({
-                    paraName:_paraName,
-                    paraType:_paraType,
-                    Default:_paraValue
+                    paraName: _paraName,
+                    paraType: _paraType,
+                    Default: _paraValue
                 })
             }
         }
@@ -2038,18 +2038,18 @@ $("#btnSave").live('click', function () {
 //存储过程参数列表数组
 var AllProParaKeyValue = [];
 //新建存储过程虚拟表
-function AddNewPROVirtualTable(){
+function AddNewPROVirtualTable() {
 
-    if(!dialogs._PROVTSelectDS.dialog('isOpen')){
+    if (!dialogs._PROVTSelectDS.dialog('isOpen')) {
         dialogs._PROVTSelectDS.dialog('open');
     }
     GetDataSourceToVT("存储过程");
 }
 //上一步
-$("#PROVirtualPre").live('click',function(){
+$("#PROVirtualPre").live('click', function () {
 
     dialogs._PROVTSelectDS.dialog('close');
-    if(!dialogs._SelectWayToCreateVT.dialog('isOpen')){
+    if (!dialogs._SelectWayToCreateVT.dialog('isOpen')) {
         dialogs._SelectWayToCreateVT.dialog('open');
     }
 });
@@ -2101,17 +2101,17 @@ function ShowAllDSPro(_dataSourceName, _DBType) {
                 scrollable: true,
                 sortable: true,
                 filterable: true,
-                columns: [ 
+                columns: [
             {
                 field: "proName",
                 width: 80,
                 title: "存储过程名称"
             }
         ]
-        });
+            });
 
-        NewVirtualTableDBName = _dataSourceName;
-        NewVirtualTableDBType = _DBType;
+            NewVirtualTableDBName = _dataSourceName;
+            NewVirtualTableDBType = _DBType;
         }
     });
 }
@@ -2134,7 +2134,7 @@ $("#PROListOK").live('click', function () {
     }
     var data = list.split(" ");
     dialogs._PROVTSelectPRO.dialog('close');
-    ShowProVTPanel(NewVirtualTableDBName, NewVirtualTableDBType, data[0],"Insert");
+    ShowProVTPanel(NewVirtualTableDBName, NewVirtualTableDBType, data[0], "Insert");
     //查找所有的参数
     ProGetAllParaKeyValue(NewVirtualTableDBName, data[0]);
 });
@@ -2143,7 +2143,7 @@ $("#PROListCancel").live('click', function () {
     dialogs._PROVTSelectPRO.dialog('close');
 });
 //显示存储过程新建面板
-function ShowProVTPanel(DBName,DBType,ProName,Action) {
+function ShowProVTPanel(DBName, DBType, ProName, Action) {
     ShowOperationData();
     booselect = false;
     _count = 20;
@@ -2219,7 +2219,7 @@ $("#ProVTSelect").live('click', function () {
             var currvalue = $(this).val();
             $("#ProsqlkeyValue").val(currvalue);
 
-            for (var a = 0; a< AllProParaKeyValue.length; a++) {
+            for (var a = 0; a < AllProParaKeyValue.length; a++) {
                 if (currvalue === AllProParaKeyValue[a].paraname && AllProParaKeyValue[a].inputoutput === "Input") {
                     $("#ProsqlKeyType").val(AllProParaKeyValue[a].type.toUpperCase());
                     $("#ProtxtKeyValue").val(AllProParaKeyValue[a].value);
@@ -2229,7 +2229,7 @@ $("#ProVTSelect").live('click', function () {
 
         //保存输入参数值
         $("#ProtxtKeyValue").mouseout(function () {
-            for (var b = 0;b < AllProParaKeyValue.length; b++) {
+            for (var b = 0; b < AllProParaKeyValue.length; b++) {
                 if ($("#ProsqlkeyValue").val() == AllProParaKeyValue[b].paraname && AllProParaKeyValue[b].inputoutput === "Input") {
                     AllProParaKeyValue[b].type = $("#ProsqlKeyType").val();
                     AllProParaKeyValue[b].value = $("#ProtxtKeyValue").val();
@@ -2299,7 +2299,7 @@ $("#ProVTSelect").live('click', function () {
 });
 
 $("#ProbtnSqlSelect").live('click', function () {
-//先保存一下参数，然后再查询
+    //先保存一下参数，然后再查询
     for (var d = 0; d < AllProParaKeyValue.length; d++) {
         if ($("#ProsqlkeyValue").val() == AllProParaKeyValue[d].paraname && AllProParaKeyValue[d].inputoutput === "Input") {
             AllProParaKeyValue[d].type = $("#ProsqlKeyType").val();
@@ -2389,9 +2389,9 @@ $("#ProbtnSave").live('click', function () {
     if (AllProParaKeyValue.length > 0) {
         for (var i = 0; i < AllProParaKeyValue.length; i++) {
             Paras.push({
-                parasname:AllProParaKeyValue[i].paraname,
-                type:AllProParaKeyValue[i].type,
-                direction:AllProParaKeyValue[i].inputoutput,
+                parasname: AllProParaKeyValue[i].paraname,
+                type: AllProParaKeyValue[i].type,
+                direction: AllProParaKeyValue[i].inputoutput,
                 defaultvalue: AllProParaKeyValue[i].value
             });
         }
@@ -2535,7 +2535,7 @@ var PData = []; //父实体对应数据列信息
 var CData = []; //子实体对应数据列信息
 var SCRelationState = "Add";
 var SCRowIndex = 0;
-var SchemaColumns = [];//列信息
+var SchemaColumns = []; //列信息
 //定义变量存储所有数据源
 var AllNeedDataSource = [];
 //定义变量保存所有参数列的名字和值
@@ -2551,12 +2551,12 @@ var IsBulidRelationship = false;
 //新建混合虚拟表
 function AddNewSCVirtualTable() {
     ShowMainFramePage();
-//    $("#ScVTSelectDS").modal({ backdrop:false, keyboard:false, show:true });
-////    $('#ScVTSelectDS').draggable({
-////        handle: ".modal-header"
-////    });
-//    $('#ScVTSelectDS').draggable("disable");
-    if(!dialogs._ScVTSelectDS.dialog('isOpen')){
+    //    $("#ScVTSelectDS").modal({ backdrop:false, keyboard:false, show:true });
+    ////    $('#ScVTSelectDS').draggable({
+    ////        handle: ".modal-header"
+    ////    });
+    //    $('#ScVTSelectDS').draggable("disable");
+    if (!dialogs._ScVTSelectDS.dialog('isOpen')) {
         dialogs._ScVTSelectDS.dialog('open');
     }
     GetDataSourceToVT("混合");
@@ -2591,12 +2591,12 @@ $("#ScDsCancelBtn").live('click', function () {
 
 //加载选择实体的弹出窗口
 function SelectAllVT(dsname, dstype) {
-//    $("#ScVTSelectVT").modal({ backdrop:false, keyboard:false, show:true });
-////    $('#ScVTSelectVT').draggable({
-////        handle: ".modal-header"
-////    });
-//    $('#ScVTSelectVT').draggable("disable");
-    if(!dialogs._ScVTSelectVT.dialog('isOpen')){
+    //    $("#ScVTSelectVT").modal({ backdrop:false, keyboard:false, show:true });
+    ////    $('#ScVTSelectVT').draggable({
+    ////        handle: ".modal-header"
+    ////    });
+    //    $('#ScVTSelectVT').draggable("disable");
+    if (!dialogs._ScVTSelectVT.dialog('isOpen')) {
         dialogs._ScVTSelectVT.dialog('open');
     }
     NewScVirtualTableDBName = dsname;
@@ -2614,25 +2614,25 @@ $("#ScVTPreBtn").live('click', function () {
 $("#ScVTNextBtn").live('click', function () {
     SelectedSCVirtualTable = [];
     var count = 0;
-    var ThisScVTSelectVTtrs=$("#ScVTSelectVT").find("tbody>tr");
-    var ThisScVTSelectVTtrTd=null;
+    var ThisScVTSelectVTtrs = $("#ScVTSelectVT").find("tbody>tr");
+    var ThisScVTSelectVTtrTd = null;
     for (var i = 0; i < ThisScVTSelectVTtrs.length; i++) {
-        ThisScVTSelectVTtrTd=$(ThisScVTSelectVTtrs[i]).find("td");
-        var _columdsName =ThisScVTSelectVTtrTd[1].innerText; //数据源名称
-        var _columvtName =ThisScVTSelectVTtrTd[2].innerText; //实体名称
+        ThisScVTSelectVTtrTd = $(ThisScVTSelectVTtrs[i]).find("td");
+        var _columdsName = ThisScVTSelectVTtrTd[1].innerText; //数据源名称
+        var _columvtName = ThisScVTSelectVTtrTd[2].innerText; //实体名称
         var isCkeck = $(ThisScVTSelectVTtrs[i]).find("#isSelectd").attr("checked") == "checked" ? "true" : "false"; //是否添加
         //checkBox为选中状态时点位信息添加到数组中
         if (isCkeck == "true") {
             SelectedSCVirtualTable.push({
-                _GuidName:"DD" + count,
-                _DataSource:_columdsName,
-                _DSVT:_columvtName,
-                _Function:"Default"
+                _GuidName: "DD" + count,
+                _DataSource: _columdsName,
+                _DSVT: _columvtName,
+                _Function: "Default"
             });
             count++;
         }
     }
-    ThisScVTSelectVTtrs=ThisScVTSelectVTtrTd=null;//DOM查询优化,临时变量清空
+    ThisScVTSelectVTtrs = ThisScVTSelectVTtrTd = null; //DOM查询优化,临时变量清空
 
     if (SelectedSCVirtualTable.length > 0) {
         ///        alert(SelectedSCVirtualTable.length);
@@ -2692,7 +2692,7 @@ $("#ScVTNextBtn").live('click', function () {
 });
 //选择实体取消
 $("#ScVTCancelBtn").live('click', function () {
-//    $("#ScVTSelectVT").modal('hide');
+    //    $("#ScVTSelectVT").modal('hide');
     dialogs._ScVTSelectVT.dialog('close');
     boolIsSave = true;
     ShowMainFramePage();
@@ -2786,16 +2786,16 @@ function AddNewVirtualTablePage() {
 }
 //建立数据结构按钮
 $("#AddDStructure").live('click', function () {
-    $("#DataStructure").modal({ backdrop:false, keyboard:false, show:true });
+    $("#DataStructure").modal({ backdrop: false, keyboard: false, show: true });
     $('#DataStructure').draggable({
-        handle:".modal-header"
+        handle: ".modal-header"
     });
     AddAllVTInfo("DataStructureGrid", NewScVirtualTableDBName);
 
 });
 //建立数据结构确定
 $("#DataStructureOKBtn").live('click', function () {
-    var TempSCDatastructureGridtrs=$("#SCDatastructureGrid").find("tbody>tr");
+    var TempSCDatastructureGridtrs = $("#SCDatastructureGrid").find("tbody>tr");
     var count = TempSCDatastructureGridtrs.length;
     var index
     if (count == 0) {
@@ -2805,54 +2805,54 @@ $("#DataStructureOKBtn").live('click', function () {
         index = $(TempSCDatastructureGridtrs[count - 1]).find("td")[0].innerText;
         index = parseInt(index.substr(2)) + 1;
     }
-    TempSCDatastructureGridtrs=null;//DOM查询优化,临时变量清空
+    TempSCDatastructureGridtrs = null; //DOM查询优化,临时变量清空
 
     //获取列信息
     SchemaColumns = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-    var ThisFieldcolumnGridtrtdtemp=null;
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrtdtemp = null;
     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
-        ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[g]).find("td");
+        ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[g]).find("td");
         SchemaColumns.push(
             {
-                GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                Type:""
+                GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                Type: ""
             }
         );
     }
-    ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化,临时变量清空
+    ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化,临时变量清空
 
     var sum = 0;
     //记录选中的虚拟表
     var AddVTableInfo = [];
-    var ThisDataStructureGridtrs=$("#DataStructureGrid").find("tbody>tr");
-    var ThisDataStructureGridtrtdtemp=null;
+    var ThisDataStructureGridtrs = $("#DataStructureGrid").find("tbody>tr");
+    var ThisDataStructureGridtrtdtemp = null;
     for (var i = 0; i < ThisDataStructureGridtrs.length; i++) {
-        ThisDataStructureGridtrtdtemp=$(ThisDataStructureGridtrs[i]).find("td");
-        var _columdsName =ThisDataStructureGridtrtdtemp[1].innerText; //数据源名称
-        var _columvtName =ThisDataStructureGridtrtdtemp[2].innerText; //实体名称
+        ThisDataStructureGridtrtdtemp = $(ThisDataStructureGridtrs[i]).find("td");
+        var _columdsName = ThisDataStructureGridtrtdtemp[1].innerText; //数据源名称
+        var _columvtName = ThisDataStructureGridtrtdtemp[2].innerText; //实体名称
         var isCkeck = $(ThisDataStructureGridtrs[i]).find("#isSelectd").attr("checked") == "checked" ? "true" : "false"; //是否添加
         //checkBox为选中状态时点位信息添加到数组中
         if (isCkeck == "true") {
             SelectedSCVirtualTable.push({
-                _GuidName:"DD" + index,
-                _DataSource:_columdsName,
-                _DSVT:_columvtName,
-                _Function:"Default"
+                _GuidName: "DD" + index,
+                _DataSource: _columdsName,
+                _DSVT: _columvtName,
+                _Function: "Default"
             });
             AddVTableInfo.push({
-                _GuidName:"DD" + index,
-                _DataSource:_columdsName,
-                _DSVT:_columvtName,
-                _Function:"Default"
+                _GuidName: "DD" + index,
+                _DataSource: _columdsName,
+                _DSVT: _columvtName,
+                _Function: "Default"
             });
             index++;
             sum++;
         }
     }
-    ThisDataStructureGridtrs=ThisDataStructureGridtrtdtemp=null;//DOM查询优化,临时变量清空
+    ThisDataStructureGridtrs = ThisDataStructureGridtrtdtemp = null; //DOM查询优化,临时变量清空
 
     if (sum > 0) {
         $("#DataStructure").modal('hide');
@@ -2873,7 +2873,7 @@ $("#DataStructureCancelBtn").live('click', function () {
 });
 //数据结构删除
 $("#DeleteDStructure").live('click', function () {
-    var ThisSCDatastructureGridKendotd=$("#SCDatastructureGrid").data("kendoGrid").select().find("td");
+    var ThisSCDatastructureGridKendotd = $("#SCDatastructureGrid").data("kendoGrid").select().find("td");
     var Guidname = ThisSCDatastructureGridKendotd[0].innerText;
     var _columndsName = ThisSCDatastructureGridKendotd[1].innerText;
     var _columnvtName = ThisSCDatastructureGridKendotd[2].innerText;
@@ -2926,17 +2926,17 @@ $("#DeleteDStructure").live('click', function () {
                     if (AllRGuid[j] == SelectedSCVirtualTable[i]._GuidName) {
                         entityinfos.push(
                             {
-                                dataSourceName:SelectedSCVirtualTable[i]["_DataSource"],
-                                entityName:SelectedSCVirtualTable[i]["_DSVT"]
+                                dataSourceName: SelectedSCVirtualTable[i]["_DataSource"],
+                                entityName: SelectedSCVirtualTable[i]["_DSVT"]
                             }
                         );
                     }
                 }
             }
-            var jsonData = { "entityinfos":entityinfos };
+            var jsonData = { "entityinfos": entityinfos };
             var jsonString = JSON.stringify(jsonData);
             Agi.DAL.ReadData({
-                "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+                "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                     if (_result.result == "true") {
                         var SchemaData = _result.data;
 
@@ -2945,25 +2945,25 @@ $("#DeleteDStructure").live('click', function () {
                             for (var j = 0; j < schema.length; j++) {
                                 SchemaColumns.push(
                                     {
-                                        GuidName:AllRGuid[i],
-                                        ColumnName:schema[j],
-                                        NewName:schema[j],
-                                        Type:""
+                                        GuidName: AllRGuid[i],
+                                        ColumnName: schema[j],
+                                        NewName: schema[j],
+                                        Type: ""
                                     });
                             }
                         }
                         //记录下当前显示的字段列
                         var CurrShowColumn = [];
-                        var ThisFieldcolumnGridtbodytrs=$("#FieldcolumnGrid").find("tbody>tr");
-                        var ThisFieldcolumnGridtbodytrtdtemp=null;
+                        var ThisFieldcolumnGridtbodytrs = $("#FieldcolumnGrid").find("tbody>tr");
+                        var ThisFieldcolumnGridtbodytrtdtemp = null;
                         for (var g = 0; g < ThisFieldcolumnGridtbodytrs.length; g++) {
-                            ThisFieldcolumnGridtbodytrtdtemp=$(ThisFieldcolumnGridtbodytrs[g]).find("td");
+                            ThisFieldcolumnGridtbodytrtdtemp = $(ThisFieldcolumnGridtbodytrs[g]).find("td");
                             CurrShowColumn.push(
                                 {
-                                    GuidName:ThisFieldcolumnGridtbodytrtdtemp[0].innerText,
-                                    ColumnName:ThisFieldcolumnGridtbodytrtdtemp[1].innerText,
-                                    NewName:ThisFieldcolumnGridtbodytrtdtemp[2].innerText,
-                                    Type:""
+                                    GuidName: ThisFieldcolumnGridtbodytrtdtemp[0].innerText,
+                                    ColumnName: ThisFieldcolumnGridtbodytrtdtemp[1].innerText,
+                                    NewName: ThisFieldcolumnGridtbodytrtdtemp[2].innerText,
+                                    Type: ""
                                 }
                             );
                         }
@@ -3037,9 +3037,9 @@ $("#AddBRelationships").live('click', function () {
         "<option value='right join'>right join</option>" +
         "<option value='full join'>full join</option>";
     $("#SCEntityRelation").append(SCEntityRelation);
-    $("#DataRelationship").modal({ backdrop:false, keyboard:false, show:true });
+    $("#DataRelationship").modal({ backdrop: false, keyboard: false, show: true });
     $('#DataRelationship').draggable({
-        handle:".modal-header"
+        handle: ".modal-header"
     });
     $("#RelationsTitleName").html("添 加 数 据 关 系");
     //通过父表名称和数据源获取当前实体列结合
@@ -3060,12 +3060,13 @@ $("#AddBRelationships").live('click', function () {
             //1.清空关系表
             $(".SCRelation").remove();
             //3.获取当前父实体下所有列信息
-            var jsonData = { "entityinfos":[
-                { "dataSourceName":PDataSouce, "entityName":PTable }
-            ] };
+            var jsonData = { "entityinfos": [
+                { "dataSourceName": PDataSouce, "entityName": PTable }
+            ]
+            };
             var jsonString = JSON.stringify(jsonData);
             Agi.DAL.ReadData({
-                "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+                "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                     if (_result.result == "true") {
                         PData = _result.data;
                     }
@@ -3091,12 +3092,13 @@ $("#AddBRelationships").live('click', function () {
             //1.清空关系表
             $(".SCRelation").remove();
             //2.获取当前子实体下所有列信息
-            var jsonData = { "entityinfos":[
-                { "dataSourceName":CDataSouce, "entityName":CTable }
-            ] };
+            var jsonData = { "entityinfos": [
+                { "dataSourceName": CDataSouce, "entityName": CTable }
+            ]
+            };
             var jsonString = JSON.stringify(jsonData);
             Agi.DAL.ReadData({
-                "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+                "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                     if (_result.result == "true") {
                         CData = _result.data;
                     }
@@ -3292,7 +3294,7 @@ $("#RDOK").live('click', function () {
                         SchemaColumns.push(
                             {
                                 //GuidName: AllRGuid[i],
-                                GuidName:getvtname(SchemaData[i].entityName),
+                                GuidName: getvtname(SchemaData[i].entityName),
                                 ColumnName: schema[j],
                                 NewName: schema[j],
                                 Type: ""
@@ -3390,9 +3392,9 @@ $("#EditBRelationships").live('click', function () {
             "<option value='right join'>right join</option>" +
             "<option value='full join'>full join</option>";
         $("#SCEntityRelation").append(SCEntityRelation);
-        $("#DataRelationship").modal({ backdrop:false, keyboard:false, show:true });
+        $("#DataRelationship").modal({ backdrop: false, keyboard: false, show: true });
         $('#DataRelationship').draggable({
-            handle:".modal-header"
+            handle: ".modal-header"
         });
         $("#RelationsTitleName").html("编 辑 数 据 关 系");
         $("#SCEntityNameList1").val(SCRelationEntity["PTable"]);
@@ -3403,14 +3405,14 @@ $("#EditBRelationships").live('click', function () {
         var CDataSouce = $("#SCEntityNameList2").find("option:selected").attr("dataSouce");
         //3.获取当前父实体下所有列信息
         var jsonData = {
-            "entityinfos":[
-                { "dataSourceName":PDataSouce, "entityName":SCRelationEntity["PTable"] },
-                { "dataSourceName":CDataSouce, "entityName":SCRelationEntity["CTable"] }
+            "entityinfos": [
+                { "dataSourceName": PDataSouce, "entityName": SCRelationEntity["PTable"] },
+                { "dataSourceName": CDataSouce, "entityName": SCRelationEntity["CTable"] }
             ]
         };
         var jsonString = JSON.stringify(jsonData);
         Agi.DAL.ReadData({
-            "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+            "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                 if (_result.result == "true") {
                     PData.push(_result.data[0]);
                     CData.push(_result.data[1]);
@@ -3460,17 +3462,17 @@ $("#EditBRelationships").live('click', function () {
                 if (AllRGuid[j] == SelectedSCVirtualTable[i]._GuidName) {
                     entityinfos.push(
                         {
-                            dataSourceName:SelectedSCVirtualTable[i]["_DataSource"],
-                            entityName:SelectedSCVirtualTable[i]["_DSVT"]
+                            dataSourceName: SelectedSCVirtualTable[i]["_DataSource"],
+                            entityName: SelectedSCVirtualTable[i]["_DSVT"]
                         }
                     );
                 }
             }
         }
-        var jsonData = { "entityinfos":entityinfos };
+        var jsonData = { "entityinfos": entityinfos };
         var jsonString = JSON.stringify(jsonData);
         Agi.DAL.ReadData({
-            "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+            "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                 if (_result.result == "true") {
                     var SchemaData = _result.data;
 
@@ -3479,30 +3481,30 @@ $("#EditBRelationships").live('click', function () {
                         for (var j = 0; j < schema.length; j++) {
                             SchemaColumns.push(
                                 {
-                                    GuidName:AllRGuid[i],
-                                    ColumnName:schema[j],
-                                    NewName:schema[j],
-                                    Type:""
+                                    GuidName: AllRGuid[i],
+                                    ColumnName: schema[j],
+                                    NewName: schema[j],
+                                    Type: ""
                                 });
                         }
                     }
 
                     //记录下当前显示的字段列
                     var CurrShowColumn = [];
-                    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-                    var ThisFieldcolumnGridtrtdtemp=null;
+                    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+                    var ThisFieldcolumnGridtrtdtemp = null;
                     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
-                        ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[g]).find("td");
+                        ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[g]).find("td");
                         CurrShowColumn.push(
                             {
-                                GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                                ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                                NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                                Type:""
+                                GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                                ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                                NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                                Type: ""
                             }
                         );
                     }
-                    ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化,临时变量清空
+                    ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化,临时变量清空
 
                     //循环保存已经修改的但是不需要删除的字段列
                     for (var i = 0; i < CurrShowColumn.length; i++) {
@@ -3548,17 +3550,17 @@ $("#DeleteBRelationships").live('click', function () {
                     if (AllRGuid[j] == SelectedSCVirtualTable[i]._GuidName) {
                         entityinfos.push(
                             {
-                                dataSourceName:SelectedSCVirtualTable[i]["_DataSource"],
-                                entityName:SelectedSCVirtualTable[i]["_DSVT"]
+                                dataSourceName: SelectedSCVirtualTable[i]["_DataSource"],
+                                entityName: SelectedSCVirtualTable[i]["_DSVT"]
                             }
                         );
                     }
                 }
             }
-            var jsonData = { "entityinfos":entityinfos };
+            var jsonData = { "entityinfos": entityinfos };
             var jsonString = JSON.stringify(jsonData);
             Agi.DAL.ReadData({
-                "MethodName":"VTReadDataTableSchema", "Paras":jsonString, "CallBackFunction":function (_result) {
+                "MethodName": "VTReadDataTableSchema", "Paras": jsonString, "CallBackFunction": function (_result) {
                     if (_result.result == "true") {
                         var SchemaData = _result.data;
 
@@ -3567,25 +3569,25 @@ $("#DeleteBRelationships").live('click', function () {
                             for (var j = 0; j < schema.length; j++) {
                                 SchemaColumns.push(
                                     {
-                                        GuidName:AllRGuid[i],
-                                        ColumnName:schema[j],
-                                        NewName:schema[j],
-                                        Type:""
+                                        GuidName: AllRGuid[i],
+                                        ColumnName: schema[j],
+                                        NewName: schema[j],
+                                        Type: ""
                                     });
                             }
                         }
                         //记录下当前显示的字段列
                         var CurrShowColumn = [];
-                        var ThisFieldColumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-                        var ThisFieldColumnGridtrtdtemp=null;
+                        var ThisFieldColumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+                        var ThisFieldColumnGridtrtdtemp = null;
                         for (var g = 0; g < ThisFieldColumnGridtrs.length; g++) {
-                            ThisFieldColumnGridtrtdtemp=$(ThisFieldColumnGridtrs[g]).find("td");
+                            ThisFieldColumnGridtrtdtemp = $(ThisFieldColumnGridtrs[g]).find("td");
                             CurrShowColumn.push(
                                 {
-                                    GuidName:ThisFieldColumnGridtrtdtemp[0].innerText,
-                                    ColumnName:ThisFieldColumnGridtrtdtemp[1].innerText,
-                                    NewName:ThisFieldColumnGridtrtdtemp[2].innerText,
-                                    Type:""
+                                    GuidName: ThisFieldColumnGridtrtdtemp[0].innerText,
+                                    ColumnName: ThisFieldColumnGridtrtdtemp[1].innerText,
+                                    NewName: ThisFieldColumnGridtrtdtemp[2].innerText,
+                                    Type: ""
                                 }
                             );
                         }
@@ -3613,9 +3615,9 @@ $("#DeleteBRelationships").live('click', function () {
 });
 //列过滤
 $("#Columnfilter").live('click', function () {
-    $("#ColumnfilterFrame").modal({ backdrop:false, keyboard:false, show:true });
+    $("#ColumnfilterFrame").modal({ backdrop: false, keyboard: false, show: true });
     $('#ColumnfilterFrame').draggable({
-        handle:".modal-header"
+        handle: ".modal-header"
     });
     $("#SinglePType").html("");
     $("#DoublePType").html("");
@@ -3668,19 +3670,19 @@ $("#DialogSelected").live('click', function () {
 
     //如果有列名相同，则提示取别名
     var TempSchemaColumns = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-    var ThisFieldcolumnGridtrtdtemp=null;
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrtdtemp = null;
     for (var t = 0; t < ThisFieldcolumnGridtrs.length; t++) {
-        ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[t]).find("td");
+        ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[t]).find("td");
         TempSchemaColumns.push(
             {
-                GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                Type:""
+                GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                Type: ""
             });
     }
-    ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化,临时变量清空
+    ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化,临时变量清空
 
     var IsManyColum = false;
     for (var c = 0; c < TempSchemaColumns.length; c++) {
@@ -3701,9 +3703,9 @@ $("#DialogSelected").live('click', function () {
     var AllDSAndVT = [];
     for (var i = 0; i < SelectedSCVirtualTable.length; i++) {
         AllDSAndVT.push({
-            dataSourceName:SelectedSCVirtualTable[i]._DataSource,
-            entityName:SelectedSCVirtualTable[i]._DSVT,
-            method:"Default"
+            dataSourceName: SelectedSCVirtualTable[i]._DataSource,
+            entityName: SelectedSCVirtualTable[i]._DSVT,
+            method: "Default"
         });
     }
 
@@ -3715,8 +3717,8 @@ $("#DialogSelected").live('click', function () {
                 DBType = array[i].dataSourceType;
 
             AllNeedDataSource.push({
-                dataSourceName:DBName,
-                dataSourceType:DBType
+                dataSourceName: DBName,
+                dataSourceType: DBType
             });
         }
     });
@@ -3756,22 +3758,24 @@ $("#DialogSelected").live('click', function () {
 
                 //添加数据
                 if (AllVTParams.length > 0) {
-                    if(Agi.WebServiceConfig.Type==".NET"){
+                    if (Agi.WebServiceConfig.Type == ".NET") {
                         for (var k = 0; k < AllVTParams.length; k++) {
                             AllParamsList += "<option value=" + typelogo + nickname + "#" + AllVTParams[k] + "&" + dsname + "&" + dtname + ">@p_" + nickname + "#" + AllVTParams[k] + "</option>";
                             AllParamsNameAndValue.push({
-                                ID:typelogo + nickname + "#" + AllVTParams[k],
-                                Type:"NVARCHAR2",
-                                Value:""
+                                ID: typelogo + nickname + "#" + AllVTParams[k],
+                                Type: "NVARCHAR2",
+                                Value: ""
                             });
                         }
-                    }else{
+                    } else {
                         for (var k = 0; k < AllVTParams.length; k++) {
-                            AllParamsList += "<option value=" + typelogo + nickname + "#" + AllVTParams[k].paraName + "&" + dsname + "&" + dtname + ">@p_" + nickname + "#" + AllVTParams[k].paraName + "</option>";
+                            AllParamsList += "<option value=" + typelogo + nickname + "###" + AllVTParams[k].paraName + "&" + dsname + "&" + dtname + ">@p_" + nickname + "###" + AllVTParams[k].paraName + "</option>";
                             AllParamsNameAndValue.push({
-                                ID:typelogo + nickname + "#" + AllVTParams[k].paraName,
-                                Type:"NVARCHAR2",
-                                Value:""
+                                //ID: typelogo + nickname + "#" + AllVTParams[k].paraName,
+                                //20140226 范金鹏 将虚拟表和参数之间的连接符从一个#变成三个#
+                                ID: typelogo + nickname + "###" + AllVTParams[k].paraName,
+                                Type: "NVARCHAR2",
+                                Value: ""
                             });
                         }
                     }
@@ -3780,9 +3784,9 @@ $("#DialogSelected").live('click', function () {
 
             if (AllParamsNameAndValue.length > 0) {
                 //显示参数弹出框
-                $("#ScVTMethodParams").modal({ backdrop:false, keyboard:false, show:true });
+                $("#ScVTMethodParams").modal({ backdrop: false, keyboard: false, show: true });
                 $('#ScVTMethodParams').draggable({
-                    handle:".modal-header"
+                    handle: ".modal-header"
                 });
 
                 //将数据添加到下拉菜单
@@ -3803,7 +3807,7 @@ $("#DialogSelected").live('click', function () {
                         if (valuelist[0] == AllParamsNameAndValue[i].ID) {
                             $("#TypeSelect").val(AllParamsNameAndValue[i].Type);
                             $("#PValue").val(AllParamsNameAndValue[i].Value);
-                            console.log("切换参数选择:"+valuelist[0]+"&&"+AllParamsNameAndValue[i].Value);
+                            console.log("切换参数选择:" + valuelist[0] + "&&" + AllParamsNameAndValue[i].Value);
                             break;
                         }
                     }
@@ -3811,14 +3815,14 @@ $("#DialogSelected").live('click', function () {
 
                 //保存输入参数值
                 $("#PValue").unbind().change(function () {
-                    var PMPName=$("#PName").val();
-                    var PTypeSel=$("#TypeSelect").val();
-                    var PValueSel=$("#PValue").val();
+                    var PMPName = $("#PName").val();
+                    var PTypeSel = $("#TypeSelect").val();
+                    var PValueSel = $("#PValue").val();
                     for (var i = 0; i < AllParamsNameAndValue.length; i++) {
                         if (PMPName == AllParamsNameAndValue[i].ID) {
                             AllParamsNameAndValue[i].Type = PTypeSel;
-                            AllParamsNameAndValue[i].Value =PValueSel;
-                            console.log("输入值丢失焦点:"+PMPName+"&&"+PValueSel);
+                            AllParamsNameAndValue[i].Value = PValueSel;
+                            console.log("输入值丢失焦点:" + PMPName + "&&" + PValueSel);
                             break;
                         }
                     }
@@ -3851,55 +3855,55 @@ $("#DialogSelected").live('click', function () {
                     var GuidName = SelectedSCVirtualTable[i]["_GuidName"];
                     MethodInfo.push(
                         {
-                            ID:dataSourceName + "." + EntityName + "." + Fuction,
-                            Alias:GuidName
+                            ID: dataSourceName + "." + EntityName + "." + Fuction,
+                            Alias: GuidName
                         }
                     );
                 }
                 var _Relation = [];
                 for (var i = 0; i < Relation.length; i++) {
                     _Relation.push(
-                        { Name:Relation[i]["Name"], PTable:Relation[i]["PGuidName"], CTable:Relation[i]["CGuidName"], JoinType:Relation[i]["JoinType"], RelationColumns:Relation[i]["RelationColumns"][0] }
+                        { Name: Relation[i]["Name"], PTable: Relation[i]["PGuidName"], CTable: Relation[i]["CGuidName"], JoinType: Relation[i]["JoinType"], RelationColumns: Relation[i]["RelationColumns"][0] }
                     );
                 }
                 var Column = [];
                 SchemaColumns = [];
-                var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-                var ThisFieldcolumnGridtrtdtemp=null;
+                var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+                var ThisFieldcolumnGridtrtdtemp = null;
                 for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
-                    ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[g]).find("td");
+                    ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[g]).find("td");
                     SchemaColumns.push(
                         {
-                            GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                            ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                            NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                            Type:""
+                            GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                            ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                            NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                            Type: ""
                         }
                     );
                 }
-                ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化，临时变量清空
+                ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化，临时变量清空
 
                 for (var i = 0; i < SchemaColumns.length; i++) {
                     Column.push(
-                        { MethdoID:SchemaColumns[i]["GuidName"], Name:SchemaColumns[i]["ColumnName"], Alias:SchemaColumns[i]["NewName"], AggFunc:"", GroupBy:"true", Visible:"true", Filter:"" }
+                        { MethdoID: SchemaColumns[i]["GuidName"], Name: SchemaColumns[i]["ColumnName"], Alias: SchemaColumns[i]["NewName"], AggFunc: "", GroupBy: "true", Visible: "true", Filter: "" }
                     );
                 }
                 var jsonData = {
-                    "Paras":Paras,
-                    "QueryCount":QueryCount,
-                    "MethodInfos":{
-                        "MethodInfo":MethodInfo
+                    "Paras": Paras,
+                    "QueryCount": QueryCount,
+                    "MethodInfos": {
+                        "MethodInfo": MethodInfo
                     },
-                    "Relations":{
-                        "Relation":_Relation
+                    "Relations": {
+                        "Relation": _Relation
                     },
-                    "Columns":{
-                        "Column":Column
+                    "Columns": {
+                        "Column": Column
                     }
                 }
                 var jsonString = JSON.stringify(jsonData);
                 Agi.DAL.ReadData({
-                    "MethodName":"VTQueryScMethod", "Paras":jsonString, "CallBackFunction":function (_result) {
+                    "MethodName": "VTQueryScMethod", "Paras": jsonString, "CallBackFunction": function (_result) {
                         if (_result.result == "true") {
                             var arrColumns = [];
                             CData = _result.data;
@@ -3907,9 +3911,9 @@ $("#DialogSelected").live('click', function () {
                                 //动态生成列
                                 for (var k in CData[0]) {
                                     arrColumns.push({
-                                        field:k,
-                                        width:90,
-                                        title:k
+                                        field: k,
+                                        width: 90,
+                                        title: k
                                     });
                                 }
                             } else {
@@ -3917,7 +3921,7 @@ $("#DialogSelected").live('click', function () {
                                 AgiCommonDialogBox.Alert("无数据!");
                             }
                             AllSCGrid.SCSelectResultGrid(arrColumns, CData);
-                        }else{
+                        } else {
                             AgiCommonDialogBox.Alert("查询出错,未找到符合条件的数据!");
                         }
                     }
@@ -3930,12 +3934,12 @@ $("#DialogSelected").live('click', function () {
 $("#ParamsOKBtn").live('click', function () {
     IsDialogSelected = true;
     var ColumnNames = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
 
         ColumnNames.push($(ThisFieldcolumnGridtrs[g]).find("td")[2].innerText);
     }
-    ThisFieldcolumnGridtrs=null;//DOM查询优化,临时变量清空
+    ThisFieldcolumnGridtrs = null; //DOM查询优化,临时变量清空
 
     var hash = {};
     for (var i in ColumnNames) {
@@ -3962,54 +3966,54 @@ $("#ParamsOKBtn").live('click', function () {
         var GuidName = SelectedSCVirtualTable[i]["_GuidName"];
         MethodInfo.push(
             {
-                ID:dataSourceName + "." + EntityName + "." + Fuction,
-                Alias:GuidName
+                ID: dataSourceName + "." + EntityName + "." + Fuction,
+                Alias: GuidName
             }
         );
     }
     var _Relation = [];
     for (var i = 0; i < Relation.length; i++) {
         _Relation.push(
-            { Name:Relation[i]["Name"], PTable:Relation[i]["PGuidName"], CTable:Relation[i]["CGuidName"], JoinType:Relation[i]["JoinType"], RelationColumns:Relation[i]["RelationColumns"][0] }
+            { Name: Relation[i]["Name"], PTable: Relation[i]["PGuidName"], CTable: Relation[i]["CGuidName"], JoinType: Relation[i]["JoinType"], RelationColumns: Relation[i]["RelationColumns"][0] }
         );
     }
     var Column = [];
     SchemaColumns = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-    var ThisFieldcolumnGridtrtdtemp=null;
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrtdtemp = null;
     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
-        ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[g]).find("td");
+        ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[g]).find("td");
         SchemaColumns.push(
             {
-                GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                Type:""
+                GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                Type: ""
             });
     }
-    ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化，临时变量清空
+    ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化，临时变量清空
 
     for (var i = 0; i < SchemaColumns.length; i++) {
         Column.push(
-            { MethdoID:SchemaColumns[i]["GuidName"], Name:SchemaColumns[i]["ColumnName"], Alias:SchemaColumns[i]["NewName"], AggFunc:"", GroupBy:"true", Visible:"true", Filter:"" }
+            { MethdoID: SchemaColumns[i]["GuidName"], Name: SchemaColumns[i]["ColumnName"], Alias: SchemaColumns[i]["NewName"], AggFunc: "", GroupBy: "true", Visible: "true", Filter: "" }
         );
     }
     var jsonData = {
-        "Paras":Paras,
-        "QueryCount":QueryCount,
-        "MethodInfos":{
-            "MethodInfo":MethodInfo
+        "Paras": Paras,
+        "QueryCount": QueryCount,
+        "MethodInfos": {
+            "MethodInfo": MethodInfo
         },
-        "Relations":{
-            "Relation":_Relation
+        "Relations": {
+            "Relation": _Relation
         },
-        "Columns":{
-            "Column":Column
+        "Columns": {
+            "Column": Column
         }
     }
     var jsonString = JSON.stringify(jsonData);
     Agi.DAL.ReadData({
-        "MethodName":"VTQueryScMethod", "Paras":jsonString, "CallBackFunction":function (_result) {
+        "MethodName": "VTQueryScMethod", "Paras": jsonString, "CallBackFunction": function (_result) {
             if (_result.result == "true") {
                 var arrColumns = [];
                 CData = _result.data;
@@ -4017,9 +4021,9 @@ $("#ParamsOKBtn").live('click', function () {
                     //动态生成列
                     for (var k in CData[0]) {
                         arrColumns.push({
-                            field:k,
-                            width:90,
-                            title:k
+                            field: k,
+                            width: 90,
+                            title: k
                         });
                     }
                 }
@@ -4053,12 +4057,12 @@ $("#SCVTSave").live('click', function () {
 
     var PMethodInfo = [], PRelation = [], PColumn = [], PPara = [], PSchema = [];
     var ColumnNames = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
 
         ColumnNames.push($(ThisFieldcolumnGridtrs[g]).find("td")[2].innerText);
     }
-    ThisFieldcolumnGridtrs=null;//DOM查询优化,临时变量清空
+    ThisFieldcolumnGridtrs = null; //DOM查询优化,临时变量清空
     var hash = {};
     for (var i in ColumnNames) {
         if (hash[ColumnNames[i]]) {
@@ -4076,8 +4080,8 @@ $("#SCVTSave").live('click', function () {
         var GuidName = SelectedSCVirtualTable[i]["_GuidName"];
         PMethodInfo.push(
             {
-                ID:dataSourceName + "." + EntityName + "." + Fuction,
-                Alias:GuidName
+                ID: dataSourceName + "." + EntityName + "." + Fuction,
+                Alias: GuidName
             }
         );
     }
@@ -4089,30 +4093,30 @@ $("#SCVTSave").live('click', function () {
         var JoinType = Relation[j].JoinType;
         var RelationColumns = (Relation[j].RelationColumns)[0];
         PRelation.push({
-            Name:Name,
-            PTable:PTable,
-            CTable:CTable,
-            JoinType:JoinType,
-            RelationColumns:RelationColumns
+            Name: Name,
+            PTable: PTable,
+            CTable: CTable,
+            JoinType: JoinType,
+            RelationColumns: RelationColumns
         });
     }
 
     //获取列信息
     SchemaColumns = [];
-    var ThisFieldcolumnGridtrs=$("#FieldcolumnGrid").find("tbody>tr");
-    var ThisFieldcolumnGridtrtdtemp=null;
+    var ThisFieldcolumnGridtrs = $("#FieldcolumnGrid").find("tbody>tr");
+    var ThisFieldcolumnGridtrtdtemp = null;
     for (var g = 0; g < ThisFieldcolumnGridtrs.length; g++) {
-        ThisFieldcolumnGridtrtdtemp=$(ThisFieldcolumnGridtrs[g]).find("td");
+        ThisFieldcolumnGridtrtdtemp = $(ThisFieldcolumnGridtrs[g]).find("td");
         SchemaColumns.push(
             {
-                GuidName:ThisFieldcolumnGridtrtdtemp[0].innerText,
-                ColumnName:ThisFieldcolumnGridtrtdtemp[1].innerText,
-                NewName:ThisFieldcolumnGridtrtdtemp[2].innerText,
-                Type:""
+                GuidName: ThisFieldcolumnGridtrtdtemp[0].innerText,
+                ColumnName: ThisFieldcolumnGridtrtdtemp[1].innerText,
+                NewName: ThisFieldcolumnGridtrtdtemp[2].innerText,
+                Type: ""
             }
         );
     }
-    ThisFieldcolumnGridtrs=ThisFieldcolumnGridtrtdtemp=null;//DOM查询优化,临时变量清空
+    ThisFieldcolumnGridtrs = ThisFieldcolumnGridtrtdtemp = null; //DOM查询优化,临时变量清空
 
     //保存列信息
     for (var k = 0; k < SchemaColumns.length; k++) {
@@ -4124,13 +4128,13 @@ $("#SCVTSave").live('click', function () {
         var Visible = "true";
         var Filter = "";
         PColumn.push({
-            MethdoID:MethdoID,
-            Name:Name,
-            Alias:Alias,
-            AggFunc:AggFunc,
-            GroupBy:GroupBy,
-            Visible:Visible,
-            Filter:Filter
+            MethdoID: MethdoID,
+            Name: Name,
+            Alias: Alias,
+            AggFunc: AggFunc,
+            GroupBy: GroupBy,
+            Visible: Visible,
+            Filter: Filter
         });
     }
     //保存参数
@@ -4140,9 +4144,9 @@ $("#SCVTSave").live('click', function () {
         var Type = AllParamsNameAndValue[n].Type;
         var Value = AllParamsNameAndValue[n].Value;
         PPara.push({
-            ID:ID,
-            Type:Type,
-            Default:Value
+            ID: ID,
+            Type: Type,
+            Default: Value
         });
     }
 
@@ -4215,239 +4219,239 @@ $("#SCVTSave").live('click', function () {
 
 var AllSCGrid = {
     //数据结构表格
-    DStructureGrid:function (data) {
+    DStructureGrid: function (data) {
         $("#SCDatastructureGrid").find("tbody").html("");
         $("#SCDatastructureGrid").kendoGrid({
-            dataSource:{
-                data:data
+            dataSource: {
+                data: data
             },
-            height:120,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            columns:[
+            height: 120,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            columns: [
                 {
-                    field:"_GuidName",
-                    width:80,
-                    title:"别名"
+                    field: "_GuidName",
+                    width: 80,
+                    title: "别名"
                 },
                 {
-                    field:"_DataSource",
-                    width:80,
-                    title:"数据源"
+                    field: "_DataSource",
+                    width: 80,
+                    title: "数据源"
                 },
                 {
-                    field:"_DSVT",
-                    width:80,
-                    title:"虚拟表"
+                    field: "_DSVT",
+                    width: 80,
+                    title: "虚拟表"
                 },
                 {
-                    field:"_Function",
-                    width:80,
-                    title:"方法"
+                    field: "_Function",
+                    width: 80,
+                    title: "方法"
                 },
                 {
-                    field:"_Operation",
-                    width:80,
-                    title:"操作",
-                    template:"<button id='DeleteDStructure' class='GridDelBtn'></button>"
+                    field: "_Operation",
+                    width: 80,
+                    title: "操作",
+                    template: "<button id='DeleteDStructure' class='GridDelBtn'></button>"
                 }
             ]
         });
     },
     //数据关系表格
-    DRelationshipGrid:function (data) {
+    DRelationshipGrid: function (data) {
         $("#BuildrelationshipsGrid").find("tbody").html("");
         $("#BuildrelationshipsGrid").kendoGrid({
-            dataSource:{
-                data:data
+            dataSource: {
+                data: data
             },
-            height:120,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            columns:[
+            height: 120,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            columns: [
                 {
-                    field:"Name",
-                    width:80,
-                    title:"关系名称"
+                    field: "Name",
+                    width: 80,
+                    title: "关系名称"
                 },
                 {
-                    field:"JoinType",
-                    width:80,
-                    title:"关系类型"
+                    field: "JoinType",
+                    width: 80,
+                    title: "关系类型"
                 },
                 {
-                    field:"PGuidName",
-                    width:80,
-                    title:"父表"
+                    field: "PGuidName",
+                    width: 80,
+                    title: "父表"
                 },
                 {
-                    field:"CGuidName",
-                    width:80,
-                    title:"子表"
+                    field: "CGuidName",
+                    width: 80,
+                    title: "子表"
                 },
                 {
-                    field:"Edit",
-                    width:80,
-                    title:"编辑",
-                    template:"<button id='EditBRelationships' class='GridEditBtn'></button>"
+                    field: "Edit",
+                    width: 80,
+                    title: "编辑",
+                    template: "<button id='EditBRelationships' class='GridEditBtn'></button>"
                 },
                 {
-                    field:"Delete",
-                    width:80,
-                    title:"删除",
-                    template:"<button id='DeleteBRelationships' class='GridDelBtn'></button>"
+                    field: "Delete",
+                    width: 80,
+                    title: "删除",
+                    template: "<button id='DeleteBRelationships' class='GridDelBtn'></button>"
                 }
             ]
         });
     },
     //字段列表格
-    FieldColumnGrid:function (data) {
+    FieldColumnGrid: function (data) {
         $("#FieldcolumnGrid").find("tbody").html("");
         $("#FieldcolumnGrid").kendoGrid({
-            dataSource:{
-                data:data,
-                schema:{
-                    model:{
-                        fields:{
-                            GuidName:{ editable:false, nullable:true },
-                            ColumnName:{ editable:false, nullable:true },
-                            NewName:{ validation:{ required:true } },
-                            Type:{ editable:false, nullable:true },
-                            Columnfilter:{ editable:false, nullable:true }
+            dataSource: {
+                data: data,
+                schema: {
+                    model: {
+                        fields: {
+                            GuidName: { editable: false, nullable: true },
+                            ColumnName: { editable: false, nullable: true },
+                            NewName: { validation: { required: true} },
+                            Type: { editable: false, nullable: true },
+                            Columnfilter: { editable: false, nullable: true }
                         }
                     }
                 }
             },
-            height:300,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            editable:true,
-            columns:[
+            height: 300,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            editable: true,
+            columns: [
                 {
-                    field:"GuidName",
-                    width:80,
-                    title:"表名"
+                    field: "GuidName",
+                    width: 80,
+                    title: "表名"
                 },
                 {
-                    field:"ColumnName",
-                    width:80,
-                    title:"列名",
-                    filterable:false
+                    field: "ColumnName",
+                    width: 80,
+                    title: "列名",
+                    filterable: false
                 },
                 {
-                    field:"NewName",
-                    width:80,
-                    title:"别名",
-                    filterable:false
+                    field: "NewName",
+                    width: 80,
+                    title: "别名",
+                    filterable: false
                 }
-//            , {
-//                field: "Type",
-//                width: 80,
-//                title: "数据类型",
-//                filterable: false
-//            }
-//            , {
-//                field: "Columnfilter",
-//                width: 80,
-//                title: "列过滤",
-//                template: "<button id='Columnfilter' class='GridEditBtn'></button>",
-//                filterable: false
-//            }
+            //            , {
+            //                field: "Type",
+            //                width: 80,
+            //                title: "数据类型",
+            //                filterable: false
+            //            }
+            //            , {
+            //                field: "Columnfilter",
+            //                width: 80,
+            //                title: "列过滤",
+            //                template: "<button id='Columnfilter' class='GridEditBtn'></button>",
+            //                filterable: false
+            //            }
             ]
         });
     },
     //实体表格
-    SCEntityGrid:function (data) {
+    SCEntityGrid: function (data) {
         $("#SCEntityGrid").find("tbody").html("");
         $("#SCEntityGrid").kendoGrid({
-            dataSource:{
-                data:data
+            dataSource: {
+                data: data
             },
-            height:120,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            columns:[
+            height: 120,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            columns: [
                 {
-                    field:"_DataSource",
-                    width:80,
-                    title:"数据源"
+                    field: "_DataSource",
+                    width: 80,
+                    title: "数据源"
                 },
                 {
-                    field:"_DSVT",
-                    width:80,
-                    title:"虚拟表"
+                    field: "_DSVT",
+                    width: 80,
+                    title: "虚拟表"
                 },
                 {
-                    field:"_Function",
-                    width:80,
-                    title:"方法"
+                    field: "_Function",
+                    width: 80,
+                    title: "方法"
                 }
             ]
         });
     },
     //实体关系表格
-    SCEntityRelationshipGrid:function (data) {
+    SCEntityRelationshipGrid: function (data) {
         $("#EntityRelationshipGrid").find("tbody").html("");
         $("#EntityRelationshipGrid").kendoGrid({
-            dataSource:{
-                data:data
+            dataSource: {
+                data: data
             },
-            height:120,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            columns:[
+            height: 120,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            columns: [
                 {
-                    field:"Name",
-                    width:80,
-                    title:"关系名称"
+                    field: "Name",
+                    width: 80,
+                    title: "关系名称"
                 },
                 {
-                    field:"JoinType",
-                    width:80,
-                    title:"关系类型"
+                    field: "JoinType",
+                    width: 80,
+                    title: "关系类型"
                 },
                 {
-                    field:"PGuidName",
-                    width:80,
-                    title:"父表"
+                    field: "PGuidName",
+                    width: 80,
+                    title: "父表"
                 },
                 {
-                    field:"CGuidName",
-                    width:80,
-                    title:"子表"
+                    field: "CGuidName",
+                    width: 80,
+                    title: "子表"
                 }
             ]
         });
     },
     //查询结果表格
-    SCSelectResultGrid:function (columns, data) {
+    SCSelectResultGrid: function (columns, data) {
         $("#QueryresultsGrid").find("tbody").html("");
         $("#QueryresultsGrid").kendoGrid({
-            dataSource:{
-                data:data
+            dataSource: {
+                data: data
             },
-            height:120,
-            selectable:"single row",
-            groupable:false,
-            scrollable:false,
-            sortable:false,
-            pageable:false,
-            columns:columns
+            height: 120,
+            selectable: "single row",
+            groupable: false,
+            scrollable: false,
+            sortable: false,
+            pageable: false,
+            columns: columns
         });
     }
 };
@@ -4470,8 +4474,8 @@ function EditSCVirtualTablePage(DSName, SCVTName) {
                 DBType = array[i].dataSourceType;
 
             AllNeedDataSource.push({
-                dataSourceName:DBName,
-                dataSourceType:DBType
+                dataSourceName: DBName,
+                dataSourceType: DBType
             });
         }
     });
@@ -4500,10 +4504,10 @@ function EditSCVirtualTablePage(DSName, SCVTName) {
                 var ID = MethodInfos[j].ID;
                 ID = ID.split('.');
                 SelectedSCVirtualTable.push({
-                    _GuidName:Alias,
-                    _DataSource:ID[0],
-                    _DSVT:ID[1],
-                    _Function:ID[2]
+                    _GuidName: Alias,
+                    _DataSource: ID[0],
+                    _DSVT: ID[1],
+                    _Function: ID[2]
                 });
             }
             //绑定实体Grid数据
@@ -4517,7 +4521,7 @@ function EditSCVirtualTablePage(DSName, SCVTName) {
             for (var k = 0; k < Relations.length; k++) {
                 var RelationColumns = [];
                 RelationColumns.push(
-                    { PColumn:Relations[k].RelationColumns.PColumn, CColumn:Relations[k].RelationColumns.CColumn }
+                    { PColumn: Relations[k].RelationColumns.PColumn, CColumn: Relations[k].RelationColumns.CColumn }
                 );
                 var PGuidName, CGuidName, PTable, CTable, Name, JoinType;
                 PGuidName = Relations[k].PTable;
@@ -4537,13 +4541,13 @@ function EditSCVirtualTablePage(DSName, SCVTName) {
                     }
                 }
                 Relation.push({
-                    Name:Name,
-                    PGuidName:PGuidName,
-                    CGuidName:CGuidName,
-                    PTable:PTable,
-                    CTable:CTable,
-                    JoinType:JoinType,
-                    RelationColumns:RelationColumns
+                    Name: Name,
+                    PGuidName: PGuidName,
+                    CGuidName: CGuidName,
+                    PTable: PTable,
+                    CTable: CTable,
+                    JoinType: JoinType,
+                    RelationColumns: RelationColumns
                 });
             }
             //绑定数据关系到表格
@@ -4556,10 +4560,10 @@ function EditSCVirtualTablePage(DSName, SCVTName) {
             for (var n = 0; n < Columns.length; n++) {
                 SchemaColumns.push(
                     {
-                        GuidName:Columns[n].MethdoID,
-                        ColumnName:Columns[n].Name,
-                        NewName:Columns[n].Alias,
-                        Type:""
+                        GuidName: Columns[n].MethdoID,
+                        ColumnName: Columns[n].Name,
+                        NewName: Columns[n].Alias,
+                        Type: ""
                     }
                 );
             }
@@ -4632,73 +4636,70 @@ function GetVTDataBySQL(_result) {
         var array = result.Data;
         if (result.result == "true") {
             //自动生成列
-//            for (var k in array[0]) {
-//                Columns.push({
-//                    field:k,
-//                    width:90,
-//                    title:k
-//                });
-//                var _TName = k;
-//                _DType = "NVARCHAR2";
-//                _Remark = null;
-//                VTColumns.push(
-//                    {
-//                        TName:_TName + " ",
-//                        DType:_DType + " ",
-//                        Remark:_Remark + " "
-//                    }
-//                );
-//            }
+            //            for (var k in array[0]) {
+            //                Columns.push({
+            //                    field:k,
+            //                    width:90,
+            //                    title:k
+            //                });
+            //                var _TName = k;
+            //                _DType = "NVARCHAR2";
+            //                _Remark = null;
+            //                VTColumns.push(
+            //                    {
+            //                        TName:_TName + " ",
+            //                        DType:_DType + " ",
+            //                        Remark:_Remark + " "
+            //                    }
+            //                );
+            //            }
             //重组数据 让列头支持特殊字符 update by sunming 2014-01-15
-            var hasHeader=false;
-            for(var o in array)
-            {
-                var info="";
-                for(var f in array[o]){
-                    var field= replaceSpecialChar(f);
-                    if(field==undefined||field=="")
-                        field="_";
+            var hasHeader = false;
+            for (var o in array) {
+                var info = "";
+                for (var f in array[o]) {
+                    var field = replaceSpecialChar(f);
+                    if (field == undefined || field == "")
+                        field = "_";
                     _DType = "NVARCHAR2";
                     _Remark = null;
-                    if(!hasHeader){
+                    if (!hasHeader) {
                         Columns.push({
                             field: field,
-                            width:90,
-                            title:f
+                            width: 90,
+                            title: f
                         });
                         var _TName = field;
 
                         VTColumns.push(
                             {
-                                TName:field + " ",
-                                DType:_DType + " ",
-                                Remark:_Remark + " "
+                                TName: field + " ",
+                                DType: _DType + " ",
+                                Remark: _Remark + " "
                             }
                         );
                     }
 
                     var fVal;
-                    if(array[o][f]==undefined)
-                    {
-                        fVal=null;
+                    if (array[o][f] == undefined) {
+                        fVal = null;
                     }
-                    else
-                    {
-                        fVal=array[o][f];
+                    else {
+                        fVal = array[o][f];
                     }
 
-                    info+="\""+field+"\":\""+fVal+"\",";
+                    info += "\"" + field + "\":\"" + fVal + "\",";
                 }
 
-                array[o]=JSON.parse("{"+info.trimEnd(',')+"}");
-                hasHeader=true;
+                array[o] = JSON.parse("{" + info.trimEnd(',') + "}");
+                hasHeader = true;
             }
 
             BindVTData(array, Columns);
             BindVTColumns(VTColumns);
             SqlIsReturnValue = true;
             $('#progressbar1').hide();
-            if(array.length===0){
+            if (array.length === 0) {
                 AgiCommonDialogBox.Alert("未查询到符合条件的数据!");
             }
         }
@@ -4712,23 +4713,23 @@ function GetVTDataBySQL(_result) {
     });
 }
 
-String.prototype.trimEnd = function(trimStr){
-    if(!trimStr){return this;}
+String.prototype.trimEnd = function (trimStr) {
+    if (!trimStr) { return this; }
     var temp = this;
-    while(true){
-        if(temp.substr(temp.length-trimStr.length,trimStr.length)!=trimStr){
+    while (true) {
+        if (temp.substr(temp.length - trimStr.length, trimStr.length) != trimStr) {
             break;
         }
-        temp = temp.substr(0,temp.length-trimStr.length);
+        temp = temp.substr(0, temp.length - trimStr.length);
     }
     return temp;
 };
 
-String.prototype.trimStart=function(trimStr){
-    if(!trimStr){return this;}
+String.prototype.trimStart = function (trimStr) {
+    if (!trimStr) { return this; }
     var temp = this;
-    while(true){
-        if(temp.substr(0,trimStr.length)!=trimStr){
+    while (true) {
+        if (temp.substr(0, trimStr.length) != trimStr) {
             break;
         }
         temp = temp.substr(trimStr.length);
@@ -4736,12 +4737,11 @@ String.prototype.trimStart=function(trimStr){
     return temp;
 };
 
-function replaceSpecialChar(str)
-{
+function replaceSpecialChar(str) {
     var pattern = new RegExp("[0-9`~!@#$%^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）—·δΩμ℃\\-+=|{}【】‘；：”“'。，、？\\\\ ]")
     var rs = "";
     for (var i = 0; i < str.length; i++) {
-        rs = rs + str.substr(i, 1).replace(pattern,'');
+        rs = rs + str.substr(i, 1).replace(pattern, '');
     }
     return rs;
 }
@@ -4750,31 +4750,31 @@ function replaceSpecialChar(str)
 function BindVTColumns(VTColumns) {
     $("#grid5").html("");
     $("#grid5").kendoGrid({
-        dataSource:{
-            data:VTColumns,
-            pageSize:6
+        dataSource: {
+            data: VTColumns,
+            pageSize: 6
         },
-        height:260,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:true,
-        columns:[
+        height: 260,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: true,
+        columns: [
             {
-                field:"TName",
-                width:90,
-                title:"列名"
+                field: "TName",
+                width: 90,
+                title: "列名"
             }
-//        , {
-//            field: "DType",
-//            width: 50,
-//            title: "数据类型"
-//        }, {
-//            field: "Remark",
-//            width: 50,
-//            title: "说明"
-//        }
+        //        , {
+        //            field: "DType",
+        //            width: 50,
+        //            title: "数据类型"
+        //        }, {
+        //            field: "Remark",
+        //            width: 50,
+        //            title: "说明"
+        //        }
         ]
     }); //20121225 15:51 倪飘 修改虚拟表列信息显示问题
 }
@@ -4782,16 +4782,16 @@ function BindVTColumns(VTColumns) {
 function BindVTData(detailData, columns) {
     $("#grid6").html("");
     $("#grid6").kendoGrid({
-        dataSource:{
-            data:detailData
+        dataSource: {
+            data: detailData
         },
-        height:260,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:false,
-        columns:columns
+        height: 260,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: false,
+        columns: columns
     });
 }
 //根据数据类型返回相对应值
@@ -4801,9 +4801,9 @@ function GetReplaceValue(dataType, value) {
             if (this.NewVirtualTableDBType == "SQLServer") {
                 return "'" + value + "' ";
             }
-            else if(this.NewVirtualTableDBType == 'Excel'){
+            else if (this.NewVirtualTableDBType == 'Excel') {
                 return "#" + value + "# ";
-            }else{
+            } else {
                 return "TO_DATE('" + value + "','YYYY-MM-DD hh24:mi:ss') ";
             }
             return;
@@ -4820,6 +4820,12 @@ function checkStrSQL() {
     var KeyBool = false;
     /// <summary>验证SQL语句</summary>
     var array = _strSQL.split(' ');
+    //20140225 范金鹏 注释arrayKeyValue初始化
+    var arrayKeyValueNew = [];
+    if(arrayKeyValue!=undefined)
+    {
+    arrayKeyValueNew = arrayKeyValue;
+    }
     arrayKeyValue = [];
 
     //    if(PublicParameter[11] && NewVirtualTableDBType != "Oracle"){
@@ -4853,15 +4859,16 @@ function checkStrSQL() {
                 }
                 if (!KeyBool) {
                     arrayKeyValue.push({
-                        key:_KeyValue,
-                        type:"NVARCHAR2",
-                        value:""
+                        key: _KeyValue,
+                        type: "NVARCHAR2",
+                        value: ""
                     });
                 }
 
             }
         }
     }
+    //20140225 范金鹏 判断arrayKeyValue中若是有语句中的key就不添加，否则添加并给空值
     if (NewVirtualTableDBType == "Oracle") {
         for (var i = 0; i < array.length; i++) {
             if (array[i].indexOf("@p_") >= 0 || array[i].indexOf("@P_") >= 0) {
@@ -4870,13 +4877,35 @@ function checkStrSQL() {
                 break;
             }
             if (array[i].indexOf(":p_") >= 0 || array[i].indexOf(":P_") >= 0) {
-                arrayKeyValue.push(
+                var _KeyValue = array[i].substring(array[i].indexOf(":"), array[i].length);
+                var _Value = "";
+                for (var j = 0; j < arrayKeyValueNew.length; j++) {
+                    if (arrayKeyValueNew[j].key == _KeyValue) {
+                        KeyBool = true;
+                        _Value = arrayKeyValueNew[j].value;
+                        break;
+                    }
+                    else {
+                        KeyBool = false;
+                    }
+                }
+                if (!KeyBool) {
+                    arrayKeyValue.push(
                     {
-                        key:array[i].substring(array[i].indexOf(":"), array[i].length),
-                        type:"NVARCHAR2",
-                        value:""
+                        key: array[i].substring(array[i].indexOf(":"), array[i].length),
+                        type: "NVARCHAR2",
+                        value: ""
                     }
                 );
+                }
+                else {
+                    arrayKeyValue.push(
+                    {
+                        key: array[i].substring(array[i].indexOf(":"), array[i].length),
+                        type: "NVARCHAR2",
+                        value: _Value
+                    });
+                }
             }
         }
     }
@@ -4885,32 +4914,32 @@ function checkStrSQL() {
 function InitDBGrid(dataresult) {
     $("#DataSourcegrid").html("");
     $("#DataSourcegrid").kendoGrid({
-        dataSource:{
+        dataSource: {
             //data: GetDataSourceToVT(),
-            data:dataresult
+            data: dataresult
         },
-        height:200,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        filterable:true,
-        columns:[
+        height: 200,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        columns: [
             {
-                field:"dbName",
-                width:80,
-                title:"数据源名称"
+                field: "dbName",
+                width: 80,
+                title: "数据源名称"
             },
             {
-                field:"dbType",
-                width:80,
-                title:"数据源类型"
+                field: "dbType",
+                width: 80,
+                title: "数据源类型"
             },
             {
-                field:"dbDes",
-                width:50,
-                title:"说明",
-                filterable:false
+                field: "dbDes",
+                width: 50,
+                title: "说明",
+                filterable: false
             }
         ]
     });
@@ -4918,32 +4947,32 @@ function InitDBGrid(dataresult) {
 //初始化混合虚拟表数据源列表
 function InitSCDBGrid(dataresult) {
     $("#ScDataSourcegrid").kendoGrid({
-        dataSource:{
+        dataSource: {
             //data: GetDataSourceToVT(),
-            data:dataresult
+            data: dataresult
         },
-        height:200,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        filterable:true,
-        columns:[
+        height: 200,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        columns: [
             {
-                field:"dbName",
-                width:80,
-                title:"数据源名称"
+                field: "dbName",
+                width: 80,
+                title: "数据源名称"
             },
             {
-                field:"dbType",
-                width:80,
-                title:"数据源类型"
+                field: "dbType",
+                width: 80,
+                title: "数据源类型"
             },
             {
-                field:"dbDes",
-                width:50,
-                title:"说明",
-                filterable:false
+                field: "dbDes",
+                width: 50,
+                title: "说明",
+                filterable: false
             }
         ]
     });
@@ -4951,32 +4980,32 @@ function InitSCDBGrid(dataresult) {
 //初始化存储过程虚拟表数据源列表
 function InitPRODBGrid(dataresult) {
     $("#ProDataSourcegrid").kendoGrid({
-        dataSource:{
+        dataSource: {
             //data: GetDataSourceToVT(),
-            data:dataresult
+            data: dataresult
         },
-        height:200,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        filterable:true,
-        columns:[
+        height: 200,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        columns: [
             {
-                field:"dbName",
-                width:80,
-                title:"数据源名称"
+                field: "dbName",
+                width: 80,
+                title: "数据源名称"
             },
             {
-                field:"dbType",
-                width:80,
-                title:"数据源类型"
+                field: "dbType",
+                width: 80,
+                title: "数据源类型"
             },
             {
-                field:"dbDes",
-                width:50,
-                title:"说明",
-                filterable:false
+                field: "dbDes",
+                width: 50,
+                title: "说明",
+                filterable: false
             }
         ]
     });
@@ -4995,18 +5024,18 @@ function GetDataSourceToVT(type) {
                 DBDes = "";
             }
             data.push({
-                dbName:DBName + " ",
-                dbType:DBType + " ",
-                dbDes:DBDes + " "
+                dbName: DBName + " ",
+                dbType: DBType + " ",
+                dbDes: DBDes + " "
             });
         }
         if (type == "标准") {
             InitDBGrid(data);
         }
-        else if (type == "混合"){
+        else if (type == "混合") {
             InitSCDBGrid(data);
         }
-        else if (type == "存储过程"){
+        else if (type == "存储过程") {
             InitPRODBGrid(data);
 
         }
@@ -5018,33 +5047,33 @@ function GetDataSourceToVT(type) {
 //初始化混合虚拟表所有实体
 function InitSCAllVT(dataresult, Gridname) {
     $("#" + Gridname).kendoGrid({
-        dataSource:{
+        dataSource: {
             //data: GetDataSourceToVT(),
-            data:dataresult
+            data: dataresult
         },
-        height:200,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        filterable:true,
-        columns:[
+        height: 200,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        filterable: true,
+        columns: [
             {
-                field:"IsSelected",
-                width:50,
-                title:"选择",
-                template:"<input type='checkbox' id='isSelectd' value='' />",
-                filterable:false
+                field: "IsSelected",
+                width: 50,
+                title: "选择",
+                template: "<input type='checkbox' id='isSelectd' value='' />",
+                filterable: false
             },
             {
-                field:"dbName",
-                width:80,
-                title:"数据源"
+                field: "dbName",
+                width: 80,
+                title: "数据源"
             },
             {
-                field:"Names",
-                width:50,
-                title:"名称"
+                field: "Names",
+                width: 50,
+                title: "名称"
             }
         ]
     });
@@ -5062,8 +5091,8 @@ function AddAllVTInfo(gridname, DSName) {
                 var AllET = _result.data[i].entitys;
                 for (var j = 0; j < AllET.length; j++) {
                     data.push({
-                        dbName:dsname + " ",
-                        Names:AllET[j] + " "
+                        dbName: dsname + " ",
+                        Names: AllET[j] + " "
                     });
                 }
             }
@@ -5138,14 +5167,14 @@ function AddDataSets(dsname, vtname, state) {
     $("#BottomRightCenterOthersContentDiv").html("<div id='dsTabPage'><div id='dstopall'><div id='dstop1'>" +
         "<div class='newdatastitle'>Dataset 基本信息</div>" +
     //20130730 倪飘 20130723 首自信qpc项目接口参数更改
-        "<div class='datasetbasepanel' style='visibility:hidden;height:0px;line-height:0px;'><label style='margin-left: 40px;'>类型：</label><input type='text' id='dsvttype' class='ControlProTextSty'style='width:140px;' maxlength='10' ischeck='true'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>名称：</label><input type='text' id='dsetname' class='ControlProTextSty'style='width:140px;' maxlength='30' ischeck='true'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>备注：</label><textarea style='height:50px;width:135px;resize:none;' id='dsetmemeo' class='ControlProTextSty' maxlength='100' ischeck='true' ></textarea></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:140px;'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:140px;'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:145px;'></select></div>" +
+        "<div class='datasetbasepanel' style='visibility:hidden;height:0px;line-height:0px;'><label style='margin-left: 40px;'>类型：</label><input type='text' id='dsvttype' class='ControlProTextSty'style='width:280px;' maxlength='10' ischeck='true'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>名称：</label><input type='text' id='dsetname' class='ControlProTextSty'style='width:280px;' maxlength='30' ischeck='true'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>备注：</label><textarea style='height:50px;width:275px;resize:none;' id='dsetmemeo' class='ControlProTextSty' maxlength='100' ischeck='true' ></textarea></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:280px;'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:280px;'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:290px;'></select></div>" +
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'>组别：</label>" +
-        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width: 140px; text-align:left;overflow-y: scroll;'></div>"+
+        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width: 280px; text-align:left;overflow-y: scroll;'></div>" +
         "<input type='hidden'  id='GroupNameID' value='0'></div>" +
         "</div><div id='dstop2'><div class='newdatastitle'>列 信 息</div><div class='calccloum'><input type='button' id='btnExpression' value='添加计算列' class='btnclass'/><input type='button' id='btnCheck' value='列显示全选' class='btnclass'/><input type='button' id='btnUp' value='上移' class='btnclass'  /><input type='button' id='btnDown' value='下移'  class='btnclass' />" +
         "</div><div id='gridone' class='dsdridsty'></div></div><div id='dstop3'><div class='newdatastitle'>列 排 序 </div><div class='opcloum'>" +
@@ -5160,7 +5189,7 @@ function AddDataSets(dsname, vtname, state) {
 
         var controlType = js.Controls.Group;
         //20121226 22:51 markeluo 新建DataSet 时，默认控件类型下拉列表中重复控件类型去除
-        var ControlTypesArray = new Agi.Script.CArrayList();//控件类型数组
+        var ControlTypesArray = new Agi.Script.CArrayList(); //控件类型数组
         var StrTypeTempValue = "";
 
         $.each(controlType, function (i, val) {
@@ -5176,8 +5205,8 @@ function AddDataSets(dsname, vtname, state) {
                                 StrTypeTempValue === "AssociativeInputBox" ||
                                 StrTypeTempValue === "DataGrid" || StrTypeTempValue === "BasicChart" || StrTypeTempValue === "DashboardChart" ||
                                 StrTypeTempValue === "DashboardChart1" || StrTypeTempValue === "ThermometerChart" || StrTypeTempValue === "LEDChart" ||
-                                StrTypeTempValue === "NewCheckBox" || StrTypeTempValue === "RadioButton" || StrTypeTempValue === "BubbleChart"||
-                                 StrTypeTempValue === "WaterfallChart" || StrTypeTempValue === "PieChart" || StrTypeTempValue === "DataChart"||
+                                StrTypeTempValue === "NewCheckBox" || StrTypeTempValue === "RadioButton" || StrTypeTempValue === "BubbleChart" ||
+                                 StrTypeTempValue === "WaterfallChart" || StrTypeTempValue === "PieChart" || StrTypeTempValue === "DataChart" ||
                                  StrTypeTempValue === "HeatMapChart" || StrTypeTempValue === "KPIChart") {
                                 $("#dsetdcontrol").append("<option value='" + StrTypeTempValue + "'>" + StrTypeTempValue + "</option>");
                                 ControlTypesArray.add(StrTypeTempValue);
@@ -5205,7 +5234,7 @@ function AddDataSets(dsname, vtname, state) {
                 }
             }
         });
-        ControlTypesArray = null;//20121226 22:51 markeluo 新建DataSet 时，默认控件类型下拉列表中重复控件类型去除
+        ControlTypesArray = null; //20121226 22:51 markeluo 新建DataSet 时，默认控件类型下拉列表中重复控件类型去除
     });
 
     //2014-02-20  COKE 添加节点
@@ -5229,73 +5258,68 @@ function AddDataSets(dsname, vtname, state) {
 /*2014-02-20  COKE
 * 添加节点
 * */
-function CreateNewNode()
-{
+function CreateNewNode() {
     $("#SetDataSetGroup").empty();
     //添加节点
-    var ArryList=$("#DatasetsManage").find('li[isfolder="true"]');
+    var ArryList = $("#DatasetsManage").find('li[isfolder="true"]');
     var dataIn = [];
-    var Listdata=null;
-    var temp="";
-    for(var  s= 0,len=ArryList.length;s<len;s++)
-    {
-        var em={
-            "data": {title:$(ArryList[s].children[0]).attr("title") },
-            'attr': {title:$(ArryList[s].children[0]).attr("title") ,ID:$(ArryList[s]).attr("id")},
-            "metadata":{ id:$(ArryList[s]).attr("id"), type: 'commonLib' },
+    var Listdata = null;
+    var temp = "";
+    for (var s = 0, len = ArryList.length; s < len; s++) {
+        var em = {
+            "data": { title: $(ArryList[s].children[0]).attr("title") },
+            'attr': { title: $(ArryList[s].children[0]).attr("title"), ID: $(ArryList[s]).attr("id") },
+            "metadata": { id: $(ArryList[s]).attr("id"), type: 'commonLib' },
             children: []
         }
         dataIn.push(em);
     }
-    if(dataIn.length<0){return;}
-    $("#SetDataSetGroup") .jstree({
-        json_data: {data: dataIn },
+    if (dataIn.length < 0) { return; }
+    $("#SetDataSetGroup").jstree({
+        json_data: { data: dataIn },
         plugins: ["themes", "json_data", "ui"]
-    }).bind("select_node.jstree",function (event, data1) {
-            $("#GroupNameID").val(data1.rslt.obj.attr("id"));//存放组别id；
-            data1.rslt.obj.children(2).eq(2).remove();//移除子节点
-            if(temp!=data1.rslt.obj.attr("id"))
-            {
-                temp=data1.rslt.obj.attr("id");
-                Agi.DatasetsManager.DSAllDataSet_SG({perid:temp},function(result){
-                    if (result.result!="true") {return;}
-                    Listdata=result.Data.groups;
-                    if(Listdata.length<1){return;}
-                    var position = 'inside';
-                    var parent = $('#SetDataSetGroup').jstree('get_selected');
-                    for(var s= 0,len=Listdata.length;s<len;s++)
-                    {
-                        var em={
-                            "data": {title:Listdata[s].ID },
-                            'attr': {title:Listdata[s].id ,ID:Listdata[s].path},
-                            "metadata": { id:Listdata[s].path, type: 'commonLib' }
-                        }
-                        data1.inst.create_node(parent, position,em, false, false);
-                    }
-                    data1.inst.open_node();
-                    position=parent=null;
-                })
-            }else{
-                if(Listdata.length<1){return;}
+    }).bind("select_node.jstree", function (event, data1) {
+        $("#GroupNameID").val(data1.rslt.obj.attr("id")); //存放组别id；
+        data1.rslt.obj.children(2).eq(2).remove(); //移除子节点
+        if (temp != data1.rslt.obj.attr("id")) {
+            temp = data1.rslt.obj.attr("id");
+            Agi.DatasetsManager.DSAllDataSet_SG({ perid: temp }, function (result) {
+                if (result.result != "true") { return; }
+                Listdata = result.Data.groups;
+                if (Listdata.length < 1) { return; }
                 var position = 'inside';
                 var parent = $('#SetDataSetGroup').jstree('get_selected');
-                for(var s= 0,len=Listdata.length;s<len;s++)
-                {
-                    var em={
-                        "data": {title:Listdata[s].ID },
-                        'attr': {title:Listdata[s].id ,ID:Listdata[s].path},
-                        "metadata": { id:Listdata[s].path, type: 'commonLib' }
+                for (var s = 0, len = Listdata.length; s < len; s++) {
+                    var em = {
+                        "data": { title: Listdata[s].ID },
+                        'attr': { title: Listdata[s].id, ID: Listdata[s].path },
+                        "metadata": { id: Listdata[s].path, type: 'commonLib' }
                     }
                     data1.inst.create_node(parent, position, em, false, false);
                 }
                 data1.inst.open_node();
-                position=parent=null;
+                position = parent = null;
+            })
+        } else {
+            if (Listdata.length < 1) { return; }
+            var position = 'inside';
+            var parent = $('#SetDataSetGroup').jstree('get_selected');
+            for (var s = 0, len = Listdata.length; s < len; s++) {
+                var em = {
+                    "data": { title: Listdata[s].ID },
+                    'attr': { title: Listdata[s].id, ID: Listdata[s].path },
+                    "metadata": { id: Listdata[s].path, type: 'commonLib' }
+                }
+                data1.inst.create_node(parent, position, em, false, false);
             }
+            data1.inst.open_node();
+            position = parent = null;
+        }
 
-        }).delegate("a", "click", function (event, data) {
-            event.preventDefault();
-        }).bind("loaded.jstree",function(e,data){ })
-    ArryList=dataIn=null;
+    }).delegate("a", "click", function (event, data) {
+        event.preventDefault();
+    }).bind("loaded.jstree", function (e, data) { })
+    ArryList = dataIn = null;
 }
 //编辑DataSet页面
 function EditDataSets(dsname) {
@@ -5306,15 +5330,15 @@ function EditDataSets(dsname) {
     $("#BottomRightCenterOthersContentDiv").html("<div id='dsTabPage'><div id='dstopall'><div id='dstop1'>" +
         "<div class='newdatastitle'>Dataset 基本信息</div>" +
     //20130730 倪飘 20130723 首自信qpc项目接口参数更改
-        "<div class='datasetbasepanel' style='visibility:hidden;height:0px;line-height:0px;'><label style='margin-left: 40px;'>类型：</label><input type='text' id='dsvttype' class='ControlProTextSty'style='width:140px;' maxlength='10' ischeck='true'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>名称：</label><input type='text' id='dsetname' class='ControlProTextSty'style='width:140px;' maxlength='30' ischeck='true'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>备注：</label><textarea style='height:50px;width:135px;resize:none;' id='dsetmemeo' class='ControlProTextSty' maxlength='100' ischeck='true'></textarea></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:140px;'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:140px;'/></div>" +
-        "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:145px;'></select></div>" +
+        "<div class='datasetbasepanel' style='visibility:hidden;height:0px;line-height:0px;'><label style='margin-left: 40px;'>类型：</label><input type='text' id='dsvttype' class='ControlProTextSty'style='width:280px;' maxlength='10' ischeck='true'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>名称：</label><input type='text' id='dsetname' class='ControlProTextSty'style='width:280px;' maxlength='30' ischeck='true'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 40px;'>备注：</label><textarea style='height:50px;width:275px;resize:none;' id='dsetmemeo' class='ControlProTextSty' maxlength='100' ischeck='true'></textarea></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 数据源：</label><input type='text' id='dsetdsource' style='width:280px;'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 25px;'> 虚拟表：</label><input type='text' id='dsetvtable' style='width:280px;'/></div>" +
+        "<div class='datasetbasepanel'><label style='margin-left: 15px;'>默认控件：</label><select id='dsetdcontrol' style='width:285px;'></select></div>" +
 
         "<div class='datasetbasepanel'><label style='margin-left: 25px;'>组别：</label>" +
-        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width: 140px; text-align:left;overflow-y: scroll;'></div>"+
+        "<div id='SetDataSetGroup' class='jstree jstree-1 jstree-default jstree-focused' style='height:50px; width:280px; text-align:left;overflow-y: scroll;'></div>" +
         "<input type='hidden'  id='GroupNameID' value='0'></div>" +
 
         "</div><div id='dstop2'><div class='newdatastitle'>列 信 息</div><div class='calccloum'><input type='button' id='btnExpression' value='添加计算列' class='btnclass'/><input type='button' id='btnCheck' value='列显示全选' class='btnclass'/><input type='button' id='btnUp' value='上移' class='btnclass'  /><input type='button' id='btnDown' value='下移'  class='btnclass' />" +
@@ -5372,32 +5396,32 @@ function EditDataSets(dsname) {
 function BindNameData(dataNames) {
     //debugger;
     $("#grid1").kendoGrid({
-        dataSource:{
-            data:dataNames,
-            pageSize:3
+        dataSource: {
+            data: dataNames,
+            pageSize: 3
         },
-        change:onChange,
-        height:160,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:true,
-        columns:[
+        change: onChange,
+        height: 160,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: true,
+        columns: [
             {
-                field:"Structuretype",
-                width:90,
-                title:"结构类型"
+                field: "Structuretype",
+                width: 90,
+                title: "结构类型"
             },
             {
-                field:"TablesName",
-                width:90,
-                title:"表名"
+                field: "TablesName",
+                width: 90,
+                title: "表名"
             },
             {
-                field:"Operating",
-                width:50,
-                title:"操作"
+                field: "Operating",
+                width: 50,
+                title: "操作"
             }
         ]
     });
@@ -5405,37 +5429,37 @@ function BindNameData(dataNames) {
 function BindColumnsData(dataColumns) {
     $("#grid2").html("");
     $("#grid2").kendoGrid({
-        dataSource:{
-            data:dataColumns,
-            pageSize:5
+        dataSource: {
+            data: dataColumns,
+            pageSize: 5
         },
-        height:230,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:true,
-        columns:[
+        height: 230,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: true,
+        columns: [
             {
-                field:"TName",
-                width:90,
-                title:"表名"
+                field: "TName",
+                width: 90,
+                title: "表名"
             },
             {
-                field:"LName",
-                width:90,
-                title:"列名"
+                field: "LName",
+                width: 90,
+                title: "列名"
             },
             {
-                field:"DType",
-                width:50,
-                title:"数据类型"
+                field: "DType",
+                width: 50,
+                title: "数据类型"
             }
-//        , {
-//            field: "Remark",
-//            width: 50,
-//            title: "说明"
-//        }
+        //        , {
+        //            field: "Remark",
+        //            width: 50,
+        //            title: "说明"
+        //        }
         ]
     });
 }
@@ -5526,16 +5550,16 @@ function GetDetailDataByID(_count) {
                     if (!isNaN(k)) {
                         bolIsColumnIsNumber = true;
                         Columns.push({
-                            field:"_" + k,
-                            width:90,
-                            title:"_" + k
+                            field: "_" + k,
+                            width: 90,
+                            title: "_" + k
                         });
                     }
                     else {
                         Columns.push({
-                            field:k,
-                            width:90,
-                            title:k
+                            field: k,
+                            width: 90,
+                            title: k
                         });
                     }
                 }
@@ -5557,9 +5581,9 @@ function GetDetailDataByID(_count) {
                 $("#gridSQl").html("");
                 AgiCommonDialogBox.Alert("数据为空！", null);
             }
-        }else{
+        } else {
             //  AgiCommonDialogBox.Alert('未查询到任何数据!');
-            AgiCommonDialogBox.Alert('数据为空！');//修改Excel数据弹出框不一致
+            AgiCommonDialogBox.Alert('数据为空！'); //修改Excel数据弹出框不一致
         }
     });
 }
@@ -5567,52 +5591,52 @@ function GetDetailDataByID(_count) {
 function BindSQLData(detailData, columns) {
     $("#gridSQl").html("");
     $("#gridSQl").kendoGrid({
-        dataSource:{
-            data:detailData,
-            pageSize:10
+        dataSource: {
+            data: detailData,
+            pageSize: 10
         },
-        height:350,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:true,
-        columns:columns
+        height: 350,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: true,
+        columns: columns
     });
 }
 function BindDetailsColumn(Columndata) {
     $("#grid3").kendoGrid({
-        dataSource:{
-            data:Columndata,
-            pageSize:10
+        dataSource: {
+            data: Columndata,
+            pageSize: 10
         },
-        height:350,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:true,
-        columns:[
+        height: 350,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: true,
+        columns: [
             {
-                field:"TName",
-                width:90,
-                title:"表名"
+                field: "TName",
+                width: 90,
+                title: "表名"
             },
             {
-                field:"LName",
-                width:90,
-                title:"列名"
+                field: "LName",
+                width: 90,
+                title: "列名"
             },
             {
-                field:"DType",
-                width:50,
-                title:"数据类型"
+                field: "DType",
+                width: 50,
+                title: "数据类型"
             }
-//        , {
-//            field: "Remark",
-//            width: 50,
-//            title: "说明"
-//        }
+        //        , {
+        //            field: "Remark",
+        //            width: 50,
+        //            title: "说明"
+        //        }
         ]
     });
 }
@@ -5666,7 +5690,7 @@ function AddGroupanel() {
         "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>实时数据源：</label></div><div class='innerRight'><select  class='textSty' id='Grouprtdb'></select></div></div>" +
         "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组名：</label></div><div class='innerRight'><input type='text' class='textSty ControlProTextSty' id='GroupName' maxlength='10' ischeck='true'/></div></div>" +
         "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>父级编号：</label></div><div class='innerRight'><input type='text'  class='textSty ControlProTextSty' id='GroupParent' maxlength='10' ischeck='false'/></div></div>" +
-        //            "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组类型：</label></div><div class='innerRight'><select class='textSty' id='GroupType' ><option>请选择</option><option>0</option><option>1</option><option>3</option></select></div></div>" +
+    //            "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组类型：</label></div><div class='innerRight'><select class='textSty' id='GroupType' ><option>请选择</option><option>0</option><option>1</option><option>3</option></select></div></div>" +
         "<div class='OutDivd'><input type='button' class='RTPopupBtn' id='NewGroupSaveBtn' value='保       存' /></div></div>");
 
 }
@@ -5681,7 +5705,7 @@ function UpdateGroupPanel() {
         "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组名：</label></div><div class='innerRight'><input type='text' class='textSty ControlProTextSty' id='GroupName'  maxlength='10' ischeck='true'/></div></div>" +
         "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>父级编号：</label></div><div class='innerRight'><input type='text'  class='textSty ControlProTextSty' id='GroupParent' maxlength='10' ischeck='false'/></div></div>" +
         "<input type='text' id='HiddenGroupID'/>" +
-        //            "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组类型：</label></div><div class='innerRight'><select class='textSty' id='GroupType' ><option>请选择</option><option>0</option><option>1</option><option>3</option></select></div></div>" +
+    //            "<div class='OutDivd'><div class='innerLeft'><label class='RTlabelSty'>分组类型：</label></div><div class='innerRight'><select class='textSty' id='GroupType' ><option>请选择</option><option>0</option><option>1</option><option>3</option></select></div></div>" +
         "<div class='OutDivd'><input type='button' class='RTPopupBtn' id='EditGroupSaveBtn' value='修       改' /></div></div>");
     $("#HiddenGroupID").hide();
 }
@@ -5694,7 +5718,7 @@ function ShowVersionInfo() {
     $("#BottomRightCenterOthersContentDiv").html("" +
         "<div class='VersionInfoManageShell'>" +
         "<div class='OutDivd'>" +
-        //        "<div class='ShowTreeDivShell' id='ShowTreeDiv'></div>"+
+    //        "<div class='ShowTreeDivShell' id='ShowTreeDiv'></div>"+
         "<div class='ShowTableDivShell'><div id='ShowVersionTable'></div>" +
         "<div class='ShowBtnDivShell'><input type='button' id='ConfirmBtn' value='确定' class=''/></div>" +
         "</div>" +
@@ -5739,24 +5763,24 @@ function VersionzTreeView() {
     var VersionzTreeObj;
     var treeNode = eval(footVersion);
     var setting = {
-        isSimpleData:true,
-        treeNodeKey:"id",
-        treeNodeParentKey:"pId",
-        showLine:true,
-        expandSpeed:false,
+        isSimpleData: true,
+        treeNodeKey: "id",
+        treeNodeParentKey: "pId",
+        showLine: true,
+        expandSpeed: false,
         /* checkable : true,*/
-        root:{
-            isRoot:true,
-            nodes:[]
+        root: {
+            isRoot: true,
+            nodes: []
         },
         /*  check: {
-         //enable: true,
-         */
+        //enable: true,
+        */
         /*chkStyle:"checkbox",*//*
          chkboxType: { "Y": "Ps", "N": "Ps" } //checkbox父子关联效果
          },*/
-        callback:{
-            click:zTreeOnClick
+        callback: {
+            click: zTreeOnClick
         }
     };
     //alert(treeNode);
@@ -5773,36 +5797,36 @@ function VersionzTreeView() {
         VersionPageName(treeNode.name);
 
         /* alert(event);
-         alert(treeId);
-         alert("找到节点信息:id=" + treeNode.id + ", name=" + treeNode.name + ",RtdbID="+treeNode.RtdbID+", isParent=" + treeNode.isParent);
-         // if(treeNode.open == false){
-         if(treeNode.children==null){
-         // if(treeNode.nodes=null){
-         Agi.GroupManager.RGLoad(treeNode.RtdbID, treeNode.id,function(result){
-         var GroupLevel=result.GroupName;
-         if(GroupLevel != null){
-         var  LevelList = "[";
-         $.each(GroupLevel,function(i,val){
-         LevelList+="{id:"+GroupLevel[i].GroupID+",pId:"+ treeNode.id+",name:'"+GroupLevel[i].GroupName+"',RtdbID:"+GroupLevel[i].RtdbID+",open:false,isParent:"+treeNode.isParent+"},";
-         });
-         LevelList=LevelList.substring(0,LevelList.length-1);
-         LevelList+="]";
-         alert(LevelList);
-         }
-         var newNode = eval(LevelList);
-         var srcNode = zTreeObj.getSelectedNode();
-         zTreeObj.addNodes(srcNode, newNode);
-         });
-         }  else {
-         return;
-         }*/
+        alert(treeId);
+        alert("找到节点信息:id=" + treeNode.id + ", name=" + treeNode.name + ",RtdbID="+treeNode.RtdbID+", isParent=" + treeNode.isParent);
+        // if(treeNode.open == false){
+        if(treeNode.children==null){
+        // if(treeNode.nodes=null){
+        Agi.GroupManager.RGLoad(treeNode.RtdbID, treeNode.id,function(result){
+        var GroupLevel=result.GroupName;
+        if(GroupLevel != null){
+        var  LevelList = "[";
+        $.each(GroupLevel,function(i,val){
+        LevelList+="{id:"+GroupLevel[i].GroupID+",pId:"+ treeNode.id+",name:'"+GroupLevel[i].GroupName+"',RtdbID:"+GroupLevel[i].RtdbID+",open:false,isParent:"+treeNode.isParent+"},";
+        });
+        LevelList=LevelList.substring(0,LevelList.length-1);
+        LevelList+="]";
+        alert(LevelList);
+        }
+        var newNode = eval(LevelList);
+        var srcNode = zTreeObj.getSelectedNode();
+        zTreeObj.addNodes(srcNode, newNode);
+        });
+        }  else {
+        return;
+        }*/
 
     }
 }
 function VersionPageName(_pageName) {//查找单条点位信息  Agi.DCManager.VSGetversionsBypageName
     $("#BottomRightText").text("版本管理");
     var VersionPageColumns = [];
-    Agi.DCManager.VSGetversionsBypageName(_pageName,IsNewSPCPage,function (_result) {
+    Agi.DCManager.VSGetversionsBypageName(_pageName, IsNewSPCPage, function (_result) {
         if (_result.result == "true") {
             var array = _result.data;
             if (array.length > 0) {
@@ -5813,28 +5837,28 @@ function VersionPageName(_pageName) {//查找单条点位信息  Agi.DCManager.V
                         vcreatedata = array[i].VCreateData,
                         vstate = array[i].VState,
                         vpuddate = array[i].VPudDate,
-                        vcreateuser=array[i].VCreateUser,
-                        vcreateaim=array[i].VCreateAim,
-                        vsummary=array[i].VSummary;
-                    if(IsNewSPCPage){
+                        vcreateuser = array[i].VCreateUser,
+                        vcreateaim = array[i].VCreateAim,
+                        vsummary = array[i].VSummary;
+                    if (IsNewSPCPage) {
                         VersionPageColumns.push({
-                            vname:vname + " ",
-                            vId:vId + " ",
-                            vdesription:vdesription + " ",
-                            vcreatedata:vcreatedata + " ",
-                            vstate:vstate + " ",
-                            vcreateuser:vcreateuser + " ",
-                            vcreateaim:vcreateaim + " ",
-                            vsummary:vsummary + " "
+                            vname: vname + " ",
+                            vId: vId + " ",
+                            vdesription: vdesription + " ",
+                            vcreatedata: vcreatedata + " ",
+                            vstate: vstate + " ",
+                            vcreateuser: vcreateuser + " ",
+                            vcreateaim: vcreateaim + " ",
+                            vsummary: vsummary + " "
                         });
-                    }else{
+                    } else {
                         VersionPageColumns.push({
-                            vname:vname + " ",
-                            vId:vId + " ",
-                            vdesription:vdesription + " ",
-                            vcreatedata:vcreatedata + " ",
-                            vstate:vstate + " ",
-                            vpuddate:vpuddate + " "
+                            vname: vname + " ",
+                            vId: vId + " ",
+                            vdesription: vdesription + " ",
+                            vcreatedata: vcreatedata + " ",
+                            vstate: vstate + " ",
+                            vpuddate: vpuddate + " "
                         });
                     }
                 }
@@ -5848,83 +5872,83 @@ function VersionPageName(_pageName) {//查找单条点位信息  Agi.DCManager.V
 function VersionPageColumnsData(dataColumns) { //用表格的形式展示点位数据
     $("#ShowVersionTable").html("");
     $("#ShowVersionTable").kendoGrid({
-        dataSource:{
-            data:dataColumns
+        dataSource: {
+            data: dataColumns
         },
-        height:440,
-        selectable:"single row",
-        groupable:false,
-        scrollable:true,
-        sortable:true,
-        pageable:false,
-        filterable:false,
-        columns:[
+        height: 440,
+        selectable: "single row",
+        groupable: false,
+        scrollable: true,
+        sortable: true,
+        pageable: false,
+        filterable: false,
+        columns: [
             {
-                field:"vname",
-                width:80,
-                title:"版本名称"
+                field: "vname",
+                width: 80,
+                title: "版本名称"
             },
             {
-                field:"vId",
-                width:30,
-                title:"版本号"
+                field: "vId",
+                width: 30,
+                title: "版本号"
             },
             {
-                field:"vdesription",
-                width:80,
-                title:"描述"
+                field: "vdesription",
+                width: 80,
+                title: "描述"
             },
             {
-                field:"vcreatedata",
-                width:100,
-                title:"创建时间"
+                field: "vcreatedata",
+                width: 100,
+                title: "创建时间"
             },
             {
-                field:"vstate",
-                width:40,
-                title:"状态"
+                field: "vstate",
+                width: 40,
+                title: "状态"
             },
             {
-                field:"vpuddate",
-                width:100,
-                title:"发布时间"
+                field: "vpuddate",
+                width: 100,
+                title: "发布时间"
             },
             {
-                field:"isPublishVersion",
-                sortable:false, //20130115 倪飘 解决选择一个版本后点击确定发布，再点击别的版本名称，先选中的状态消失了问题
-                template:'<input type="radio" name="PublishVersionRadio" class="PublishVersionRadio" value="0" style="text-align: center" />', // id="isPublishVersion"
-                width:40,
-                title:"是否发布"
+                field: "isPublishVersion",
+                sortable: false, //20130115 倪飘 解决选择一个版本后点击确定发布，再点击别的版本名称，先选中的状态消失了问题
+                template: '<input type="radio" name="PublishVersionRadio" class="PublishVersionRadio" value="0" style="text-align: center" />', // id="isPublishVersion"
+                width: 40,
+                title: "是否发布"
 
             }
         ]
     });
     var gridobj = $("#ShowVersionTable").data("kendoGrid");
     // gridobj.select( gridobj.tbody.find("tr:")[]);
-    var ThisShowVersionTabletrs=$("#ShowVersionTable").find("tbody>tr");
-    var ThisShowVersionTabletrtdtemp=null;
+    var ThisShowVersionTabletrs = $("#ShowVersionTable").find("tbody>tr");
+    var ThisShowVersionTabletrtdtemp = null;
     for (var n = 0; n < ThisShowVersionTabletrs.length; n++) {
-        ThisShowVersionTabletrtdtemp=$(ThisShowVersionTabletrs[n]).find("td");
+        ThisShowVersionTabletrtdtemp = $(ThisShowVersionTabletrs[n]).find("td");
         var isTrue = ThisShowVersionTabletrtdtemp[4].innerText.toLowerCase();
         if (isTrue == "true") {
             gridobj.select(gridobj.tbody.find("tr")[n]);
-            pangName = ThisShowVersionTabletrtdtemp[0].innerText;//版本名称
+            pangName = ThisShowVersionTabletrtdtemp[0].innerText; //版本名称
             versionnum = ThisShowVersionTabletrtdtemp[1].innerText; //版本号
-            $("#ConfirmBtn").attr("disabled", false);//21030222 yangyu  修改确定按钮点击跳转
+            $("#ConfirmBtn").attr("disabled", false); //21030222 yangyu  修改确定按钮点击跳转
             $(ThisShowVersionTabletrs[n]).find(".PublishVersionRadio").attr("checked", "checked")
-        } else { $("#ConfirmBtn").attr("disabled", true); }//加21030222 yangyu  修改确定按钮点击跳转
-             $("#ConfirmBtn").css("background-image","none")
+        } else { $("#ConfirmBtn").attr("disabled", true); } //加21030222 yangyu  修改确定按钮点击跳转
+        $("#ConfirmBtn").css("background-image", "none")
     }
-   // 21030222 yangyu  修改确定按钮点击跳转
-    if (ThisShowVersionTabletrs.length===0) {
+    // 21030222 yangyu  修改确定按钮点击跳转
+    if (ThisShowVersionTabletrs.length === 0) {
         $("#ConfirmBtn").attr("disabled", true);
-        $("#ConfirmBtn").css("background-image","none")
+        $("#ConfirmBtn").css("background-image", "none")
     }
-    ThisShowVersionTabletrs=ThisShowVersionTabletrtdtemp=null;//DOM查询优化,临时变量清空
+    ThisShowVersionTabletrs = ThisShowVersionTabletrtdtemp = null; //DOM查询优化,临时变量清空
 }
 /*$("input[name=pay]").change(function(){
- alert("13232");
- });*/
+alert("13232");
+});*/
 var pangName = "";
 var versionnum = "";
 $("#ShowVersionTable").live('click', function (obj) {  //.find(".PublishVersionRadio")
@@ -5932,7 +5956,7 @@ $("#ShowVersionTable").live('click', function (obj) {  //.find(".PublishVersionR
     versionnum = "";
     var Versioninfo = $("#ShowVersionTable").data("kendoGrid");
 
-    var ThisShowVersionTabletbodytrs=$("#ShowVersionTable").find("tbody>tr");
+    var ThisShowVersionTabletbodytrs = $("#ShowVersionTable").find("tbody>tr");
     if (ThisShowVersionTabletbodytrs.length > 0) {
         var NocheckedindexValue = [];
         var boolChecked;
@@ -5941,14 +5965,14 @@ $("#ShowVersionTable").live('click', function (obj) {  //.find(".PublishVersionR
             NocheckedindexValue.push(i);
         }
         var sSelectTr = Versioninfo.select().text()//获得选中行的信息
-        var nFristIndex = sSelectTr.indexOf(" ");//第一个空格的位置
+        var nFristIndex = sSelectTr.indexOf(" "); //第一个空格的位置
         var a = sSelectTr.substring(0, nFristIndex + 1);
         a = a.replace(" ", "k");
         var b = sSelectTr.substring(nFristIndex, sSelectTr.length).trim();
         var sNewStr = a + b;
-        var nSecondIndex = sNewStr.indexOf(" ");//第二个空格的位
+        var nSecondIndex = sNewStr.indexOf(" "); //第二个空格的位
         // alert("新字符串"+sNewStr+"第一个空格"+nFristIndex+"第二个空格"+nSecondIndex);
-        var sTr = sSelectTr.substring(nFristIndex, nSecondIndex).trim();//选中的版本编号
+        var sTr = sSelectTr.substring(nFristIndex, nSecondIndex).trim(); //选中的版本编号
         for (var n = 0; n < ThisShowVersionTabletbodytrs.length; n++) {
             boolChecked = $(ThisShowVersionTabletbodytrs[n]).find(".PublishVersionRadio").attr("checked") == "checked" ? "true" : "false";
             //alert(boolChecked +"   "+ n);
@@ -5966,17 +5990,17 @@ $("#ShowVersionTable").live('click', function (obj) {  //.find(".PublishVersionR
             var notValue = NocheckedindexValue[j];
             //alert(notValue);
             //20130115 倪飘 解决选择一个版本后点击确定发布，再点击别的版本名称，先选中的状态消失了问题
-//            $(ThisShowVersionTabletbodytrs[notValue]).find(".PublishVersionRadio").attr("checked", false);
+            //            $(ThisShowVersionTabletbodytrs[notValue]).find(".PublishVersionRadio").attr("checked", false);
         }
-        var tdCell=$(ThisShowVersionTabletbodytrs[checkedInsex]).find("td");
-        if(tdCell!=null && tdCell.length>0){
+        var tdCell = $(ThisShowVersionTabletbodytrs[checkedInsex]).find("td");
+        if (tdCell != null && tdCell.length > 0) {
             pangName = $(ThisShowVersionTabletbodytrs[checkedInsex]).find("td")[0].innerText; //版本名称
             versionnum = $(ThisShowVersionTabletbodytrs[checkedInsex]).find("td")[1].innerText; //版本号
-            $("#ConfirmBtn").attr("disabled", false);//21030222 yangyu  修改确定按钮点击跳转
+            $("#ConfirmBtn").attr("disabled", false); //21030222 yangyu  修改确定按钮点击跳转
         }
         // alert(pangName+"   "+versionnum);
     }
-    ThisShowVersionTabletbodytrs=null;//DOM查询优化,临时变量清空
+    ThisShowVersionTabletbodytrs = null; //DOM查询优化,临时变量清空
 
 });
 
@@ -6000,19 +6024,19 @@ function UpdatePubstate(_pangName, _versionnum) {//修改发布状态-
 $("#ConfirmBtn").live('click', function () {
     UpdatePubstate(pangName, versionnum);
 });
-var jsonScruption;//存放版本描述
+var jsonScruption; //存放版本描述
 function selectLak(_pageName) {//版本名称显示在下拉框中
-    var pagenamestr=_pageName;
-    if(Agi.WebServiceConfig.Type!=".NET"){
+    var pagenamestr = _pageName;
+    if (Agi.WebServiceConfig.Type != ".NET") {
         //20130722 10:19 markeluo 解决页面新建版本后再保存无法获取版本列表问题
-        var NameLastindex=workspace.pageName.lastIndexOf("_");
-        if(NameLastindex>=0){
-            pagenamestr=pagenamestr.substring(0,NameLastindex);
+        var NameLastindex = workspace.pageName.lastIndexOf("_");
+        if (NameLastindex >= 0) {
+            pagenamestr = pagenamestr.substring(0, NameLastindex);
         }
-        NameLastindex=null;
+        NameLastindex = null;
 
     }
-    Agi.DCManager.VSGetversionsBypageName(pagenamestr,IsNewSPCPage,function (_result) {
+    Agi.DCManager.VSGetversionsBypageName(pagenamestr, IsNewSPCPage, function (_result) {
         //alert("下拉框判断"+_result.result)
         if (_result.result == "true") {
             var arry = _result.data;
@@ -6022,8 +6046,8 @@ function selectLak(_pageName) {//版本名称显示在下拉框中
                 for (var i = 0; i < arry.length; i++) {
                     $("#VersionSelect").append("<option value='" + arry[i].VID + "'>" + pagenamestr + "_" + arry[i].VID + "</option>");
                     //markeluo 兼容JAVA
-                    if(arry[i].VDescription){}else{
-                        arry[i].VDescription="";
+                    if (arry[i].VDescription) { } else {
+                        arry[i].VDescription = "";
                     }
                     sScruption += "{VID:'" + arry[i].VID + "',VDeScription:'" + arry[i].VDescription + "',VCreateUser:'" + arry[i].VCreateUser + "',VCreateAim:'" + arry[i].VCreateAim + "',VSummary:'" + arry[i].VSummary + "'},";
                 }
@@ -6032,7 +6056,7 @@ function selectLak(_pageName) {//版本名称显示在下拉框中
                 jsonScruption = eval(sScruption);
             }
         }
-        var num =_pageName.substring(_pageName.lastIndexOf("_") + 1,_pageName.length); //编辑的版本是第几个版本
+        var num = _pageName.substring(_pageName.lastIndexOf("_") + 1, _pageName.length); //编辑的版本是第几个版本
         var arrValue = [];
         var f = $("#VersionSelect")[0].options;
         for (var i = 0; i < f.length; i++) {     //$("#VersionSelect").options.length
@@ -6042,20 +6066,20 @@ function selectLak(_pageName) {//版本名称显示在下拉框中
             if (arrValue[n] == num) {
                 $("#VersionSelect").val(arrValue[n]); //显示版本号
                 if (arrValue[n] == jsonScruption[n - 2].VID) {
-                    if(IsNewSPCPage){
+                    if (IsNewSPCPage) {
                         $("#InputDescription").val(""); //备注&总结
                         $("#CreatePageAuth").val(""); //创建人
                         $("#CreatePageGoal").val(""); //创建目的
-                        if(jsonScruption[n - 2].VSummary!=null){
+                        if (jsonScruption[n - 2].VSummary != null) {
                             $("#InputDescription").val(jsonScruption[n - 2].VSummary); //备注&总结
                         }
-                        if(jsonScruption[n - 2].VCreateUser!=null){//
+                        if (jsonScruption[n - 2].VCreateUser != null) {//
                             $("#CreatePageAuth").val(jsonScruption[n - 2].VCreateUser); //创建人
                         }
-                        if(jsonScruption[n - 2].VCreateAim!=null){
+                        if (jsonScruption[n - 2].VCreateAim != null) {
                             $("#CreatePageGoal").val(jsonScruption[n - 2].VCreateAim); //创建目的
                         }
-                    }else{
+                    } else {
                         if (jsonScruption[n - 2].VDeScription != "null") {
                             $("#InputDescription").val(jsonScruption[n - 2].VDeScription); //版本描述
                         } else {
@@ -6072,7 +6096,7 @@ $("#VersionSelect").live('change', function () {
     var selectoption = $("#VersionSelect").val();
     for (var n = 0; n < jsonScruption.length; n++) {
         if (selectoption == jsonScruption[n].VID) {
-            if (jsonScruption[n].VDeScription != "null" && jsonScruption[n].VDeScription !="") {
+            if (jsonScruption[n].VDeScription != "null" && jsonScruption[n].VDeScription != "") {
                 $("#InputDescription").val(jsonScruption[n].VDeScription); //版本描述
                 $("#InputDescription").attr("Description", $("#InputDescription").val());
             } else {
@@ -6136,7 +6160,7 @@ function pangePaste(_fileName) {
     //替换文件夹路径
     if (sCopyAddress != "") {
         /*  var f = sCopyAddress.substring(0,sCopyAddress.lastIndexOf("PageManager"))
-         var g = f+*/
+        var g = f+*/
     }
 
     /*释放临时变量*/
@@ -6162,32 +6186,31 @@ function PageSourceBrowser() {
 
 //region 20130621 10:44 markeluo DataSet 文件夹管理
 //datasets分组添加
-function AddDataSetsGroup(_groupInfo,RefreshCallback) {
-    var Parentvalue="";
-    if(_groupInfo!=null){
-        Parentvalue=_groupInfo.Parent;
+function AddDataSetsGroup(_groupInfo, RefreshCallback) {
+    var Parentvalue = "";
+    if (_groupInfo != null) {
+        Parentvalue = _groupInfo.Parent;
     }
     var content = "请输入分组名称！";
-    AgiCommonDialogBox.Prompt(content,null,function (flag,newName) {
+    AgiCommonDialogBox.Prompt(content, null, function (flag, newName) {
         if (flag) {
 
-            var txt =/^(\w|[\u4E00-\u9FA5])*$/;
-            if(newName == null||newName.length<=0)
-            {
+            var txt = /^(\w|[\u4E00-\u9FA5])*$/;
+            if (newName == null || newName.length <= 0) {
                 AgiCommonDialogBox.Alert("名称不能为空！", null);
-            }else if(newName.length>16){
-                AgiCommonDialogBox.Alert("最多可输入16个字符！",null);
+            } else if (newName.length > 16) {
+                AgiCommonDialogBox.Alert("最多可输入16个字符！", null);
             }
-            else if(!txt.test(newName)){
+            else if (!txt.test(newName)) {
                 AgiCommonDialogBox.Alert("名称不能为特殊字符！", null);
-            }else{
-                Agi.DatasetsManager.DSNodeAdd({Name:newName,Parent:Parentvalue},function(data){
-                    if(data.result=="true"){
+            } else {
+                Agi.DatasetsManager.DSNodeAdd({ Name: newName, Parent: Parentvalue }, function (data) {
+                    if (data.result == "true") {
                         AgiCommonDialogBox.Alert("添加成功!", null);
                         RefreshCallback();
 
-                    }else{
-                        AgiCommonDialogBox.Alert("添加失败!"+data.message, null);
+                    } else {
+                        AgiCommonDialogBox.Alert("添加失败!" + data.message, null);
                     }
                 });
             }
@@ -6198,16 +6221,16 @@ function AddDataSetsGroup(_groupInfo,RefreshCallback) {
 
 }
 //datasets 分组删除
-function DelDataSetsGroup(_groupInfo,RefreshCallback) {
-    var content = "确定删除Dataset分组[" +_groupInfo.NodeName+ "],及其所有子内容?";
+function DelDataSetsGroup(_groupInfo, RefreshCallback) {
+    var content = "确定删除Dataset分组[" + _groupInfo.NodeName + "],及其所有子内容?";
     AgiCommonDialogBox.Confirm(content, null, function (flag) {
         if (flag) {
-            Agi.DatasetsManager.DSNodeDel({"Value":_groupInfo.NodeKey},function(data){
-                if(data.result=="true"){
+            Agi.DatasetsManager.DSNodeDel({ "Value": _groupInfo.NodeKey }, function (data) {
+                if (data.result == "true") {
                     AgiCommonDialogBox.Alert("删除成功!", null);
                     RefreshCallback();
-                }else{
-                    AgiCommonDialogBox.Alert("删除失败!"+data.message, null);
+                } else {
+                    AgiCommonDialogBox.Alert("删除失败!" + data.message, null);
                 }
             })
         } else {
@@ -6216,34 +6239,33 @@ function DelDataSetsGroup(_groupInfo,RefreshCallback) {
     });
 }
 //编辑分组信息
-function EditDataSetsGroup(_groupInfo,RefreshCallback){
+function EditDataSetsGroup(_groupInfo, RefreshCallback) {
     //_groupInfo.NodeName:分组名称 _groupInfo.NodeKey:分组唯一标识 _groupInfo.Parent:分组父节点标识
-    var Parentvalue="";
-    if(_groupInfo!=null){
-        Parentvalue=_groupInfo.Parent;
+    var Parentvalue = "";
+    if (_groupInfo != null) {
+        Parentvalue = _groupInfo.Parent;
     }
     var content = "请输入新分组名称！";
-    AgiCommonDialogBox.Prompt(content,null,function (flag,newName) {
+    AgiCommonDialogBox.Prompt(content, null, function (flag, newName) {
         if (flag) {
 
-            var txt =/^(\w|[\u4E00-\u9FA5])*$/;
-            if(newName == null||newName.length<=0)
-            {
+            var txt = /^(\w|[\u4E00-\u9FA5])*$/;
+            if (newName == null || newName.length <= 0) {
                 AgiCommonDialogBox.Alert("名称不能为空！", null);
-            }else if(newName.length>16){
-                AgiCommonDialogBox.Alert("最多可输入16个字符！",null);
+            } else if (newName.length > 16) {
+                AgiCommonDialogBox.Alert("最多可输入16个字符！", null);
             }
-            else if(!txt.test(newName)){
+            else if (!txt.test(newName)) {
                 AgiCommonDialogBox.Alert("名称不能为特殊字符！", null);
-            }else if(newName==_groupInfo.Name){
+            } else if (newName == _groupInfo.Name) {
                 AgiCommonDialogBox.Alert("新名称不能和原名称相同！", null);
-            }else{
-                Agi.DatasetsManager.DSNodeEdit({OldName:_groupInfo.NodeName,NewName:newName,Parent:Parentvalue,Key:_groupInfo.NodeKey},function(data){
-                    if(data.result=="true"){
+            } else {
+                Agi.DatasetsManager.DSNodeEdit({ OldName: _groupInfo.NodeName, NewName: newName, Parent: Parentvalue, Key: _groupInfo.NodeKey }, function (data) {
+                    if (data.result == "true") {
                         AgiCommonDialogBox.Alert("修改成功!", null);
                         RefreshCallback();
-                    }else{
-                        AgiCommonDialogBox.Alert("修改失败!"+data.message, null);
+                    } else {
+                        AgiCommonDialogBox.Alert("修改失败!" + data.message, null);
                     }
                 });
             }
@@ -6254,32 +6276,31 @@ function EditDataSetsGroup(_groupInfo,RefreshCallback){
 }
 //endregion
 //region 20130622 12:12 markeluo 页面分组文件夹管理
-function AddPageGroup(_groupInfo,RefreshCallback) {
+function AddPageGroup(_groupInfo, RefreshCallback) {
     //{NodeName,NodePath,NodeKey}
-    var Parentvalue="";
-    if(_groupInfo!=null){
-        Parentvalue=_groupInfo.NodeKey;
+    var Parentvalue = "";
+    if (_groupInfo != null) {
+        Parentvalue = _groupInfo.NodeKey;
     }
     var content = "请输入分组名称！";
-    AgiCommonDialogBox.Prompt(content,null,function (flag,newName) {
+    AgiCommonDialogBox.Prompt(content, null, function (flag, newName) {
         if (flag) {
 
-            var txt =/^(\w|[\u4E00-\u9FA5])*$/;
-            if(newName == null||newName.length<=0)
-            {
+            var txt = /^(\w|[\u4E00-\u9FA5])*$/;
+            if (newName == null || newName.length <= 0) {
                 AgiCommonDialogBox.Alert("名称不能为空！", null);
-            }else if(newName.length>16){
-                AgiCommonDialogBox.Alert("最多可输入16个字符！",null);
+            } else if (newName.length > 16) {
+                AgiCommonDialogBox.Alert("最多可输入16个字符！", null);
             }
-            else if(!txt.test(newName)){
+            else if (!txt.test(newName)) {
                 AgiCommonDialogBox.Alert("名称不能为特殊字符！", null);
-            }else{
-                Agi.PageGroupManager.AddPageGroup({Name:newName,Parent:Parentvalue},function(data){
-                    if(data.result=="true"){
+            } else {
+                Agi.PageGroupManager.AddPageGroup({ Name: newName, Parent: Parentvalue }, function (data) {
+                    if (data.result == "true") {
                         AgiCommonDialogBox.Alert("添加成功!", null);
                         RefreshCallback();
-                    }else{
-                        AgiCommonDialogBox.Alert("添加失败!"+data.message, null);
+                    } else {
+                        AgiCommonDialogBox.Alert("添加失败!" + data.message, null);
                     }
                 });
             }
@@ -6289,37 +6310,36 @@ function AddPageGroup(_groupInfo,RefreshCallback) {
     });
 }
 //编辑页面分组信息
-function EditPageGroup(_groupInfo,RefreshCallback){
+function EditPageGroup(_groupInfo, RefreshCallback) {
     //{NodeName,NodePath,NodeKey}
-    var Parentvalue="";
-    if(_groupInfo!=null){
-        if(Agi.WebServiceConfig.Type!="JAVA"){
-            Parentvalue=_groupInfo.NodePath.substring(0,_groupInfo.NodePath.lastIndexOf("/"));
+    var Parentvalue = "";
+    if (_groupInfo != null) {
+        if (Agi.WebServiceConfig.Type != "JAVA") {
+            Parentvalue = _groupInfo.NodePath.substring(0, _groupInfo.NodePath.lastIndexOf("/"));
         }
     }
     var content = "请输入新分组名称！";
-    AgiCommonDialogBox.Prompt(content,null,function (flag,newName) {
+    AgiCommonDialogBox.Prompt(content, null, function (flag, newName) {
         if (flag) {
 
-            var txt =/^(\w|[\u4E00-\u9FA5])*$/;
-            if(newName == null||newName.length<=0)
-            {
+            var txt = /^(\w|[\u4E00-\u9FA5])*$/;
+            if (newName == null || newName.length <= 0) {
                 AgiCommonDialogBox.Alert("名称不能为空！", null);
-            }else if(newName.length>16){
-                AgiCommonDialogBox.Alert("最多可输入16个字符！",null);
+            } else if (newName.length > 16) {
+                AgiCommonDialogBox.Alert("最多可输入16个字符！", null);
             }
-            else if(!txt.test(newName)){
+            else if (!txt.test(newName)) {
                 AgiCommonDialogBox.Alert("名称不能为特殊字符！", null);
-            }else if(newName==_groupInfo.NodeName){
+            } else if (newName == _groupInfo.NodeName) {
                 AgiCommonDialogBox.Alert("新名称不能和原名称相同！", null);
-            }else{
+            } else {
                 //OldName:NodeInfo.Name,NewName:NodeInfo.NewName,Parent:NodeInfo.Parent,Key:NodeInfo.Key
-                Agi.PageGroupManager.EditPageGroup({NewName:newName,OldName:_groupInfo.NodeName,Parent:Parentvalue,Key:_groupInfo.NodePath},function(data){
-                    if(data.result=="true"){
+                Agi.PageGroupManager.EditPageGroup({ NewName: newName, OldName: _groupInfo.NodeName, Parent: Parentvalue, Key: _groupInfo.NodePath }, function (data) {
+                    if (data.result == "true") {
                         AgiCommonDialogBox.Alert("修改成功!", null);
                         RefreshCallback();
-                    }else{
-                        AgiCommonDialogBox.Alert("添加失败!"+data.message, null);
+                    } else {
+                        AgiCommonDialogBox.Alert("添加失败!" + data.message, null);
                     }
                 });
             }
@@ -6329,23 +6349,23 @@ function EditPageGroup(_groupInfo,RefreshCallback){
     });
 }
 //删除页面分组信息
-function DeletePageGroup(_groupInfo,RefreshCallback){
+function DeletePageGroup(_groupInfo, RefreshCallback) {
     //{NodeName,NodePath,NodeKey}
-    var Parentvalue="";
-    if(_groupInfo!=null){
-        if(Agi.WebServiceConfig.Type!="JAVA"){
-            Parentvalue=_groupInfo.NodePath.substring(0,_groupInfo.NodePath.lastIndexOf("/"));
+    var Parentvalue = "";
+    if (_groupInfo != null) {
+        if (Agi.WebServiceConfig.Type != "JAVA") {
+            Parentvalue = _groupInfo.NodePath.substring(0, _groupInfo.NodePath.lastIndexOf("/"));
         }
     }
-    var content = "确定删除页面分组[" +_groupInfo.NodeName+ "],及其所有子内容?";
+    var content = "确定删除页面分组[" + _groupInfo.NodeName + "],及其所有子内容?";
     AgiCommonDialogBox.Confirm(content, null, function (flag) {
         if (flag) {
-            Agi.PageGroupManager.DeletePageGroup({"Name":_groupInfo.NodeName,Key:_groupInfo.NodeKey,Parent:Parentvalue},function(data){
-                if(data.result=="true"){
+            Agi.PageGroupManager.DeletePageGroup({ "Name": _groupInfo.NodeName, Key: _groupInfo.NodeKey, Parent: Parentvalue }, function (data) {
+                if (data.result == "true") {
                     AgiCommonDialogBox.Alert("删除成功!", null);
                     RefreshCallback();
-                }else{
-                    AgiCommonDialogBox.Alert("删除失败!"+data.message, null);
+                } else {
+                    AgiCommonDialogBox.Alert("删除失败!" + data.message, null);
                 }
             })
         } else {

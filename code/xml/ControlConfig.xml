@@ -85,11 +85,11 @@
           </Files>
           </Control>
 
-      <Control id='1' ControlType='NewCheckBox' ControlName='新复选框' IcoURL='JS/Controls/ControlsImages/CheckBox.png'
-              Initialize="Agi.Controls.InitNewCheckBox">
+       <Control id='1' ControlType='CheckBox' ControlName='复选框' IcoURL='JS/Controls/ControlsImages/CheckBox.png'
+              Initialize="Agi.Controls.InitCheckBox">
         <Files>
-          <File Type='css' Path='JS/Controls/NewCheckBox/NewCheckBox.css'></File>
-          <File Type='js' Path='JS/Controls/NewCheckBox/NewCheckBox.js'></File>
+          <File Type='css' Path='JS/Controls/CheckBox1/CheckBox.css'></File>
+          <File Type='js' Path='JS/Controls/CheckBox1/CheckBox.js'></File>
           
         </Files>
       </Control>

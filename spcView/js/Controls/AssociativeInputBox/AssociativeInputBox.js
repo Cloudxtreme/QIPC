@@ -106,7 +106,9 @@ Agi.Controls.AssociativeInputBox = Agi.OOP.Class.Create(Agi.Controls.ControlBasi
                 InputBorderColor: "#9f9f9f", //输入框边框颜色
                 ButtonBgColor: "#b9b9b9", //按钮背景色
                 ButtonBorderColor: "#9f9f9f", //按钮边框色
-                ButtonText: "Go"                   //按钮显示文字
+                ButtonText: "Go",                   //按钮显示文字
+                //2014-02-24  coke
+                ButtonTextFontSty:"微软雅黑"                   //按钮显示字体
             };
             this.Set("AssociativeInputBoxBasicProperty", AssociativeInputBoxBasicProperty);
 
@@ -373,6 +375,8 @@ Agi.Controls.AssociativeInputBox = Agi.OOP.Class.Create(Agi.Controls.ControlBasi
                     $('#' + this.shell.ID).find('.inputAssociativeClass').css({ "border-color": _Value.InputBorderColor });
                     $('#' + _obj.shell.ID).find('#ButtonAssociativeID').val(_Value.ButtonText);
                     $('#' + _obj.shell.ID).find('#ButtonAssociativeID').css({ "border-color": _Value.ButtonBorderColor });
+                    //2014-02-24  coke
+                    $('#' + _obj.shell.ID).find('#ButtonAssociativeID').css({"font-family":_Value.ButtonTextFontSty});
                     $('#' + _obj.shell.ID).find('#ButtonAssociativeID').css("background", "-webkit-gradient(linear,left bottom,left top,color-stop(0, #f7f7f7),color-stop(1, " + _Value.ButtonBgColor + "))");
                 }
             }
@@ -515,7 +519,8 @@ Agi.Controls.AssociativeInputBox = Agi.OOP.Class.Create(Agi.Controls.ControlBasi
                     $('#' + ThisProPerty.ID).find('#ButtonAssociativeID').val(AssociativeInputBoxBasicProperty.ButtonText);
                     $('#' + ThisProPerty.ID).find('#ButtonAssociativeID').css({ "border-color": "" + AssociativeInputBoxBasicProperty.ButtonBorderColor + "" });
                     $('#' + ThisProPerty.ID).find('#ButtonAssociativeID').css({ "background": "-webkit-gradient(linear,left bottom,left top,color-stop(0, #f7f7f7),color-stop(1, " + AssociativeInputBoxBasicProperty.ButtonBgColor + "))" });
-
+                    //2014-02-24  coke
+                    $('#' + ThisProPerty.ID).find('#ButtonAssociativeID').css({"font-family":"" + AssociativeInputBoxBasicProperty.ButtonTextFontSty + ""});
 
                     var PagePars = { Width: _Targetobj.width(), Height: _Targetobj.height() };
                     _Config.Position.Left = parseFloat(_Config.Position.Left);
@@ -698,6 +703,8 @@ Agi.Controls.AssociativeInputBox.OptionsAppSty = function (_StyConfig, Me) {
         AssociativeInputBoxBasicProperty.InputBorderColor = _StyConfig.InputBorderColor;
         AssociativeInputBoxBasicProperty.ButtonBgColor = _StyConfig.ButtonBgColor;
         AssociativeInputBoxBasicProperty.ButtonBorderColor = _StyConfig.ButtonBorderColor;
+        //2014-02-24  coke
+        AssociativeInputBoxBasicProperty.ButtonTextFontSty=_StyConfig.ButtonTextFontSty;
         Me.Set("AssociativeInputBoxBasicProperty", AssociativeInputBoxBasicProperty);
     }
 
@@ -936,6 +943,20 @@ Agi.Controls.AssociativeInputBoxPropertyInit = function (propertyAssociativeInpu
     ButtonContent.append("</tr>");
     ButtonContent.append("<tr>");
     ButtonContent.append("<td class='prortityPanelTabletd0Asso'>边框颜色</td><td class='prortityPanelTabletd1Asso'><input type='text' id='ButtonBorderColor' /></td>");
+
+    //2014-0-24  coke  联想输入框的按钮设置里缺少了字体类型的设置
+    ButtonContent.append("<td class='prortityPanelTabletd0Asso'>字体样式</td><td class='prortityPanelTabletd1Asso'><select id='ButtonTextFontSty'>" +
+        "<option selected value='微软雅黑'>微软雅黑</option>" +
+        "<option value='宋体'>宋体</option>" +
+        "<option value='楷体'>楷体</option>" +
+        "<option value='黑体'>黑体</option>" +
+        "<option value='隶书'>隶书</option>" +
+        "<option value='仿宋'>仿宋</option>" +
+        "<option value='华文彩云'>华文彩云</option>" +
+        "<option value='华文琥珀'>华文琥珀</option>" +
+        "<option value='华文隶书'>华文隶书</option>" +
+        "</select></td>");
+    ButtonContent.append("</tr>");
     ButtonContent.append("</tr>");
 
     ButtonContent.append("</table>");
@@ -969,6 +990,8 @@ Agi.Controls.AssociativeInputBoxPropertyInit = function (propertyAssociativeInpu
     $("#ButtonBgColor").val(AssociativeInputBoxBasicProperty.ButtonBgColor);
     $("#ButtonBorderColor").val(AssociativeInputBoxBasicProperty.ButtonBorderColor);
     $("#ButtonText").val(AssociativeInputBoxBasicProperty.ButtonText);
+    //2014-02-24  coke  按钮设置字体
+    $("#ButtonTextFontSty").val(AssociativeInputBoxBasicProperty.ButtonTextFontSty);
 
     //面板字体
     $("#PanelFontSty").change(function () {
@@ -1023,6 +1046,11 @@ Agi.Controls.AssociativeInputBoxPropertyInit = function (propertyAssociativeInpu
             AssociativeInputBoxBasicProperty.PanelBgColor = color.toHexString();
             propertyAssociativeInputBox.Set("AssociativeInputBoxBasicProperty", AssociativeInputBoxBasicProperty);
         }
+    });
+    //2014-02-24  coke 按钮字体
+    $("#ButtonTextFontSty").change(function () {
+        AssociativeInputBoxBasicProperty.ButtonTextFontSty= $("#ButtonTextFontSty").val();
+        propertyAssociativeInputBox.Set("AssociativeInputBoxBasicProperty", AssociativeInputBoxBasicProperty);
     });
     //按钮背景颜色
     $("#ButtonBgColor").spectrum({

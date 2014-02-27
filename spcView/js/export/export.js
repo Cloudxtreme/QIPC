@@ -61,7 +61,9 @@ function getExcel() {
             var reg1 = /data:image\/png;base64,(.+)/;
             reg1.test(imgUrl);
             var b = RegExp.$1;
-            var jsonData = getEntity(['DataGrid', 'BasicChart']);
+            var jsonData = getEntity(['DataGrid','BasicChart',"CustomSingleChart","PCChartGxp","CustomBoxChart",
+                "CustomXMRChart","CustomXSChart","CustomMDRChart","CustomScatterChart","CustomPCTRChart",
+                "SeqChart","CustomNPChart","CustomCChart","EdgeDataView","CustomYGZButton"]);
             //jsonData= JSON.stringify(jsonData);
             //20130708 12:55 markeluo 修改，兼容加密解密处理
             //var jsonData={"url":a,"ID":0};
@@ -145,7 +147,9 @@ function getWord() {
             var b = RegExp.$1;
 
             //20130708 12:55 markeluo 修改，兼容加密解密处理
-            var jsonData = getEntity(['DataGrid', 'BasicChart']);
+            var jsonData = getEntity(['DataGrid','BasicChart',"CustomSingleChart","PCChartGxp","CustomBoxChart",
+                "CustomXMRChart","CustomXSChart","CustomMDRChart","CustomScatterChart","CustomPCTRChart",
+                "SeqChart","CustomNPChart","CustomCChart","EdgeDataView","CustomYGZButton"]);
             //jsonData= JSON.stringify(jsonData);
 
             if (Agi.WebServiceConfig.Type == ".NET") {
@@ -225,7 +229,9 @@ function getPDF() {
             var b = RegExp.$1;
 
             //20130708 12:55 markeluo 修改，兼容加密解密处理
-            var jsonData = getEntity(['DataGrid', 'BasicChart']);
+            var jsonData = getEntity(['DataGrid','BasicChart',"CustomSingleChart","PCChartGxp","CustomBoxChart",
+                "CustomXMRChart","CustomXSChart","CustomMDRChart","CustomScatterChart","CustomPCTRChart",
+                "SeqChart","CustomNPChart","CustomCChart","EdgeDataView","CustomYGZButton"]);
             //jsonData= JSON.stringify(jsonData);
 
             if (Agi.WebServiceConfig.Type == ".NET") {

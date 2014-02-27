@@ -835,6 +835,12 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         if (_StandLineInfo.LineDir == "Vertical") {
             var VerStandardlineOptions = {
                 value: _StandLineInfo.LineValue,
+                label: {
+                    text:_StandLineInfo.LineValue,// 2014-02-24  coke 基准线上需要增加ToolTip
+                    align: 'right',
+                    x: -10,
+                    y: 0
+                },
                 dashStyle: _StandLineInfo.LineType,
                 color: _SDLineColor,
                 width: _StandLineInfo.LineSize,
@@ -845,6 +851,12 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         } else {
             var HorStandardlineOptions = {
                 value: _StandLineInfo.LineValue,
+                label: {
+                    text:_StandLineInfo.LineValue,// 2014-02-24  coke 基准线上需要增加ToolTip
+                    align: 'right',
+                    x: -10,
+                    y: 0
+                },
                 dashStyle: _StandLineInfo.LineType,
                 color: _SDLineColor,
                 width: _StandLineInfo.LineSize,
@@ -1460,7 +1472,8 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
                         LineColor:ThisColorValue,
                         LineSize:$("#basicchart_standardline_size").val(),
                         LineDir:$("#basicchart_standardline_dir option:selected").val(),
-                        LineValue:parseInt($("#basicchart_standardline_value").val()),
+                        //2014-02-24  coke
+                        LineValue:$("#basicchart_standardline_value").val(),
                         LineTooTips:thisChartLineName
                     }
                     var NewStandLine=Me.AddStandardValueLine(StandLineInfo,true);
@@ -1497,7 +1510,8 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
                         LineColor:ThisColorValue,
                         LineSize:$("#basicchart_standardline_size").val(),
                         LineDir:$("#basicchart_standardline_dir option:selected").val(),
-                        LineValue:parseInt($("#basicchart_standardline_value").val()),
+                        //2014-02-24  coke
+                        LineValue:$("#basicchart_standardline_value").val(),
                         LineTooTips:StrStandLineName
                     };
                     Me.RemoveStandardLine(StrStandLineID);//移除原基准线

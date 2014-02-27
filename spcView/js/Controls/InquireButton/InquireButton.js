@@ -131,8 +131,12 @@ Agi.Controls.InquireButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
 
             $('#' + self.shell.ID).click(function (ev) {
                 obj = { "sender": self, "Type": Agi.Msg.Enum.Controls };
-
                 Agi.Msg.BtnQuery.queryEvent(obj);
+                //add for count click on each page.
+                Agi.DAL.ReadData({
+                    "MethodName": "QBtnClickCount",
+                    "Paras": {'page':GetUrlParas("page")}
+                });
             });
 
 //            $('#' + self.shell.ID).live('dblclick', function (ev) {

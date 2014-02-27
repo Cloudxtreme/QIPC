@@ -64,6 +64,97 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 menuManagement.updateDataSourceDragDropTargets();
             }
         },
+        //跳出textbox文本框
+        ShowTextBox:function(self){
+            var content="<div class='FloatHiddenDiv' style='display: none;' id='HiddenDiv"+self.shell.BasicID+"'><input type='text' id='HiddenText"+self.shell.BasicID+"'></div>";
+            var bll=true;//文本框是否显示
+            var Etity=self.Get("Entity")[0];
+            var data=Etity.Data;
+            var BasicProperty = self.Get("BasicProperty");
+            var textField = BasicProperty && BasicProperty.selectTextField?BasicProperty.selectTextField:self.Get("Entity")[0].Columns[0];
+            var valueField = BasicProperty && BasicProperty.selectValueField?BasicProperty.selectValueField:self.Get("Entity")[0].Columns[0];
+            var menu = $('#'+self.shell.ID).find('.dropdown-menu');
+            var Tnum=1;
+            var  hl=false;
+            //找到a标签
+            document.getElementById(self.shell.BasicID).getElementsByTagName("a").item(0).onclick=function(){
+                if($("#HiddenDiv"+self.shell.BasicID).length<1)
+                {
+                    $("#"+self.shell.BasicID).before(content);
+                }
+                //实体改变
+                if(self.Get("Entity")[0].Key!=Etity.Key)
+                {
+                    Etity=self.Get("Entity")[0];
+                    data=Etity.Data;
+                    BasicProperty = self.Get("BasicProperty");
+                    textField = BasicProperty && BasicProperty.selectTextField?BasicProperty.selectTextField:self.Get("Entity")[0].Columns[0];
+                    valueField = BasicProperty && BasicProperty.selectValueField?BasicProperty.selectValueField:self.Get("Entity")[0].Columns[0];
+                }
+                menu.html("");
+                Tnum=1;
+                for(var s=0;s<data.length;s++)
+                {
+                    $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+data[s][textField.trim()]+'</a></li>').appendTo(menu);
+                    Tnum++;
+                }
+                if(Tnum>20)
+                {
+                    menu.height(400);
+                }else{
+                    menu.height(eval(15*Tnum));
+                }
+                self.ReBindEvents();
+
+                $("#HiddenText"+self.shell.BasicID).val ("");
+                //$("#"+self.shell.ID).css("left")
+                //$("#"+self.shell.ID).css("top")
+                $("#HiddenText"+self.shell.BasicID).css({"position":"absolute","margin-left":"0px","margin-top":"0px",
+                    "width":eval(eval($("#"+self.shell.ID).css("width").replace("px",""))-24)+"px",
+                    "height":eval(eval($("#"+self.shell.ID).css("height").replace("px",""))-4)+"px","z-index":eval($("#"+self.shell.ID).css("z-index"))+1});
+
+                $("#HiddenDiv"+self.shell.BasicID).css({"display":"block"});
+                document.getElementById("HiddenText"+self.shell.BasicID).focus();
+
+                document.getElementById("HiddenText"+self.shell.BasicID).onfocus=function(){
+                    if(!self.shell.Container.find('.dropdown').hasClass("openList")){
+                        self.shell.Container.find('.dropdown').addClass('openList');
+                        hl=true;
+                    }
+                }
+
+
+                document.getElementById("workspace").onclick=function(){
+                    if(hl&&event.toElement.id!=""&&event.toElement.id!="HiddenText"+self.shell.BasicID)
+                    {
+                        $("#HiddenDiv"+self.shell.BasicID).css({"display":"none"});
+                        self.shell.Container.find('.dropdown').removeClass('openList');
+                        hl=false;
+                    }
+                }
+                document.getElementById("HiddenText"+self.shell.BasicID).onkeyup=function(){
+                    if(event.keyCode==17||event.keyCode==18||event.keyCode==91||event.keyCode==91
+                        || event.keyCode==20){return;}
+                    //if(event.keyCode!=32){return;}
+                    menu.html("");
+                    Tnum=1;
+                    for(var s=0;s<data.length;s++)
+                    {
+                        if($("#HiddenText"+self.shell.BasicID).val()!=""&&String(data[s][textField.trim()]).indexOf($("#HiddenText"+self.shell.BasicID).val().trim())<0){continue;}
+                        $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+data[s][textField.trim()]+'</a></li>').appendTo(menu);
+                        Tnum++;
+                    }
+                    if(Tnum>20)
+                    {
+                        menu.height(400);
+                    }else{
+                        menu.height(eval(15*Tnum));
+                    }
+                    self.ReBindEvents();
+                }
+
+            }
+        },
         //重新绑定事件
         ReBindEvents: function () {
             var self = this;
@@ -73,6 +164,11 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             ThisHTMLElement.find('.dropdown-menu li').unbind('click touchstart').bind('click touchstart', { ThisHTMLElement: ThisHTMLElement }, function (e) {
                 e.data.ThisHTMLElement.find('.dropdown-toggle').html($(this).text() + '<div class="downArrow"></div>');
                 e.data.ThisHTMLElement.find('.dropdown').removeClass('open');
+
+                // 隐藏div  2014-02-26 coke
+                $("#HiddenDiv"+self.shell.BasicID).css({"display":"none"});
+                self.shell.Container.find('.dropdown').removeClass('openList');
+
                 data.value = $(this).data('value');
                 data.text = $(this).find('a').text();
                 if (!self.IsEditState) {
@@ -203,7 +299,7 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 controlBgColor: "#E3E3E3", //背景色
                 dropdownMenuBgColor: "#FFF", //菜单背景色
                 fontColor: "#000", //字体色;
-
+                IsNoFilter:false,//是否开启筛选
                 borderColor: '#000000', //边框颜色
                 borderWidth: '0', //边框宽
                 borderRadius: '0', //圆角
@@ -688,7 +784,25 @@ Agi.Controls.DropDownListAttributeChange = function (_ControlObj, Key, _Value) {
                 $(data).each(function (i, dd) {
                     $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + dd[textField.trim()] + '</a></li>').appendTo(menu);
                 });
+
+                // 计算高度  2013-02-26  coke
+                var menuheight=$UI.find('.dropdown-menu').height();
+                if(menuheight>400)
+                {
+                    $UI.find('.dropdown-menu').height(300);
+                    $UI.find('.dropdown-menu').css("overflow-y","scroll")
+                }else{
+                    $UI.find('.dropdown-menu').css("overflow-y","auto");
+                }
                 controlObj.ReBindEvents();
+
+
+                // 2014-02-26 coke
+                if(BasicProperty.IsNoFilter){
+                    self.ShowTextBox(self);//筛选框
+                }else{
+                    $("#"+self.shell.BasicID+" a:eq(0)").off();
+                }
 
                 var selData = self.selectedValue;
                 if (selData.value && selData.text) {
@@ -749,7 +863,23 @@ Agi.Controls.DropDownListAttributeChange = function (_ControlObj, Key, _Value) {
         $(data).each(function (i, dd) {
             $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + dd[textField.trim()] + '</a></li>').appendTo(menu);
         });
+        // 计算高度  2013-02-26  coke
+        var menuheight=$UI.find('.dropdown-menu').height();
+        if(menuheight>400)
+        {
+            $UI.find('.dropdown-menu').height(300);
+            $UI.find('.dropdown-menu').css("overflow-y","scroll")
+        }else{
+            $UI.find('.dropdown-menu').css("overflow-y","auto");
+        }
         controlObj.ReBindEvents();
+        // 2014-02-26 coke
+        if(BasicProperty.IsNoFilter){
+            self.ShowTextBox(self);//筛选框
+        }else{
+            $("#"+self.shell.BasicID+" a:eq(0)").off();
+        }
+
 
         var selData = self.selectedValue;
         if (selData.value && selData.text) {

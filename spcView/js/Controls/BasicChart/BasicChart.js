@@ -805,6 +805,12 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         if (_StandLineInfo.LineDir == "Vertical") {
             var VerStandardlineOptions = {
                 value: _StandLineInfo.LineValue,
+                label: {
+                    text:_StandLineInfo.LineValue,// 2014-02-24  coke 基准线上需要增加ToolTip
+                    align: 'right',
+                    x: -10,
+                    y: 0
+                },
                 dashStyle: _StandLineInfo.LineType,
                 color: _SDLineColor,
                 width: _StandLineInfo.LineSize,
@@ -815,6 +821,12 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         } else {
             var HorStandardlineOptions = {
                 value: _StandLineInfo.LineValue,
+                label: {
+                    text:_StandLineInfo.LineValue,// 2014-02-24  coke 基准线上需要增加ToolTip
+                    align: 'right',
+                    x: -10,
+                    y: 0
+                },
                 dashStyle: _StandLineInfo.LineType,
                 color: _SDLineColor,
                 width: _StandLineInfo.LineSize,

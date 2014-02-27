@@ -123,3 +123,9 @@
     font-size:12px;
     font-family: '微软雅黑',Arial;
 }
+
+#FontFamilySelect
+{
+    width:80px;
+    height:23px;
+}

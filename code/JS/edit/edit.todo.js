@@ -85,6 +85,11 @@ $(function () {
         panelControls.live("mouseover", function () {
             //拖拽
             $(this)
+                .click(function () {
+                    if (event.ctrlKey) {
+                        $(this).toggleClass('grouped');
+                    }
+                })
                 .draggable({
                     //handle:".selectPanelheadSty",
                     //zIndex:2147483647,
@@ -95,44 +100,84 @@ $(function () {
                         //region ly,undoHtml
                         oldValue = $(workspace.editDiv).html();
                         //endregion
+
+                        // 20140226 添加记录控件原始位置的代码
+                        posTopArray = [];
+                        posLeftArray = [];
+                        if ($(this).hasClass("grouped")) {  // Loop through each element and store beginning start and left positions
+                            $(".grouped").each(function (i) {
+                                thiscsstop = $(this).css('top');
+                                if (thiscsstop == 'auto') thiscsstop = 0; // For IE
+
+                                thiscssleft = $(this).css('left');
+                                if (thiscssleft == 'auto') thiscssleft = 0; // For IE
+
+                                posTopArray[i] = parseInt(thiscsstop);
+                                posLeftArray[i] = parseInt(thiscssleft);
+                            });
+                        }
+
+                        begintop = $(this).offset().top; // Dragged element top position
+                        beginleft = $(this).offset().left; // Dragged element left position
+                        //end
                     },
-                    drag:function (event, ui) {
-                        var dragControls = Agi.Edit.workspace.currentControls;
-                        /*边界判断*/
-                        for (var i = 0; i < dragControls.length; i++) {
-                            var dragControl = dragControls[i];
-                            var id = $(dragControl.Get("HTMLElement")).attr("id");
-                            //
-                            var top = $("#" + id).position().top + ui.position.top - ui.originalPosition.top;
-                            var left = $("#" + id).position().left + ui.position.left - ui.originalPosition.left;
-                            if (ui.position.top < 0 ||
-                                left < 0 ||
-                                (top + $("#" + id).height() > $("#BottomRightCenterContentDiv").height()) ||
-                                (left + $("#" + id).width() > $("#BottomRightCenterContentDiv").width())) {
-                                return;
-                            }
+                    drag: function (event, ui) {
+                        //20140212
+                        var topdiff = $(this).offset().top - begintop;  // Current distance dragged element has traveled vertically
+                        var leftdiff = $(this).offset().left - beginleft; // Current distance dragged element has traveled horizontally
+
+                        if ($(this).hasClass("grouped")) {
+                            $(".grouped").each(function (i) {
+                                var top = $(this).position().top + ui.position.top - ui.originalPosition.top;
+                                var left = $(this).position().left + ui.position.left - ui.originalPosition.left;
+                                if (ui.position.top < 0 || left < 0 || (top + $(this).height() > $("#BottomRightCenterContentDiv").height()) ||
+                                (left + $(this).width() > $("#BottomRightCenterContentDiv").width())) {
+                                    return;
+                                }
+                                else {
+                                    $(this).css('top', posTopArray[i] + topdiff); // Move element veritically - current css top + distance dragged element has travelled vertically
+                                    $(this).css('left', posLeftArray[i] + leftdiff); // Move element horizontally - current css left + distance dragged element has travelled horizontally
+                                }
+                            });
                         }
-                        for (var i = 0; i < dragControls.length; i++) {
-                            var dragControl = dragControls[i];
-                            var id = $(dragControl.Get("HTMLElement")).attr("id");
-                            //
-                            var top = $("#" + id).position().top + ui.position.top - ui.originalPosition.top;
-                            var left = $("#" + id).position().left + ui.position.left - ui.originalPosition.left;
-                            //
-//                            $("#" + id).css({ top:top, left:left });这句代码会导致窗口控件拖动异常
-                            /*刷新属性*/
-                            //dragControl.PostionChange(null);
-                            //
-                            /*console.log("control.position.top-" +  $("#" + id).position().top);
-                             console.log("control.position.left-" + $("#" + id).position().left);
-                             console.log("ui.position.top-" + ui.position.top);
-                             console.log("ui.position.left-" + ui.position.left);
-                             console.log("ui.originalPosition.top-" + ui.originalPosition.top);
-                             console.log("ui.originalPosition.top-" + ui.originalPosition.left);*/
-                        }
-                        /*记录前一个位置*/
-                        ui.originalPosition.top = ui.position.top;
-                        ui.originalPosition.left = ui.position.left;
+                        //end
+
+//////                        var dragControls = Agi.Edit.workspace.currentControls;
+//////                        /*边界判断*/
+//////                        for (var i = 0; i < dragControls.length; i++) {
+//////                            var dragControl = dragControls[i];
+//////                            var id = $(dragControl.Get("HTMLElement")).attr("id");
+//////                            //
+//////                            var top = $("#" + id).position().top + ui.position.top - ui.originalPosition.top;
+//////                            var left = $("#" + id).position().left + ui.position.left - ui.originalPosition.left;
+//////                            if (ui.position.top < 0 ||
+//////                                left < 0 ||
+//////                                (top + $("#" + id).height() > $("#BottomRightCenterContentDiv").height()) ||
+//////                                (left + $("#" + id).width() > $("#BottomRightCenterContentDiv").width())) {
+//////                                return;
+//////                            }
+//////                        }
+//////                        for (var i = 0; i < dragControls.length; i++) {
+//////                            var dragControl = dragControls[i];
+//////                            var id = $(dragControl.Get("HTMLElement")).attr("id");
+//////                            //
+//////                            var top = $("#" + id).position().top + ui.position.top - ui.originalPosition.top;
+//////                            var left = $("#" + id).position().left + ui.position.left - ui.originalPosition.left;
+//////                            //
+////////                            $("#" + id).css({ top:top, left:left });这句代码会导致窗口控件拖动异常
+//////                            /*刷新属性*/
+//////                            //dragControl.PostionChange(null);
+//////                            //
+//////                            /*console.log("control.position.top-" +  $("#" + id).position().top);
+//////                             console.log("control.position.left-" + $("#" + id).position().left);
+//////                             console.log("ui.position.top-" + ui.position.top);
+//////                             console.log("ui.position.left-" + ui.position.left);
+//////                             console.log("ui.originalPosition.top-" + ui.originalPosition.top);
+//////                             console.log("ui.originalPosition.top-" + ui.originalPosition.left);*/
+//////                        }
+//////                        /*记录前一个位置*/
+//////                        ui.originalPosition.top = ui.position.top;
+//////                        ui.originalPosition.left = ui.position.left;
                     },
                     stop:function (event, ui) {
                         //Agi.Edit.workspace.currentControls[Agi.Edit.workspace.currentControls.length - 1].PostionChange(null);
@@ -214,17 +259,10 @@ $(function () {
                     .resizable("disable");
             }
             var title = $(this).find('.selectPanelheadSty');
-            //debugger;
-            //if(!title.hasClass('firstCreate')){
-                title.removeClass('hide');
-            //}
+            title.removeClass('hide');
         }).live('mouseleave',function(){
                 var title = $(this).find('.selectPanelheadSty');
-                //debugger;
                 title.addClass('hide');
-                //if(title.hasClass('firstCreate')){
-                    //title.hasClass('firstCreate')
-                //}
             });
         /*  panelControls.live("", function () {*/
         //ly，右键菜单

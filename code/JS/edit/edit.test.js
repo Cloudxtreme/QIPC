@@ -295,7 +295,11 @@ agi.jsloader
                             if(result.result=="true"){
                                // AgiCommonDialogBox.Alert("移动成功！", null);
                                 //刷新列表显示方法
-                                RefreshAllPagescallbak();
+                                //RefreshAllPagescallbak();
+				
+				boolIsSave = true;
+                                isEdite = true;
+                                menuManagement.loadPages(); //重新加载页面列表
                             }else{
                                 AgiCommonDialogBox.Alert(result.message, null);
                             }
@@ -391,12 +395,21 @@ agi.jsloader
                     edit.workspace.autoSize = this.selected;
                 }
             );
+            var hotKeyDisableSelector = ['#Agi-Script-Editor:visible',
+                '#ShareDataOperationPanel:visible',
+                '#ShareDataOperationPanel:visible',
+                '#ShowVersioninfomodal:visible',
+                '#AgiColorPickerDialog1:visible',
+                '#PageParam:visible',
+                '#SettingModal:visible'
+            ];
             /*键盘事件*/
             $("body").keydown(
                 function () {
-//                    if ($("#Agi-Script-Editor").get(0).style.display != "none") {
-//                        return;
-//                    }
+                    //以下的弹出窗口,如果被打开,快捷键不可用
+                    if ($(hotKeyDisableSelector.join(',')).length) {
+                        return;
+                    }
                     //20130115 15:46 markeluo 当进入控件属性编辑界面时，禁用快捷键
                     if (Agi.Controls.IsControlEdit) {
                         return;

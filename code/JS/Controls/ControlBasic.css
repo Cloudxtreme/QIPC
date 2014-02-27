@@ -5,6 +5,7 @@
     -moz-box-shadow: 1px 1px 1px #000, -1px -1px 1px #000;
     position: absolute;
     height: auto;
+    cursor: pointer;
 }
 
 .ProtiyPanel_ItemContentOpenSty .control-group{
@@ -19,7 +20,7 @@
     color: #fff;
     cursor: move;
     overflow: hidden;
-	/*position: absolute;*/
+	position: absolute;top: -20px;
 	z-index: 1;
 }
 .selectPanelBodySty{

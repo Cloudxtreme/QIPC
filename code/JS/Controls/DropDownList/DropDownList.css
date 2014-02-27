@@ -112,3 +112,13 @@
     font-weight: bold;
     font-family: '微软雅黑',Arial;
 }
+
+#FontFamilySelect
+{
+    width:80px;
+    height:23px;
+}
+
+.openList > .dropdown-menu {
+    display: block;
+}

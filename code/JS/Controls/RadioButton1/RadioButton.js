@@ -120,6 +120,7 @@ Agi.Controls.RadioButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic, {
             FontColor: "#000",
             FontFamily: ["微软雅黑", "宋体", "黑体", "楷体_GB2312", "Arial", "Times New Roman"],
             FontIndex: 0,
+			FontSize:12,
             BorderColor: "#9f9f9f", //边框颜色
             CheckedBackgroundColor: { value: { background: "-webkit-gradient(linear,left top,left bottom,color-stop(0, rgb(237,237,237)),color-stop(1, rgb(215,215,215)))"} }, //选中背景颜色(填充渐变结束的颜色值)
             CheckedButtonColor: "#dedede"//选中按钮颜色(填充渐变结束的颜色值)
@@ -534,6 +535,7 @@ Agi.Controls.RadioButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic, {
                     $("#" + tableID + " table td").css(_Value.BackgroundColor.value).css({
                         "color": _Value.FontColor,
                         "font-family": _Value.FontFamily[_Value.FontIndex],
+						"font-size": _Value.FontSize+'px',
                         "border-color": _Value.BorderColor
                     });
                     var BasePanel = $(_RadioButtonobj.Get("HTMLElement"));
@@ -875,6 +877,9 @@ Agi.Controls.RadioButtonProrityInit = function (_RadioButtonControl) {
     basicHTML.append("</select></td>");
     basicHTML.append("<td class='prortityPanelTabletd0'>字体颜色:</td><td class='prortityPanelTabletd2'><input id='FontColor' type='text' class='basic input-mini' ></td>");
     basicHTML.append("</tr>");
+	 basicHTML.append("<tr>");
+    basicHTML.append("<td class='prortityPanelTabletd0'>字体大小:</td><td class='prortityPanelTabletd1' colspan='3'><input id='FontSize' type='number' value='" + radioButtonBasicProperty.FontSize + "'class='ControlProNumberSty' min='8' max='20'/></td>");
+    basicHTML.append("</tr>");
     basicHTML.append("</table>");
     basicHTML.append("</div>");
     var FilletObj = $(basicHTML.toString());
@@ -1078,6 +1083,22 @@ Agi.Controls.RadioButtonProrityInit = function (_RadioButtonControl) {
             _RadioButtonControl.Set('RadioButtonBasicProperty', radioButtonBasicProperty);
         } else {
             $(this).val(radioButtonBasicProperty.ColumnWidth);
+            var DilogboxTitle = "请输入" + parseInt($(this).attr("min")) + "-" + parseInt($(this).attr("max")) + "范围内的值！";
+            AgiCommonDialogBox.Alert(DilogboxTitle);
+        }
+
+    });
+
+	$("#FontSize").val(radioButtonBasicProperty.FontSize);
+    $("#FontSize").change(function () {
+        var size = parseInt($("#FontSize").val());
+
+        //20130402 倪飘 解决bug，单选按钮列宽输入框中点击向下箭头减小宽度到100，输入值宽为1，弹出信息提示并确定以后，输入框中值变为250但是控件中宽度为10（单选按钮行高也存在相同问题）
+        if (size >= 8 && size <= 20) {
+            radioButtonBasicProperty.FontSize = size;
+            _RadioButtonControl.Set('RadioButtonBasicProperty', radioButtonBasicProperty);
+        } else {
+            $(this).val(radioButtonBasicProperty.FontSize);
             var DilogboxTitle = "请输入" + parseInt($(this).attr("min")) + "-" + parseInt($(this).attr("max")) + "范围内的值！";
             AgiCommonDialogBox.Alert(DilogboxTitle);
         }

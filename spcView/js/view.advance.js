@@ -459,13 +459,18 @@
         switch ($(this).text().trim()) {
             case "删除":
                 var selectedRows = $("#data_table").jqGrid('getGridParam', 'selarrrow');
+                //modified by liuxing[20140226] to avoid row-deletion index calculating mistake
+                var currentPage=$("#data_table").jqGrid('getGridParam','page');//jqgrid's current page number
+                var rowNum=$("#data_table").jqGrid('getGridParam','rowNum');
+                var rowIndexAddtion=(currentPage-1)*rowNum;
+                
                 selectedRows=Agi.Controls.AdvanceDataGrid.NumberArrayConvertSort(selectedRows);
                 for (var i = selectedRows.length - 1; i >= 0; i--) {
-                    var selectedRow = selectedRows[i]-i;
+                    var selectedRow = selectedRows[i];
                     $("#data_table").jqGrid('delRowData', selectedRow);
                     $("#data_table").trigger("reloadGrid");
                     $(this).attr("disabled", "disabled");
-                    delete myData[selectedRow];
+                    delete myData[rowIndexAddtion+selectedRow-1];
                 }
                 break;
             case "筛选":
@@ -640,6 +645,8 @@
             for (var i = 0; i < data.ChartData.length; i++) {
                 var chartData = data.ChartData[i];
                 chartData["标识"] = i + 1;
+                //modified by liuxing[20140226] to avoid row-deletion index calculating mistake
+                chartData["id"]=i+1;
                 myData.push(chartData);
 //                $("#data_table").jqGrid('addRowData', i + 1, chartData);
             }
@@ -674,6 +681,88 @@
         }
     }
 
+    //模拟测试
+    var testGridData = {
+        ChartData: [
+            {"GroupName": "甲班", "重量": 12, "厚度": 0.85},
+            {"GroupName": "甲班", "重量": 8, "厚度": 0.84},
+            {"GroupName": "乙班", "重量": 9, "厚度": 0.85},
+            {"GroupName": "乙班", "重量": 11, "厚度": 0.80}
+        ],//SPC控件对应的数据
+        AlarmCells: [
+            {Row: 0, Col: 1, AlarmColor: "#ff6699"},
+            {Row: 1, Col: 1, AlarmColor: "#994c00"}
+        ],//报警点信息
+        AbnormalRows: [
+            0, 3
+        ]//异常点信息
+    };
+    testGridData = {
+        "ChartData": [
+            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "1", "标识": 1},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "2", "标识": 2},
+            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "3", "标识": 3},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "4", "标识": 4},
+            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "5", "标识": 5},
+            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "6", "标识": 6},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "7", "标识": 7},
+            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "8", "标识": 8},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "9", "标识": 9},
+            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "10", "标识": 10},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "11", "标识": 11},
+            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "12", "标识": 12},
+            {"SHIFT": "甲", "VALUE": "11.9", "VALUE_ORDER": "13", "标识": 13},
+            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "14", "标识": 14},
+            {"SHIFT": "甲", "VALUE": "11", "VALUE_ORDER": "15", "标识": 15},
+            {"SHIFT": "甲", "VALUE": "12", "VALUE_ORDER": "16", "标识": 16},
+            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "17", "标识": 17},
+            {"SHIFT": "甲", "VALUE": "6.9", "VALUE_ORDER": "18", "标识": 18},
+            {"SHIFT": "甲", "VALUE": "5.5", "VALUE_ORDER": "19", "标识": 19},
+            {"SHIFT": "甲", "VALUE": "7.8", "VALUE_ORDER": "20", "标识": 20},
+            {"SHIFT": "甲", "VALUE": "8.9", "VALUE_ORDER": "21", "标识": 21},
+            {"SHIFT": "甲", "VALUE": "7", "VALUE_ORDER": "22", "标识": 22},
+            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "23", "标识": 23},
+            {"SHIFT": "甲", "VALUE": "7", "VALUE_ORDER": "24", "标识": 24},
+            {"SHIFT": "甲", "VALUE": "8", "VALUE_ORDER": "25", "标识": 25},
+            {"SHIFT": "甲", "VALUE": "9", "VALUE_ORDER": "26", "标识": 26},
+            {"SHIFT": "甲", "VALUE": "10", "VALUE_ORDER": "27", "标识": 27},
+            {"SHIFT": "甲", "VALUE": "10.1", "VALUE_ORDER": "28", "标识": 28},
+            {"SHIFT": "甲", "VALUE": "10.2", "VALUE_ORDER": "29", "标识": 29},
+            {"SHIFT": "甲", "VALUE": "10.3", "VALUE_ORDER": "30", "标识": 30},
+            {"SHIFT": "甲", "VALUE": "10.4", "VALUE_ORDER": "31", "标识": 31},
+            {"SHIFT": "甲", "VALUE": "10.5", "VALUE_ORDER": "32", "标识": 32},
+            {"SHIFT": "甲", "VALUE": "10.6", "VALUE_ORDER": "33", "标识": 33},
+            {"SHIFT": "甲", "VALUE": "13.4", "VALUE_ORDER": "34", "标识": 34},
+            {"SHIFT": "甲", "VALUE": "13.5", "VALUE_ORDER": "35", "标识": 35}
+        ],
+        "AlarmCells": [
+            {"Row": 1, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 3, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 6, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 8, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 10, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 11, "Col": 1, "AlarmColor": "#ff0"},
+            {"Row": 12, "Col": 1, "AlarmColor": "#ff0"},
+            {"Row": 13, "Col": 1, "AlarmColor": "#ff0"},
+            {"Row": 15, "Col": 1, "AlarmColor": "#ff0"},
+            {"Row": 17, "Col": 1, "AlarmColor": "#ee82ee"},
+            {"Row": 18, "Col": 1, "AlarmColor": "#ee82ee"},
+            {"Row": 19, "Col": 1, "AlarmColor": "#ee82ee"},
+            {"Row": 21, "Col": 1, "AlarmColor": "#ee82ee"},
+            {"Row": 23, "Col": 1, "AlarmColor": "#ee82ee"},
+            {"Row": 25, "Col": 1, "AlarmColor": "#fd5530"},
+            {"Row": 28, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 29, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 30, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 31, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 32, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 33, "Col": 1, "AlarmColor": "#34fd43"},
+            {"Row": 34, "Col": 1, "AlarmColor": "#34fd43"}
+        ],
+        "AbnormalRows": [29]
+    }
+    //测试
+    //Agi.view.advance.refreshGridData(testGridData);
 })();
 
 //region 20131220 10:22 markeluo 数据处理

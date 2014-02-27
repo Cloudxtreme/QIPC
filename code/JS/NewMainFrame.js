@@ -1718,7 +1718,15 @@ function AddVTMenuDetails(resultData) {
         $("#" + X).html("");
         if (array.length > 0) {
             for (var i = 0; i < array.length; i++) {
-                virtualTableList += "<li class='VTdes' title='" + array[i].ID + "'><a><span><img src='Img/LeftIcon/tables.png'/></span>" + array[i].ID + "</a></li>";
+                //20140224 范金鹏 判断字符长度，若是长度在20以内就全部显示，若是大于20，后面显示省略号
+                if(array[i].ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                {
+                virtualTableList += "<li class='VTdes' title='" + array[i].ID + "'><a><span><img src='Img/LeftIcon/tables.png'/></span>" + array[i].ID.substr(0,19)+"..." + "</a></li>";
+                }
+                else
+                {
+                 virtualTableList += "<li class='VTdes' title='" + array[i].ID + "'><a><span><img src='Img/LeftIcon/tables.png'/></span>" + array[i].ID + "</a></li>";
+                }
             }
             $("#" + X).html(virtualTableList);
         }
@@ -1764,7 +1772,8 @@ function AddVTMenuDetails(resultData) {
                 //虚拟表编辑方法
                 'EVTManage': function (t) {
                     var dataSourceName = $(t).parent().parent().parent().parent().find('a').first().text();
-                    var vtName = $(t).find('a').first().text();
+                    //var vtName = $(t).find('a').first().text();
+                    var vtName=$(t).attr("title");
                     EditVT(dataSourceName, vtName);
                     $("#BottomRightText").text("虚拟表编辑");
                     boolIsSave = false;
@@ -1772,7 +1781,8 @@ function AddVTMenuDetails(resultData) {
                 //虚拟表删除方法
                 'DVTManage': function (t) {
                     var dataSourceName = $(t).parent().parent().parent().parent().find('a').first().text();
-                    var vtName = $(t).find('a').first().text();
+                    //var vtName = $(t).find('a').first().text();
+                    var vtName =$(t).attr("title");
 
                     //20130626 markeluo 修改 删除提示
 //                var content = "确定删除虚拟表" + vtName + "?";
@@ -2561,8 +2571,16 @@ function AddAllDatasets() {
                                 }else{
                                     changestateimg="Img/LeftIcon/datasetss.png";
                                 }
+                                if(AllDS.DataSets.DataSet[i].ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                                {
                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet[i].ID + "'  class='MyDataSetss'><a title='" +
+                                    AllDS.DataSets.DataSet[i].ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet[i].ID.substr(0,19)+"..." + "</a><ul class='Sub2'></ul></li>";
+                                }
+                                else
+                                {
+                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet[i].ID + "'  class='MyDataSetss'><a title='" +
                                     AllDS.DataSets.DataSet[i].ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet[i].ID + "</a><ul class='Sub2'></ul></li>";
+                                }
                             }
                         });
                     }
@@ -2577,8 +2595,16 @@ function AddAllDatasets() {
                             }else{
                                 changestateimg="Img/LeftIcon/datasetss.png";
                             }
-                            leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet.ID + "'  class='MyDataSetss'><a  title='" +
-                                AllDS.DataSets.DataSet.ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet.ID + "</a><ul class='Sub2'></ul></li>";
+                            if(AllDS.DataSets.DataSet.ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                            {
+                                leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet.ID + "'  class='MyDataSetss'><a  title='" +
+                                AllDS.DataSets.DataSet.ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet.ID.substr(0,19)+"..." + "</a><ul class='Sub2'></ul></li>";
+                            }
+                            else
+                            {
+                               leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet.ID + "'  class='MyDataSetss'><a  title='" +
+                                AllDS.DataSets.DataSet.ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet.ID+ "</a><ul class='Sub2'></ul></li>";
+                            }
 
                         }
                     }
@@ -2587,12 +2613,27 @@ function AddAllDatasets() {
                     if (isArray(AllDS.DataSets.groups)) {
                         //如果返回的是多个group（是数组），则循环每一个group，获取需要的数据
                         $.each(AllDS.DataSets.groups, function (i, val) {
+                            if(AllDS.DataSets.groups[i].ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                            {
+                            leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='2'><a title='" + AllDS.DataSets.groups[i].ID.substr(0,19)+"..." + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups[i].ID + "</a><ul class='Sub2'></ul></li>";
+                            }
+                            else
+                            {
                             leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='2'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups[i].ID + "</a><ul class='Sub2'></ul></li>";
+                            }
                         });
                     }
                     else {
                         //如果返回的是单个group，则直接获取其ID
+                        if(AllDS.DataSets.groups.ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                        {
+                        leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='2'><a  title='" + AllDS.DataSets.groups.ID.substr(0,19)+"..." + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID + "</a><ul class='Sub2'></ul></li>";
+                        }
+                        else
+                        {
                         leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='2'><a  title='" + AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID + "</a><ul class='Sub2'></ul></li>";
+                        }
+                       
                     }
                 }
                 //绑定数据到下拉菜单
@@ -2613,12 +2654,14 @@ function AddAllDatasets() {
         $(".MyDataSetss").contextMenu('OPDas', {
             bindings: {
                 'adddas': function (t) {
-                    AddDataSets($(t).find('a').first().text());
+                    //AddDataSets($(t).find('a').first().text());
+                    AddDataSets($(t).find("a").attr("title"));
                     //alert($(t).find('a').first().text());
                 },
                 //编辑dataset
                 'eddas': function (t) {
-                    EditDataSets($(t).find('a').first().text());
+                    //EditDataSets($(t).find('a').first().text());
+                    EditDataSets($(t).find("a").attr("title"));
                     //alert($(t).find('a').first().text());
                     boolIsSave = false;
                 },
@@ -2637,7 +2680,8 @@ function AddAllDatasets() {
 //                        }
 //                    });
 
-                    var DataSetID=$(t).find('a').first().text();
+                   // var DataSetID=$(t).find('a').first().text();
+                   var DataSetID=$(t).find("a").attr("title");
                     var SrcObj={
                         "deleteenum":"4",
                         "datasource":"",
@@ -2669,7 +2713,7 @@ function AddAllDatasets() {
         $(".MyDataSetGroup").contextMenu('DSGroupFolder',{
             bindings:{
                 'addGrpFolder':function(t){
-                    AddDataSetsGroup({NodeName:$(t).find('a').first().text(),Parent:$(t)[0].id},function(ev){
+                    AddDataSetsGroup({NodeName:$(t).find('a').attr("title"),Parent:$(t)[0].id},function(ev){
                         if($(t).parent().parent()[0].id==""){
                             var  NodeInfo={perid:"root"};
                             LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
@@ -2681,7 +2725,7 @@ function AddAllDatasets() {
                     });
                 },
                 'DelGrpFolder':function(t){
-                    DelDataSetsGroup({NodeName:$(t).find('a').first().text(),NodeKey:$(t)[0].id},function(ev){
+                    DelDataSetsGroup({NodeName:$(t).find('a').attr("title"),NodeKey:$(t)[0].id},function(ev){
                         if($(t).parent().parent()[0].id==""){
                             var  NodeInfo={perid:"root"};
                             LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
@@ -2692,7 +2736,7 @@ function AddAllDatasets() {
                     });
                 },
                 'EditGrpFolder':function(t){
-                    EditDataSetsGroup({NodeName:$(t).find('a').first().text(),NodeKey:$(t)[0].id,Parent:$($(t)[0]).parent().parent()[0].id},function(ev){
+                    EditDataSetsGroup({NodeName:$(t).find('a').attr("title"),NodeKey:$(t)[0].id,Parent:$($(t)[0]).parent().parent()[0].id},function(ev){
                         if($(t).parent().parent()[0].id==""){
                             var  NodeInfo={perid:"root"};
                             LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
@@ -4029,8 +4073,17 @@ function GobakFramePage() {
                                 }else{
                                     changestateimg="Img/LeftIcon/datasetss.png";
                                 }
+                                //20140225 范金鹏 修改字数显示控制使其与父菜单保持一致
+                                if(AllDS.DataSets.DataSet[i].ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                                {
                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet[i].ID + "'  class='MyDataSetss' LayerIndex='"+LayerIndex+"'><a title='" +
+                                        AllDS.DataSets.DataSet[i].ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet[i].ID.substr(0,19)+"..." + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
+                                else
+                                {
+                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet[i].ID + "'  class='MyDataSetss' LayerIndex='"+LayerIndex+"'><a title='" +
                                         AllDS.DataSets.DataSet[i].ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet[i].ID + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
                             });
                         }
                         else {
@@ -4041,20 +4094,42 @@ function GobakFramePage() {
                                 changestateimg="Img/LeftIcon/datasetss.png";
                             }
                             //如果返回的是单个DataSet，则直接获取其ID
+                               if(AllDS.DataSets.DataSet.ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                               {
                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet.ID + "'  class='MyDataSetss' LayerIndex='"+LayerIndex+"'><a  title='" +
+                                    AllDS.DataSets.DataSet.ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet.ID.substr(0,19)+"..." + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
+                                else
+                                {
+                                 leftfirstdslist += "<li id='" + AllDS.DataSets.DataSet.ID + "'  class='MyDataSetss' LayerIndex='"+LayerIndex+"'><a  title='" +
                                     AllDS.DataSets.DataSet.ID + "'><span><img src='"+changestateimg+"'/></span>" + AllDS.DataSets.DataSet.ID + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
                         }
                     }
                     if(AllDS.DataSets.groups!=null){
                         if (isArray(AllDS.DataSets.groups)) {
                             //如果返回的是多个group（是数组），则循环每一个group，获取需要的数据
                             $.each(AllDS.DataSets.groups, function (i, val) {
+                                if(AllDS.DataSets.groups[i].ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                                {
+                                leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups[i].ID.substr(0,19)+"..." + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
+                                else
+                                {
                                 leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups[i].ID + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                                }
                             });
                         }
                         else {
                             //如果返回的是单个group，则直接获取其ID
+                            if(AllDS.DataSets.groups.ID.replace(/[^\x00-\xff]/g,'**').length>40)
+                            {
+                            leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a  title='" + AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID.substr(0,19)+"..." + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                            }
+                            else
+                            {
                             leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a  title='" + AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID + "</a><ul class='Sub"+LayerIndex+"'></ul></li>";
+                            }
                         }
                     }
                     //绑定数据到下拉菜单
@@ -4085,12 +4160,15 @@ function GobakFramePage() {
             $(ElementObj).find(".MyDataSetss").contextMenu('OPDas', {
                 bindings: {
                     'adddas': function (t) {
-                        AddDataSets($(t).find('a').first().text());
+                        //AddDataSets($(t).find('a').first().text());
+                        AddDataSets($(t).find("a").attr("title"));
                         //alert($(t).find('a').first().text());
                     },
                     //编辑dataset
                     'eddas': function (t) {
-                        EditDataSets($(t).find('a').first().text());
+                        var test=$(t);
+                        //EditDataSets($(t).find('a').first().text());
+                        EditDataSets($(t).find("a").attr("title"));
                         //alert($(t).find('a').first().text());
                         boolIsSave = false;
                     },
@@ -4107,7 +4185,8 @@ function GobakFramePage() {
 //                                return;
 //                            }
 //                        });
-                        var DataSetID=$(t).find('a').first().text();
+                        //var DataSetID=$(t).find('a').first().text();
+                        var DataSetID=$(t).find("a").attr("title");
                         var SrcObj={
                             "deleteenum":"4",
                             "datasource":"",
@@ -4138,7 +4217,7 @@ function GobakFramePage() {
             $(ElementObj).find(".MyDataSetGroup").contextMenu('DSGroupFolder',{
                 bindings:{
                     'addGrpFolder':function(t){
-                        AddDataSetsGroup({NodeName:$(t).find('a').first().text(),Parent:$(t)[0].id},function(ev){
+                        AddDataSetsGroup({NodeName:$(t).find("a").attr("title"),Parent:$(t)[0].id},function(ev){
                         if($(t).parent().parent()[0].id==""){
                             var  NodeInfo={perid:"root"};
                             LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
@@ -4149,7 +4228,7 @@ function GobakFramePage() {
                         });
                     },
                     'DelGrpFolder':function(t){
-                        DelDataSetsGroup({NodeName:$(t).find('a').first().text(),NodeKey:$(t)[0].id},function(ev){
+                        DelDataSetsGroup({NodeName:$(t).find("a").attr("title"),NodeKey:$(t)[0].id},function(ev){
                             if($(t).parent().parent()[0].id==""){
                                 var  NodeInfo={perid:"root"};
                                 LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);
@@ -4163,7 +4242,7 @@ function GobakFramePage() {
                         //ParentKey:$($(t)[0]).parent().parent()[0].id
                         //ParentNodeName:$($(t)[0]).parent().parent().find('a').first().text()
                         //_groupInfo.NodeName:分组名称 _groupInfo.NodeKey:分组唯一标识 _groupInfo.Parent:分组父节点标识
-                        EditDataSetsGroup({NodeName:$(t).find('a').first().text(),NodeKey:$(t)[0].id,Parent:$($(t)[0]).parent().parent()[0].id},function(ev){
+                        EditDataSetsGroup({NodeName:$(t).find("a").attr("title"),NodeKey:$(t)[0].id,Parent:$($(t)[0]).parent().parent()[0].id},function(ev){
                             if($(t).parent().parent()[0].id==""){
                                 var  NodeInfo={perid:"root"};
                                 LoadDataSetsAndGrpList(NodeInfo,$("#DatasetsManage").parent(),2);

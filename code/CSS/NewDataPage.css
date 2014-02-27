@@ -44,7 +44,9 @@
     
 .textSty
 {
-    width:200px;
+    /*width:200px;*/
+    /*20140224将width设置为280*/
+    width:280px;
     --height:20px;
     margin-left:20px;
     border:1px solid #d3d5db;  
@@ -61,7 +63,9 @@
 .textareaSty
 {
      border:1px solid #d3d5db;  
-     width:200px;
+     /*width:200px;*/
+     /*20140224将width设置为280*/
+     width:280px;
     height:40px;
     border-radius:5px; 
     margin-left:20px;

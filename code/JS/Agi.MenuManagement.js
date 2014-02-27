@@ -25,88 +25,88 @@ Agi.MenuManagement = function (option) {
     //datasource
     {
         //请示webservice,把所有实体绑定到左侧的菜单
-//        self.loadDataSource = function (container) {
-//            var panel = typeof container == 'string' ? $('#' + container) : $(container);
-//            panel.empty();
-//            Agi.DAL.ReadData({
-//                "MethodName": "DSAllDataSet",
-//                "Paras": null, //无参数为null
-//                "CallBackFunction": function (result) {    //回调函数
-//                    $('#progressbar1').hide();
-//                    try {
-//                        if (Agi.WebServiceConfig.Type === "JAVA") {
-//                            ds = [];
-//                            $.each(result.Data, function (i, val) {
-//                                ds.push(val.data.DataSet);
-//                            });
-//                        } else {
-//                            ds = result.Data.DataSets.DataSet.length ? result.Data.DataSets.DataSet : [result.Data.DataSets.DataSet];
-//                        }
-//                        var ui = $('<ul class="sub-menu" style="display: block; ">' +
-//                            '</ul>');
-//                        panel.append(ui);
-//                        $(ds).each(function (i, d) {
-//                            //result.Data.DataSets.DataSet[0].DefaultVisualContrl.split('*')
-//                            //var visControl = d.DefaultVisualContrl.split('*');
-//                            var controltype = d.DefaultVisualContrl;
-//                            //var initialize = visControl[1];
-//                            var li = $('<li data-controltype="' + controltype + '"' +
-//                                'data-id="' + d.ID + '" data-DataSource="' + d.DataSource + '" style="list-style: none;" class="NewShare">' +
-//                                '<a><span><img src="Img/LeftIcon/datasetss.png"></span>' + d.ID + '</a>' +
-//                                '</li>');
-//                            li.appendTo(ui);
-//                        }); //end for
-//
-//                        self.dragableDs = panel.find('li');
-//                        self.updateDataSourceDragDropTargets();
-//
-//                        //添加创建共享数据源的右键菜单
-//                        $(".NewShare").contextMenu('SharedDatasourceRightMenu', {
-//                            bindings: {
-//                                'NewShare': function (t) {
-//                                    var datasourcename = $(t).find('a').parent().attr('data-datasource');
-//                                    var datasetname = $(t).find('a').parent().attr('data-id');
-//                                    ShareDataOperation.ShowOperatonPanel(datasourcename, datasetname);
-//                                }
-//                            }
-//                        });
-//
-//                        /*清空不需要对象，释放内存*/
-//                        ui = li = controltype = null;
-//                    }
-//                    catch (e) {
-//                    }
-//                }
-//            });
-//        }
-        self.loadDataSource = function (container,NodeInfo,_layerindex) {
+        //        self.loadDataSource = function (container) {
+        //            var panel = typeof container == 'string' ? $('#' + container) : $(container);
+        //            panel.empty();
+        //            Agi.DAL.ReadData({
+        //                "MethodName": "DSAllDataSet",
+        //                "Paras": null, //无参数为null
+        //                "CallBackFunction": function (result) {    //回调函数
+        //                    $('#progressbar1').hide();
+        //                    try {
+        //                        if (Agi.WebServiceConfig.Type === "JAVA") {
+        //                            ds = [];
+        //                            $.each(result.Data, function (i, val) {
+        //                                ds.push(val.data.DataSet);
+        //                            });
+        //                        } else {
+        //                            ds = result.Data.DataSets.DataSet.length ? result.Data.DataSets.DataSet : [result.Data.DataSets.DataSet];
+        //                        }
+        //                        var ui = $('<ul class="sub-menu" style="display: block; ">' +
+        //                            '</ul>');
+        //                        panel.append(ui);
+        //                        $(ds).each(function (i, d) {
+        //                            //result.Data.DataSets.DataSet[0].DefaultVisualContrl.split('*')
+        //                            //var visControl = d.DefaultVisualContrl.split('*');
+        //                            var controltype = d.DefaultVisualContrl;
+        //                            //var initialize = visControl[1];
+        //                            var li = $('<li data-controltype="' + controltype + '"' +
+        //                                'data-id="' + d.ID + '" data-DataSource="' + d.DataSource + '" style="list-style: none;" class="NewShare">' +
+        //                                '<a><span><img src="Img/LeftIcon/datasetss.png"></span>' + d.ID + '</a>' +
+        //                                '</li>');
+        //                            li.appendTo(ui);
+        //                        }); //end for
+        //
+        //                        self.dragableDs = panel.find('li');
+        //                        self.updateDataSourceDragDropTargets();
+        //
+        //                        //添加创建共享数据源的右键菜单
+        //                        $(".NewShare").contextMenu('SharedDatasourceRightMenu', {
+        //                            bindings: {
+        //                                'NewShare': function (t) {
+        //                                    var datasourcename = $(t).find('a').parent().attr('data-datasource');
+        //                                    var datasetname = $(t).find('a').parent().attr('data-id');
+        //                                    ShareDataOperation.ShowOperatonPanel(datasourcename, datasetname);
+        //                                }
+        //                            }
+        //                        });
+        //
+        //                        /*清空不需要对象，释放内存*/
+        //                        ui = li = controltype = null;
+        //                    }
+        //                    catch (e) {
+        //                    }
+        //                }
+        //            });
+        //        }
+        self.loadDataSource = function (container, NodeInfo, _layerindex) {
             var panel = typeof container == 'string' ? $('#' + container) : $(container);
             panel.empty();
-            var LayerIndex=1;
-            var NewNodeInfo={perid:"root"};
-            var PanelEnement=null;
-            if(panel[0].id!=null){
-                if(NodeInfo==null){
-                    PanelEnement=$("<ul class=\"sub-menu\" style=\"display:block;\"></ul>");
+            var LayerIndex = 1;
+            var NewNodeInfo = { perid: "root" };
+            var PanelEnement = null;
+            if (panel[0].id != null) {
+                if (NodeInfo == null) {
+                    PanelEnement = $("<ul class=\"sub-menu\" style=\"display:block;\"></ul>");
                     panel.append(PanelEnement);
-                }else{
-                    LayerIndex=_layerindex;
-                    NewNodeInfo=NodeInfo;
-                    PanelEnement=$(container);
+                } else {
+                    LayerIndex = _layerindex;
+                    NewNodeInfo = NodeInfo;
+                    PanelEnement = $(container);
                 }
             }
-            Agi.DatasetsManager.DSAllDataSet_SG(NewNodeInfo,function(result){
+            Agi.DatasetsManager.DSAllDataSet_SG(NewNodeInfo, function (result) {
                 AllDS = result.Data;
                 /*罗万里 20120911 添加-----------------开始*/
                 if (Agi.WebServiceConfig.Type === "JAVA") {
                     AllDS = {
                         DataSets: {
-                            DataSet:[],
-                            groups:[]
+                            DataSet: [],
+                            groups: []
                         }
                     };
-//                    AllDS.DataSets.DataSet=result.Data.DataSet
-//                    AllDS.DataSets.groups=result.Data.groups;
+                    //                    AllDS.DataSets.DataSet=result.Data.DataSet
+                    //                    AllDS.DataSets.groups=result.Data.groups;
 
                     //20130813 markeluo 没有任何DataSet 时处理错误
                     if (result.Data != null) {
@@ -117,56 +117,91 @@ Agi.MenuManagement = function (option) {
                 /*--------------------------------------结束*/
 
                 if (AllDS != null) {
-                    var leftfirstdslist="";
+                    var leftfirstdslist = "";
                     try {
-                        if(AllDS.DataSets.DataSet!=null){
+                        if (AllDS.DataSets.DataSet != null) {
                             //20130902 14:50 markeluo 修改 修改标准虚拟表 关联混合虚拟表和DataSet 标识
-                            var changestateimg="Img/LeftIcon/datasetss.png";
+                            var changestateimg = "Img/LeftIcon/datasetss.png";
                             if (isArray(AllDS.DataSets.DataSet)) {
-                                var controltype ="";
-                                    //如果返回的是多个DataSe（是数组），则循环每一个DataSet，获取需要的数据
+                                var controltype = "";
+                                //如果返回的是多个DataSe（是数组），则循环每一个DataSet，获取需要的数据
                                 $.each(AllDS.DataSets.DataSet, function (i, d) {
                                     controltype = d.DefaultVisualContrl;
 
                                     //20130902 14:50 markeluo 修改 修改标准虚拟表 关联混合虚拟表和DataSet 标识
-                                    if(d.changestate!=null && d.changestate=="1"){
-                                        changestateimg="Img/LeftIcon/tables_Changed.png";
-                                    }else{
-                                        changestateimg="Img/LeftIcon/datasetss.png";
+                                    if (d.changestate != null && d.changestate == "1") {
+                                        changestateimg = "Img/LeftIcon/tables_Changed.png";
+                                    } else {
+                                        changestateimg = "Img/LeftIcon/datasetss.png";
                                     }
-                                    leftfirstdslist +='<li data-controltype="' + controltype + '"' +
-                                        'data-id="' + d.ID + '" data-DataSource="' + d.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex='+LayerIndex+'>' +
-                                        '<a><span><img src="'+changestateimg+'"></span>' + d.ID + '</a>' +
+                                    if (d.ID.replace(/[^\x00-\xff]/g, '**').length > 40)
+                                    {
+                                    leftfirstdslist += '<li data-controltype="' + controltype + '"' +
+                                        'data-id="' + d.ID + '" data-DataSource="' + d.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex=' + LayerIndex + '>' +
+                                        '<a><span><img src="' + changestateimg + '"></span>' + d.ID.substr(0,19)+"..." + '</a>' +
                                         '</li>';
+                                    }
+                                    else
+                                    {
+                                     leftfirstdslist += '<li data-controltype="' + controltype + '"' +
+                                        'data-id="' + d.ID + '" data-DataSource="' + d.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex=' + LayerIndex + '>' +
+                                        '<a><span><img src="' + changestateimg + '"></span>' + d.ID + '</a>' +
+                                        '</li>';
+                                    }
                                 });
                             }
                             else {
 
                                 //20130902 14:50 markeluo 修改 修改标准虚拟表 关联混合虚拟表和DataSet 标识
-                                if(AllDS.DataSets.DataSet.changestate!=null && AllDS.DataSets.DataSet.changestate=="1"){
-                                    changestateimg="Img/LeftIcon/tables_Changed.png";
-                                }else{
-                                    changestateimg="Img/LeftIcon/datasetss.png";
+                                if (AllDS.DataSets.DataSet.changestate != null && AllDS.DataSets.DataSet.changestate == "1") {
+                                    changestateimg = "Img/LeftIcon/tables_Changed.png";
+                                } else {
+                                    changestateimg = "Img/LeftIcon/datasetss.png";
                                 }
                                 controltype = d.DefaultVisualContrl;
-                                leftfirstdslist +='<li data-controltype="' + AllDS.DataSets.DataSet.DefaultVisualContrl + '"' +
-                                    'data-id="' + AllDS.DataSets.DataSet.ID + '" data-DataSource="' + AllDS.DataSets.DataSet.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex='+LayerIndex+'>' +
-                                    '<a><span><img src='+changestateimg+'></span>' + AllDS.DataSets.DataSet.ID + '</a>' +
+                                if (AllDS.DataSets.DataSet.ID.replace(/[^\x00-\xff]/g, '**').length > 40)
+                                {
+                                leftfirstdslist += '<li data-controltype="' + AllDS.DataSets.DataSet.DefaultVisualContrl + '"' +
+                                    'data-id="' + AllDS.DataSets.DataSet.ID + '" data-DataSource="' + AllDS.DataSets.DataSet.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex=' + LayerIndex + '>' +
+                                    '<a><span><img src=' + changestateimg + '></span>' + AllDS.DataSets.DataSet.ID.substr(0,19)+"..." + '</a>' +
                                     '</li>';
+                                 }
+                                 else
+                                 {
+                                  leftfirstdslist += '<li data-controltype="' + AllDS.DataSets.DataSet.DefaultVisualContrl + '"' +
+                                    'data-id="' + AllDS.DataSets.DataSet.ID + '" data-DataSource="' + AllDS.DataSets.DataSet.DataSource + '" style="list-style: none;" class="NewShare" LayerIndex=' + LayerIndex + '>' +
+                                    '<a><span><img src=' + changestateimg + '></span>' + AllDS.DataSets.DataSet.ID + '</a>' +
+                                    '</li>';
+                                 }
                             }
                         }
-                        if(AllDS.DataSets.groups!=null){
+                        if (AllDS.DataSets.groups != null) {
                             if (isArray(AllDS.DataSets.groups)) {
                                 //如果返回的是多个group（是数组），则循环每一个group，获取需要的数据
                                 $.each(AllDS.DataSets.groups, function (i, val) {
-                                    leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" +
-                                        AllDS.DataSets.groups[i].ID + "</a><ul class='Sub"+(LayerIndex+1)+"'></ul></li>";
+                                    if (AllDS.DataSets.groups[i].ID.replace(/[^\x00-\xff]/g, '**').length > 40)
+                                    {
+                                    leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='" + LayerIndex + "'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" +
+                                        AllDS.DataSets.groups[i].ID.substr(0,19)+"..." + "</a><ul class='Sub" + (LayerIndex + 1) + "'></ul></li>";
+                                    }
+                                     else
+                                    {
+                                      leftfirstdslist += "<li id='" + AllDS.DataSets.groups[i].path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='" + LayerIndex + "'><a title='" + AllDS.DataSets.groups[i].ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" +
+                                      AllDS.DataSets.groups[i].ID + "</a><ul class='Sub" + (LayerIndex + 1) + "'></ul></li>";
+                                     }
                                 });
                             }
                             else {
                                 //如果返回的是单个group，则直接获取其ID
-                                leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='"+LayerIndex+"'><a  title='" +
-                                    AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID + "</a><ul class='Sub"+(LayerIndex+1)+"'></ul></li>";
+                                if (AllDS.DataSets.groups.ID.replace(/[^\x00-\xff]/g, '**').length > 40) {
+                                    leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='" + LayerIndex + "'><a  title='" +
+                                    AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID.substr(0,19)+"..." + "</a><ul class='Sub" + (LayerIndex + 1) + "'></ul></li>";
+                                }
+                                else
+                                {
+                                leftfirstdslist += "<li id='" + AllDS.DataSets.groups.path + "'  class='MyDataSetGroup' isfolder='true' LayerIndex='" + LayerIndex + "'><a  title='" +
+                                    AllDS.DataSets.groups.ID + "'><span><img src='Img/LeftIcon/folder.png'/></span>" + AllDS.DataSets.groups.ID + "</a><ul class='Sub" + (LayerIndex + 1) + "'></ul></li>";
+                                 }
                             }
                         }
                         //绑定数据到下拉菜单
@@ -187,35 +222,34 @@ Agi.MenuManagement = function (option) {
                             }
                         });
                     }
-                    catch (e)
-                    {
+                    catch (e) {
                         console.log(e);
                     }
                 }
-//                if(NodeInfo!=null){
-//                    PanelEnement.parent().find('>a').addClass('active').next().slideToggle('fast');
-//                }
+                //                if(NodeInfo!=null){
+                //                    PanelEnement.parent().find('>a').addClass('active').next().slideToggle('fast');
+                //                }
             });
 
         }
-        self.BindDataSetsGroupClickEvent=function(JqueryElementArray){
-            $(JqueryElementArray).unbind().bind("click",function(event){
-                var ParentObj=$(this).parent().parent();
-                if(ParentObj!=null && ParentObj[0].id!=null && ParentObj[0].id!=""){
+        self.BindDataSetsGroupClickEvent = function (JqueryElementArray) {
+            $(JqueryElementArray).unbind().bind("click", function (event) {
+                var ParentObj = $(this).parent().parent();
+                if (ParentObj != null && ParentObj[0].id != null && ParentObj[0].id != "") {
                     ParentObj.unbind();
                 }
-                var  NodeInfo={perid:this.id};
+                var NodeInfo = { perid: this.id };
 
-                self.loadDataSource($($(this).find(">ul")[0]),NodeInfo,(parseInt($(this).attr("LayerIndex"))+1));
-//                //打开当前的
-//                if ($(this).data("Expend")!="1") {
-//                    $(this).parent().find('>li>a').removeClass('active').next().slideUp('fast');
-//                    self.loadDataSource($($(this).find(">ul")[0]),NodeInfo,(parseInt($(this).attr("LayerIndex"))+1));
-//                    $(this).data("Expend","1");
-//                }else{
-//                    $(this).find(">a").removeClass('active').next().slideUp('fast');
-//                    $(this).data("Expend","0");
-//                }
+                self.loadDataSource($($(this).find(">ul")[0]), NodeInfo, (parseInt($(this).attr("LayerIndex")) + 1));
+                //                //打开当前的
+                //                if ($(this).data("Expend")!="1") {
+                //                    $(this).parent().find('>li>a').removeClass('active').next().slideUp('fast');
+                //                    self.loadDataSource($($(this).find(">ul")[0]),NodeInfo,(parseInt($(this).attr("LayerIndex"))+1));
+                //                    $(this).data("Expend","1");
+                //                }else{
+                //                    $(this).find(">a").removeClass('active').next().slideUp('fast');
+                //                    $(this).data("Expend","0");
+                //                }
             });
         }
         //让左侧的实体可以拖动,拖动完成后将实体的基本信息传给控件的ReadData方法
@@ -556,7 +590,7 @@ Agi.MenuManagement = function (option) {
                             if (con) {
                                 var conType = con.Get('ControlType');
                                 if (conType === ContorlTypeEname && con.ChangeTheme) {
-                                    if(con.snycTheme !== undefined){
+                                    if (con.snycTheme !== undefined) {
                                         con.snycTheme = false;
                                     }
                                     con.ChangeTheme(ThemeID);
@@ -620,7 +654,7 @@ Agi.MenuManagement = function (option) {
                                 ControlLibs.push(file['@Path']);
                             })
                             if (workspace) {
-                                workspace.ControlsLibs.push({ "controlType": con['@ControlType'], "files": ControlLibs,"groupname":con['@GroupName']});
+                                workspace.ControlsLibs.push({ "controlType": con['@ControlType'], "files": ControlLibs, "groupname": con['@GroupName'] });
                             }
                             //ui
                             var str = '<ui class="sub-menu">' +
@@ -655,16 +689,16 @@ Agi.MenuManagement = function (option) {
                         /*实际应该从拖拽元素的自定义属性ControlType中获取*/
                         var ThissDragControlInitFun = d.object.attr("initialize");
 
-                        var ControlGroup=Agi.Edit.workspace.GetControlGroup(ThisDragControlType);
-                        if(ControlGroup!=null && ControlGroup=="SPC"){
-                            if(IsNewSPCPage){}else{
+                        var ControlGroup = Agi.Edit.workspace.GetControlGroup(ThisDragControlType);
+                        if (ControlGroup != null && ControlGroup == "SPC") {
+                            if (IsNewSPCPage) { } else {
                                 AgiCommonDialogBox.Alert("当前为普通页面不支持SPC业务控件，如需支持请新建SPC业务页面！");
                                 return;
                             }
                         }
                         /*控件初始化方法*/
                         if (layoutManagement.property.type == 1) {
-                            ContentDivObj = d.target.attr('container') == 'true' ? d.target :  $('#BottomRightCenterContentDiv');
+                            ContentDivObj = d.target.attr('container') == 'true' ? d.target : $('#BottomRightCenterContentDiv');
                             /*画布对象*/
                             var thisleft = parseInt(d.position.left.replace("px", "")) - ContentDivObj.offset().left;
                             var thistop = parseInt(d.position.top.replace("px", "")) - ContentDivObj.offset().top;
@@ -719,74 +753,74 @@ Agi.MenuManagement = function (option) {
     //page
     {
         //specialNode:为指定节点添加列表,如果没有传递,表示从根目录加载
-//        self.loadPages = function (specialNode) {
-//            var container = specialNode ? specialNode : self.options.pageManageNode;
-//            if (!container) {
-//                return;
-//            }
-//            //一级一级往上 取路径
-//            var direction = "PageManager";
-//            var id = 0;
-//            var dir = new Array();
-//            var level = 1;
-//            if (specialNode) {
-//                var className = specialNode.attr('class');
-//                var parentLi = specialNode.parent();
-//                while (className != 'sub-menu') {
-//                    var fileName = parentLi.data('filename');
-//                    id = parentLi[0].id;
-//                    if (fileName) {
-//                        dir.push(fileName);
-//                        level += 1;
-//                    }
-//                    parentLi = parentLi.parent();
-//                    className = parentLi.attr('class');
-//                } //end while
-//                direction += '/' + dir.reverse().join('/');
-//            }
-//            var jsonData = {
-//                "url": direction, //"PageManager"
-//                "ID": id
-//            };
-//            var jsonString = JSON.stringify(jsonData);
-//
-//            Agi.DAL.ReadData({
-//                "MethodName": "FMGetFileByParent",
-//                "Paras": jsonString, //json字符串
-//                "CallBackFunction": function (result) {     //回调函数
-//                    if (result.result) {
-//                        container.empty();
-//                        $(result.data).each(function (i, f) {
-//                            var id = f.ID;
-//                            var fileName = f.name.replace('.xml', '');
-//
-//                            var icon = f.isFile == 'true' ? $('<span><img src="Img/LeftIcon/duplicate2.png"></span>') : $('<span><img src="Img/LeftIcon/datasetss.png"></span>');
-//                            if (level > 1) {
-//                                var marginLeft = level * 11;
-//                                icon.css('margin-left', marginLeft + 'px');
-//                            }
-//                            var li = $('<li id="' + id + '" title="' + fileName + '" data-filename="' + fileName.toString() + '" data-isfile=' + f.isFile + '><a class="active">' + icon[0].outerHTML + fileName + '</a></li>');
-//
-//                            li.appendTo(container);
-//                            var pl = li.find('span:eq(0)').offset().left + li.find('span:eq(0)').width();
-//                            li.find('a').css('padding-left', pl <= 0 ? 40 : pl + 'px');
-//
-//                            /*清除不需要变量，释放内存*/
-//                            id = fileName = icon = li = pl = null;
-//                        });
-//                        addContextMenuForPages(container.find('li'));
-//                        addClickCallBack(container.find('li[data-isfile="false"]'));
-//                        if (specialNode) {
-//                            container.slideDown('fast');
-//                        }
-//                        else {
-//                            addContextMenuForPages(container.parent());
-//                        }
-//                    }
-//                }
-//            });
-//
-//        }
+        //        self.loadPages = function (specialNode) {
+        //            var container = specialNode ? specialNode : self.options.pageManageNode;
+        //            if (!container) {
+        //                return;
+        //            }
+        //            //一级一级往上 取路径
+        //            var direction = "PageManager";
+        //            var id = 0;
+        //            var dir = new Array();
+        //            var level = 1;
+        //            if (specialNode) {
+        //                var className = specialNode.attr('class');
+        //                var parentLi = specialNode.parent();
+        //                while (className != 'sub-menu') {
+        //                    var fileName = parentLi.data('filename');
+        //                    id = parentLi[0].id;
+        //                    if (fileName) {
+        //                        dir.push(fileName);
+        //                        level += 1;
+        //                    }
+        //                    parentLi = parentLi.parent();
+        //                    className = parentLi.attr('class');
+        //                } //end while
+        //                direction += '/' + dir.reverse().join('/');
+        //            }
+        //            var jsonData = {
+        //                "url": direction, //"PageManager"
+        //                "ID": id
+        //            };
+        //            var jsonString = JSON.stringify(jsonData);
+        //
+        //            Agi.DAL.ReadData({
+        //                "MethodName": "FMGetFileByParent",
+        //                "Paras": jsonString, //json字符串
+        //                "CallBackFunction": function (result) {     //回调函数
+        //                    if (result.result) {
+        //                        container.empty();
+        //                        $(result.data).each(function (i, f) {
+        //                            var id = f.ID;
+        //                            var fileName = f.name.replace('.xml', '');
+        //
+        //                            var icon = f.isFile == 'true' ? $('<span><img src="Img/LeftIcon/duplicate2.png"></span>') : $('<span><img src="Img/LeftIcon/datasetss.png"></span>');
+        //                            if (level > 1) {
+        //                                var marginLeft = level * 11;
+        //                                icon.css('margin-left', marginLeft + 'px');
+        //                            }
+        //                            var li = $('<li id="' + id + '" title="' + fileName + '" data-filename="' + fileName.toString() + '" data-isfile=' + f.isFile + '><a class="active">' + icon[0].outerHTML + fileName + '</a></li>');
+        //
+        //                            li.appendTo(container);
+        //                            var pl = li.find('span:eq(0)').offset().left + li.find('span:eq(0)').width();
+        //                            li.find('a').css('padding-left', pl <= 0 ? 40 : pl + 'px');
+        //
+        //                            /*清除不需要变量，释放内存*/
+        //                            id = fileName = icon = li = pl = null;
+        //                        });
+        //                        addContextMenuForPages(container.find('li'));
+        //                        addClickCallBack(container.find('li[data-isfile="false"]'));
+        //                        if (specialNode) {
+        //                            container.slideDown('fast');
+        //                        }
+        //                        else {
+        //                            addContextMenuForPages(container.parent());
+        //                        }
+        //                    }
+        //                }
+        //            });
+        //
+        //        }
         //20130622 markeluo 新增，页面分组管理
         self.loadPages = function (specialNode) {
             var container = specialNode ? specialNode : self.options.pageManageNode;
@@ -795,95 +829,110 @@ Agi.MenuManagement = function (option) {
             }
             //一级一级往上 取路径
             var direction = "";
-            var Enumtype="";
+            var Enumtype = "";
             var id = 0;
             var dir = new Array();
             var level = 1;
             if (specialNode) {
-                direction=specialNode.parent().data("path");
-                var LevelLength=specialNode.parent().data("level");
-                Enumtype=specialNode.parent().data("filetype");
-//                if(direction.indexOf("/")>=0){
-//                    level=direction.split("/").length+1;
-//                }
-                if(LevelLength!=null){
-                    level=eval(LevelLength)+1;
+                direction = specialNode.parent().data("path");
+                var LevelLength = specialNode.parent().data("level");
+                Enumtype = specialNode.parent().data("filetype");
+                //                if(direction.indexOf("/")>=0){
+                //                    level=direction.split("/").length+1;
+                //                }
+                if (LevelLength != null) {
+                    level = eval(LevelLength) + 1;
                 }
             }
 
             var jsonData = {
                 "url": direction, //"PageManager"
                 "ID": id,
-                "enum":Enumtype
+                "enum": Enumtype
             };
-            if(Agi.WebServiceConfig.Type== "JAVA" && jsonData.url!=""){
-                jsonData.ID=jsonData.url;
+            if (Agi.WebServiceConfig.Type == "JAVA" && jsonData.url != "") {
+                jsonData.ID = jsonData.url;
             }
             var jsonString = JSON.stringify(jsonData);
-            var Methname="FMGetFileByParent_SG";
-            if (Agi.WebServiceConfig.Type== "JAVA") {
-//                Methname="FMGetFileByParent";//20130916 11:03 获取页面分组、页面、版本 对SPC 类型页面支持
-                Methname="SPC_FMGetFileByParent";
+            var Methname = "FMGetFileByParent_SG";
+            if (Agi.WebServiceConfig.Type == "JAVA") {
+                //                Methname="FMGetFileByParent";//20130916 11:03 获取页面分组、页面、版本 对SPC 类型页面支持
+                Methname = "SPC_FMGetFileByParent";
             }
             Agi.DAL.ReadData({
-                "MethodName":Methname,
+                "MethodName": Methname,
                 "Paras": jsonString, //json字符串
                 "CallBackFunction": function (result) {     //回调函数
-                    if (result.result=="true") {
+                    if (result.result == "true") {
                         container.empty();
-                        if (Agi.WebServiceConfig.Type== "JAVA" && result.data.infos==null) {
-                            result.data={infos:{info:result.data}};
+                        if (Agi.WebServiceConfig.Type == "JAVA" && result.data.infos == null) {
+                            result.data = { infos: { info: result.data} };
                         }
-                        if(result.data.infos!=null && result.data.infos.info!=null){
-                            var fileName ="";
+                        if (result.data.infos != null && result.data.infos.info != null) {
+                            var fileName = "";
                             $(result.data.infos.info).each(function (i, f) {
                                 var id = f.id;
-                                var icon ="";
-                                var isspcpage="0";
-                                if (Agi.WebServiceConfig.Type== ".NET") {
-                                    f.path=f.path.replace('.xml','');
-                                    id=f.id=f.id.replace('.xml','');
-                                    if(f.path.lastIndexOf('/')>=0){}else{
-                                        f.path="/"+f.path;
+                                var icon = "";
+                                var isspcpage = "0";
+                                if (Agi.WebServiceConfig.Type == ".NET") {
+                                    f.path = f.path.replace('.xml', '');
+                                    id = f.id = f.id.replace('.xml', '');
+                                    if (f.path.lastIndexOf('/') >= 0) { } else {
+                                        f.path = "/" + f.path;
                                     }
-                                    if(f.enum=="pagefile"){
-                                        fileName =f.path.substr(f.path.lastIndexOf('/')+1);
-                                        if(f.isspc=="true"){
-                                            icon=$('<span><img src="Img/LeftIcon/spcduplicate2.png"></span>');
-                                            isspcpage="1";
-                                        }else{
-                                            icon=$('<span><img src="Img/LeftIcon/duplicate2.png"></span>');
+                                    if (f.enum == "pagefile") {
+                                        fileName = f.path.substr(f.path.lastIndexOf('/') + 1);
+                                        if (f.isspc == "true") {
+                                            icon = $('<span><img src="Img/LeftIcon/spcduplicate2.png"></span>');
+                                            isspcpage = "1";
+                                        } else {
+                                            icon = $('<span><img src="Img/LeftIcon/duplicate2.png"></span>');
                                         }
-                                    }else if(f.enum=="pagefolder"){
-                                        fileName =f.path.substr(f.path.lastIndexOf('/')+1);
-                                        icon=$('<span><img src="Img/LeftIcon/datasetss.png"></span>');
-                                    }else if(f.enum=="group"){
-                                        fileName =f.path.substr(f.path.lastIndexOf('/')+1);
-                                        icon=$('<span><img src="Img/LeftIcon/folder.png"></span>');
+                                    } else if (f.enum == "pagefolder") {
+                                        fileName = f.path.substr(f.path.lastIndexOf('/') + 1);
+                                        icon = $('<span><img src="Img/LeftIcon/datasetss.png"></span>');
+                                    } else if (f.enum == "group") {
+                                        fileName = f.path.substr(f.path.lastIndexOf('/') + 1);
+                                        icon = $('<span><img src="Img/LeftIcon/folder.png"></span>');
                                     }
-                                }else{
-                                    fileName= f.id;
-                                    id=f.path;
-                                    if(f.enum=="pagefile"){
-                                        if(f.isspc=="true"){
-                                            icon=$('<span><img src="Img/LeftIcon/spcduplicate2.png"></span>');
-                                            isspcpage="1";
-                                        }else{
-                                            icon=$('<span><img src="Img/LeftIcon/duplicate2.png"></span>');
+                                } else {
+                                    fileName = f.id;
+                                    id = f.path;
+                                    if (f.enum == "pagefile") {
+                                        if (f.isspc == "true") {
+                                            icon = $('<span><img src="Img/LeftIcon/spcduplicate2.png"></span>');
+                                            isspcpage = "1";
+                                        } else {
+                                            icon = $('<span><img src="Img/LeftIcon/duplicate2.png"></span>');
                                         }
-                                    }else if(f.enum=="pagefolder"){
-                                        icon=$('<span><img src="Img/LeftIcon/datasetss.png"></span>');
-                                    }else if(f.enum=="group"){
-                                        icon=$('<span><img src="Img/LeftIcon/folder.png"></span>');
+                                    } else if (f.enum == "pagefolder") {
+                                        icon = $('<span><img src="Img/LeftIcon/datasetss.png"></span>');
+                                    } else if (f.enum == "group") {
+                                        icon = $('<span><img src="Img/LeftIcon/folder.png"></span>');
                                     }
                                 }
                                 if (level > 1) {
                                     var marginLeft = level * 11;
                                     icon.css('margin-left', marginLeft + 'px');
                                 }
-                                var li = $('<li id="' + id + '" title="' + fileName + '" data-Path="'+f.path+'" data-filename="' +
-                                    fileName.toString() + '" data-filetype=' + f.enum + ' data-level="'+level+'" data-isspcpage="'+isspcpage+'"><a class="active">' +
-                                    icon[0].outerHTML + fileName + '</a></li>');
+                                //20140224 添加判断页面名称代码当页面名称超过20字符显示省略号
+                                var fileNewName = "";
+                                if (fileName.replace(/[^\x00-\xff]/g, '**').length > 40) {
+                                    fileNewName = fileName.substr(0, 19) + "...";
+                                }
+                                else {
+                                    fileNewName = fileName;
+                                }
+
+//                                var li = $('<li id="' + id + '" title="' + fileName + '" data-Path="' + f.path + '" data-filename="' +
+//                                    fileName.toString() + '" data-filetype=' + f.enum + ' data-level="' + level + '" data-isspcpage="' + isspcpage + '"><a class="active">' +
+//                                    icon[0].outerHTML + fileName + '</a></li>');
+
+                                var li = $('<li id="' + id + '" title="' + fileName + '" data-Path="' + f.path + '" data-filename="' +
+                                    fileName.toString() + '" data-filetype=' + f.enum + ' data-level="' + level + '" data-isspcpage="' + isspcpage + '"><a class="active">' +
+                                    icon[0].outerHTML + fileNewName + '</a></li>');
+
+                              //end
 
                                 li.appendTo(container);
                                 var pl = li.find('span:eq(0)').offset().left + li.find('span:eq(0)').width();
@@ -901,7 +950,7 @@ Agi.MenuManagement = function (option) {
                                 addContextMenuForPages(container.parent());
                             }
                             //绑定，支持可拖拽操作
-                            Agi.MenuManagement.BindPageGroupDrag(container.find('li[data-filetype="pagefolder"],li[data-filetype="group"]'),$("#PageManage").find('li[data-filetype="group"]'),self.loadPages);
+                            Agi.MenuManagement.BindPageGroupDrag(container.find('li[data-filetype="pagefolder"],li[data-filetype="group"]'), $("#PageManage").find('li[data-filetype="group"]'), self.loadPages);
                         }
                     }
                 }
@@ -909,37 +958,37 @@ Agi.MenuManagement = function (option) {
 
         }
         self.getFilePath = function (el) {
-//            var specialNode = $(el);
-//            //一级一级往上 取路径
-//            var direction = "";
-//            var dir = new Array();
-//            var level = 1;
-//            if (specialNode) {
-//                var parentLi = specialNode.parent();
-//                var className = parentLi.attr('class');
-//                while (className != 'sub-menu') {
-//                    var fileName = parentLi.attr('data-filename');
-//                    if (fileName) {
-//                        dir.push(fileName);
-//                        level += 1;
-//                    }
-//                    parentLi = parentLi.parent();
-//                    className = parentLi.attr('class');
-//                    /*清除不需要变量，释放内存*/
-//                    fileName = null;
-//                } //end while
-//                direction += dir.reverse().join('/');
-//            }
-//            var filename = $(el).attr('data-filename').toString();
-//            if (level > 1) {
-//                filename = direction + '/' + filename;
-//            }
-//            return filename;
-//            /*清除不需要变量，释放内存*/
-//            parentLi = className = filename = null;
-            if($(el).data("path")!=null){
+            //            var specialNode = $(el);
+            //            //一级一级往上 取路径
+            //            var direction = "";
+            //            var dir = new Array();
+            //            var level = 1;
+            //            if (specialNode) {
+            //                var parentLi = specialNode.parent();
+            //                var className = parentLi.attr('class');
+            //                while (className != 'sub-menu') {
+            //                    var fileName = parentLi.attr('data-filename');
+            //                    if (fileName) {
+            //                        dir.push(fileName);
+            //                        level += 1;
+            //                    }
+            //                    parentLi = parentLi.parent();
+            //                    className = parentLi.attr('class');
+            //                    /*清除不需要变量，释放内存*/
+            //                    fileName = null;
+            //                } //end while
+            //                direction += dir.reverse().join('/');
+            //            }
+            //            var filename = $(el).attr('data-filename').toString();
+            //            if (level > 1) {
+            //                filename = direction + '/' + filename;
+            //            }
+            //            return filename;
+            //            /*清除不需要变量，释放内存*/
+            //            parentLi = className = filename = null;
+            if ($(el).data("path") != null) {
                 return $(el).data("path");
-            }else{
+            } else {
                 return "";
             }
         }
@@ -951,11 +1000,11 @@ Agi.MenuManagement = function (option) {
                 "bindings": {
                     //编辑页面
                     "pageManagement-edit": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         var id = e.id;
                         ShowNewMainPage();
@@ -970,11 +1019,11 @@ Agi.MenuManagement = function (option) {
                         Agi.Edit.OpenPage(filename, id, parentid)
                         //20121116 10:23 end
                         //region 20130916 13:44 markluo 对SPC 页面进行特殊处理
-                        var isspcpage=$(e).data("isspcpage");
-                        if(isspcpage!=null && isspcpage=="1"){
-                            IsNewSPCPage=true;
-                        }else{
-                            IsNewSPCPage=false;
+                        var isspcpage = $(e).data("isspcpage");
+                        if (isspcpage != null && isspcpage == "1") {
+                            IsNewSPCPage = true;
+                        } else {
+                            IsNewSPCPage = false;
                         }
                         //endregion
                         boolIsSave = false;
@@ -988,37 +1037,37 @@ Agi.MenuManagement = function (option) {
                     },
                     //预览页面
                     "pageManagement-view": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         var id = e.id;
-//                        var path = Agi.ViewServiceAddress + filename + "&isView=true&ID=" + id;
+                        //                        var path = Agi.ViewServiceAddress + filename + "&isView=true&ID=" + id;
 
                         //region 20130916 13:44 markluo 对SPC 页面进行特殊处理
-                        var isspcpage=$(e).data("isspcpage");
-                        if(isspcpage!=null && isspcpage=="1"){
-                            isspcpage=true;
-                        }else{
-                            isspcpage=false;
+                        var isspcpage = $(e).data("isspcpage");
+                        if (isspcpage != null && isspcpage == "1") {
+                            isspcpage = true;
+                        } else {
+                            isspcpage = false;
                         }
-                        var strviewAddress=Agi.ViewServiceAddress;
-                        if(isspcpage){
-                            strviewAddress=Agi.SPCViewServiceAddress;
+                        var strviewAddress = Agi.ViewServiceAddress;
+                        if (isspcpage) {
+                            strviewAddress = Agi.SPCViewServiceAddress;
                         }
-                        var path =strviewAddress+ filename + "&isView=true&ID=" + id;
+                        var path = strviewAddress + filename + "&isView=true&ID=" + id;
                         //endregion
                         window.open(path);
                     },
                     //删除页面
                     "pageManagement-delete": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         var isFile = false
                         var id = e.id;
@@ -1052,11 +1101,11 @@ Agi.MenuManagement = function (option) {
 
                     //版本查看,管理
                     "pageManagement-VersionManage": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         ShowVersionInfo(); //显示版本管理页面
                         VersionPageName(filename); //获取文件夹中页面信息
@@ -1064,11 +1113,11 @@ Agi.MenuManagement = function (option) {
                     },
                     //文件夹的删除
                     "pageManagement-delete2": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         var content = '确定要删除目录: ' + filename + ' ? ';
                         AgiCommonDialogBox.Confirm(content, null, function (flag) {
@@ -1098,11 +1147,11 @@ Agi.MenuManagement = function (option) {
                     },
                     //刷新单个目录
                     "pageManagement-refresh": function (e) {
-                        var filename ="";
-                        if (Agi.WebServiceConfig.Type== ".NET") {
-                            filename=self.getFilePath(e).replace("PageManager/","");
-                        }else{
-                            filename=$(e).data("filename");
+                        var filename = "";
+                        if (Agi.WebServiceConfig.Type == ".NET") {
+                            filename = self.getFilePath(e).replace("PageManager/", "");
+                        } else {
+                            filename = $(e).data("filename");
                         }
                         AgiCommonDialogBox.Alert(fname, null);
                     },
@@ -1111,29 +1160,29 @@ Agi.MenuManagement = function (option) {
                         self.loadPages();
                     },
                     //根节点下添加 页面分组文件夹
-                    "pageManagement-addGroupFolder":function(e){
-                        var NodeInfo=null;
-                        if(e.id!="" && $(e).data("isfile")!="pageRoot"){
+                    "pageManagement-addGroupFolder": function (e) {
+                        var NodeInfo = null;
+                        if (e.id != "" && $(e).data("isfile") != "pageRoot") {
                             var filePath = self.getFilePath(e);
-                            NodeInfo={NodeName:$(e).data("filename"),NodePath:filePath,NodeKey:filePath}
+                            NodeInfo = { NodeName: $(e).data("filename"), NodePath: filePath, NodeKey: filePath }
                         }
-                        AddPageGroup(NodeInfo,function(ev){
+                        AddPageGroup(NodeInfo, function (ev) {
                             self.loadPages();
                         });
                     },
                     //编辑分组名称
-                    "pageManagement-EditGroupFolder":function(e){
+                    "pageManagement-EditGroupFolder": function (e) {
                         var filePath = self.getFilePath(e);
-                        var NodeInfo={NodeName:$(e).data("filename"),NodePath:filePath,NodeKey:filePath}
-                        EditPageGroup(NodeInfo,function(ev){
+                        var NodeInfo = { NodeName: $(e).data("filename"), NodePath: filePath, NodeKey: filePath }
+                        EditPageGroup(NodeInfo, function (ev) {
                             self.loadPages();
                         })
                     },
                     //删除分组
-                    "pageManagement-DelGroupFolder":function(e){
+                    "pageManagement-DelGroupFolder": function (e) {
                         var filePath = self.getFilePath(e);
-                        var NodeInfo={NodeName:$(e).data("filename"),NodePath:filePath,NodeKey:filePath}
-                        DeletePageGroup(NodeInfo,function(ev){
+                        var NodeInfo = { NodeName: $(e).data("filename"), NodePath: filePath, NodeKey: filePath }
+                        DeletePageGroup(NodeInfo, function (ev) {
                             self.loadPages();
                         });
                     }
@@ -1147,18 +1196,18 @@ Agi.MenuManagement = function (option) {
                         liNode = liNode.parent();
                         tagName = liNode[0].tagName;
                     }
-                    var filetype ="pageRoot";
-                    if(liNode.data('filetype')!=null){
-                        filetype=liNode.data('filetype').toString();
+                    var filetype = "pageRoot";
+                    if (liNode.data('filetype') != null) {
+                        filetype = liNode.data('filetype').toString();
                     }
                     //alert(isfile);
                     if (filetype == 'pagefile') {
                         $(menu).find('.page-contextMenu').show();
                     } else if (filetype == 'pagefolder') {
                         $(menu).find('.folder-contextMenu').show();
-                    }else if(filetype == 'group'){
+                    } else if (filetype == 'group') {
                         $(menu).find('.PageGroupMenu').show();
-                    }else{
+                    } else {
                         $(menu).find('.pageRoot-contextMenu').show();
                     }
                     return menu;
@@ -1174,7 +1223,7 @@ Agi.MenuManagement = function (option) {
 
         function folderClickCallBack(e) {
             var pageType = $(this).data('filetype');
-            if (pageType!="pagefile") {
+            if (pageType != "pagefile") {
                 if (!$(this).find('>ul').length) {
                     var ul = $('<ul style="display:block;">');
                     ul.appendTo($(this));

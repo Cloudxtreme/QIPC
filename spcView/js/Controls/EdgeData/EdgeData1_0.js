@@ -593,7 +593,9 @@ EdgeData.prototype = {
 				renderTo : chartdiv[0],// 设置绘制图表的父元素(只能是源生对象)
 				marginRight : 50,
 				marginLeft : 70,
-				marginBottom : 25
+				marginBottom : 25,
+				plotBorderWidth:1,//图形边框宽度
+				plotBorderColor:'silver'//图形边框颜色
 			},
 			credits : {// 去掉右下角超链接标签
 				enabled : false

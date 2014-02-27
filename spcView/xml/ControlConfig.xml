@@ -57,13 +57,14 @@
                 <File Type="js" Path="js/Controls/RadioButton1/RadioButton.js"></File>
             </Files>
         </Control>
-        <Control id='9' ControlType='CheckBox' ControlName='复选框'
-                 IcoURL='js/Controls/ControlsImages/CheckBox.png' Initialize="Agi.Controls.InitCheckBox">
-            <Files>
-                <File Type='css' Path='js/Controls/CheckBox/CheckBox.css'></File>
-                <File Type='js' Path='js/Controls/CheckBox/CheckBox.js'></File>
-            </Files>
-        </Control>
+        <Control id='9' ControlType='CheckBox' ControlName='复选框' IcoURL='JS/Controls/ControlsImages/CheckBox.png'
+              Initialize="Agi.Controls.InitCheckBox">
+        <Files>
+          <File Type='css' Path='JS/Controls/CheckBox1/CheckBox.css'></File>
+          <File Type='js' Path='JS/Controls/CheckBox1/CheckBox.js'></File>
+          
+        </Files>
+      </Control>
         <Control id="7" ControlType="AssociativeInputBox" ControlName="联想输入框" IcoURL="js/Controls/ControlsImages/AssociativeInputBox.png" Initialize="Agi.Controls.InitAssociativeInputBox">
             <Files>
                 <File Type="css" Path="js/Controls/AssociativeInputBox/AssociativeInputBox.css"></File>

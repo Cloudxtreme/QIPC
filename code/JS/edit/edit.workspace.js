@@ -29,6 +29,7 @@
             //
             layoutManagement.revertConfig();
             //
+            Agi.Edit.workspace.controlList.clear();
             $('[name="SelectAspectRatio"][value="100%"]').click();
             $("#SelectGridlines").val('10');
             $("#SelectGridlines").change();

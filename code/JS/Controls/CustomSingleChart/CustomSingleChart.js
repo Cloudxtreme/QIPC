@@ -76,8 +76,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             });
         },
         ReadOtherData: function (_PointID) {//测试数据
-            var checkDataSeries = [
-                { Names: "", min: 0, max: 4, minValue: 1, middleValue: 2, maxValue: 3, Data: [null]}];
+            var checkDataSeries = [];
             var cp = this.Get("ChartProperty");
             if(typeof cp == 'undefined'){
                 return;
@@ -2095,7 +2094,18 @@ Agi.Controls.CustomSingleChartPlotLineGetPointColor=function(_Value,_PlotLines){
 }
 //统计信息
 Agi.Controls.CustomSigChartAlarmStatistical=function(_ALLSeries,_PlotLines){
-    var AlarmStatisticaldata={PlotLines:[],SGM:{AlarmSum:0,Percentage:0,MaxObj:{AlarmSum:0,Percentage:0,Item:[]},MinObj:{AlarmSum:0,Percentage:0,Item:[]},Enable:false}};
+    var AlarmStatisticaldata={
+        PlotLines:[],
+        SumPoints:0,
+        SGM:{
+            AlarmSum:0,
+            Percentage:0,
+            MaxObj:{AlarmSum:0,Percentage:0,Item:[]},
+            MinObj:{AlarmSum:0,Percentage:0,Item:[]
+            },
+            Enable:false
+        }
+    };
     var _Series=Agi.Controls.CustomSingleChartGetDataSries(_ALLSeries);//获得对应的的数据Series
     var _ScmSeries=Agi.Controls.CustomSingleChartGetDataSries(_ALLSeries,false);//获得对应的的西格玛线Series
 
@@ -2140,6 +2150,7 @@ Agi.Controls.CustomSigChartAlarmStatistical=function(_ALLSeries,_PlotLines){
         for(var i=0;i<_Series.length;i++){
             SumPointNum=SumPointNum+_Series[i].data.length;
         }
+        AlarmStatisticaldata.SumPoints=SumPointNum;
         for(var i=0;i<_Series.length;i++){
             for(var j=0;j<_Series[i].data.length;j++){
                 Agi.Controls.CustomSigChartAlarmStatisticalByData(j,_Series[i].data[j].y,AlarmStatisticaldata,SumPointNum);//统计标准线所在比例信息
@@ -2996,6 +3007,10 @@ Agi.Controls.CustomSigChartView_BackgroundSetMenu=function(_Panel,_Control){
 
 //region 21030917 22:26 markeluo 标准线和西格玛线报警汇总统计面板显示
 Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticaldata,_ApendToPanel,_BackGroundConfig){
+    if(_AlarmStatisticaldata.SumPoints==null){
+        _AlarmStatisticaldata.SumPoints=0;
+    }
+
     if(_BackGroundConfig.Tolbtnbackground!=null && _BackGroundConfig.Tolbtnbackground!=""){}else{
         _BackGroundConfig.Tolbtnbackground="#ffffff";
     }
@@ -3026,9 +3041,9 @@ Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticald
         "<a  id='btnTotalHidenMenu' class='totalAlarmmenusty' style='float: right;margin: 5px 5px 5px 0px;'>-隐藏统计信息</a>" +
         "</td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>分析内容</td><td colspan='4' class='toalarmEditcell'>热轧宽度均值极差图</td></tr>";
-    SubItemHTML+="<tr><td style='background-color:#4bacc6'>图形名称</td><td style='background-color:#4bacc6'>单值图</td><td></td><td></td><td></td></tr>";
-    SubItemHTML+="<tr><td style='background-color:#4bacc6'>样本点个数</td><td>100</td><td></td><td></td><td></td></tr>";
-    SubItemHTML+="<tr><td style='background-color:#4bacc6'>分图时间</td><td>2013-9-17 22:46:13</td><td></td><td></td><td></td></tr>";
+    SubItemHTML+="<tr><td style='background-color:#4bacc6'>图形名称</td><td>单值图</td><td></td><td></td><td></td></tr>";
+    SubItemHTML+="<tr><td style='background-color:#4bacc6'>样本点个数</td><td>"+_AlarmStatisticaldata.SumPoints+"</td><td></td><td></td><td></td></tr>";
+    SubItemHTML+="<tr><td style='background-color:#4bacc6'>出图时间</td><td>"+(new Date()).format("yyyy-MM-dd hh:mm:ss")+"</td><td></td><td></td><td></td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>备注</td><td colspan='4' class='toalarmEditcell'></td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>分组</td><td style='background-color:#4bacc6'>标准线</td><td style='background-color:#4bacc6'>标准线值</td><td style='background-color:#4bacc6'>异常点个数</td><td style='background-color:#4bacc6'>异常点百分比</td></tr>";
     if(_AlarmStatisticaldata!=null && _AlarmStatisticaldata.PlotLines!=null && _AlarmStatisticaldata.PlotLines.length>0){

@@ -494,7 +494,7 @@ Agi.Controls.ButtonPropertyInit = function (ButtonControl) {
     ItemContent.append("</tr>");
     //20140217 范金鹏 添加字体样式选择多选框
     ItemContent.append("<tr>");
-    ItemContent.append("<td class='prortityLabelTabletd0'>字体样式：</td><td class='prortityLabelTabletd1'><div><select id='FontFamilySelect'>" +
+    ItemContent.append("<td class='prortityPanelTabletd0'>字体样式：</td><td class='prortityLabelTabletd1'><div><select id='FontFamilySelect'>" +
         "<option selected value='微软雅黑'>微软雅黑</option>" +
         "<option value='宋体'>宋体</option>" +
         "<option value='楷体'>楷体</option>" +

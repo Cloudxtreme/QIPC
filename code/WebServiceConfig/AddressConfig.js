@@ -18,13 +18,13 @@
 //Agi.UploadExcelAddress="http://10.3.61.6:8080/qpc-app/doExcelServlet";//JAVA Excel 上传需要
 
 //Agi.WebServiceConfig.Type = "JAVA";    //value:[.NET/JAVA] 大小写敏感
-//var WebServiceAddress="http://192.168.1.35:7001/qpc-app/invokeWebService";
-//Agi.ImgServiceAddress = "http://192.168.1.35:7001";  //图片资源地址
-//Agi.ImgUploadServiceAddress="http://192.168.1.35:7001/qpc-app/doImgServlet";//资源图片上传服务地址
-//Agi.SocketAddressInfo = {"Ip":"192.168.1.35:7001","Port":"8080", JavaUrl:"/qpc-web/echo.ws","SessionID":""};  //socket连接地址
+//var WebServiceAddress="http://10.3.61.11:80/qpc-app/invokeWebService";
+//Agi.ImgServiceAddress = "http://10.3.61.11:80";  //图片资源地址
+//Agi.ImgUploadServiceAddress="http://10.3.61.11:80/qpc-app/doImgServlet";//资源图片上传服务地址
+//Agi.SocketAddressInfo = {"Ip":"10.3.61.11:80","Port":"8080", JavaUrl:"/qpc-web/echo.ws","SessionID":""};  //socket连接地址
 //Agi.SPCViewServiceAddress = "http://localhost/ShouGang/spcView/view.html?page=";
 //Agi.ViewServiceAddress = "http://localhost/ShouGang/View/view.html?page=";
-//Agi.UploadExcelAddress="http://192.168.1.35:7001/qpc-app/doExcelServlet";//JAVA Excel 上传需要
+//Agi.UploadExcelAddress="http://10.3.61.11:80/qpc-app/doExcelServlet";//JAVA Excel 上传需要
 
 Agi.WebServiceConfig.Type = "JAVA";   //value:[.NET/JAVA] 大小写敏感
 var WebServiceAddress="http://10.3.250.120:7001/qpc-app/invokeWebService";

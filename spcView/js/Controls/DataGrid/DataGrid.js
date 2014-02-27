@@ -72,6 +72,12 @@ Agi.Controls.DataGrid = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 return null;
             }
         },
+        SetEntityData:function(data){//设置实体数据
+            var entity = this.Get('Entity')[0];
+            if (entity != undefined && entity != null) {
+                entity.Data=data;
+            }
+        },
         //测试高亮
         highLight: function (text) {
             var self = this;
@@ -1284,6 +1290,12 @@ Agi.Controls.DataGridAttributeChange = function (_ControlObj, Key, _Value) {
                     self.wijgridDefaultConfig.totalRows = result.totalRows;
                     //et.Columns = d.Columns;
                     callback(result.Data);
+                }
+                else{
+                    self.wijgridDefaultConfig.data = null;
+                    self.wijgridDefaultConfig.totalRows = 0;
+                    self.SetEntityData(null);
+                    self.ResetProperty();
                 }
             });
 

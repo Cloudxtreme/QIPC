@@ -27,7 +27,8 @@ Agi.Controls.CustomYGZButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var self = this;
             var entity = this.Get("Entity");
 			var BasicProperty = this.Get("BasicProperty");
-			
+			entity = [];
+            entity.push(et);
 			//将当前控件的dataset保存起来，方便给参数赋值
 			BasicProperty.EntityInfo=et;
 			BasicProperty.OrgParamters=et.Parameters;
@@ -42,57 +43,8 @@ Agi.Controls.CustomYGZButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
 				});
 			}
 			BasicProperty.ParaBindInfo=ParaBindInfo;
-
-			if (et != undefined && et != null && et != "") {
-                Agi.Utility.RequestData2(et, function (d) {
-                        var data = d.Data.length ? d.Data : [];
-                        var columns = d.Columns;
-                        et.Data = data;
-                        et.Columns = d.Columns;
-						entity = [];
-						entity.push(et);
-						self.Set("Entity", entity);
-                    });
-            }else{
-					entity = [];
-					entity.push(et);
-					self.Set("Entity", entity);
-			}
-			
+            this.Set("Entity", entity);
         },
-		RemoveEntity: function (_EntityKey) {
-            if (!_EntityKey) {
-                throw 'CustomYGZButton.RemoveEntity Arg is null';
-            }
-            var self = this;
-            var entitys = self.Get('Entity');
-            var index = -1;
-            if (entitys && entitys.length) {
-                for (var i = 0; i < entitys.length; i++) {
-                    if (entitys[i]["Key"] == _EntityKey) {
-                        index = i;
-                        break;
-                    }
-                }
-            }
-            if (index >= 0) {
-                entitys.splice(index, 1);
-                self.Set('Entity', entitys);
-            }
-
-            //删除数据后删掉共享数据源和控件的关系
-            Agi.Msg.ShareDataRelation.DeleteItem(self.shell.BasicID);
-			
-			var BasicProperty=self.Get('BasicProperty');
-				BasicProperty.EntityInfo=undefined,
-				BasicProperty.PostControlID=[],
-				BasicProperty.OrgParamters=[],
-				BasicProperty.ParaBindInfo=[]
-            self.Set('BasicProperty', BasicProperty);
-            //20130123 倪飘 更新实体数据之后更行高级属性面板
-            Agi.Controls.CustomYGZButtonPropertyInit(self);
-
-        }, //移除实体Entity
         Init: function (_Target, _ShowPosition, savedId) {/*控件初始化，_Target：显示到的容器，_ShowPosition：控件显示到的位置,left,top*/
             this.AttributeList = [];
             this.IsChangeEntity = false;
@@ -194,11 +146,11 @@ Agi.Controls.CustomYGZButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             obj = ThisProPerty = PagePars = PostionValue = null;
 
             //缩小的最小宽高设置
-            HTMLElementPanel.resizable({
+            /*HTMLElementPanel.resizable({
                 minHeight: 20,
                 minWidth: 25
             }).css("position", "absolute");
-            this.Set("ThemeName", null);
+            this.Set("ThemeName", null);*/
             //20130514 倪飘 解决bug，组态环境中查询按钮以后拖入容器框控件，容器框控件会覆盖查询按钮控件（容器框控件添加背景色以后能够看到效果）
             Agi.Controls.BasicPropertyPanel.Show(self.shell.ID);
         },
@@ -338,11 +290,12 @@ Agi.Controls.CustomYGZButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         $("#" + self.shell.BasicID).css("border-radius", BasicProperty.BorderRadius + "px");
                         if (BasicProperty.Background != null && BasicProperty.Background != "") {
                             if (typeof (BasicProperty.Background) === "string") {
-                                if(BasicProperty.Background.indexOf('-webkit-gradient')>=0){
+								if(BasicProperty.Background.indexOf('-webkit-gradient')>=0){
 									$("#" + self.shell.BasicID).css({ "background-image": "" + BasicProperty.Background + "" });
 								}else{
 									$("#" + self.shell.BasicID).css({ "background-color": "" + BasicProperty.Background + "" });
 								}
+
                             } else {
                                 var oBackgroundValue = Agi.Controls.ControlColorApply.fBackgroundColorFormat(BasicProperty.Background);
                                 if (oBackgroundValue.BolIsTransfor != "false") {
@@ -419,6 +372,7 @@ Agi.Controls.CustomYGZButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     this.shell.Container.width(ThisControlPars.Width).height(ThisControlPars.Height);
                     this.shell.Container.css('left', (parseInt(_Config.Position.Left * PagePars.Width)) + "px");
                     this.shell.Container.css('top', (parseInt(_Config.Position.Top * PagePars.Height)) + "px");
+
                 }
             }
         }
@@ -445,7 +399,7 @@ Agi.Controls.CustomYGZButtonPropertyInit = function (CustomYGZButtonControl) {
     ItemContent.append("<div class='CustomControl_Pro_Panel'>");
     ItemContent.append("<table class='CustomControlproPanelTable'>");
 	ItemContent.append("<tr>");
-    ItemContent.append("<td class='CustomControlproPanelTabletd0'>按钮文本：</td><td class='CustomControlproPanelTabletd1' colspan='3'><input type='text' id='CButton_ButtonText' style='width:80%;'  /></td>");
+    ItemContent.append("<td class='CustomControlproPanelTabletd0'>按钮文本：</td><td class='CustomControlproPanelTabletd1'><input type='text' id='CButton_ButtonText' /></td>");
     ItemContent.append("</tr>");
     ItemContent.append("<tr>");
     ItemContent.append("<td class='CustomControlproPanelTabletd0'>背景设置：</td><td class='CustomControlproPanelTabletd1'><div id='CButton_FilterBgColor' style='background-color:#ffffffff;' class='ControlColorSelPanelSty'></div></td>");
@@ -547,7 +501,8 @@ Agi.Controls.CustomYGZButtonPropertyInit = function (CustomYGZButtonControl) {
 	//基本属性
 	//绑定保存值
     var BasicProperty = _Button.Get("BasicProperty");
-	$("#CButton_ButtonText").val(BasicProperty.ButtonText);
+    $("#CButton_ButtonText").val(BasicProperty.ButtonText);
+	
     if (BasicProperty.BorderRadius) { } else {
         BasicProperty.BorderRadius = 5;
     }
@@ -582,7 +537,6 @@ Agi.Controls.CustomYGZButtonPropertyInit = function (CustomYGZButtonControl) {
         };
     }
     Agi.Controls.ControlColorApply.fColorControlValueSet("CButton_FilterBgColor", BasicProperty.Background, true);
-
 	
     $("#CButton_ButtonText").change(function () {
         var val = $("#CButton_ButtonText").val();
@@ -591,6 +545,7 @@ Agi.Controls.CustomYGZButtonPropertyInit = function (CustomYGZButtonControl) {
 		$(this).val(BasicProperty.ButtonText);
         
     });
+
 	 $("#CButton_FontColor").spectrum({
         showInput: true,
         showPalette: true,
@@ -627,7 +582,7 @@ Agi.Controls.CustomYGZButtonPropertyInit = function (CustomYGZButtonControl) {
             _Button.Set("BasicProperty", BasicProperty);
         }
     });
-    //20130408  倪飘 修改bug，查询按钮高级属性中，边框宽度，圆角半径，字体大小输入框对特殊字符以及空格无限制
+   
     $("#CButton_FontSize").change(function () {
         var val = $("#CButton_FontSize").val();
         var MinNumber = parseInt($(this).attr("min"));
@@ -1084,7 +1039,7 @@ Agi.Controls.CustomButtonSingleClick=function(_ClickOption){
 
 	//改变样式
 	//当前页面所有控件列表
-	var _controlObj = Agi.Edit.workspace.controlList.toArray();
+	var _controlObj = Agi.view.workspace.controlList.toArray();
 	
 	for(var i=0;i<_controlObj.length;i++){
 		var tempid = _controlObj[i].Get("ProPerty").ID; //控件ID

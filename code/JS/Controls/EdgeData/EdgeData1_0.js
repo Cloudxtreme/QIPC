@@ -589,7 +589,9 @@ EdgeData.prototype = {
 				renderTo : chartdiv[0],// 设置绘制图表的父元素(只能是源生对象)
 				marginRight : 50,
 				marginLeft : 70,
-				marginBottom : 25
+				marginBottom : 25,
+				plotBorderWidth:1,//图形边框宽度
+				plotBorderColor:'silver'//图形边框颜色
 			},
 			credits : {// 去掉右下角超链接标签
 				enabled : false
@@ -923,6 +925,7 @@ EdgeData.prototype = {
 		var chart = thisobj._layer.chart;// ._layer.chartdiv.highcharts();
 		thisobj.setChartXAxisTitle(thisobj._viewData.highchart[0].name);// 更新x轴显示
 		chart.series[0].setData(thisobj._viewData.highchart[0].data);// 设置新数据(无需清理之前数据,highchart自身已实现过)
+		console.log(JSON.stringify(thisobj._viewData.highchart[0].data));
 		thisobj._updatePointStdStatus();
 	}
 };

@@ -317,7 +317,9 @@ opacity: 0.6;
 /* �±߲��ֵ����˵� */
 #BottomLeftDiv
 {
-    width:250px;
+    /*20140224 width设置为340*/
+    /*width:250px;*/
+    width:350px;
     background-color:#CED2D8;
     border-right:1px solid #0C2C40;
     display: -moz-box;

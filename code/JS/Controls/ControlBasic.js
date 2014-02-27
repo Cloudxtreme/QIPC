@@ -49,10 +49,10 @@ Agi.Controls.ControlBasic = Agi.OOP.Class.Create(null, {
 
         var oIndex = this.Get('HTMLElement').style.zIndex,
             nIndex = isNaN(oIndex) ? 1000 : parseInt(oIndex) + 1;
-        $(dom).animate({
+        $(dom).css({'zIndex':nIndex})
+            .animate({
             top: dom.offsetTop + 10,
-            left: dom.offsetLeft + 10,
-            zIndex: nIndex
+            left: dom.offsetLeft + 10
         });
         return nControl;
     },//控件复制

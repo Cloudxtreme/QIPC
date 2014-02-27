@@ -13,6 +13,7 @@ edit.NewPage = function () {
     AgiCommonDialogBox.Confirm("新建页面？", null, function (flag) {
         //20130123 倪飘 解决编辑页面中点击标题栏的新建页面按钮并点击取消，再点击保存，弹出的提示框中会变成"新建页面1"问题
         if (flag) {
+        IsNewSPCPage=true;
 		workspace.controlList.array = [];
             try {
                 Agi.Controls.BasicPropertyPanel.HidePanel();

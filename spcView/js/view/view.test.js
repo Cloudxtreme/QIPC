@@ -12,6 +12,7 @@ agi.jsloader
     .script("js/view/view.workspace.js")
     .script("js/view/view.function.js")
     .script("js/view/view.todo.js")
+    .script("js/view.advance.js")
     .wait(function () {
         //就绪
         $(function () {
