@@ -100,7 +100,6 @@ EdgeData.prototype = {
 				thisobj._updatePointColor(pidx, opt.stdregularcolor);
 			}
 		}
-		chart.redraw();
 	},
 	// highchart更新点颜色API封装
 	_updatePointColor : function(idx, color) {
@@ -108,11 +107,12 @@ EdgeData.prototype = {
 		var data = {
 			'marker' : {
 				'fillColor' : color,
-				'states':{'hover':{'fillColor':color}}
+				'states':{'hover':{'fillColor':'#FFFFFF',lineColor:color,lineWidth:1,radius:3}}
 			},
 			'color' : color
 		};
-		chart.series[0].data[idx].update(data, false);
+		if(chart.series[0].data[idx] && chart.series[0].data[idx].update)
+			chart.series[0].data[idx].update(data, false);
 	},
 	/**
 	 * 设置标准线
@@ -171,10 +171,11 @@ EdgeData.prototype = {
 	 * @param xtitle
 	 */
 	setChartXAxisTitle : function(xtitle) {
-		var chart = this._layer.chart;
+		/*var chart = this._layer.chartdiv.highcharts();
 		chart.xAxis[0].setTitle({
 			'text' : xtitle
-		});
+		},false);*/
+		this._layer.charttitle.html(xtitle);
 	},
 	/**
 	 * 接受新数据,更新两部分图表的显示
@@ -278,9 +279,20 @@ EdgeData.prototype = {
 		thisobj._layer.tablediv = tablediv;
 		thisobj._layer.maindiv = maindiv;// 缓存容器引用
 		thisobj._addHighchart(chartdiv);// 在图表容器中初始化图表
+		thisobj._addXTitleContainer();
 		thisobj._addJqueryGrid();// 在表格容器中初始化表格
 		thisobj._addPageNavigator(maindiv);// 在图标左右两侧添加翻页控件
 		thisobj._editStdLine();// 添加标准线
+		
+		
+	},
+	//添加一个单独的div用来显示图表数据行信息
+	//这里不在highchart的xAxis上设置title的原因是,第一次绘图时会出现曲线消失的bug
+	_addXTitleContainer:function(){
+		var thisobj=this;
+		var titlediv=$('<div>').addClass('EdgeDataXaxisTitleDiv');
+		thisobj._layer.chartdiv.append(titlediv);
+		thisobj._layer.charttitle=titlediv;
 	},
 	// 在表格容器中添加一个源生table供jqgrid构建grid
 	_addTableGrid : function() {
@@ -333,7 +345,7 @@ EdgeData.prototype = {
 		var maintableCenterTd = $('<td align="center">').prop('id',
 				genid + '_center').css({
 			'white-space' : 'pre',
-			'width' : '247px',
+			'width' : '330px',
 			'overflow' : 'hidden'
 		});// 中间的TD,用来放分页按钮
 		maintabletr.append(maintableCenterTd);
@@ -344,7 +356,7 @@ EdgeData.prototype = {
 		var centerTdTableTr = $('<tr>');
 		centerTdTable.append(centerTdTableTr);
 
-		// TODO 点击跳转到第一页的按钮需要判断当前是否是第一页,如果是,添加样式ui-state-disabled
+		// 点击跳转到第一页的按钮需要判断当前是否是第一页,如果是,添加样式ui-state-disabled
 		var centerTableFirstTd = $('<td>').prop('id', 'first_' + genid)
 				.addClass('ui-pg-button ui-corner-all')
 				.css('cursor', 'default');// 点击跳转到第一页的按钮
@@ -352,7 +364,7 @@ EdgeData.prototype = {
 		var firstTdSpan = $('<span>').addClass('ui-icon ui-icon-seek-first');// 第一页的图标
 		centerTableFirstTd.append(firstTdSpan);
 
-		// TODO 点击跳转到前一页的按钮需要判断是否是第一页,如果是,添加样式ui-state-disabled
+		// 点击跳转到前一页的按钮需要判断是否是第一页,如果是,添加样式ui-state-disabled
 		var centerTablePrevTd = $('<td>').prop('id', 'prev_' + genid).addClass(
 				'ui-pg-button ui-corner-all').css('cursor', 'default');// 跳转到前一页的按钮
 		centerTdTableTr.append(centerTablePrevTd);
@@ -367,34 +379,35 @@ EdgeData.prototype = {
 		var centerTablePageTd = $('<td>');// 显示当前页数,提供选择显示页码的input的容器TD
 		centerTdTableTr.append(centerTablePageTd);
 		centerTablePageTd.append(pageText);
-		// TODO 选择页码的input,需要缓存引用,提供刷新显示值的方法
+		// 选择页码的input,需要缓存引用,提供刷新显示值的方法
 		var pageInput = $(
 				'<input type="text" size="2" maxlength="7" value="0">')
-				.addClass('ui-pg-input').prop('id', 'currpgnum_' + genid);// 提供选择页码的input
+				.addClass('ui-pg-input').prop('id', 'currpgnum_' + genid)
+				.css('width','3em');// 提供选择页码的input
 		centerTablePageTd.append(pageInput);
 		centerTablePageTd.append(' of ');
-		// TODO 显示总页数的span,需要初始化数值
+		// 显示总页数的span,需要初始化数值
 		var totalPageSpan = $('<span>').prop('id', 'sp_1_' + genid);
 		centerTablePageTd.append(totalPageSpan);
 		// totalPageSpan.html('2');
 
 		centerTdTableTr.append(centerTableSparTd);// 分隔各个图标之间的空白td
 
-		// TODO 需要初始化disabled
+		// 需要初始化disabled
 		var centerTableNextTd = $('<td>').prop('id', 'next_' + genid).addClass(
 				'ui-pg-button ui-corner-all').css('cursor', 'default');// 点击翻到下一页的按钮
 		centerTdTableTr.append(centerTableNextTd);
 		var nextTdSpan = $('<span>').addClass('ui-icon ui-icon-seek-next');// 翻到下一页的图标
 		centerTableNextTd.append(nextTdSpan);
 
-		// TODO 需要初始化disabled
+		// 需要初始化disabled
 		var centerTableLastTd = $('<td>').prop('id', 'last_' + genid).addClass(
 				'ui-pg-button ui-corner-all').css('cursor', 'default');// 点击翻到最后一页的按钮
 		centerTdTableTr.append(centerTableLastTd);
 		var lastTdSpan = $('<span>').addClass('ui-icon ui-icon-seek-end');// 翻到最后一页的图标
 		centerTableLastTd.append(lastTdSpan);
 
-		// TODO 需要初始化下拉菜单
+		// 需要初始化下拉菜单
 		var centerTablePnTd = $('<td>');// 提供选择每页显示条数的td
 		centerTdTableTr.append(centerTablePnTd);
 		var centerTdPnSelect = $('<select style="width:4em">').addClass(
@@ -595,7 +608,14 @@ EdgeData.prototype = {
 				marginLeft : 70,
 				marginBottom : 25,
 				plotBorderWidth:1,//图形边框宽度
-				plotBorderColor:'silver'//图形边框颜色
+				plotBorderColor:'silver',//图形边框颜色
+				backgroundColor: {
+	                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+	                stops: [
+	                    [0, 'rgb(255, 255, 255)'],
+	                    [1, 'rgb(200, 200, 255)']
+	                ]
+	            }
 			},
 			credits : {// 去掉右下角超链接标签
 				enabled : false
@@ -603,9 +623,25 @@ EdgeData.prototype = {
 			title : {// 去掉标题显示
 				text : null,
 			},
-			/*
-			 * plotOptions: { series: { marker: { enabled: true } } },
-			 */
+			plotOptions: {
+	            series: {
+	                lineWidth: 1,
+					marker: {
+						radius:2,
+	                    lineWidth: 0,
+	                    lineColor: null,
+	                    states:{
+							hover:{
+								enabled:true,
+								fillColor:'#FFFFFF',
+								lineColor:'gray',
+								lineWidth:1,
+								radius:3
+							}
+						}
+	                }
+	            }
+	        },
 			xAxis : {
 				labels : {
 					enabled : false
@@ -613,7 +649,7 @@ EdgeData.prototype = {
 				title : {
 					enabled : true,
 					align : 'high',// x轴将文字显示在x周的最右端
-					text : thisobj._viewData.highchart[0].name
+					text : null//thisobj._viewData.highchart[0].name
 				}
 			/*
 			 * , categories: edgedata_chart_sortedcol
@@ -936,5 +972,6 @@ EdgeData.prototype = {
 		thisobj.setChartXAxisTitle(thisobj._viewData.highchart[0].name);// 更新x轴显示
 		chart.series[0].setData(thisobj._viewData.highchart[0].data);// 设置新数据(无需清理之前数据,highchart自身已实现过)
 		thisobj._updatePointStdStatus();
+		chart.redraw();
 	}
 };

@@ -11,11 +11,11 @@ Namespace.register("Agi.Controls"); /*添加 Agi.Controls命名空间*/
 
 Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
     {
-        GetEntityData:function(){//获得实体数据
+        GetEntityData: function () {//获得实体数据
             var entity = this.Get('Entity')[0];
-            if(entity !=undefined && entity !=null){
+            if (entity != undefined && entity != null) {
                 return entity.Data;
-            }else{
+            } else {
                 return null;
             }
         },
@@ -50,23 +50,23 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var Me = this;
             var entity = [];
             this.Set("EntityInfo", _EntityInfo);
-            Me.Set("PlotLines",[]);
+            Me.Set("PlotLines", []);
 
             Agi.Utility.RequestData2(_EntityInfo, function (d) {
                 //20130104 14:24 markeluo 修改，调整DataSet 列显示顺序后，进入控件的属性编辑界面，下方的数据表格中列顺序未更改
-                _EntityInfo.Data = Agi.Controls.DataConvertManager.DataInterception(d.Data,1000);
-                if(d.Columns!=null && d.Columns.length>0){
+                _EntityInfo.Data = Agi.Controls.DataConvertManager.DataInterception(d.Data, 1000);
+                if (d.Columns != null && d.Columns.length > 0) {
                     _EntityInfo.Columns = d.Columns;
                 }
                 //默认绑定字段
                 var cp = Me.Get('ChartProperty')
-                if(!cp.SeriesGroupColumnIsApply){
-                    cp.SeriesGroupColumn=_EntityInfo.Columns[0];
-                    cp.SeriesDataColumn=[_EntityInfo.Columns[1]];
+                if (!cp.SeriesGroupColumnIsApply) {
+                    cp.SeriesGroupColumn = _EntityInfo.Columns[0];
+                    cp.SeriesDataColumn = [_EntityInfo.Columns[1]];
                 }
-                Me.Set('ChartProperty',cp);
+                Me.Set('ChartProperty', cp);
 
-                _EntityInfo.Data=Me.DataSortByGrpName(_EntityInfo.Data);
+                _EntityInfo.Data = Me.DataSortByGrpName(_EntityInfo.Data);
 
                 entity.push(_EntityInfo);
                 Me.Set("Entity", entity);
@@ -78,15 +78,15 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         ReadOtherData: function (_PointID) {//测试数据
             var checkDataSeries = [];
             var cp = this.Get("ChartProperty");
-            if(typeof cp == 'undefined'){
+            if (typeof cp == 'undefined') {
                 return;
             }
             cp.chart_MarginRight = 30;
             cp.xAxis_Auxiliary_Enabled = false;
             cp.yAxis_Auxiliary_Enabled = false;
-//            cp.series_MinPlotLine_Enabled = false;
-//            cp.series_MaxPlotLine_Enabled = false;
-//            cp.series_MiddlePlotLine_Enabled = false;
+            //            cp.series_MinPlotLine_Enabled = false;
+            //            cp.series_MaxPlotLine_Enabled = false;
+            //            cp.series_MiddlePlotLine_Enabled = false;
             this.Set("ChartProperty", cp);
             this.Set("CheckDataSeries", checkDataSeries);
             this.SetChartDataProperty();
@@ -114,63 +114,78 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         },
         AddEntitySingle: function (_entity) {
             var Me = this;
-            Me.Set("FilterData",_entity.Data);
+            Me.Set("FilterData", _entity.Data);
 
-            Me.ChartLoadByData(_entity.Data);//加载数据
-            Me.ShowDataTable();//显示表格数据
-        },//单值图
-        ChartLoadByData:function(_Data){
-            $('#pointMenu').hide();//图形刷新前隐藏原数据点右键菜单
-            var Me=this;
-            var  ArrayBCName = [],DataArray = [], EntityData = [];
+            Me.ChartLoadByData(_entity.Data); //加载数据
+            Me.ShowDataTable(); //显示表格数据
+        }, //单值图
+        ChartLoadByData: function (_Data) {
+            $('#pointMenu').hide(); //图形刷新前隐藏原数据点右键菜单
+            var Me = this;
+            var ArrayBCName = [], DataArray = [], EntityData = [];
             var ArrayValue = [];
-            if(_Data!=null && _Data.length>0){
-                EntityData=_Data;
+            if (_Data != null && _Data.length > 0) {
+                EntityData = _Data;
 
-                var cp = Me.Get('ChartProperty');//cp.SeriesGroupColumn cp.SeriesDataColumn
-                if(cp.SeriesGroupColumn!=""){
-                    //取出所有样本名称
-                    for (var i = 0; i < EntityData.length; i++) {
-                        ArrayBCName.push(EntityData[i][cp.SeriesGroupColumn]);
-                    }
-                    //样本名称去重复
-                    var res = [], hash = {};
-                    for (var i = 0, elem; (elem = ArrayBCName[i]) != null; i++) {
-                        if (!hash[elem]) {
-                            res.push(elem);
-                            hash[elem] = true;
+                var cp = Me.Get('ChartProperty'); //cp.SeriesGroupColumn cp.SeriesDataColumn
+                if (cp.GroupType != null && cp.GroupType == "1") {
+                    //多列分组模式
+                    if (cp.GroupMultColumn != null && cp.GroupMultColumn.length > 0) {
+                        for (var i = 0; i < cp.GroupMultColumn.length; i++) {
+                            ArrayBCName.push(cp.GroupMultColumn[i]);
+                            ArrayValue = [];
+                            for (var j = 0; j < EntityData.length; j++) {
+                                ArrayValue.push(Agi.Controls.DataConvertManager.NumberNULLReplace(EntityData[j][cp.GroupMultColumn[i]], 0));
+                            }
+                            DataArray.push(ArrayValue);
                         }
                     }
-                    //去重之后的样本名称
-                    ArrayBCName = res;
-                    //根据样本名称去除对应样本值
-                    for (var Name in ArrayBCName) {
-                        ArrayValue=[];
-                        for (var j = 0; j < EntityData.length; j++) {
-                            if (EntityData[j][cp.SeriesGroupColumn] == ArrayBCName[Name]) {
-                                ArrayValue.push(Agi.Controls.DataConvertManager.NumberNULLReplace(EntityData[j][cp.SeriesDataColumn[0]],0));
+                } else {
+                    if (cp.SeriesGroupColumn != "") {
+                        //取出所有样本名称
+                        for (var i = 0; i < EntityData.length; i++) {
+                            ArrayBCName.push(EntityData[i][cp.SeriesGroupColumn]);
+                        }
+                        //样本名称去重复
+                        var res = [], hash = {};
+                        for (var i = 0, elem; (elem = ArrayBCName[i]) != null; i++) {
+                            if (!hash[elem]) {
+                                res.push(elem);
+                                hash[elem] = true;
                             }
+                        }
+                        //去重之后的样本名称
+                        ArrayBCName = res;
+                        //根据样本名称去除对应样本值
+                        for (var Name in ArrayBCName) {
+                            ArrayValue = [];
+                            for (var j = 0; j < EntityData.length; j++) {
+                                if (EntityData[j][cp.SeriesGroupColumn] == ArrayBCName[Name]) {
+                                    ArrayValue.push(Agi.Controls.DataConvertManager.NumberNULLReplace(EntityData[j][cp.SeriesDataColumn[0]], 0));
+                                }
+                            }
+                            DataArray.push(ArrayValue);
+                        }
+                    } else {
+                        ArrayBCName = [""];
+                        for (var j = 0; j < EntityData.length; j++) {
+                            ArrayValue.push(Agi.Controls.DataConvertManager.NumberNULLReplace(EntityData[j][cp.SeriesDataColumn[0]], 0));
                         }
                         DataArray.push(ArrayValue);
                     }
-                }else{
-                    ArrayBCName=[""];
-                    for (var j = 0; j < EntityData.length; j++) {
-                        ArrayValue.push(Agi.Controls.DataConvertManager.NumberNULLReplace(EntityData[j][cp.SeriesDataColumn[0]],0));
-                    }
-                    DataArray.push(ArrayValue);
                 }
-                if(cp.ChartisigmaValue!=null && cp.ChartisigmaValue!=""){}else{
-                    cp.ChartisigmaValue=3;
+
+                if (cp.ChartisigmaValue != null && cp.ChartisigmaValue != "") { } else {
+                    cp.ChartisigmaValue = 3;
                 }
-                if(cp.ChartisigmaLineVisible!=null){}else{
-                    cp.ChartisigmaLineVisible=true;
+                if (cp.ChartisigmaLineVisible != null) { } else {
+                    cp.ChartisigmaLineVisible = true;
                 }
                 var jsonData = { "action": "RCalIVPlot",
                     "name": ArrayBCName,
                     "dataArray": DataArray,
-                    "isigma":cp.ChartisigmaValue, //西格玛系数
-                    "nrow":""//子组大小
+                    "isigma": cp.ChartisigmaValue, //西格玛系数
+                    "nrow": ""//子组大小
                 };
                 var jsonString = JSON.stringify(jsonData);
                 Agi.DAL.ReadData({ "MethodName": "RCalIVPlot", "Paras": jsonString, "CallBackFunction": function (_result) {
@@ -199,9 +214,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                     cp.chart_MarginRight = 150;
                                     cp.xAxis_Auxiliary_Enabled = true;
                                     cp.yAxis_Auxiliary_Enabled = true;
-//                                    cp.series_MinPlotLine_Enabled = true;
-//                                    cp.series_MaxPlotLine_Enabled = true;
-//                                    cp.series_MiddlePlotLine_Enabled = true;
+                                    //                                    cp.series_MinPlotLine_Enabled = true;
+                                    //                                    cp.series_MaxPlotLine_Enabled = true;
+                                    //                                    cp.series_MiddlePlotLine_Enabled = true;
                                     Me.Set("ChartProperty", cp);
                                     Me.Set("CheckDataSeries", checkDataSeries);
                                     Me.SetChartDataProperty();
@@ -231,9 +246,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                     cp.chart_MarginRight = 80;
                                     cp.xAxis_Auxiliary_Enabled = true;
                                     cp.yAxis_Auxiliary_Enabled = true;
-//                                    cp.series_MinPlotLine_Enabled = true;
-//                                    cp.series_MaxPlotLine_Enabled = true;
-//                                    cp.series_MiddlePlotLine_Enabled = true;
+                                    //                                    cp.series_MinPlotLine_Enabled = true;
+                                    //                                    cp.series_MaxPlotLine_Enabled = true;
+                                    //                                    cp.series_MiddlePlotLine_Enabled = true;
                                     Me.Set("ChartProperty", cp);
                                     Me.Set("CheckDataSeries", checkDataSeries);
                                     Me.SetChartDataProperty();
@@ -254,161 +269,168 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 }
                 });
             }
-        },//图表加载数据 20130817 markeluo
-        DataSortByGrpName:function(_Data){
-            var Me=this;
-            var EntityData=[],ArrayBCName=[];
-            var TempArray=[];
-            if(_Data!=null && _Data.length>0){
-                var cp = Me.Get('ChartProperty');//cp.SeriesGroupColumn cp.SeriesDataColumn
-                var Groupname=cp.SeriesGroupColumn;
-
-                var res = [], hash = {};
-                //取出所有样本名称
-                if(Groupname!=""){
-                    for (var i = 0; i < _Data.length; i++) {
-                        ArrayBCName.push(_Data[i][Groupname]);
-                    }
-                    //样本名称去重复
-                    for (var i = 0, elem; (elem = ArrayBCName[i]) != null; i++) {
-                        if (!hash[elem]) {
-                            res.push(elem);
-                            hash[elem] = true;
+        }, //图表加载数据 20130817 markeluo
+        DataSortByGrpName: function (_Data) {
+            var Me = this;
+            var EntityData = [], ArrayBCName = [];
+            var TempArray = [];
+            if (_Data != null && _Data.length > 0) {
+                var cp = Me.Get('ChartProperty'); //cp.SeriesGroupColumn cp.SeriesDataColumn
+                var Groupname = cp.SeriesGroupColumn;
+                var GroupType = cp.GroupType;
+                if (GroupType != null && GroupType == "1") {
+                    TempArray = _Data;
+                } else {
+                    var res = [], hash = {};
+                    //取出所有样本名称
+                    if (Groupname != "") {
+                        for (var i = 0; i < _Data.length; i++) {
+                            ArrayBCName.push(_Data[i][Groupname]);
                         }
-                    }
-                }
-                if(res!=null && res.length>0){
-                    for(var i=0;i<res.length;i++){
-                        for(var len=0;len<_Data.length;len++){
-                            if(_Data[len][Groupname]==res[i]){
-                                TempArray.push(_Data[len]);
+                        //样本名称去重复
+                        for (var i = 0, elem; (elem = ArrayBCName[i]) != null; i++) {
+                            if (!hash[elem]) {
+                                res.push(elem);
+                                hash[elem] = true;
                             }
                         }
                     }
-                }else{
-                    for(var len=0;len<_Data.length;len++){
-                        TempArray.push(_Data[len]);
+                    if (res != null && res.length > 0) {
+                        for (var i = 0; i < res.length; i++) {
+                            for (var len = 0; len < _Data.length; len++) {
+                                if (_Data[len][Groupname] == res[i]) {
+                                    TempArray.push(_Data[len]);
+                                }
+                            }
+                        }
+                    } else {
+                        for (var len = 0; len < _Data.length; len++) {
+                            TempArray.push(_Data[len]);
+                        }
                     }
                 }
             }
-            EntityData=ArrayBCName=null;
+            EntityData = ArrayBCName = null;
             return TempArray;
-        },//根据分组名称对_Data进行分组排序
-        RefreshByProPanelUp:function(){
-            var Me=this;
-            var FilterData=Me.Get("FilterData");
-            if(FilterData==null){
-                FilterData= Me.Get("Entity")[0].Data;
+        }, //根据分组名称对_Data进行分组排序
+        RefreshByProPanelUp: function () {
+            var Me = this;
+            var FilterData = Me.Get("FilterData");
+            if (FilterData == null) {
+                FilterData = Me.Get("Entity")[0].Data;
             }
-            Me.ChartLoadByData(FilterData);//加载数据
-        },//属性更新后，图表刷新 20130817 markeluo
-        UpPlotLineGroups:function(_PlotLineGrps){
+            Me.ChartLoadByData(FilterData); //加载数据
+        }, //属性更新后，图表刷新 20130817 markeluo
+        UpPlotLineGroups: function (_PlotLineGrps) {
             //[{GroupName:"标准线1",MaxSize:1,MaxColor:'red',MaxValueType:0,MaxValue:3000,MinSize:1,MinColor:'red',MinValueType:0,MinValue:3000}]
             //MaxValueType&MinValueType:0,代表Value为输入值 ;1，代表选择对应的Value为字段名
-            var Me=this;
-            Me.Set("NoFormatPlotLines",_PlotLineGrps);
-        },//更新标准线组 20130815 markeluo
-        UpSigmConditions:function(_rules){
-            var Me=this;
-            Me.Set("Sigmrules",_rules);//保存八项判异规则
-        },//图表应用西格玛线判异规则 20130817 markeluo
-        UpChartwarnRule:function(_warnRule){
+            var Me = this;
+            Me.Set("NoFormatPlotLines", _PlotLineGrps);
+        }, //更新标准线组 20130815 markeluo
+        UpSigmConditions: function (_rules) {
+            var Me = this;
+            Me.Set("Sigmrules", _rules); //保存八项判异规则
+        }, //图表应用西格玛线判异规则 20130817 markeluo
+        UpChartwarnRule: function (_warnRule) {
             //_warnRule {warnColumn,warnRule,warnCompareValue,warnColor}
-            var Me=this;
-            Me.Set("WarnRule",_warnRule);//特殊报警功能
-        },//图表特殊报警判异规则 20130817 markeluo
-        FilterDataUpShow:function(_filterData){
-            var Me=this;
-            Me.Set("FilterData",_filterData);
-            Me.ChartLoadByData(_filterData);//重新加载数据
-        },//筛选数据后，更新显示  20130817 markeluo
-        UpSeriesBindInfo:function(_dataLine){
+            var Me = this;
+            Me.Set("WarnRule", _warnRule); //特殊报警功能
+        }, //图表特殊报警判异规则 20130817 markeluo
+        FilterDataUpShow: function (_filterData) {
+            var Me = this;
+            Me.Set("FilterData", _filterData);
+            Me.ChartLoadByData(_filterData); //重新加载数据
+        }, //筛选数据后，更新显示  20130817 markeluo
+        UpSeriesBindInfo: function (_dataLine) {
             //_dataLine:{SeriesName,GroupColumn,DataColumn,SeriesColor,SeriesMarkerColor}
-            var Me=this;
+            var Me = this;
             var cp = Me.Get('ChartProperty');
-            cp.series_DataColor=_dataLine.SeriesColor;
-            cp.series_PointMarkerColor=_dataLine.SeriesMarkerColor;
-            cp.SeriesGroupColumn=_dataLine.GroupColumn;
-            cp.SeriesGroupColumnIsApply=true;//已应用
-            cp.SeriesDataColumn=[_dataLine.DataColumn];
-            var FilterDataArray=Me.Get("FilterData");
-            if(FilterDataArray!=null && FilterDataArray.length>0){
-                FilterDataArray=Me.DataSortByGrpName(FilterDataArray);
-            }else{
-                    FilterDataArray= Me.DataSortByGrpName(Me.Get("Entity")[0].Data);
+            cp.series_DataColor = _dataLine.SeriesColor;
+            cp.series_PointMarkerColor = _dataLine.SeriesMarkerColor;
+            cp.SeriesGroupColumn = _dataLine.GroupColumn;
+            cp.SeriesGroupColumnIsApply = true; //已应用
+            cp.SeriesDataColumn = [_dataLine.DataColumn];
+            cp.GroupType = _dataLine.GroupType;
+            cp.GroupMultColumn = _dataLine.GroupMultColumn;
+            Me.Set('ChartProperty', cp);
+
+            var FilterDataArray = Me.Get("FilterData");
+            if (FilterDataArray != null && FilterDataArray.length > 0) {
+                FilterDataArray = Me.DataSortByGrpName(FilterDataArray);
+            } else {
+                FilterDataArray = Me.DataSortByGrpName(Me.Get("Entity")[0].Data);
             }
-            Me.Set('ChartProperty',cp);
-            Me.Set("FilterData",FilterDataArray);
-        },//更改曲线设置后，更新显示  20130817 markeluo
-        GetDataSeries:function(){
-            var Me=this;
-            var DataSeries=Agi.Controls.CustomSingleChartGetDataSries(Me.Get('ChartSeries'),true);
+            Me.Set("FilterData", FilterDataArray);
+        }, //更改曲线设置后，更新显示  20130817 markeluo
+        GetDataSeries: function () {
+            var Me = this;
+            var DataSeries = Agi.Controls.CustomSingleChartGetDataSries(Me.Get('ChartSeries'), true);
             return DataSeries;
-        },//获取当前图表对应的数据series(非标准线)  20130817 markeluo
-        RefinementData:function(_RowData){
+        }, //获取当前图表对应的数据series(非标准线)  20130817 markeluo
+        RefinementData: function (_RowData) {
             //window.open(Agi.ViewServiceAddress + pageName + "&isView=true");
             var strParam = '';
-            for(var key in _RowData){
-                if(strParam!=""){
-                    strParam += '&'+ (key + '=' + _RowData[key]) ;
+            for (var key in _RowData) {
+                if (strParam != "") {
+                    strParam += '&' + (key + '=' + _RowData[key]);
                 }
-                else{
-                    strParam += (key + '=' + _RowData[key]) ;
+                else {
+                    strParam += (key + '=' + _RowData[key]);
                 }
 
             }
 
-            window.open("page2.html?"+strParam);
-        },//数据钻取/查看详情  20130817 markeluo
-        DisabledDataDrill:function(){
-            var Me=this;
-            Me.Set("DataDrillState",false);//禁用钻取
-        },//禁用数据钻取功能 20130820 13:26 markeluo
-        RemoveALLPlotLine:function(){
-            var Me=this;
-            var PlotLines=Me.Get("PlotLines");
-            if(PlotLines!=null){
+            window.open("page2.html?" + strParam);
+        }, //数据钻取/查看详情  20130817 markeluo
+        DisabledDataDrill: function () {
+            var Me = this;
+            Me.Set("DataDrillState", false); //禁用钻取
+        }, //禁用数据钻取功能 20130820 13:26 markeluo
+        RemoveALLPlotLine: function () {
+            var Me = this;
+            var PlotLines = Me.Get("PlotLines");
+            if (PlotLines != null) {
                 //获取当前标准线组的标准线元素
-                var PlotLineArray=[];
-                for(var i=0;i<PlotLines.length;i++){
+                var PlotLineArray = [];
+                for (var i = 0; i < PlotLines.length; i++) {
                     PlotLineArray.push(PlotLines[i].Items[0].id);
                     PlotLineArray.push(PlotLines[i].Items[1].id);
                 }
-                for(var i=0;i<PlotLineArray.length;i++){
+                for (var i = 0; i < PlotLineArray.length; i++) {
                     Me.Get('chart').yAxis[0].removePlotLine(PlotLineArray[i]);
                 }
-                for(var i=0;i<PlotLines.length;i++){
-                    PlotLines.splice(0,1);
+                for (var i = 0; i < PlotLines.length; i++) {
+                    PlotLines.splice(0, 1);
                 }
             }
             Me.ShowALLPlotLineGroup();
         },
-        ShowALLPlotLineGroup:function(){
-            var Me=this;
-            var CusSigChart=Me.Get('chart');
-            var PlotLineAndBands= CusSigChart.yAxis[0].plotLinesAndBands[0];
-            if(PlotLineAndBands!=null&& PlotLineAndBands.length>0){
-                for(var i=0;i<PlotLineAndBands.length;i++){
+        ShowALLPlotLineGroup: function () {
+            var Me = this;
+            var CusSigChart = Me.Get('chart');
+            var PlotLineAndBands = CusSigChart.yAxis[0].plotLinesAndBands[0];
+            if (PlotLineAndBands != null && PlotLineAndBands.length > 0) {
+                for (var i = 0; i < PlotLineAndBands.length; i++) {
                     CusSigChart.yAxis[0].removePlotLine(PlotLineAndBands[i].id);
                 }
             }
-            var _PlotLineGrps=Me.Get("NoFormatPlotLines");
-            var PlotLines=[];
-            var newGroup=null;
-            if(_PlotLineGrps!=null && _PlotLineGrps.length>0){
-                for(var i=0;i<_PlotLineGrps.length;i++){
-                    newGroup=Agi.Controls.CustomSingleChartFormatPlotGrpPars(Me.Get("Entity")[0],_PlotLineGrps[i]);//新增标准线组
-                    if(newGroup!=null){
-                        PlotLines.push({GroupName:_PlotLineGrps[i].GroupName,Items:newGroup});
+            var _PlotLineGrps = Me.Get("NoFormatPlotLines");
+            var PlotLines = [];
+            var newGroup = null;
+            if (_PlotLineGrps != null && _PlotLineGrps.length > 0) {
+                for (var i = 0; i < _PlotLineGrps.length; i++) {
+                    newGroup = Agi.Controls.CustomSingleChartFormatPlotGrpPars(Me.Get("Entity")[0], _PlotLineGrps[i]); //新增标准线组
+                    if (newGroup != null) {
+                        PlotLines.push({ GroupName: _PlotLineGrps[i].GroupName, Items: newGroup });
                     }
                 }
             }
-            Me.Set("PlotLines",PlotLines);
+            Me.Set("PlotLines", PlotLines);
 
-            if(PlotLines!=null){
+            if (PlotLines != null) {
                 //获取当前标准线组的标准线元素
-                var Yasixobj=CusSigChart.yAxis[0];
-                for(var i=0;i<PlotLines.length;i++){
+                var Yasixobj = CusSigChart.yAxis[0];
+                for (var i = 0; i < PlotLines.length; i++) {
                     Yasixobj.addPlotLine(PlotLines[i].Items[0]);
                     Yasixobj.addPlotLine(PlotLines[i].Items[1]);
                 }
@@ -417,104 +439,103 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             //更新超出标准线的point点
             var chartSeries = Me.Get('ChartSeries');
 
-            var DataSeries=Agi.Controls.CustomSingleChartGetDataSries(chartSeries);
-            Agi.Controls.CustomSingleChartPlotLineUpSeries(DataSeries,PlotLines);//更新Series 点数据
+            var DataSeries = Agi.Controls.CustomSingleChartGetDataSries(chartSeries);
+            Agi.Controls.CustomSingleChartPlotLineUpSeries(DataSeries, PlotLines); //更新Series 点数据
 
             //特异判断规则应用，更改series 点的颜色
-            var FilterData=Me.Get("FilterData");
-            var WarnRuleValue=Me.Get("WarnRule");//特殊报警功能
-            if(WarnRuleValue!=null && WarnRuleValue.warnColumn!=null && FilterData!=null && FilterData.length>0){
-                var bool=false;
-                for(var i=0;i<FilterData.length;i++){
+            var FilterData = Me.Get("FilterData");
+            var WarnRuleValue = Me.Get("WarnRule"); //特殊报警功能
+            if (WarnRuleValue != null && WarnRuleValue.warnColumn != null && FilterData != null && FilterData.length > 0) {
+                var bool = false;
+                for (var i = 0; i < FilterData.length; i++) {
                     //bool=eval(eval(FilterData[i][WarnRuleValue.warnColumn])+WarnRuleValue.warnRule+eval(WarnRuleValue.warnCompareValue));
-                    bool=Agi.Controls.WarnValueCompare(FilterData[i][WarnRuleValue.warnColumn],WarnRuleValue.warnCompareValue,WarnRuleValue.warnRule);
-                    if(bool)
-                    {
-                        if(DataSeries!=null && DataSeries.length>0){
-                            for(var j=0;j<DataSeries.length;j++){
-                                DataSeries[j].data[i].marker={fillColor:WarnRuleValue.warnColor};
+                    bool = Agi.Controls.WarnValueCompare(FilterData[i][WarnRuleValue.warnColumn], WarnRuleValue.warnCompareValue, WarnRuleValue.warnRule);
+                    if (bool) {
+                        if (DataSeries != null && DataSeries.length > 0) {
+                            for (var j = 0; j < DataSeries.length; j++) {
+                                DataSeries[j].data[i].marker = { fillColor: WarnRuleValue.warnColor };
                             }
                         }
                     }
                 }
-                if(chartSeries!=null && chartSeries.length>0){
-                    for(var i=0;i<chartSeries.length;i++){
-                        for(var j=0;j<DataSeries.length;j++){
-                            if(chartSeries[i].name==DataSeries[j].name){
-                                chartSeries[i].data=DataSeries[j].data;
+                if (chartSeries != null && chartSeries.length > 0) {
+                    for (var i = 0; i < chartSeries.length; i++) {
+                        for (var j = 0; j < DataSeries.length; j++) {
+                            if (chartSeries[i].name == DataSeries[j].name) {
+                                chartSeries[i].data = DataSeries[j].data;
                             }
                         }
                     }
                 }
             }
 
-            if(DataSeries!=null && DataSeries.length>0){
-                for(var i=0;i<CusSigChart.series.length;i++){
-                    for(var j=0;j<DataSeries.length;j++){
-                        if(CusSigChart.series[i].name==DataSeries[j].name){
+            if (DataSeries != null && DataSeries.length > 0) {
+                for (var i = 0; i < CusSigChart.series.length; i++) {
+                    for (var j = 0; j < DataSeries.length; j++) {
+                        if (CusSigChart.series[i].name == DataSeries[j].name) {
                             CusSigChart.series[i].remove();
-                            i=-1;
+                            i = -1;
                             break;
                         }
                     }
                 }
 
 
-                for(var i=0;i<DataSeries.length;i++){
-                    DataSeries[i].data=Me.ApplySigmRule(DataSeries[i].data);//应用西格玛八项判异规则
+                for (var i = 0; i < DataSeries.length; i++) {
+                    DataSeries[i].data = Me.ApplySigmRule(DataSeries[i].data); //应用西格玛八项判异规则
                     CusSigChart.addSeries(DataSeries[i]);
                 }
             }
 
-            Me.ShowDataTable();//显示表格数据
+            Me.ShowDataTable(); //显示表格数据
 
-           //标准线、西格玛线 统计信息
-           var tolInfo=Agi.Controls.CustomSigChartAlarmStatistical(chartSeries,PlotLines);//统计信息
-           var AppendToPanel=Me.Get("HTMLElement");
-            var cp=Me.Get('ChartProperty');
-            tolInfo.SGM.SigmaValue=cp.ChartisigmaValue;//西格玛系数
-            tolInfo.SGM.Enable=cp.ChartisigmaLineVisible;
+            //标准线、西格玛线 统计信息
+            var tolInfo = Agi.Controls.CustomSigChartAlarmStatistical(chartSeries, PlotLines); //统计信息
+            var AppendToPanel = Me.Get("HTMLElement");
+            var cp = Me.Get('ChartProperty');
+            tolInfo.SGM.SigmaValue = cp.ChartisigmaValue; //西格玛系数
+            tolInfo.SGM.Enable = cp.ChartisigmaLineVisible;
 
-           //Agi.Controls.CustomSigChartAlarmStatisticalPanelShow(tolInfo,AppendToPanel);
-            Agi.Controls.CustomSigChartAlarmStatisticalTableShow(tolInfo,AppendToPanel,cp.ChartBackConfig);
-        },//显示标准线
-        GridTdAbnormal:function(array){
-//            debugger;
-            if(array!=null && array.length>0){
+            //Agi.Controls.CustomSigChartAlarmStatisticalPanelShow(tolInfo,AppendToPanel);
+            Agi.Controls.CustomSigChartAlarmStatisticalTableShow(tolInfo, AppendToPanel, cp.ChartBackConfig,Me);
+        }, //显示标准线
+        GridTdAbnormal: function (array) {
+            //            debugger;
+            if (array != null && array.length > 0) {
                 var grid = this.grid;
-                if(grid){
-                    var index=-1;
-                    for(var i=0;i<grid.wijgrid('columns').length;i++){
-                        if(grid.wijgrid('columns')[i].options.dataKey==array[0].column){
-                            index=i;
+                if (grid) {
+                    var index = -1;
+                    for (var i = 0; i < grid.wijgrid('columns').length; i++) {
+                        if (grid.wijgrid('columns')[i].options.dataKey == array[0].column) {
+                            index = i;
                         }
                     }
-                    var pageIndex=grid.wijgrid('option','pageIndex');
-                    var pageSize = grid.wijgrid('option','pageSize');
-                    for(var i=0;i<array.length;i++){
-                        if(array[i].row>=pageIndex*pageSize && array[i].row<pageIndex*pageSize+5){
-                            $($(grid.find('tbody>tr')[(array[i].row)%(pageIndex*pageSize)]).find('td')[index]).css('color',array[i].color);
+                    var pageIndex = grid.wijgrid('option', 'pageIndex');
+                    var pageSize = grid.wijgrid('option', 'pageSize');
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i].row >= pageIndex * pageSize && array[i].row < pageIndex * pageSize + 5) {
+                            $($(grid.find('tbody>tr')[(array[i].row) % (pageIndex * pageSize)]).find('td')[index]).css('color', array[i].color);
                         }
                     }
                 }
             }
-        },//修改数据表格报警点颜色
-        ApplySigmRule:function(_SeriesDataArray){
-            var Me=this;
-            var SigmArray= Me.Get("Sigmrules");//八项判异规则数组
-            var NewSeriesData=_SeriesDataArray;
-            if(SigmArray!=null && SigmArray.length>0){
-                var CheckDataSries=Agi.Controls.SigmRuleApplyGetGroupData(Me.Get("CheckDataSeries"));//分组数据信息
+        }, //修改数据表格报警点颜色
+        ApplySigmRule: function (_SeriesDataArray) {
+            var Me = this;
+            var SigmArray = Me.Get("Sigmrules"); //八项判异规则数组
+            var NewSeriesData = _SeriesDataArray;
+            if (SigmArray != null && SigmArray.length > 0) {
+                var CheckDataSries = Agi.Controls.SigmRuleApplyGetGroupData(Me.Get("CheckDataSeries")); //分组数据信息
                 ////待实现
                 //NewSeriesData=SigmArlmFunc({SeriesData:_SeriesDataArray,SigmRule:SigmArray,GroupData:CheckDataSries});
-                var ojb = new clsSigmaFunc(_SeriesDataArray,SigmArray,CheckDataSries);
+                var ojb = new clsSigmaFunc(_SeriesDataArray, SigmArray, CheckDataSries);
                 NewSeriesData = ojb.check();
             }
             return NewSeriesData;
-        },//应用西格玛八项规则
-        ShowDataTable:function(){
+        }, //应用西格玛八项规则
+        ShowDataTable: function () {
 
-        },//显示表格数据
+        }, //显示表格数据
         AddEntitySample: function (_entity) {//XBar-S
             var Me = this;
             var cp = Me.Get("ChartProperty");
@@ -575,9 +596,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                     cp.chart_MarginRight = 90;
                                     cp.xAxis_Auxiliary_Enabled = false;
                                     cp.yAxis_Auxiliary_Enabled = true;
-//                                    cp.series_MinPlotLine_Enabled = true;
-//                                    cp.series_MaxPlotLine_Enabled = true;
-//                                    cp.series_MiddlePlotLine_Enabled = true;
+                                    //                                    cp.series_MinPlotLine_Enabled = true;
+                                    //                                    cp.series_MaxPlotLine_Enabled = true;
+                                    //                                    cp.series_MiddlePlotLine_Enabled = true;
                                     Me.Set("ChartProperty", cp);
                                     Me.Set("CheckDataSeries", checkDataSeries);
                                     Me.SetChartDataProperty();
@@ -603,9 +624,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                     cp.chart_MarginRight = 90;
                                     cp.xAxis_Auxiliary_Enabled = false;
                                     cp.yAxis_Auxiliary_Enabled = true;
-//                                    cp.series_MinPlotLine_Enabled = true;
-//                                    cp.series_MaxPlotLine_Enabled = true;
-//                                    cp.series_MiddlePlotLine_Enabled = true;
+                                    //                                    cp.series_MinPlotLine_Enabled = true;
+                                    //                                    cp.series_MaxPlotLine_Enabled = true;
+                                    //                                    cp.series_MiddlePlotLine_Enabled = true;
                                     Me.Set("ChartProperty", cp);
                                     Me.Set("CheckDataSeries", checkDataSeries);
                                     Me.SetChartDataProperty();
@@ -628,7 +649,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             }
         },
         AddEntity: function (_entity) {
-            var Me=this;
+            var Me = this;
             if (_entity.Data && _entity.Data.length <= 0) {
                 this.ReadOtherData("");
                 return;
@@ -637,18 +658,18 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             this.AddEntitySingle(_entity);
             //20130104 14:24 markeluo 修改，调整DataSet 列显示顺序后，进入控件的属性编辑界面，下方的数据表格中列顺序未更改
             if (Agi.Controls.IsControlEdit) {
-                Agi.Controls.ShowControlData(Me);//更新实体数据显示
+                Agi.Controls.ShowControlData(Me); //更新实体数据显示
             }
 
         },
         ParameterChange: function (_ParameterInfo) {
             var Me = this;
-            var entity =[];
-            var _EntityInfo= this.Get("Entity")[0];
+            var entity = [];
+            var _EntityInfo = this.Get("Entity")[0];
             Agi.Utility.RequestData2(_EntityInfo, function (d) {
-                d.Data=Agi.Controls.DataConvertManager.DataInterception(d.Data,1000);
-                _EntityInfo.Data=Me.DataSortByGrpName(d.Data);
-                if(d.Columns!=null && d.Columns.length>0){
+                d.Data = Agi.Controls.DataConvertManager.DataInterception(d.Data, 1000);
+                _EntityInfo.Data = Me.DataSortByGrpName(d.Data);
+                if (d.Columns != null && d.Columns.length > 0) {
                     _EntityInfo.Columns = d.Columns;
                 }
                 entity.push(_EntityInfo);
@@ -660,7 +681,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         }, //参数联动
         Init: function (_Target, _ShowPosition, savedId) {/*控件初始化，_Target：显示到的容器，_ShowPosition：控件显示到的位置,left,top*/
             this.shell = null;
-            this.Set("dataGridArray",[]);
+            this.Set("dataGridArray", []);
             this.AttributeList = [];
             this.Set("Entity", []);
             this.Set("ControlType", "CustomSingleChart");
@@ -671,7 +692,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var ID = savedId ? savedId : "CustomSingleChart" + Agi.Script.CreateControlGUID();
             var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty selectPanelSty SPCPanelSty'></div>");
 
-            var PostionValue ={ Left: 0, Top: 0, Right: 0, Bottom: 0 };
+            $("<a href='#zoomDiv' role='button' class='btn zoomControl' style='height:17px;position:absolute;z-index:1000000;' data-toggle='modal'>放大</a>").appendTo(HTMLElementPanel);
+
+            var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
                 obj = $("#" + _Target);
@@ -683,8 +706,8 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             this.shell = new Agi.Controls.Shell({
                 ID: ID,
                 width: PagePars.Width,
-                height:PagePars.Height,
-                divPanel:HTMLElementPanel
+                height: PagePars.Height,
+                divPanel: HTMLElementPanel
             });
             var BaseControlObj = $('<div id="' + ID + '" style="width:100%;height:100%;margin: 0 auto;border:solid 1px #dcdcdc;">' + '</div>');
             this.shell.initialControl(BaseControlObj);
@@ -744,15 +767,15 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             if (Agi.Edit) {
                 //缩小的最小宽高设置
                 HTMLElementPanel.resizable({
-                    minHeight:200,
+                    minHeight: 200,
                     minWidth: 350
                 });
             }
             //20130515 倪飘 解决bug，组态环境中拖入单值图控件以后拖入容器框控件，容器框控件会覆盖单值图控件（容器框控件添加背景色以后能够看到效果）
             Agi.Controls.BasicPropertyPanel.Show(self.shell.ID);
 
-            self.ShowDataTable();//显示默认数据表格
-        },//end Init
+            self.ShowDataTable(); //显示默认数据表格
+        }, //end Init
         GetYValue: function () {
             var cp = this.Get('ChartProperty');
             var result = parseInt((cp.yAxis_PlotLines_Max - cp.yAxis_PlotLines_Min) / 3);
@@ -772,7 +795,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 chart_Animation: false, //动画平滑滚动
                 chart_PlotBorderWidth: 1, //数据图表区域边框宽度
                 chart_PlotBorderColor: "#5c5757", //数据图表区域边框颜色
-                chart_BackgroundColor:{"linearGradient":{"x1":0,"y1":0,"x2":0,"y2":1},"stops":[[0,"#ededed"],[1,"#cbcbcb"]]}, //"#C9E8E2",//数据图表区域颜色
+                chart_BackgroundColor: { "linearGradient": { "x1": 0, "y1": 0, "x2": 0, "y2": 1 }, "stops": [[0, "#ededed"], [1, "#cbcbcb"]] }, //"#C9E8E2",//数据图表区域颜色
                 chart_Title_Text: '', //标题文字
                 Axis_TickColor: "#5c5757", //轴线刻度颜色
                 xAxis_Auxiliary_Enabled: true, //X轴是否显示副轴
@@ -823,23 +846,27 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 legend_enabled: false, //是否显示名片
                 exporting_enabled: false, //是否显示打印和下载图片
                 credits_enabled: false, //是否显示出品人
-                navigation_menuItemStyle_fontSize: '10px',//NULL
+                navigation_menuItemStyle_fontSize: '10px', //NULL
                 series_DataColor: '#fb8814', //20130817 12:01 markeluo修改 数据线颜色
                 series_PointMarkerColor: '#62a6f6', //20130817 12:01 markeluo 添加 数据线颜色
-                SeriesGroupColumn:"",//20130817 12:01 markeluo 添加 曲线分组列
-                SeriesGroupColumnIsApply:false,//20131017 16:32 markeluo 分组列是否已设置
-                SeriesDataColumn:[],//20130817 12:01 markeluo 添加 曲线数据列(可能为多列)
-                ChartisigmaValue:3,//20130817 12:01 markeluo 添加 西格玛系数
-                ChartisigmaLineVisible:true,//20130916 西格玛线是否显示
+                SeriesGroupColumn: "", //20130817 12:01 markeluo 添加 曲线分组列
+                GroupType: "0", //20140304 08:15分组模式类型
+                GroupMultColumn: [], //20140304  08:15多列分组
+                SeriesGroupColumnIsApply: false, //20131017 16:32 markeluo 分组列是否已设置
+                SeriesDataColumn: [], //20130817 12:01 markeluo 添加 曲线数据列(可能为多列)
+                ChartisigmaValue: 3, //20130817 12:01 markeluo 添加 西格玛系数
+                ChartisigmaLineVisible: true, //20130916 西格玛线是否显示
                 yAxis_PlotLines_MinMarkerColor: '#f41d12', //西格玛 上限颜色
                 yAxis_PlotLines_MaxMarkerColor: '#f41d12', //西格玛 下限颜色
                 ChartBackConfig:
                 {
-                    backgroundColor:{"linearGradient":{"x1":0,"y1":0,"x2":0,"y2":1},"stops":[[0,"#ededed"],[1,"#cbcbcb"]]},//背景
-                    Tolbtnbackground:"#cecece",//菜单按钮背景
-                    TolbtnFontColor:"#3d95e6",//菜单按钮字体
-                    TolTabbackground:"#dbdbdb",//统计表格背景
-                    TolTabFontColor:"#000000"//统计表格字体
+                    backgroundColor: { "linearGradient": { "x1": 0, "y1": 0, "x2": 0, "y2": 1 }, "stops": [[0, "#ededed"], [1, "#cbcbcb"]] }, //背景
+                    Tolbtnbackground: "#cecece", //菜单按钮背景
+                    TolbtnFontColor: "#3d95e6", //菜单按钮字体
+                    TolTabbackground: "#dbdbdb", //统计表格背景
+                    TolTabFontColor:"#000000",//统计表格字体
+                    TolChartName:"",//分析内容
+                    TolChartRemarke:""//备注
                 }//背景配置
             };
             this.Set('ChartProperty', chartProperty); //保存属性结构
@@ -899,14 +926,14 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     for (var i = 1; i <= objValue.Data.length; i++) {
                         var x = objValue.min + i;
                         var y = objValue.Data[i - 1];
-                        if(cp.ChartisigmaLineVisible){//判断西格玛线是否启用
+                        if (cp.ChartisigmaLineVisible) {//判断西格玛线是否启用
                             if (y > maxValue)
                                 y = { x: x, y: y, marker: { fillColor: cp.yAxis_PlotLines_MaxMarkerColor} };
                             else if (y < minValue)
                                 y = { x: x, y: y, marker: { fillColor: cp.yAxis_PlotLines_MinMarkerColor} };
                             else
                                 y = { x: x, y: y, marker: { fillColor: cp.series_PointMarkerColor} }
-                        }else{//若西格玛线未启用则不更改超出点的颜色
+                        } else {//若西格玛线未启用则不更改超出点的颜色
                             y = { x: x, y: y, marker: { fillColor: cp.series_PointMarkerColor} }
                         }
                         objData.push(y);
@@ -980,7 +1007,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         //color:"#76AD73",//"#D9EEDB",
                         lineWidth: cp.series_Data_LineWidth,
                         marker: {
-                            color:cp.series_PointMarkerColor //cp.series_PointMarkerColor,
+                            color: cp.series_PointMarkerColor //cp.series_PointMarkerColor,
                         }
                     });
                 }
@@ -988,7 +1015,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     chartSeries.push({
                         name: 'A',
                         data: seriesData,
-                        color:cp.series_DataColor, //cp.series_DataColor,
+                        color: cp.series_DataColor, //cp.series_DataColor,
                         lineWidth: cp.series_Data_LineWidth,
                         marker: {
                             color: cp.series_PointMarkerColor //cp.series_DataColor,
@@ -998,11 +1025,11 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 this.Set('ChartSeries', chartSeries);
             }
         },
-        PointClickEvent:function(_PointValue,_MenuType){
+        PointClickEvent: function (_PointValue, _MenuType) {
             //{name:this.name,x:this.x,y:this.y,Time:点击时间}
-            var Me=this;
-            if(_MenuType!=null && _MenuType!=""){
-                switch(_MenuType){
+            var Me = this;
+            if (_MenuType != null && _MenuType != "") {
+                switch (_MenuType) {
                     case 1:
                         Me.PointClick(_PointValue);
                         break;
@@ -1010,59 +1037,59 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         Me.PointDbClick(_PointValue);
                         break;
                     case 3:
-                       // Me.PointPress(_PointValue);//数据钻取
+                        // Me.PointPress(_PointValue);//数据钻取
                         break;
-                    default :
+                    default:
                         break;
                 }
             }
-        },//Point点击处理
-        PointClick:function(_PointValue){
-             var PointRow=_PointValue.x-1;
-            var Me=this;
+        }, //Point点击处理
+        PointClick: function (_PointValue) {
+            var PointRow = _PointValue.x - 1;
+            var Me = this;
             var cp = Me.Get('ChartProperty');
-            var GridData={
-                ChartData: Me.Get("FilterData"),//SPC控件对应的数据
-                AlarmCells:[], //报警点信息
-                AbnormalRows:[PointRow]//所选的异常点
+            var GridData = {
+                ChartData: Me.Get("FilterData"), //SPC控件对应的数据
+                AlarmCells: [], //报警点信息
+                AbnormalRows: [PointRow]//所选的异常点
             };
-            var ThisDataSeries=Me.GetDataSeries();//获取当前曲线信息
-            if(ThisDataSeries!=null && ThisDataSeries.length>0){
-                for(var i=0;i<ThisDataSeries.length;i++){
-                    Agi.Controls.CustomSigChartAlarmDataPointsFind(GridData,cp.SeriesDataColumn[i],ThisDataSeries[i],cp.series_PointMarkerColor);
+            var ThisDataSeries = Me.GetDataSeries(); //获取当前曲线信息
+            if (ThisDataSeries != null && ThisDataSeries.length > 0) {
+                for (var i = 0; i < ThisDataSeries.length; i++) {
+                    Agi.Controls.CustomSigChartAlarmDataPointsFind(GridData, cp.SeriesDataColumn[i], ThisDataSeries[i], cp.series_PointMarkerColor);
                 }
             }
-            Agi.view.advance.refreshGridData(GridData);//调用View框架的定位源数据功能
-        },//单击,1.源数据定位
-        PointDbClick:function(_PointValue){
-            var Me=this;
+            Agi.view.advance.refreshGridData(GridData); //调用View框架的定位源数据功能
+        }, //单击,1.源数据定位
+        PointDbClick: function (_PointValue) {
+            var Me = this;
             //{name:this.name,x:this.x,y:this.y,Time:点击时间}
-            var FilterData=Me.Get("FilterData");
-            var RowData=null;
-            if(FilterData!=null && FilterData.length>(_PointValue.x-1)){
-                RowData=FilterData[_PointValue.x-1];
+            var FilterData = Me.Get("FilterData");
+            var RowData = null;
+            if (FilterData != null && FilterData.length > (_PointValue.x - 1)) {
+                RowData = FilterData[_PointValue.x - 1];
                 //Me.Abnormalpoint.AbnormalpointFrame(RowData);
-                agi.using([  '../../customizePage/Abnormalpoint'],
+                agi.using(['../../customizePage/Abnormalpoint'],
                     function (Abnormalpoint) {
                         //异常点面板相关代码与控件建立连接关系
                         Me.Abnormalpoint = Abnormalpoint;
                         Me.Abnormalpoint.AbnormalpointFrame(RowData);
                     });
             }
-        },//双击,2异常点存入数据库
-        PointPress:function(_PointValue){
-            var Me=this;
-            var FilterData=Me.Get("FilterData");
-            var rowData =null;
-           if(FilterData!=null && _PointValue!=null && _PointValue.x>0 && FilterData.length>0){
-               rowData=FilterData[_PointValue.x-1];
-           }
-            if(rowData!=null){
+        }, //双击,2异常点存入数据库
+        PointPress: function (_PointValue) {
+            var Me = this;
+            var FilterData = Me.Get("FilterData");
+            var rowData = null;
+            if (FilterData != null && _PointValue != null && _PointValue.x > 0 && FilterData.length > 0) {
+                rowData = FilterData[_PointValue.x - 1];
+            }
+            if (rowData != null) {
                 Me.RefinementData(rowData);
             }
-        },//长按,3数据钻取
+        }, //长按,3数据钻取
         InitHighChart: function () {//初始化图形控件
-            var Me=this;
+            var Me = this;
             var cp = this.Get('ChartProperty');
             var checkDataSeries = this.Get('CheckDataSeries');
             var yValue = this.GetYValue();
@@ -1084,6 +1111,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     tickPixelInterval: cp.xAxis_TickPixelInterval,
                     reversed: cp.xAxis_Reversed,
                     lineWidth: cp.xAxis_LineWidth,
+                    minTickInterval: 1, //最小步长
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines
@@ -1094,6 +1122,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval: 1, //最小步长
                         //tickInterval: cp.xAxis_TickInterval2,
                         tickPositions: cp.xAxis_TickPositions,
                         labels: {
@@ -1114,10 +1143,10 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         //margin:cp.yAxis_Title_Margin,
                         text: cp.yAxis_Title_Text
                     },
-                    min: cp.yAxis_Min,
-                    max: cp.yAxis_Max,
+                    //                    min: cp.yAxis_Min,
+                    //                    max: cp.yAxis_Max,
                     gridLineWidth: cp.yAxis_GridLineWidth,
-                    tickInterval: yValue,
+                    //                    tickInterval: yValue,
                     tickWidth: cp.yAxis_TickWidth,
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.yAxis_TickPosition
@@ -1183,20 +1212,20 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         plotBorderWidth: cp.chart_PlotBorderWidth,
                         plotBorderColor: cp.chart_PlotBorderColor,
                         backgroundColor: cp.chart_BackgroundColor,
-                        events:{
-                            redraw:function(){
-//                                var series=Me.GetDataSeries(); //得到数据曲线series
-//                                var MeDataGridArray=Me.Get("dataGridArray");
-//                                for(var i=0;i<Me.chart.series.length;i++){
-//                                    if(Me.chart.series[i].color==series[0].color){
-//                                        MeDataGridArray=Me.bingDataGuid(Me,series[0]);
-//                                        break;
-//                                    }
-//
-//                                }
-//                                Me.Set("dataGridArray",MeDataGridArray);
+                        events: {
+                            redraw: function () {
+                                //                                var series=Me.GetDataSeries(); //得到数据曲线series
+                                //                                var MeDataGridArray=Me.Get("dataGridArray");
+                                //                                for(var i=0;i<Me.chart.series.length;i++){
+                                //                                    if(Me.chart.series[i].color==series[0].color){
+                                //                                        MeDataGridArray=Me.bingDataGuid(Me,series[0]);
+                                //                                        break;
+                                //                                    }
+                                //
+                                //                                }
+                                //                                Me.Set("dataGridArray",MeDataGridArray);
                             },
-                            load:function(){
+                            load: function () {
 
                             }
                         }
@@ -1232,25 +1261,25 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                 symbol: cp.plotOptions_Spline_Marker_Symbol
                             }
                         },
-                        series:{
-                            point:{
-                                events:{
+                        series: {
+                            point: {
+                                events: {
                                     click: function (e) {
                                         if (!Agi.Edit) {
-                                            var PointObj=this;
-                                            if(PointObj.series.name!="min" && PointObj.series.name!="max"
-                                                &&PointObj.series.name!="middle" && PointObj.series.name!=null){
+                                            var PointObj = this;
+                                            if (PointObj.series.name != "min" && PointObj.series.name != "max"
+                                                && PointObj.series.name != "middle" && PointObj.series.name != null) {
                                                 $("#PointErroSave").show();
                                                 $("#PointSrcData").show();
-                                                $('#pointMenu').css('top',e.clientY+5);
-                                                $('#pointMenu').css('left',e.clientX-15);
-                                                $('#pointMenu').show().find("li").unbind("click").bind("click",function(event){
-                                                    Me.PointClickEvent({name:PointObj.series.name,x:PointObj.x,y:PointObj.y,Time:new Date()},$(this).data("menutype"));
+                                                $('#pointMenu').css('top', e.clientY + 5);
+                                                $('#pointMenu').css('left', e.clientX - 15);
+                                                $('#pointMenu').show().find("li").unbind("click").bind("click", function (event) {
+                                                    Me.PointClickEvent({ name: PointObj.series.name, x: PointObj.x, y: PointObj.y, Time: new Date() }, $(this).data("menutype"));
                                                     $('#pointMenu').hide();
                                                     event.stopPropagation();
                                                 });
                                                 $('#pointMenu').find(".dropdown-menu").show();
-                                                $('.highcharts-container').unbind('click').bind('click',function(){
+                                                $('.highcharts-container').unbind('click').bind('click', function () {
                                                     $('#pointMenu').hide();
                                                 });
                                             }
@@ -1281,7 +1310,7 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                     break;
                                 }
                             }
-                            return this.x+' , <b>' + name + ': ' + this.y + '</b>';
+                            return this.x + ' , <b>' + name + ': ' + this.y + '</b>';
                         }
                     },
                     legend: {
@@ -1299,41 +1328,39 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 this.chart = chart;
             }
 
-//            this.UpPlotLineGroups([
-//                {GroupName:"标准线1",MaxSize:1,MaxColor:'#04faf7',MaxValueType:0,MaxValue:32000,MinSize:1,MinColor:'#fa0df2',MinValueType:0,MinValue:25000},
-//                {GroupName:"标准线2",MaxSize:1,MaxColor:'#04fe45',MaxValueType:0,MaxValue:29000,MinSize:1,MinColor:'#fbf806',MinValueType:0,MinValue:25800}]);//添加标准线
+            //            this.UpPlotLineGroups([
+            //                {GroupName:"标准线1",MaxSize:1,MaxColor:'#04faf7',MaxValueType:0,MaxValue:32000,MinSize:1,MinColor:'#fa0df2',MinValueType:0,MinValue:25000},
+            //                {GroupName:"标准线2",MaxSize:1,MaxColor:'#04fe45',MaxValueType:0,MaxValue:29000,MinSize:1,MinColor:'#fbf806',MinValueType:0,MinValue:25800}]);//添加标准线
             Me.ShowALLPlotLineGroup();
-            if(Me.Get("IsUpdateViewGrid")){
-                Agi.view.advance.refreshGridData(Me.GetSPCViewGridData());//调用View框架刷新数据表格显示
-                Me.Set("IsUpdateViewGrid",false);
+            if (Me.Get("IsUpdateViewGrid")) {
+                Agi.view.advance.refreshGridData(Me.GetSPCViewGridData()); //调用View框架刷新数据表格显示
+                Me.Set("IsUpdateViewGrid", false);
             }
         },
-        bingDataGuid:function(control,series){
+        bingDataGuid: function (control, series) {
             var chart = control.chart;
             var grid = control.grid;
-            var data=control.theConfig;
-            var array=[];
-            var markerColor='#4572A7';
-            if(data!=undefined){
-                markerColor=data.dataLine.markerColor;
+            var data = control.theConfig;
+            var array = [];
+            var markerColor = '#4572A7';
+            if (data != undefined) {
+                markerColor = data.dataLine.markerColor;
             }
             var ent = control.Get('Entity')[0];
-            var ChartProperty=control.Get("ChartProperty");
-            for(var i=0;i<series.data.length;i++)
-            {
-                if(series.data[i].marker.fillColor!=markerColor)
-                {
-                    var ob={
-                        row:i,
-                        color:series.data[i].marker.fillColor,
-                        column:ChartProperty.SeriesDataColumn[0],
-                        cle:-1
+            var ChartProperty = control.Get("ChartProperty");
+            for (var i = 0; i < series.data.length; i++) {
+                if (series.data[i].marker.fillColor != markerColor) {
+                    var ob = {
+                        row: i,
+                        color: series.data[i].marker.fillColor,
+                        column: ChartProperty.SeriesDataColumn[0],
+                        cle: -1
                     };
 
-                    if(ent!=undefined){
-                        for(var j=0;j<ent.Columns.length;j++){
-                            if(ent.Columns[j]==ChartProperty.SeriesDataColumn[0]){
-                                ob.cle=j;
+                    if (ent != undefined) {
+                        for (var j = 0; j < ent.Columns.length; j++) {
+                            if (ent.Columns[j] == ChartProperty.SeriesDataColumn[0]) {
+                                ob.cle = j;
                                 break;
                             }
                         }
@@ -1342,18 +1369,18 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 }
             }
             return array
-        },//更新数据表格
+        }, //更新数据表格
         CustomProPanelShow: function () {//显示自定义属性面板
             Agi.Controls.CustomSingleChartProrityInit(this);
         },
         Destory: function () {
             var HTMLElement = this.Get("HTMLElement");
             var proPerty = this.Get("ProPerty");
-//            Agi.Edit.workspace.removeParameter(proPerty.ID); /*移除输出参数*/
+            //            Agi.Edit.workspace.removeParameter(proPerty.ID); /*移除输出参数*/
 
-//            Agi.Edit.workspace.controlList.remove(this);
-//            Agi.Edit.workspace.currentControls.length = 0; /*清除选中控件对象*/
-//            Agi.Controls.ControlDestoryByList(this);//移除控件,从列表中
+            //            Agi.Edit.workspace.controlList.remove(this);
+            //            Agi.Edit.workspace.currentControls.length = 0; /*清除选中控件对象*/
+            //            Agi.Controls.ControlDestoryByList(this);//移除控件,从列表中
 
             $(HTMLElement).remove();
             HTMLElement = null;
@@ -1361,17 +1388,17 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-//        Copy: function () {
-//            if (layoutManagement.property.type == 1) {
-//                var ParentObj = this.shell.Container.parent();
-//                var PostionValue = this.Get("Position");
-//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-//                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
-//                NewSPCSingleChart.Init(ParentObj, PostionValue);
-//                newPanelPositionpars = null;
-//                return NewSPCSingleChart;
-//            }
-//        },
+        //        Copy: function () {
+        //            if (layoutManagement.property.type == 1) {
+        //                var ParentObj = this.shell.Container.parent();
+        //                var PostionValue = this.Get("Position");
+        //                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+        //                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
+        //                NewSPCSingleChart.Init(ParentObj, PostionValue);
+        //                newPanelPositionpars = null;
+        //                return NewSPCSingleChart;
+        //            }
+        //        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();
@@ -1409,13 +1436,13 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             }
         },
         Refresh: function () {
-            var Me=this;
+            var Me = this;
             var ThisHTMLElement = $(this.Get("HTMLElement"));
             var ParentObj = ThisHTMLElement.parent();
             if (!ParentObj.length) {
                 return;
             }
-            if (!Agi.Edit){
+            if (!Agi.Edit) {
                 var PagePars = { Width: ParentObj.width(), Height: ParentObj.height() };
                 var PostionValue = this.Get("Position");
                 PostionValue.Left = parseFloat(PostionValue.Left);
@@ -1429,9 +1456,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 ThisHTMLElement.height(ThisControlPars.Height);
                 ThisHTMLElement.css("left", (parseInt(PostionValue.Left * PagePars.Width)) + "px");
                 ThisHTMLElement.css("top", (parseInt(PostionValue.Top * PagePars.Height)) + "px");
-            }else{
-               var ThisControlObj= Me.Get('chart');
-                ThisControlObj.setSize(ThisHTMLElement.width(),ThisHTMLElement.height());/*Chart 更改大小*/
+            } else {
+                var ThisControlObj = Me.Get('chart');
+                ThisControlObj.setSize(ThisHTMLElement.width(), ThisHTMLElement.height()); /*Chart 更改大小*/
             }
             $(window).resize();
         },
@@ -1475,8 +1502,8 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             //框架重新设置
             $(window).resize();
         },
-        InEdit:function(){
-            var Me=this;
+        InEdit: function () {
+            var Me = this;
             Me.UnChecked();
             Me.Refresh(); //重新刷新显示
         },
@@ -1497,9 +1524,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     ChartSeries: null, //chart系列
                     PointsParamerters: null, //位置参数
                     Position: null, //控件位置
-                    EntityInfo: null,//实体信息
-                    ThemeInfo: null,//主题
-                    DataExtractConfig:null//数据钻取配置
+                    EntityInfo: null, //实体信息
+                    ThemeInfo: null, //主题
+                    DataExtractConfig: null//数据钻取配置
                 }
             }
             SPCSingleChartControl.Control.ControlType = this.Get("ControlType");
@@ -1508,9 +1535,9 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             SPCSingleChartControl.Control.HTMLElement = ProPerty.BasciObj[0].id;
             var Entitys = this.Get("Entity");
             //20121227 11:18 罗万里 页面预览或保存时会导致控件的实体数据被清空问题修改
-//            $(Entitys).each(function (i, e) {
-//                e.Data = null;
-//            });
+            //            $(Entitys).each(function (i, e) {
+            //                e.Data = null;
+            //            });
             SPCSingleChartControl.Control.Entity = Entitys;
             SPCSingleChartControl.Control.BasicProperty = this.Get("BasicProperty");
             SPCSingleChartControl.Control.ChartProperty = this.Get("ChartProperty");
@@ -1520,10 +1547,10 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             SPCSingleChartControl.Control.EntityInfo = this.Get("EntityInfo");
             SPCSingleChartControl.Control.ThemeInfo = this.Get("ThemeInfo");
             //单值图新增属性
-            SPCSingleChartControl.Control.SigmaRule=this.Get("Sigmrules");//西格玛规则
-            SPCSingleChartControl.Control.StandardLines=this.Get("NoFormatPlotLines");//标准线
-            SPCSingleChartControl.Control.Ware=this.Get("WarnRule");//特殊报警
-            SPCSingleChartControl.Control.DataExtractConfig=this.Get("ExtractConfig");//数据钻取规则
+            SPCSingleChartControl.Control.SigmaRule = this.Get("Sigmrules"); //西格玛规则
+            SPCSingleChartControl.Control.StandardLines = this.Get("NoFormatPlotLines"); //标准线
+            SPCSingleChartControl.Control.Ware = this.Get("WarnRule"); //特殊报警
+            SPCSingleChartControl.Control.DataExtractConfig = this.Get("ExtractConfig"); //数据钻取规则
 
             return SPCSingleChartControl.Control;
         }, //获得Panel控件的配置信息
@@ -1549,10 +1576,10 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     entityInfo = _Config.EntityInfo;
                     this.Set("EntityInfo", entityInfo);
 
-                    this.Set("Sigmrules",_Config.SigmaRule);//西格玛规则
-                    this.UpPlotLineGroups(_Config.StandardLines);//标准线
-                    this.Set("WarnRule",_Config.Ware);//特殊报警
-                    this.Set("ExtractConfig",_Config.DataExtractConfig);//数据钻取规则
+                    this.Set("Sigmrules", _Config.SigmaRule); //西格玛规则
+                    this.UpPlotLineGroups(_Config.StandardLines); //标准线
+                    this.Set("WarnRule", _Config.Ware); //特殊报警
+                    this.Set("ExtractConfig", _Config.DataExtractConfig); //数据钻取规则
 
 
                     var ThisProPerty = this.Get('ProPerty');
@@ -1582,18 +1609,18 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         }, //根据配置信息创建控件
         BindClickForGridRow: function () {
             var self = this;
-            var DataDrillState=self.Get("DataDrillState");//是否可以钻取
-            if(DataDrillState!=null && DataDrillState==false){}else{
-                if(self.grid){
-                    self.grid.find('tbody>tr').unbind('click').bind('click',function(){
+            var DataDrillState = self.Get("DataDrillState"); //是否可以钻取
+            if (DataDrillState != null && DataDrillState == false) { } else {
+                if (self.grid) {
+                    self.grid.find('tbody>tr').unbind('click').bind('click', function () {
                         var cells = self.grid.wijgrid("columns");
                         var rowData = {};
                         var tr = $(this);
-                        for(var i = 0; i < cells.length; i++ ){
-                            rowData[cells[i].options.dataKey] = tr.find('td:eq('+i+')')[0].innerText.trim();
+                        for (var i = 0; i < cells.length; i++) {
+                            rowData[cells[i].options.dataKey] = tr.find('td:eq(' + i + ')')[0].innerText.trim();
                         }
 
-//                    alert(JSON.stringify(rowData));
+                        //                    alert(JSON.stringify(rowData));
                         self.RefinementData(rowData);
                     });
                 }
@@ -1602,24 +1629,24 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         SPCViewMenus: function () {
             var Me = this;
             var viewmenus = [];
-            viewmenus.push({Title: "数据曲线设置", MenuImg: "ViewMenuImages/viewmenu_DataSeires.png", CallbackFun: Me.SPCViewDataSeriesMenu});
-            viewmenus.push({Title: "标准线设置", MenuImg: "ViewMenuImages/viewmenu_Standline.png", CallbackFun: Me.SPCViewStandLineMenu});
-            viewmenus.push({Title: "西格玛判异", MenuImg: "ViewMenuImages/viewmenu_sigma.png", CallbackFun: Me.SPCViewSigmaMenu});
-            viewmenus.push({Title: "特殊报警", MenuImg: "ViewMenuImages/viewmenu_Abnormal.png", CallbackFun: Me.SPCViewSpecialAlarmMenu});
+            viewmenus.push({ Title: "数据曲线设置", MenuImg: "ViewMenuImages/viewmenu_DataSeires.png", CallbackFun: Me.SPCViewDataSeriesMenu });
+            viewmenus.push({ Title: "标准线设置", MenuImg: "ViewMenuImages/viewmenu_Standline.png", CallbackFun: Me.SPCViewStandLineMenu });
+            viewmenus.push({ Title: "西格玛判异", MenuImg: "ViewMenuImages/viewmenu_sigma.png", CallbackFun: Me.SPCViewSigmaMenu });
+            viewmenus.push({ Title: "特殊报警", MenuImg: "ViewMenuImages/viewmenu_Abnormal.png", CallbackFun: Me.SPCViewSpecialAlarmMenu });
             //viewmenus.push({Title: "钻取页面配置", MenuImg: "ViewMenuImages/dataextract.png", CallbackFun: Me.SPCViewDataExtractMenu});
             return viewmenus;
-        },//SPC控件支持View框架，控件菜单显示
-        SPCViewDataSeriesMenu:function(_Panel,_CallFun){
+        }, //SPC控件支持View框架，控件菜单显示
+        SPCViewDataSeriesMenu: function (_Panel, _CallFun) {
             var Me = Agi.view.advance.currentControl;
             $(_Panel).css({
                 width: 340,
                 height: "auto",
                 right: -350
             }).find(".title").text("数据曲线设置");
-            $(_Panel).find(".content").height(169);
+            $(_Panel).find(".content").height("auto");
             Agi.Controls.CustomSigChartView_DataSeriesMenu(_Panel, Me);
             _CallFun();
-        },//SPC 控件View菜单，数据曲线
+        }, //SPC 控件View菜单，数据曲线
         SPCViewStandLineMenu: function (_Panel, _CallFun) {
             var Me = Agi.view.advance.currentControl;
             $(_Panel).css({
@@ -1627,10 +1654,10 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 height: "auto",
                 right: -350
             }).find(".title").text("标准线设置");
-            $(_Panel).find(".content").height(169);
+            $(_Panel).find(".content").height("auto");
             Agi.Controls.CustomSigChartView_StandLinesMenu(_Panel, Me);
             _CallFun();
-        },//SPC控件View，标准线
+        }, //SPC控件View，标准线
         SPCViewSigmaMenu: function (_Panel, _CallFun) {
             var Me = Agi.view.advance.currentControl;
             $(_Panel).css({
@@ -1638,10 +1665,10 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 height: "auto",
                 right: -460
             }).find(".title").text("西格玛判异");
-            $(_Panel).find(".content").height(328);
+            $(_Panel).find(".content").height("auto");
             Agi.Controls.CustomSigChartView_SigmaMenu(_Panel, Me);
             _CallFun();
-        },//SPC控件View，西格玛设置
+        }, //SPC控件View，西格玛设置
         SPCViewDataExtractMenu: function (_Panel, _CallFun) {
             var Me = Agi.view.advance.currentControl;
             $(_Panel).css({
@@ -1649,11 +1676,12 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 height: "auto",
                 right: -400
             }).find(".title").text("数据钻取配置");
+            $(_Panel).find(".content").height("auto");
             //$(_Panel).find(".content").height("auto");
-//            Agi.Controls.CustomSigChartView_ExtractMenu(_Panel, Me);
-            Agi.Controls.CustomControl_ExtractDataPageListMenu(_Panel,Me);
+            //            Agi.Controls.CustomSigChartView_ExtractMenu(_Panel, Me);
+            Agi.Controls.CustomControl_ExtractDataPageListMenu(_Panel, Me);
             _CallFun();
-        },//SPC控件View，数据钻取
+        }, //SPC控件View，数据钻取
         SPCViewSpecialAlarmMenu: function (_Panel, _CallFun) {
             var Me = Agi.view.advance.currentControl;
             $(_Panel).css({
@@ -1661,64 +1689,64 @@ Agi.Controls.CustomSingleChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 "height": "auto",
                 right: -350
             }).find(".title").text("特殊报警");
-            $(_Panel).find(".content").height(102);
+            $(_Panel).find(".content").height("auto");
             Agi.Controls.CustomSigChartView_SpecialAlarmMenu(_Panel, Me);
             _CallFun();
-        },//SPC控件View，特殊报警
-        GetSPCViewGridData:function(){
-            var Me=this;
+        }, //SPC控件View，特殊报警
+        GetSPCViewGridData: function () {
+            var Me = this;
             var cp = Me.Get('ChartProperty');
-            var GridData={
-                ChartData: Me.Get("FilterData"),//SPC控件对应的数据
-                AlarmCells:[], //报警点信息
-                AbnormalRows:[]//所选的异常点
+            var GridData = {
+                ChartData: Me.Get("FilterData"), //SPC控件对应的数据
+                AlarmCells: [], //报警点信息
+                AbnormalRows: []//所选的异常点
             };
-            var ThisDataSeries=Me.GetDataSeries();//获取当前曲线信息
-            if(ThisDataSeries!=null && ThisDataSeries.length>0){
-                for(var i=0;i<ThisDataSeries.length;i++){
-                    Agi.Controls.CustomSigChartAlarmDataPointsFind(GridData,cp.SeriesDataColumn[i],ThisDataSeries[i],cp.series_PointMarkerColor);
+            var ThisDataSeries = Me.GetDataSeries(); //获取当前曲线信息
+            if (ThisDataSeries != null && ThisDataSeries.length > 0) {
+                for (var i = 0; i < ThisDataSeries.length; i++) {
+                    Agi.Controls.CustomSigChartAlarmDataPointsFind(GridData, cp.SeriesDataColumn[i], ThisDataSeries[i], cp.series_PointMarkerColor);
                 }
             }
             return GridData;
-        },//SPC控件支持View框架，控件显示源数据
-        SPCViewRefreshByGridData:function(_GridData){
-            var Me=this;
-            Me.Set("FilterData",_GridData);
+        }, //SPC控件支持View框架，控件显示源数据
+        SPCViewRefreshByGridData: function (_GridData) {
+            var Me = this;
+            Me.Set("FilterData", _GridData);
             //Me.ChartLoadByData(_GridData);//重新加载数据
-            Me.Set("IsShowLastChart",true);
+            Me.Set("IsShowLastChart", true);
             //显示对照图表
 
             //setTimeout(Agi.Controls.CustomSigChartLastChartShowExE(Me),2000);
             Agi.Controls.CustomSigChartLastChartShow(Me);
-            if(Me.Get("LastChartImgIsExt")){
-                Me.RefreshByProPanelUp();//更新显示
-            }else{
-                setTimeout(Agi.Controls.CustomSigChartRefreshShowExe(Me),2000);//更新显示
+            if (Me.Get("LastChartImgIsExt")) {
+                Me.RefreshByProPanelUp(); //更新显示
+            } else {
+                setTimeout(Agi.Controls.CustomSigChartRefreshShowExe(Me), 2000); //更新显示
             }
             //Me.RefreshByProPanelUp();//更新显示
-        },//SPC控件支持View框架，编辑源数据后更新控件显示
-        SPCViewDataRestore:function(){
-            var Me=this;
+        }, //SPC控件支持View框架，编辑源数据后更新控件显示
+        SPCViewDataRestore: function () {
+            var Me = this;
             var entity = Me.Get('Entity')[0];
-            var data =entity.Data;
-            var Filterdata=[];
-            for(var i = 0;i<data.length;i++){
+            var data = entity.Data;
+            var Filterdata = [];
+            for (var i = 0; i < data.length; i++) {
                 Filterdata.push(data[i]);
             }
 
-            Me.Set("FilterData",Filterdata);
-            Me.Set("IsUpdateViewGrid",true);
+            Me.Set("FilterData", Filterdata);
+            Me.Set("IsUpdateViewGrid", true);
 
             //Me.ChartLoadByData(Filterdata);//重新加载数据
-            Agi.Controls.CustomSigChartLastChartShowMenu(Me,false);//还原数据后，清除原对照图
-            Me.Set("LastChartImgIsExt",false);
+            Agi.Controls.CustomSigChartLastChartShowMenu(Me, false); //还原数据后，清除原对照图
+            Me.Set("LastChartImgIsExt", false);
 
-            Me.RefreshByProPanelUp();//更新显示
-        },//SPC控件支持View框架，还原至原始数据
-        SPCViewDataExtractURLGet:function(RowData){
-            return this.Get("ExtractConfig");//数据钻取配置信息
-        }//数据钻取URL获取，需传入行数据
-    },true);
+            Me.RefreshByProPanelUp(); //更新显示
+        }, //SPC控件支持View框架，还原至原始数据
+        SPCViewDataExtractURLGet: function (RowData) {
+            return this.Get("ExtractConfig"); //数据钻取配置信息
+        } //数据钻取URL获取，需传入行数据
+    }, true);
 
 /*下拉列表控件参数更改处理方法*/
 Agi.Controls.CustomSingleChartAttributeChange = function (_ControlObj, Key, _Value) {
@@ -1778,7 +1806,7 @@ Agi.Controls.CustomSingleChartProrityInit = function (_BasicChart) {
 
         //region 4.1.数据曲线
         ItemContent=$("<div id='CSChartDataLine'></div>")
-//        ItemContent.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-1', function () {
+//        ItemContent.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-1', function () {
 //            $(this).find("#CustSigChartdataColor").spectrum({
 //                showInput: true,
 //                showPalette: true,
@@ -1900,7 +1928,7 @@ Agi.Controls.CustomSingleChartProrityInit = function (_BasicChart) {
         //region 4.5.数据过滤
 //        ItemContent = null;
 //        ItemContent=$("<div id='CSChartSigMa'></div>")
-//        ItemContent.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-4', function () {
+//        ItemContent.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-4', function () {
 //
 //        });
 //        ThisProItems.push(new Agi.Controls.Property.PropertyItem({ Title: "数据过滤", DisabledValue: 1, ContentObj: ItemContent }));
@@ -2333,7 +2361,7 @@ Agi.Controls.CustomSigChartView_DataSeriesMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-1', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-1', function () {
         $(this).find("#CustSigChartdataColor").spectrum({
             showInput: true,
             showPalette: true,
@@ -2380,11 +2408,26 @@ Agi.Controls.CustomSigChartView_DataSeriesMenu=function(_Panel,_Control){
         GroupColumns.empty();
         DataColumns.empty();
 
+        var strGroupColumnsHTML="<option value=''></option>";
+        var ColumnsHTML="";
         GroupColumns.append("<option value=''></option>");//填充空字段列
         for(var i=0;i<ChartEntityColumns.length;i++) {
-            var option ="<option value='"+ChartEntityColumns[i]+"'>"+ChartEntityColumns[i]+"</option>";
-            GroupColumns.append(option);
-            DataColumns.append(option);
+            ColumnsHTML+="<option value='"+ChartEntityColumns[i]+"'>"+ChartEntityColumns[i]+"</option>";
+        }
+        strGroupColumnsHTML=strGroupColumnsHTML+ColumnsHTML;
+        GroupColumns.html(strGroupColumnsHTML);
+        DataColumns.html(ColumnsHTML);
+
+        $(this).find("#CustSigChartMultGrpColumn").html(ColumnsHTML);
+
+        if(cp.GroupType!=null && cp.GroupType=="1"){
+            $("#CustSigChartGrpType1").show();
+            $("#CustSigChartGrpType0").hide();
+            $(this).find("#CustSigChartGrpType").find("option[value='1']").attr("selected","selected");
+        }else{
+            $("#CustSigChartGrpType1").hide();
+            $("#CustSigChartGrpType0").show();
+            $(this).find("#CustSigChartGrpType").find("option[value='0']").attr("selected","selected");
         }
 
         if(cp.SeriesGroupColumn && cp.SeriesDataColumn!=null){
@@ -2396,6 +2439,41 @@ Agi.Controls.CustomSigChartView_DataSeriesMenu=function(_Panel,_Control){
                 cp.SeriesDataColumn=$($("#CustSigChartDataColumn").children()[0]).val();
             }
         }
+
+        var MultGroupColumns="";
+        var Checked=false;
+        for(var i=0;i<ChartEntityColumns.length;i++) {
+            Checked=false;
+            if(cp.GroupType!=null && cp.GroupType=="1" &&
+                cp.GroupMultColumn!=null && cp.GroupMultColumn.length>0){
+                for(var j=0;j<cp.GroupMultColumn.length;j++){
+                    if(cp.GroupMultColumn[j]==ChartEntityColumns[i]){
+                        Checked=true;
+                        break;
+                    }
+                }
+            }
+            if(Checked){
+                MultGroupColumns+="<div class='CusSilChartMultColumnsty' title='"+ChartEntityColumns[i]+"'>" +
+                    "<input type='checkbox' data-colName='"+ChartEntityColumns[i]+"' checked='checked'/>"+ChartEntityColumns[i]+"</div>";
+            }else{
+                MultGroupColumns+="<div class='CusSilChartMultColumnsty' title='"+ChartEntityColumns[i]+"'>" +
+                    "<input type='checkbox' data-colName='"+ChartEntityColumns[i]+"'/>"+ChartEntityColumns[i]+"</div>";
+            }
+        }
+        $("#CustSigChartMultGrpColumn").html(MultGroupColumns);
+
+        $(this).find("#CustSigChartGrpType").change(function(){
+            if($(this).val()=="0"){
+                $("#CustSigChartGrpType1").hide();
+                $("#CustSigChartGrpType0").show();
+            }
+            else{
+                $("#CustSigChartGrpType1").show();
+                $("#CustSigChartGrpType0").hide();
+            }
+        });
+
         GroupColumns.find("option[value='"+cp.SeriesGroupColumn+"']").attr("selected","selected");
         DataColumns.find("option[value='"+cp.SeriesDataColumn+"']").attr("selected","selected");
 
@@ -2412,10 +2490,19 @@ Agi.Controls.CustomSigChartView_DataSeriesMenu=function(_Panel,_Control){
         $(this).find("#CustsigChartSeriesSave").unbind().bind("click",function(ev){
             var CustsigChartSeriesObj={
                 SeriesName:$("#CustsigChartSeries").val(),
+                GroupType:$("#CustSigChartGrpType").val(),//分组模式类型
                 GroupColumn:$("#CustSigChartGrpColumn").val(),
                 DataColumn:$("#CustSigChartDataColumn").val(),
+                GroupMultColumn:[],//多列分组
                 SeriesColor:$("#CustSigChartdataColor").val(),
                 SeriesMarkerColor:$("#CustSigChartmarkerColor").val()
+            }
+            if(CustsigChartSeriesObj.GroupType=="1"){
+                $(".CusSilChartMultColumnsty>input[type='checkbox']").each(function(_index,_item){
+                    if($(_item).attr("checked")=="checked"){
+                        CustsigChartSeriesObj.GroupMultColumn.push($(_item).data("colname"));
+                    }
+                });
             }
             Me.UpSeriesBindInfo(CustsigChartSeriesObj);//更新Series 设置
             Me.RefreshByProPanelUp();//更新属性后，刷新图形显示
@@ -2434,7 +2521,7 @@ Agi.Controls.CustomSigChartView_StandLinesMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-2', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-2', function () {
         //0.控件当前值获取
         var ThisChartStandLines=Me.Get("NoFormatPlotLines");
         if(ThisChartStandLines!=null){
@@ -2752,7 +2839,7 @@ Agi.Controls.CustomSigChartView_SigmaSettingMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-6', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-6', function () {
         $(this).find(".CustSigmaSetColor").spectrum({
             showInput: true,
             showPalette: true,
@@ -2816,7 +2903,7 @@ Agi.Controls.CustomSigChartView_SigmaMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-3', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-3', function () {
         var THisChartSigmaRules=Me.Get("Sigmrules");//获取八项判异规则
         //1.八项规则保存
         $(this).find("#CustsigChartSigMaRuleSave").unbind().bind("click",function(ev){
@@ -2827,7 +2914,7 @@ Agi.Controls.CustomSigChartView_SigmaMenu=function(_Panel,_Control){
                 ruleitem={
                     NO:i,
                     Kvalue:$('#K'+i).val(),
-                    color:$('#Kcolor'+i).attr("value")==""?"#000":$('#Kcolor'+i).attr('value'),
+                    color:$('#Kcolor'+i).attr("value")==""?"#f00":$('#Kcolor'+i).attr('value'),
                     ischecked:$("input[name='ruleNum'][value='"+i+"']").attr('checked')==undefined?false:true
                 }
                 rule.push(ruleitem);
@@ -2856,6 +2943,15 @@ Agi.Controls.CustomSigChartView_SigmaMenu=function(_Panel,_Control){
         //3.判断当前控件有没有应用规则，进行绑定
         if(THisChartSigmaRules==null){
             THisChartSigmaRules=[];
+            //20140303 倪飘 8项判异规则的默认颜色更改为红色
+            $('#Kcolor1').spectrum("set",'#f00');
+            $('#Kcolor2').spectrum("set",'#f00');
+            $('#Kcolor3').spectrum("set",'#f00');
+            $('#Kcolor4').spectrum("set",'#f00');
+            $('#Kcolor5').spectrum("set",'#f00');
+            $('#Kcolor6').spectrum("set",'#f00');
+            $('#Kcolor7').spectrum("set",'#f00');
+            $('#Kcolor8').spectrum("set",'#f00');
         }
         if(THisChartSigmaRules!=null && THisChartSigmaRules.length>0){
             for(var i=1;i<=THisChartSigmaRules.length;i++){
@@ -2879,7 +2975,7 @@ Agi.Controls.CustomSigChartView_SpecialAlarmMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-5', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-5', function () {
         //1.保存规则
         $(this).find('#warnSave').click(function(){
             var warn={
@@ -2944,7 +3040,7 @@ Agi.Controls.CustomSigChartView_BackgroundSetMenu=function(_Panel,_Control){
     if($(_Panel).find(".content").length>0){
         ItemContentPanel=$(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomSingleChart/tabTemplates.html #tab-8', function () {
+    ItemContentPanel.load('js/Controls/CustomSingleChart/tabTemplates.html #tab-8', function () {
         $(this).find(".CustomSigChartColorSty").spectrum({
             showInput: true,
             showPalette: true,
@@ -3006,7 +3102,16 @@ Agi.Controls.CustomSigChartView_BackgroundSetMenu=function(_Panel,_Control){
 //endegion
 
 //region 21030917 22:26 markeluo 标准线和西格玛线报警汇总统计面板显示
-Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticaldata,_ApendToPanel,_BackGroundConfig){
+Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticaldata,_ApendToPanel,_BackGroundConfig,_Control){
+    var Me=_Control;
+    var cp=Me.Get('ChartProperty');
+    if(cp.ChartBackConfig.TolChartName==null){
+        cp.ChartBackConfig.TolChartName="";
+    }
+    if(cp.ChartBackConfig.TolChartRemarke==null){
+        cp.ChartBackConfig.TolChartRemarke="";
+    }
+
     if(_AlarmStatisticaldata.SumPoints==null){
         _AlarmStatisticaldata.SumPoints=0;
     }
@@ -3040,11 +3145,11 @@ Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticald
         "<a id='toalAlarmTableDownload' class='totalAlarmmenusty' style='float: left;margin: 5px 5px 5px 0px;'>下载</a>" +
         "<a  id='btnTotalHidenMenu' class='totalAlarmmenusty' style='float: right;margin: 5px 5px 5px 0px;'>-隐藏统计信息</a>" +
         "</td></tr>";
-    SubItemHTML+="<tr><td style='background-color:#4bacc6'>分析内容</td><td colspan='4' class='toalarmEditcell'>热轧宽度均值极差图</td></tr>";
+    SubItemHTML+="<tr><td style='background-color:#4bacc6'>分析内容</td><td colspan='4' class='toalarmEditcell' data-type='name'>"+cp.ChartBackConfig.TolChartName+"</td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>图形名称</td><td>单值图</td><td></td><td></td><td></td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>样本点个数</td><td>"+_AlarmStatisticaldata.SumPoints+"</td><td></td><td></td><td></td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>出图时间</td><td>"+(new Date()).format("yyyy-MM-dd hh:mm:ss")+"</td><td></td><td></td><td></td></tr>";
-    SubItemHTML+="<tr><td style='background-color:#4bacc6'>备注</td><td colspan='4' class='toalarmEditcell'></td></tr>";
+    SubItemHTML+="<tr><td style='background-color:#4bacc6'>备注</td><td colspan='4' class='toalarmEditcell' data-type='remarke'>"+cp.ChartBackConfig.TolChartRemarke+"</td></tr>";
     SubItemHTML+="<tr><td style='background-color:#4bacc6'>分组</td><td style='background-color:#4bacc6'>标准线</td><td style='background-color:#4bacc6'>标准线值</td><td style='background-color:#4bacc6'>异常点个数</td><td style='background-color:#4bacc6'>异常点百分比</td></tr>";
     if(_AlarmStatisticaldata!=null && _AlarmStatisticaldata.PlotLines!=null && _AlarmStatisticaldata.PlotLines.length>0){
         var SumPercentageValue=0;
@@ -3082,30 +3187,43 @@ Agi.Controls.CustomSigChartAlarmStatisticalTableShow=function(_AlarmStatisticald
         "color":_BackGroundConfig.TolTabFontColor,
         "background-color":_BackGroundConfig.TolTabbackground
     })
-
     $("#btnTotalHidenMenu").unbind().bind("click",function(ev){
         $("#TotalTable").fadeOut(500,function(){$("#btnTotalMenu").show();});
         ev.stopPropagation();    //  阻止事件冒泡
     });//隐藏统计表格
-    $("#toalAlarmTableDownload").unbind().bind("click",function(ev){
 
-    })//下载统计表格
-    $(".toalarmEditcell").unbind().bind("dblclick",function(ev){
-        var Thistxt=$(this).html();
-        $(this).html("");
-        if($("#txtemp").length>0){}else{
-            $("<input type='text' value='' id='txtemp' style='width: 98%;display:none;'>").appendTo($(this));
-        }
-        $("#txtemp").appendTo($(this)).show().focus();
-        $("#txtemp").blur(function(ev){
-            var txtParent=$("#txtemp").parent();
-            var txtValue=$(this).val();
-            txtParent.html(txtValue);
-            $(this).remove();
-        });
-        $("#txtemp").val(Thistxt);
-        ev.stopPropagation();    //  阻止事件冒泡
-    });
+//    if (!Agi.Controls.IsControlEdit) {
+//        $(".toalarmEditcell").unbind().bind("dblclick",function(ev){
+//            var Thistxt=$(this).html();
+//            $(this).html("<input type='text' value='' id='txtemp' style='width:250px;'>" +
+//                "<div id='CustsigChartTolsTxtSave'  class='CustomSigChartPropSavebuttonsty' title='保存'>");
+//
+//            $("#txtemp").focus();
+//            $("#CustsigChartTolsTxtSave").unbind().bind("click",function(){
+//                var txtValue=$(this).parent().find("#txtemp").val();
+//                cp=Me.Get('ChartProperty');
+//                if($(this).parent().data("type")=="name"){
+//                    cp.ChartBackConfig.TolChartName=txtValue;
+//                }else{
+//                    cp.ChartBackConfig.TolChartRemarke=txtValue;
+//                }
+//                Me.Set("ChartProperty",cp);
+//
+//                $(this).parent().html(txtValue);
+//                $("#CustsigChartTolsTxtSave").remove();
+//                $("#txtemp").remove();
+//            });
+////        $("#txtemp").blur(function(ev){
+////            var txtParent=$("#txtemp").parent();
+////            var txtValue=$(this).val();
+////            txtParent.html(txtValue);
+////            $(this).remove();
+////        });
+//
+//            $("#txtemp").val(Thistxt);
+//            ev.stopPropagation();    //  阻止事件冒泡
+//        });
+//    }
     $("#CustomSigChartAlarmPanel").unbind().bind("dblclick",function(ev){
         ev.stopPropagation();    //  阻止事件冒泡
     });
@@ -3327,6 +3445,8 @@ Agi.Controls.CustomSingleChart.BackgroundApply=function(_ControlObj,_BackGroudOb
     cp.ChartBackConfig.TolbtnFontColor=_BackGroudObj.TolbtnFontColor;
     cp.ChartBackConfig.TolTabbackground=_BackGroudObj.TolTabbackground;
     cp.ChartBackConfig.TolTabFontColor=_BackGroudObj.TolTabFontColor;
+//    cp.ChartBackConfig.TolChartName=_BackGroudObj.TolChartName;
+//    cp.ChartBackConfig.TolChartRemarke=_BackGroudObj.TolChartRemarke;
 
     _ControlObj.Set("ChartProperty",cp);
 

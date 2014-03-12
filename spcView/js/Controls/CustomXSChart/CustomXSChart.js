@@ -704,14 +704,14 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
 
             //默认西格玛规则
             var DefaultruleArray=[
-                {NO:1,Kvalue:3,color:"#f41d12",ischecked:true},
-                {NO:2,Kvalue:9,color:"#000000",ischecked:false},
-                {NO:3,Kvalue:6,color:"#000000",ischecked:false},
-                {NO:4,Kvalue:14,color:"#000000",ischecked:false},
-                {NO:5,Kvalue:2,color:"#000000",ischecked:false},
-                {NO:6,Kvalue:4,color:"#000000",ischecked:false},
-                {NO:7,Kvalue:15,color:"#000000",ischecked:false},
-                {NO:8,Kvalue:8,color:"#000000",ischecked:false}
+                {NO:1,Kvalue:3,color:"#f00",ischecked:true},
+                {NO:2,Kvalue:9,color:"#f00",ischecked:false},
+                {NO:3,Kvalue:6,color:"#f00",ischecked:false},
+                {NO:4,Kvalue:14,color:"#f00",ischecked:false},
+                {NO:5,Kvalue:2,color:"#f00",ischecked:false},
+                {NO:6,Kvalue:4,color:"#f00",ischecked:false},
+                {NO:7,Kvalue:15,color:"#f00",ischecked:false},
+                {NO:8,Kvalue:8,color:"#f00",ischecked:false}
             ];
             this.Set("SigXSules",DefaultruleArray);
 
@@ -1161,6 +1161,7 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     reversed: cp.xAxis_Reversed,
                     lineWidth: cp.xAxis_LineWidth,
                     tickColor: cp.Axis_TickColor,
+                    minTickInterval:1,//最小步长
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines
                 });
@@ -1170,6 +1171,7 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         tickPositions: cp.xAxis_TickPositions,
                         labels: {
                             formatter: function () {
@@ -1188,10 +1190,10 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     title: {
                         text: cp.yAxis_Title_Text
                     },
-                    min: cp.yAxis_Min,
-                    max: cp.yAxis_Max,
+//                    min: cp.yAxis_Min,
+//                    max: cp.yAxis_Max,
                     gridLineWidth: cp.yAxis_GridLineWidth,
-                    tickInterval: yValue.Mean_YValue,
+//                    tickInterval: yValue.Mean_YValue,
                     tickWidth: cp.yAxis_TickWidth,
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.yAxis_TickPosition
@@ -1403,10 +1405,10 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     title: {
                         text: cp.yAxis_Title_Text_SD
                     },
-                    min: cp.yAxis_Min_SD,
-                    max: cp.yAxis_Max_SD,
+//                    min: cp.yAxis_Min_SD,
+//                    max: cp.yAxis_Max_SD,
                     gridLineWidth: cp.yAxis_GridLineWidth,
-                    tickInterval: yValue.SD_YValue,
+//                    tickInterval: yValue.SD_YValue,
                     tickWidth: cp.yAxis_TickWidth,
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.yAxis_TickPosition
@@ -1637,17 +1639,17 @@ Agi.Controls.CustomXSChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
-                NewSPCSingleChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewSPCSingleChart;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
+//                NewSPCSingleChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewSPCSingleChart;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();
@@ -3433,7 +3435,7 @@ Agi.Controls.CustomXSChartView_SigmaMenu=function(_Panel,_Control){
                 ruleitem={
                     NO:i,
                     Kvalue:$('#K'+i).val(),
-                    color:$('#Kcolor'+i).attr("value")==""?"#000":$('#Kcolor'+i).attr('value'),
+                    color:$('#Kcolor'+i).attr("value")==""?"#f00":$('#Kcolor'+i).attr('value'),
                     ischecked:$("input[name='ruleNum'][value='"+i+"']").attr('checked')==undefined?false:true
                 }
                 rule.push(ruleitem);
@@ -3462,6 +3464,15 @@ Agi.Controls.CustomXSChartView_SigmaMenu=function(_Panel,_Control){
         //3.判断当前控件有没有应用规则，进行绑定
         if(THisChartSigmaRules==null){
             THisChartSigmaRules=[];
+			//20140303 倪飘 8项判异规则的默认颜色更改为红色
+			$('#Kcolor1').spectrum("set",'#f00');
+			$('#Kcolor2').spectrum("set",'#f00');
+			$('#Kcolor3').spectrum("set",'#f00');
+			$('#Kcolor4').spectrum("set",'#f00');
+			$('#Kcolor5').spectrum("set",'#f00');
+			$('#Kcolor6').spectrum("set",'#f00');
+			$('#Kcolor7').spectrum("set",'#f00');
+			$('#Kcolor8').spectrum("set",'#f00');
         }
         if(THisChartSigmaRules!=null && THisChartSigmaRules.length>0){
             for(var i=1;i<=THisChartSigmaRules.length;i++){

@@ -107,6 +107,9 @@
 	<script src="JS/Controls/NewTimePicker/jquery-ui-1.8.17.custom.min.js" type="text/javascript"></script>
 	<script src="JS/Controls/NewTimePicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
 	<script src="JS/Controls/NewTimePicker/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></script>
+	<!-- 访问webservice接口，获取权限相关信息。 -->
+	<script src="JS/WebService_Jurisdiction.js" type="text/javascript"></script>
+	
 </head>
 <body onselectstart="return false;">
 <div id="progressbar1" class="background" style="display: none; ">
@@ -270,6 +273,11 @@
                     <li data-type="2"><a tabindex="-1" href="#" style=" text-align:center;">酷黑</a></li>
                     <li class="divider"></li>
                     <li data-type="1"><a tabindex="-1" href="#" style=" text-align:center;">简洁蓝</a></li>
+                    <!-- [SGAI MARKER][20140307]START -->
+        			<!-- [liuxing][provide url to download chrome installer] -->
+                    <li class="divider"></li>
+                    <li data-type="3"><a tabindex="-1" href="#" style=" text-align:center;">下载Chrome</a></li>
+                	<!-- [SGAI MARKER][20140307]END -->
                 </ul>
             </li>
         </ul>
@@ -284,7 +292,7 @@
         <div id="ShowListDiv">
             <div class="accordion" id="accordion-agivis">
                 <!--RealTimePoint-->
-                <div class="accordion-group">
+                <div class="accordion-group" id="EpDrawerMenu_RealTimeDataSource">
                     <div class="accordion-heading">
                         <a title="实时数据源" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#RealTimeDC">
                             <span><img src="Img/LeftIcon/database.png" alt="实时数据源"></span> 实时数据源 </a>
@@ -298,7 +306,7 @@
                     </div>
                 </div>
                 <!--DataSets-->
-                <div class="accordion-group">
+                <div class="accordion-group" id="EpDrawerMenu_Dataset">
                     <div class="accordion-heading">
                         <a title="DataSets" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-agivis" href="#collapseOne">
                             <span><img src="Img/LeftIcon/datasets.png" alt="DataSets"></span> DataSets </a>
@@ -541,6 +549,10 @@
         <li class="folder-contextMenu" id="pageManagement-VersionManage">
             <span><img src="Img/LeftIcon/edit.png"/></span>版本管理
         </li>
+        <li class="folder-contextMenu" id="pageManagement-MovesManage">
+            <span><img src="Img/LeftIcon/edit.png"/></span>页面移至组别
+        </li>
+
         <li class="pageRoot-contextMenu" id="pageManagement-refreshRoot">
             <span><img src="Img/LeftIcon/refresh.png"/></span>刷新
         </li>
@@ -686,9 +698,10 @@
 </ul>
 <div class="contextMenu" id="OPDas">
     <ul>
-        <!--        <li id="adddas"><span><img src="Img/LeftIcon/dataset-plus2.png"/></span>Datasets新建</li>-->
         <li id="eddas"><span><img src="Img/LeftIcon/edit.png"/></span>Datasets编辑</li>
         <li id="dedas"><span><img src="Img/LeftIcon/delete2.png"/></span>Datasets删除</li>
+        <!--2014-03-03coke-->
+        <li id="movedas"><span><img src="Img/LeftIcon/edit.png"/></span>Datasets移至组别</li>
     </ul>
 </div>
 <div class="contextMenu" id="ANDS">
@@ -819,6 +832,36 @@
     <option>30</option>
 </select>
 </div>
+
+<!--遮罩层coke 2014-03-03-->
+<div class="modal hide" id="SettingMasklayer" style="width: 440px;">
+    <div class="modal-header paramHeader2 theme-title">
+        <button type="button" class="close" data-dismiss="modal">
+            ×
+        </button>
+        <p style="color: #ffffff; padding:0px;margin:0 0 10px;font:normal 100%/100% 'Trebuchet MS', Arial, Helvetica, sans-serif">
+            移动至组别</p>
+    </div>
+    <div id="app_Masklayer">
+        <!--tab1-->
+        <div id="app_Masklayer1" class="paramBody1" style="height: 320px">
+            <div id="wrapperMasklayer" class="wrapper" style="overflow:auto; width:556px; height: 320px;padding: 0px">
+                <div class="scroller">
+
+                    <div id="app_MasklayerDiv" style="float: left; width: 100%; height: 100%; margin: 0px 0px 0px 0px">
+                        <div id="ContentDiv" style="float: left;width:100%; height:230px;"></div>
+                        <div id="BtnOkDiv" style="float: left;width:100%; height:90px;">
+                            <div  id="BtnOkDivMin" class="BtnOkDivMin">确  定</div>
+                            <div  id="BtnCloseDivMin" class="BtnCloseDivMin" onclick="$('#SettingMasklayer').modal('hide');" style="float: right;">取 消</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--遮罩层-->
+
 <!--背景图片选择-->
 <div class="modal hide" id="ShowBgImage">
     <div class="modal-header paramHeader theme-title">
@@ -1089,8 +1132,8 @@
                                    <option value="audi">Audi</option>-->
                     </select>
                 </div>
-                <div>
-                    <input id='urlText' type="text" style=" width:120px; margin-right:30px;" class='ControlProTextSty' maxlength='50' ischeck='false'/>
+                <div style="margin:0px;">
+                    <input id='urlText' type="text" style=" width:120px;" class='ControlProTextSty' maxlength='50' ischeck='false'/>
                     <input id="urlAdd" type="button" class="PopupBtn" style=" width:60px; height:25px;" value="添加"/>
                     <input id="deleteUrl" type="button" class="PopupBtn" style=" width:60px; height:25px;" value="删除"/>
                 </div>
@@ -1175,9 +1218,9 @@
                         <td class="VersionTd1">是否覆盖版本：</td>
                         <td class="VersionTd2"><select id="VersionSelect"></select></td>
                     </tr>
-                    <tr class="PageSaveNoSPCRow" >
+                    <tr id="PageSaveToGroup" class="PageSaveNoSPCRow" >
                         <td class="VersionTd1">设置分组：</td>
-                        <td class="VersionTd2"><input type="hidden" id="GroupNameID"><div id="SetGroupData" class="jstree jstree-1 jstree-default jstree-focused" style="height:50px; text-align:left;overflow-y: scroll; "></div></td>
+                        <td class="VersionTd2"><input type="hidden" id="GroupNameID" value="0"><div id="SetGroupData" class="jstree jstree-1 jstree-default jstree-focused" style="height:50px; text-align:left;overflow-y: scroll; "></div></td>
                     </tr>
                 </table>
             </div>

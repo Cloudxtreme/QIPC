@@ -1876,15 +1876,17 @@ Agi.Controls.ChartDataConvert = function (_ChartXAxisArray, _DataArrary) {
     var ThisData = [];
     if (_DataArrary != null && _DataArrary.length > 0) {
         for (var i = 0; i < _DataArrary.length; i++) {
-            if (typeof (_DataArrary[i][0]) == "number") {
-                _DataArrary[i][0] = _DataArrary[i][0] + "";
+            if(_DataArrary[i][1]!=null){//空值不参与出图
+                if (typeof (_DataArrary[i][0]) == "number") {
+                    _DataArrary[i][0] = _DataArrary[i][0] + "";
+                }
+                if (!isNaN(_DataArrary[i][1])) {//为数字时
+                    _DataArrary[i][1] = eval(_DataArrary[i][1]);
+                } else {//如果Y轴值不是数字类型则将其赋值为0
+                    _DataArrary[i][1] = 0;
+                }
+                ThisData.push({ name:_DataArrary[i][0], x:i, y:_DataArrary[i][1] });
             }
-            if (!isNaN(_DataArrary[i][1])) {//为数字时
-                _DataArrary[i][1] = eval(_DataArrary[i][1]);
-            } else {//如果Y轴值不是数字类型则将其赋值为0
-                _DataArrary[i][1] = 0;
-            }
-            ThisData.push({ name:_DataArrary[i][0], x:i, y:_DataArrary[i][1] });
         }
         Agi.Controls.ChartAddSeriesUpXAxis(_ChartXAxisArray, ThisData);
     }
@@ -2975,6 +2977,9 @@ Agi.Controls.CustomControl_ExtractDataParsListMenu=function(_Panel,_Control){
         });
         //4.1.新增
         $("#CstmtrlProParsbtnAdd").unbind().bind("click",function(ev){
+            if(ThisSelItemObj==null){
+                ThisSelItemObj=Agi.Controls.CustomControl_ExtractDataSelParsObjGet(Me.Get("ExtractConfig"));
+            }
             if(ThisSelItemObj!=null){
                 var newParsobj=Agi.Controls.CustomControl_ExtraParsGetItemObj();
                 Agi.Controls.CustomControl_ExtraParsSave(ThisSelItemObj,newParsobj,1);
@@ -3027,6 +3032,20 @@ Agi.Controls.CustomControl_ExtractDataParsListMenu=function(_Panel,_Control){
         });
     });
 }
+//14.1.获取当前选中的控件对象
+Agi.Controls.CustomControl_ExtractDataSelParsObjGet=function(ChartExtractConfig){
+    var ThisSelItemObj=null;
+    var ThisSelItemName=$("#CustSigChartExtractPage").val();
+    if(ChartExtractConfig!=null && ChartExtractConfig.length>0){
+        for(var i=0;i< ChartExtractConfig.length;i++){
+            if(ChartExtractConfig[i].drillname==ThisSelItemName){
+                ThisSelItemObj=ChartExtractConfig[i];
+                break;
+            }
+        }
+    }
+    return ThisSelItemObj;
+}
 //15.显示可钻取页面列表
 Agi.Controls.CustomControl_ExtractDataPageListItems=function(_DrillConfigs){
     var strDrillPags="";
@@ -3056,11 +3075,11 @@ Agi.Controls.CustomControl_ExtractDataPageParsLoad=function(_DrillConfigIem){
                 _DrillConfigIem.drillpars[i].parsvaluefun="";
             }
             strDrillPageParsItems+="<div class='CustomCtrlExtParsitem'>" +
-                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsname+"'>"+_DrillConfigIem.drillpars[i].parsname
-                +"</div><div class='CustomCtrlExtParsheadMinCell' title='"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)
+                "<div class='CustomCtrlExtParsMinCell' title='"+_DrillConfigIem.drillpars[i].parsname+"'>"+_DrillConfigIem.drillpars[i].parsname
+                +"</div><div class='CustomCtrlExtParsMinCell' title='"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)
                 +"'>"+Agi.Controls.CustomControl_ExtraParsTypeName(_DrillConfigIem.drillpars[i].parstype,0)+"</div>" +
-                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsvalue+"'>"+_DrillConfigIem.drillpars[i].parsvalue+"</div>" +
-                "<div class='CustomCtrlExtParsheadMinCell' title='"+_DrillConfigIem.drillpars[i].parsvaluefun+"'>"+_DrillConfigIem.drillpars[i].parsvaluefun+"</div>" +
+                "<div class='CustomCtrlExtParsMinCell' title='"+_DrillConfigIem.drillpars[i].parsvalue+"'>"+_DrillConfigIem.drillpars[i].parsvalue+"</div>" +
+                "<div class='CustomCtrlExtParsMinCell' title='"+_DrillConfigIem.drillpars[i].parsvaluefun+"'>"+_DrillConfigIem.drillpars[i].parsvaluefun+"</div>" +
                 "</div>";
         }
     }

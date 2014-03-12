@@ -796,7 +796,7 @@ function MoveNewDataSetGroup(CallBack)
         }else{
             AgiCommonDialogBox.Alert(result.message, null);
         }
-        CallBack();
+        CallBack(result);
     });
 
 }

@@ -258,3 +258,26 @@
     cursor: pointer;
     margin: 3px 0px 0px 8px;
 }
+.CustSigChartMultGrpColumnsty{
+    width:100%;height: auto;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+.CusSilChartMultColumnsty{
+    line-height:25px;
+    border-bottom: solid 1px #dcdcdc;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight:normal;
+}
+.CusSilChartMultColumnsty:hover{
+    background-color:#f2dede;
+}
+.CusSilChartMultColumnsty input[type='checkbox']{
+    width:30px;
+    margin-top:0px;
+}

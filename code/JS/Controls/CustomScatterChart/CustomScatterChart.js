@@ -810,6 +810,7 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
                     lineWidth: cp.xAxis_LineWidth,
                     lineColor:cp.xAxis_LineColor,
                     tickColor: cp.Axis_TickColor,
+                    minTickInterval:1,//最小步长
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines,
                     categories:cp.xAxis_categories
@@ -821,6 +822,7 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         tickPositions: cp.xAxis_TickPositions
                     });
                 }

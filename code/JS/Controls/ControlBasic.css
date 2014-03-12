@@ -416,4 +416,15 @@ text-align:center;
     padding-left: 10px;
     width:74px;
 }
+.CustomCtrlExtParsMinCell{
+    text-align: left;
+    padding-left: 10px;
+    width:74px;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 /*SCP 控件钻取，属性面板样式信息 end*/

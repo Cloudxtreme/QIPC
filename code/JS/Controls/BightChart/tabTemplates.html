@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../ControlBasic.css"/>
+</head>
+<body>
+<div id="customizePropertyTab">
+    <!--1.数据曲线-->
+    <div id="tab-1" class="BightChart_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">曲线：</td>
+                <td colspan="3">
+                    <div id="BightChart_Savebuttonsty" class="BightChartStandlineSave" title="保存"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">数据颜色：</td>
+                <td colspan="3">
+                    <input type="text" id="BightChartdataColor" value="#62a6f6"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">X轴数据列：</td>
+                <td colspan="3">
+                    <select id="BightChartxAxis"></select>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">Y轴数据列：</td>
+                <td colspan="3"><select id="BightChartyAxis"></select></td>
+            </tr>
+        </table>
+    </div>
+    <!--2.X轴标准线-->
+    <div id="tab-2" class="BightChart_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr>
+                <td colspan="4">
+                    <div id="BightChart_SavebuttonxAxis" class="BightChartStandlineSave" title="保存"></div>
+                    <div id='BightChart_AddbuttonxAxis'  class='BightChartStandlineAdd' title='新增'></div>
+                    <div id="BightChart_SavebuttonxDel" class="CustomControlProbtnDelete" title="删除"></div>
+                    <input id="BightChart_AxisStandlineEnum" type="text" value="" style="visibility:hidden;width:0px;height: 0px;line-height:0px;font-size: 0px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">名称: </td>
+                <td colspan="3">
+                    <input type="text" id="BightChart_xplotName" value="12"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">标准线值: </td>
+                <td colspan="3">
+                    <input type="text" id="BightChart_xplotvalue" value="12"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">颜色: </td>
+                <td><input type="text" id="BightChart_xplotcolor" value="#f9222c"></td>
+                <td class="CustomControlproPanelTabletd0max">线条宽: </td>
+                <td><input id="BightChart_xplotwidth" type="number" value="1" min="1" max="4" style="width:65px;"></td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">已添加列表: </td>
+                <td colspan="3">
+                    <select id="BightChart_xplotDropItems"></select>
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+    <!--3.Y轴标准线-->
+    <div id="tab-3" class="BightChart_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr>
+                <td colspan="4">
+                    <div id="BightChart_SavebuttonYSave" class="BightChartStandlineSave" title="保存"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">颜色:</td>
+                <td><input type="text" id="BightChart_yplotcolor" value="#f9222c"></td>
+                <td class="CustomControlproPanelTabletd0max">线条宽:</td>
+                <td><input id="BightChart_yplotwidth" type="number" value="1" min="1" max="4" style="width:65px;"></td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">开始:</td>
+                <td colspan="3"><input type="text" id="BightChart_YStart" value=""></td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">结束:</td>
+                <td colspan="3"><input id="BightChart_YEnd" type="text" value=""></td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">
+                    是否启用:
+                </td>
+                <td colspan="3">
+                    <select id="BightChart_yplotEnable">
+                        <option selected="selected" value="No">是</option>
+                        <option value="OFF">否</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--5.特征值-->
+    <div id="tab-5" class="BightChart_Pro_Panel">
+        <table class="CustomControlproPanelTable">
+            <tr>
+                <td colspan="4">
+                    <div id="BightChart_featureSave" class="BightChartStandlineSave" title="保存"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">最大值： </td>
+                <td colspan="3">
+                    <input type="checkbox" id="BightChart_featureMAX" value="" style="width:auto;margin: -3px 8px 0px 15px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">最小值：  </td>
+                <td colspan="3">
+                    <input type="checkbox" id="BightChart_featureMIN" value="" style="width:auto;margin: -3px 8px 0px 15px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">均值： </td>
+                <td colspan="3">
+                    <input type="checkbox" id="BightChart_featureMEAN" value="" style="width:auto;margin: -3px 8px 0px 15px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">离差： </td>
+                <td colspan="3">
+                    <input type="checkbox" id="BightChart_featureDEVIAT" value="" style="width:auto;margin: -3px 8px 0px 15px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="CustomControlproPanelTabletd0max">标准差： </td>
+                <td colspan="3">
+                    <input type="checkbox" id="BightChart_featureSTED" value="" style="width:auto;margin: -3px 8px 0px 15px;">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

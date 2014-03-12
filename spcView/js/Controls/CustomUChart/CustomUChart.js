@@ -942,6 +942,7 @@ Agi.Controls.CustomUChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     reversed: cp.xAxis_Reversed,
                     lineWidth: cp.xAxis_LineWidth,
                     tickColor: cp.Axis_TickColor,
+                    minTickInterval:1,//最小步长
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines
                 });
@@ -951,6 +952,7 @@ Agi.Controls.CustomUChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         //tickInterval: cp.xAxis_TickInterval2,
                         tickPositions: cp.xAxis_TickPositions,
                         labels: {
@@ -1209,17 +1211,17 @@ Agi.Controls.CustomUChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
-                NewSPCSingleChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewSPCSingleChart;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
+//                NewSPCSingleChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewSPCSingleChart;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();

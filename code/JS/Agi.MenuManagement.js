@@ -1111,6 +1111,11 @@ Agi.MenuManagement = function (option) {
                         VersionPageName(filename); //获取文件夹中页面信息
                         //selectLak(filename);//获得下拉框的值
                     },
+                    //2014-03-03  coke  移动页面值组别
+                    "pageManagement-MovesManage":function(e)
+                    {
+                        MovesPagesData(e);
+                    },
                     //文件夹的删除
                     "pageManagement-delete2": function (e) {
                         var filename = "";
@@ -1231,6 +1236,177 @@ Agi.MenuManagement = function (option) {
                 }
             }
         }
+    }
+
+/*
+* 2014-03-03  coke  移动页面
+* */
+    function MovesPagesData (e)
+    {
+        new Agi.Msg.OpenParasSettingWindow().Masklayer();
+        $("#BtnOkDiv").off().bind("click",function(){
+            var parentID=$("#GroupNameID").val();
+            if(parentID=="0")
+            {
+                $('#SettingMasklayer').modal('hide');
+                //没有选择移动组别id
+                AgiCommonDialogBox.Alert("您没有选择组别！", null);
+                return;
+            }
+          if($(e).attr("id")==null)
+          {
+              return;
+          }
+            //移动页面
+            Agi.PageGroupManager.VSPageMove({ Key:$(e).attr("id"),Parent:parentID},function(result){
+                if(result.result=="true"){
+                    $('#SettingMasklayer').modal('hide');
+                     AgiCommonDialogBox.Alert("移动成功！", null);
+                    menuManagement.loadPages(); //重新加载页面列表
+                }else{
+                    $('#SettingMasklayer').modal('hide');
+                    AgiCommonDialogBox.Alert(result.message, null);
+                }
+            });
+        });
+        $("#ContentDiv").html('<div style="font-size: 15px; float: left; width: 80px; font-weight: bold;"><p style="margin-top: 104px;text-align: center;">组别名称：</p></div><div id="MovesPagesGroup" ' +
+            'class="jstree jstree-1 jstree-default jstree-focused jstree-0" style="height:228px; width:356px; ' +
+            'text-align:left; float: left;"></div>');
+        RequestPageData();
+    }
+
+    /*2014-02-20  coke
+     * 获取组别名称
+     *
+     * */
+    function RequestPageData(dataContent,BackFunction)
+    {
+        //var arryList=$("#PageManage").find('li[data-filetype="group"]');
+        var direction = "";
+        var Enumtype="";
+        var id = 0;
+        var jsonData = {
+            "url": direction, //"PageManager"
+            "ID": id,
+            "enum":Enumtype
+        };
+
+        if(dataContent!=undefined)
+        {
+            jsonData.url=dataContent.rslt.obj.attr("id");
+            jsonData.enum="group";
+        }else{
+            $("#SetGroupData").empty();
+        }
+
+        if(Agi.WebServiceConfig.Type== "JAVA" && jsonData.url!=""){
+            jsonData.ID=jsonData.url;
+        }
+        var jsonString = JSON.stringify(jsonData);
+        var Methname="FMGetFileByParent_SG";
+        if (Agi.WebServiceConfig.Type== "JAVA") {
+            Methname="SPC_FMGetFileByParent";
+        }
+        Agi.DAL.ReadData({
+            "MethodName":Methname,
+            "Paras": jsonString, //json字符串
+            "CallBackFunction": function (result) {     //回调函数
+                if (result.result!="true") {
+                    BackFunction([]); //无效返回值
+                    return;
+                }
+                if(result.data.length<0){
+                    BackFunction([]); //无效返回值
+                    return;
+                }
+                if(dataContent==undefined){
+                    //产生树形节点
+                    //第一次加载的时候执行
+
+                    CreateTreeNode(result.data);
+                }else{
+                    //点击树形节点执行此代码
+                    var data=result.data;
+                    var position = 'inside';
+                    var parent = $('#MovesPagesGroup').jstree('get_selected');
+                    for(var s= 0,len=data.length;s<len;s++)
+                    {
+                        if(data[s].enum=="group")
+                        {
+                            var em={
+                                "data": {title:data[s].id },
+                                'attr': {title:data[s].id ,ID:data[s].path},
+                                "metadata": { id:data[s].path, type: 'commonLib' }
+                            }
+                            dataContent.inst.create_node(parent, position, em, false, false);//添加节点
+                        }
+                    }
+                    dataContent.inst.open_node();//打开节点
+                    BackFunction(data); //返回实体下次使用
+                }
+
+            }
+        });
+    }
+    /*2014-02-20  coke
+     * 产生树形节点
+     *
+     * */
+    function CreateTreeNode(dataList)
+    {
+        var dataIn = [];
+        var data=dataList;
+        for(var s= 0,len=data.length;s<len;s++)
+        {
+            if(data[s].enum=="group")
+            {
+                var em={
+                    "data": {title:data[s].id },
+                    'attr': {title:data[s].id ,ID:data[s].path},
+                    "metadata": { id:data[s].path, type: 'commonLib' },
+                    children: []
+                }
+                dataIn.push(em);
+            }
+        }
+        if(dataIn.length<0){return;}
+        var temp="";
+        $("#MovesPagesGroup") .jstree({
+            json_data: {data: dataIn },
+            plugins: ["themes", "json_data", "ui"]
+        }).bind("select_node.jstree",function (event, data1) {
+                //点击获取组别
+                $("#GroupNameID").val(data1.rslt.obj.attr("ID"));
+                //删除节点
+                data1.rslt.obj.children(2).eq(2).remove();
+                if(temp!=data1.rslt.obj.attr("title"))
+                {
+                    temp=data1.rslt.obj.attr("title");
+                    RequestPageData(data1,function(ev){
+                        data=ev;
+                    });
+
+                }else{
+                    var position = 'inside';
+                    var parent = $('#MovesPagesGroup').jstree('get_selected');
+                    for(var s= 0,len=data.length;s<len;s++)
+                    {
+                        if(data[s].enum=="group")
+                        {
+                            var em={
+                                "data": {title:data[s].id },
+                                'attr': {title:data[s].id ,ID:data[s].path},
+                                "metadata": { id:data[s].path, type: 'commonLib' }
+                            }
+                            data1.inst.create_node(parent, position, em, false, false);
+                        }
+                    }
+                    data1.inst.open_node();
+                }
+
+            }).delegate("a", "click", function (event, data) {
+                event.preventDefault();
+            }).bind("loaded.jstree",function(e,data){ })
     }
 
     //获取当前所有控件中最大和最小的zindex

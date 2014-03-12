@@ -102,7 +102,13 @@
         </Files>
       </Control>
        
-        
+		<Control id='9' ControlType='QueryPanel' ControlName='查询区域容器' IcoURL='JS/Controls/ControlsImages/QueryPanel.png'
+              Initialize="Agi.Controls.InitQueryPanel">
+        	<Files>
+				<File Type='css' Path='JS/Controls/QueryPanel/QueryPanel.css'></File>
+				<File Type='js' Path='JS/Controls/QueryPanel/QueryPanel.js'></File>
+	        </Files>      
+        </Control>        
     </Group>
 
     <Group Name="数据控件" IcoURL='JS/Controls/ControlsImages/DataControl.png'>
@@ -396,6 +402,15 @@
             <Files>
                 <File Type='js' Path='JS/Controls/CustomYGZButton/CustomYGZButton.js'></File>
                 <File Type='css' Path='JS/Controls/CustomYGZButton/CustomYGZButton.css'></File>
+            </Files>
+        </Control>
+        <Control id='15' ControlType='BightChart' ControlName='历史曲线图' IcoURL='JS/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitBightChart">
+            <Files>
+                <File Type='js' Path='JS/Controls/BightChart/BightChart.css'></File>
+                <File Type='js' Path='JS/Controls/BightChart/BightChartLineCss.css'></File>
+                <File Type='js' Path='JS/Controls/BightChart/hammer.js'></File>
+                <File Type='js' Path='JS/Controls/BightChart/BightChart.js'></File>
             </Files>
         </Control>
     </Group>

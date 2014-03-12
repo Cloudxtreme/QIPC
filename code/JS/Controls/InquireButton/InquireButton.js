@@ -612,7 +612,7 @@ Agi.Controls.ButtonPropertyInit = function (ButtonControl) {
             }
 
             if (Isexist) {
-                $(TableTrList[i]).find('input').attr('checked', 'checked');
+                $(TableTrList[j]).find('input').attr('checked', 'checked');
             }
         }
     }

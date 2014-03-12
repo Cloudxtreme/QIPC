@@ -942,6 +942,7 @@ Agi.Controls.CustomUChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     reversed: cp.xAxis_Reversed,
                     lineWidth: cp.xAxis_LineWidth,
                     tickColor: cp.Axis_TickColor,
+                    minTickInterval:1,//最小步长
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines
                 });
@@ -951,6 +952,7 @@ Agi.Controls.CustomUChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         //tickInterval: cp.xAxis_TickInterval2,
                         tickPositions: cp.xAxis_TickPositions,
                         labels: {

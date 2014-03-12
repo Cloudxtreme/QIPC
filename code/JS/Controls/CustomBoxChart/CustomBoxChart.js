@@ -1519,10 +1519,10 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         //margin:cp.yAxis_Title_Margin,
                         text: cp.yAxis_Title_Text
                     },
-                    min: cp.yAxis_Min,
-                    max: cp.yAxis_Max,
+//                    min: cp.yAxis_Min,
+//                    max: cp.yAxis_Max,
                     gridLineWidth: cp.yAxis_GridLineWidth,
-                    tickInterval: yValue,
+//                    tickInterval: yValue,
                     tickWidth: cp.yAxis_TickWidth,
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.yAxis_TickPosition, labels: {

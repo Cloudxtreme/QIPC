@@ -28,6 +28,29 @@ Agi.Msg.OpenParasSettingWindow = function () {
         new iScroll('wrapper3', { hScrollbar:false, vScrollbar:false });
         new iScroll('wrapper4', { hScrollbar:false, vScrollbar:false });
     }
+
+    /*
+     * 2014-02-26  遮罩层
+     * */
+    this.Masklayer= function () {
+        //tab_click("app_tab1");  //选中第一个
+        //Para_EntityItemsRect = [];
+        $('#SettingMasklayer').css('zIndex', 1000001);
+        // $('#SettingMasklayer').draggable({ cancel: "div.paramBody" });
+        $('#SettingMasklayer').modal({ backdrop: true, keyboard: true, show: true });
+        //tab1
+        // FrameWork_ItemsTemp();  //加载控件参数列表
+        //FrameWork_GetEntityInfo(); //加载实体信息列表
+        //tab2
+        //FrameWork_ItemsTab2();
+        // GetRealTimeControl();
+        //new iScroll('wrapperMasklayer', { hScrollbar: false, vScrollbar: false });
+        //new iScroll('wrapper1', { hScrollbar: false, vScrollbar: false });
+        // new iScroll('wrapper2', { hScrollbar: false, vScrollbar: false });
+        // new iScroll('wrapper3', { hScrollbar: false, vScrollbar: false });
+    }
+
+
 }
 
 var Para_EntityItemsRect = [];

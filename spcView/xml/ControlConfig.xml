@@ -57,11 +57,11 @@
                 <File Type="js" Path="js/Controls/RadioButton1/RadioButton.js"></File>
             </Files>
         </Control>
-        <Control id='9' ControlType='CheckBox' ControlName='复选框' IcoURL='JS/Controls/ControlsImages/CheckBox.png'
+        <Control id='9' ControlType='CheckBox' ControlName='复选框' IcoURL='js/Controls/ControlsImages/CheckBox.png'
               Initialize="Agi.Controls.InitCheckBox">
         <Files>
-          <File Type='css' Path='JS/Controls/CheckBox1/CheckBox.css'></File>
-          <File Type='js' Path='JS/Controls/CheckBox1/CheckBox.js'></File>
+          <File Type='css' Path='js/Controls/CheckBox1/CheckBox.css'></File>
+          <File Type='js' Path='js/Controls/CheckBox1/CheckBox.js'></File>
           
         </Files>
       </Control>
@@ -104,16 +104,22 @@
           <File Type='js' Path='js/Controls/NewCheckBox/NewCheckBox.js'></File>
         </Files>
       </Control>
-		 <Control id='1' ControlType='TimePicker' ControlName='时间选择控件' IcoURL='JS/Controls/ControlsImages/DatePicker.png'
+		 <Control id='1' ControlType='TimePicker' ControlName='时间选择控件' IcoURL='js/Controls/ControlsImages/DatePicker.png'
               Initialize="Agi.Controls.InitTimePicker">
         <Files>
-			<File Type='js' Path='JS/Controls/NewTimePicker/TimePicker.css'></File>
-			<File Type='js' Path='JS/Controls/NewTimePicker/TimePicker.js'></File>
+			<File Type='js' Path='js/Controls/NewTimePicker/TimePicker.css'></File>
+			<File Type='js' Path='js/Controls/NewTimePicker/TimePicker.js'></File>
         </Files>
       </Control>
+		
 
-
-
+		<Control id='9' ControlType='QueryPanel' ControlName='查询区域容器' IcoURL='js/Controls/ControlsImages/QueryPanel.png'
+              Initialize="Agi.Controls.InitQueryPanel">
+        	<Files>
+				<File Type='css' Path='js/Controls/QueryPanel/QueryPanel.css'></File>
+				<File Type='js' Path='js/Controls/QueryPanel/QueryPanel.js'></File>
+	        </Files>
+        </Control>
     </Group>
 
     <Group Name="数据控件" IcoURL='js/Controls/ControlsImages/DataControl.png'>
@@ -456,6 +462,15 @@
             <Files>
                 <File Type='js' Path='js/Controls/CustomYGZButton/CustomYGZButton.js'></File>
                 <File Type='css' Path='js/Controls/CustomYGZButton/CustomYGZButton.css'></File>
+            </Files>
+        </Control>
+        <Control id='16' ControlType='BightChart' ControlName='历史曲线图' IcoURL='js/Controls/ControlsImages/SPCSingleChart.png'
+                 Initialize="Agi.Controls.InitBightChart">
+            <Files>
+                <File Type='js' Path='js/Controls/BightChart/BightChart.css'></File>
+                <File Type='js' Path='js/Controls/BightChart/BightChartLineCss.css'></File>
+                <File Type='js' Path='js/Controls/BightChart/hammer.js'></File>
+                <File Type='js' Path='js/Controls/BightChart/BightChart.js'></File>
             </Files>
         </Control>
     </Group>

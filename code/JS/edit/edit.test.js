@@ -76,6 +76,15 @@ agi.jsloader
                     else {
                         $("#InputPageName").attr('readonly', false);
                     }
+                    //20140308 13:54 保存页面选择另存为时，页面所属分组Group选择显示与隐藏控制
+                    $("#VersionSelect").unbind().change(function(ev){
+                       var ThisValue=$(this).val();
+                        if(ThisValue=="saveas"){
+                            $("#PageSaveToGroup").show();
+                        }else{
+                            $("#PageSaveToGroup").hide();
+                        }
+                    });
 
 //                    if ($("#ShowVersioninfomodal").is(":visible") == false) {
 //                        $('#ShowVersioninfomodal').draggable({

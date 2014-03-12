@@ -389,6 +389,10 @@ Agi.Msg.Trigger = function () {
                     //2012-12-13 button查询拦截功能  
                     if (!Agi.Msg.ButtonBindControls.getState(objControl.Get("ProPerty").ID)) { //是否屏蔽了即时联动功能
                         objControl.ParameterChange({ "Type": objcet.Type, "sender": senderControl, "Entity": objControl.Get("Entity")[x] });
+                    }else{
+                        if(senderControl=="Url参数"){
+                            objControl.ParameterChange({ "Type": objcet.Type, "sender": senderControl, "Entity": objControl.Get("Entity")[x] });
+                        }
                     }
                 }
             }

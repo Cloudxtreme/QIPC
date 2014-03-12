@@ -133,10 +133,10 @@ Agi.Controls.InquireButton = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 obj = { "sender": self, "Type": Agi.Msg.Enum.Controls };
                 Agi.Msg.BtnQuery.queryEvent(obj);
                 //add for count click on each page.
-                Agi.DAL.ReadData({
-                    "MethodName": "QBtnClickCount",
-                    "Paras": {'page':GetUrlParas("page")}
-                });
+//                Agi.DAL.ReadData({
+//                    "MethodName": "QBtnClickCount",
+//                    "Paras": {'page':GetUrlParas("page")}
+//                });
             });
 
 //            $('#' + self.shell.ID).live('dblclick', function (ev) {
@@ -521,7 +521,7 @@ Agi.Controls.ButtonPropertyInit = function (ButtonControl) {
             }
 
             if (Isexist) {
-                $(TableTrList[i]).find('input').attr('checked', 'checked');
+                $(TableTrList[j]).find('input').attr('checked', 'checked');
             }
         }
     }

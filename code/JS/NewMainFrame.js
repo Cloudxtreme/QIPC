@@ -586,9 +586,15 @@ $(document).ready(function () {
         var $themeLink = $('#lkTheme');
         if (val == '1') {
             $themeLink.attr('href', 'CSS/FrameThemes/theme1.css');
-        } else {
+        } else if(val=='2') {
             $themeLink.attr('href', 'CSS/FrameThemes/theme2.css');
+        } 
+        /**[SGAI MARKER][20140307]START*/
+        //[liuxing][provide url to download chrome installer]
+        else if(val=='3'){
+        	window.location.href='http://10.3.250.120:8080/qpc-web/Chrome33.exe';
         }
+        /**[SGAI MARKER][20140307]END*/
     });
     //  }
 
@@ -628,7 +634,12 @@ $(document).ready(function () {
         _powerId:Agi.Utility.DialogBox('PagePerson',{title:'权限管理',height:600,width:1280}),
         _ProKeyModal: Agi.Utility.DialogBox('ProKeyModal',{title:'参数配置'})
     };
+//    //隐藏所有控件
+//    dis_JunHideAll("");
+//    //调用qpcPageLoad名称的webservice接口
+//	call_qpcPageLoad("");
 });
+
 //end (document).ready
 
 //隐藏所有主页面操作小窗口
@@ -820,11 +831,108 @@ function InitControlToCanvas(_TargetObj, _position, _controlLibs, _InitFun, Enti
             //                NewControl.initData(true);
             //            }
             //endregion
+            
+            /**[SGAI MARKER][20140303]START*/
+            //[liuxing][20140303]初始化控件时,确认查询参数和查询区域控件之间的关系
+            associateControlWithQueryArea(NewControl,true);
+            /**[SGAI MARKER][20140303]END*/
         }
     );
-
-    
 }
+/**[SGAI MARKER][20140303]START*/
+function associateControlWithQueryArea(NewControls,isInit){
+	if($.isArray(NewControls)){
+		for(var i=0;i<NewControls.length;i++){
+			contactQeuryToArea(NewControls[i],isInit);
+		}
+	}else{
+		contactQeuryToArea(NewControls,isInit);
+	}
+}
+function contactQeuryToArea(NewControl,isInit){
+	var oProprty = NewControl.Get('ProPerty');
+    var controlobj=Agi.Controls.FindControl(oProprty.ID);
+    var controltype=controlobj.Get('ControlType');
+    
+    //如果当前控件不是查询区域,并且已存在的查询区域列表为空,就不需要再判断位置关系
+    if((controltype!='QueryPanel'&&!IsQueryAreaExist()))
+		return;
+    
+    if(controltype=='QueryPanel'){
+    	//如果当前位置/大小变化的控件是查询区域:
+    	var controlList=Agi.Edit.workspace.controlList.toArray();
+    	var inAreaControlIDList=[];
+    	for(var i=0;i<controlList.length;i++){
+    		var extControl=controlList[i];
+    		var extType=extControl.Get('ControlType');
+    		if(IsControlAQueryType(extType)){
+    			if(IsQueryInArea(extControl.Get('Position'),controlobj.Get('Position'))){
+    				inAreaControlIDList.push(extControl.Get('ProPerty').ID);
+    			}
+    		}
+    	}
+    	if(inAreaControlIDList.length>0){
+    		controlobj.ContactWithQueryControl('refresh',inAreaControlIDList);
+    	}
+    }else if(IsControlAQueryType(controltype)){
+    	//如果当前位置/大小变化的控件是查询参数/按钮控件:
+    	if(IsQueryAreaExist()){
+    		for(var i=0;i<GetQueryAreas().length;i++){
+    			var queryarea=GetQueryAreas()[i];
+    			if(IsQueryInArea(controlobj.Get('Position'),queryarea.Get('Position'))){
+    				queryarea.ContactWithQueryControl('add',controlobj.Get('ProPerty').ID);
+    			}else{
+    				queryarea.ContactWithQueryControl('del',controlobj.Get('ProPerty').ID);
+    			}
+    		}
+    		
+    	}
+    }
+}
+//[liuxing][20140303]当前所有的能出现在查询区域的控件
+var queryControlTypesList=[/*'Panel',*/
+                           'InquireButton',
+                           'DropDownList',
+                           'MultiSelect',
+                           'Label',
+                           'TextInputBox',
+                           'RadioButton',
+                           'AssociativeInputBox',
+                           'DatePicker',
+                           'TimeSelector',
+                           'AnimationControl',
+                           'CheckBox',
+                           'TimePicker'];
+/*//[liuxing][20140303]编辑区域出现的所有查询区域控件的引用的集合
+var queryAreasList=[];*/
+function GetQueryAreas(){
+	var controlList=Agi.Edit.workspace.controlList.toArray();
+	var queryAreas=[];
+	for(var i=0;i<controlList.length;i++){
+		var con=controlList[i];
+		if(con.Get('ControlType')=='QueryPanel'){
+			queryAreas.push(con);
+		}
+	}
+	return queryAreas;
+}
+function IsQueryAreaExist(){
+	return GetQueryAreas().length>0;
+}
+//[liuxing][20140303]检查控件是否为查询参数
+function IsControlAQueryType(controltype){
+	return InArray(controltype,queryControlTypesList);
+}
+function InArray(val,arr){
+	return $.inArray( val, arr )!=-1;
+}
+//[liuxing][20140303]检查query控件的锚点(左上角)是否在一个area这个查询区域控件中
+function IsQueryInArea(query,area){
+	return query.Left>=area.Left && query.Right>=area.Right && query.Top>=area.Top && query.Bottom>=area.Bottom;
+}
+/**[SGAI MARKER][20140303]END*/
+
+
 //
 var initUndo = {};
 function InitControlMenu(_NewControl) {
@@ -901,6 +1009,9 @@ function ShowNewMainPage() {
     ChangeBottomRightCenterContent(screen.width, screen.height);
     //    //隐藏所有主页面操作小窗体
     //    HideAllMainPageWin();
+
+    //20140310 13:35 markeluo 新增 新建页面时，默认让页面另存为的选项为可见
+    $("#PageSaveToGroup").show();
 }
 
 //显示frame操作数据源的面板
@@ -1315,22 +1426,24 @@ function OperationLeftMenu() {
     });
 }//end OperationLeftMenu
 
+//数据源菜单
+//20140308 增加ID
 function AddLeftMenu(resultData) {
     /// <summary>添加数据源菜单</summary>
     /// <param name="resultData" type="String">所有数据源</param>
     /// <param name="resultData" type="String">所有数据源</param>
     if (!resultData) {
-        $("#FrameShowListDiv").html("<div id='wrapper-250'><ul class='accordion'>" +
-            "<li class='ReAndR'> <a><span><img src='Img/LeftIcon/database.png'/></span>数据源管理</a><ul class='sub-menu' id='DataSource' ></ul></li>" +
+        $("#FrameShowListDiv").html("<div id='wrapper-250'><ul class='accordion' id='DrawerMenu_Group'>" +
+            "<li class='ReAndR' id='DrawerMenu_ReAndR'> <a><span><img src='Img/LeftIcon/database.png'/></span>数据源管理</a><ul class='sub-menu' id='DataSource' ></ul></li>" +
             "<li class='addVTManage' id='addVTManage'><a><span><img src='Img/LeftIcon/table.png'/></span>虚拟表管理</a><ul class='sub-menu' id='VirtualTableManage'></ul></li>" +
-            "<li class='MyDataSets'> <a><span><img src='Img/LeftIcon/datasets.png'/></span>Datasets管理</a><ul class='sub-menu' id='DatasetsManage'></ul></li>" +
+            "<li class='MyDataSets' id='DrawerMenu_MyDataSets'> <a><span><img src='Img/LeftIcon/datasets.png'/></span>Datasets管理</a><ul class='sub-menu' id='DatasetsManage'></ul></li>" +
 
             // "<li class='PointInfo'> <a><span><img src='Img/LeftIcon/database.png'/></span>点位信息</a><ul class='sub-menu' id='PointInfoMagage'></ul></li>" +
 //    "<li class='MyGroup'> <a><span><img src='Img/LeftIcon/resource.png'/></span>分组管理</a><ul class='sub-menu' id='GroupManage'></ul></li>" +
      //       "<li class='MyTagGroupConfig'> <a><span><img src='Img/LeftIcon/resource.png'/></span>关系配置</a><ul class='sub-menu' id='GroupConfigManage'></ul></li>" +
-            "<li data-isfile='pageRoot'> <a><span><img src='Img/LeftIcon/dashboard.png'/></span>页面管理</a><ul class='sub-menu'  id='PageManage' ></ul></li>" +
+            "<li data-isfile='pageRoot'  id='DrawerMenu_PageManage'> <a><span><img src='Img/LeftIcon/dashboard.png'/></span>页面管理</a><ul class='sub-menu'  id='PageManage' ></ul></li>" +
 //    "<li class='VersionInfo'> <a><span><img src='Img/LeftIcon/database.png'/></span>版本管理</a><ul class='sub-menu' id='VersionManage'></ul></li>" +
-            "<li> <a><span><img src='Img/LeftIcon/resource.png'/></span>资源管理</a><ul class='sub-menu'  id='ResourceManage' >" +
+            "<li id='DrawerMenu_ResourceManage'> <a><span><img src='Img/LeftIcon/resource.png'/></span>资源管理</a><ul class='sub-menu'  id='ResourceManage' >" +
             "<li id='imgResourceManage' class='imgResourceManage' ><a><span> <img src='Img/LeftIcon/database.png'></span>图片资源</a><ul class='Sub2' id='imgResource'></ul></li>" +     //图片资源管理
             "</ul></li></ul></div>");
     }
@@ -2706,7 +2819,10 @@ function AddAllDatasets() {
                         });
                     });
 
-                }
+                },
+                'movedas':function(t){
+                    MovesGroupData(t);
+                }//2014-03-03  coke 移动组别
             }
         });
         //关于datasets的分组右键菜单
@@ -2771,6 +2887,136 @@ $(".MyDataSetss").live('click', function () {
     });
 });
 
+//2014-03-03 coke
+function MovesGroupData(t)
+{
+    new Agi.Msg.OpenParasSettingWindow().Masklayer();
+    $("#BtnOkDiv").off().bind("click",function(){
+        var parentID=$("#GroupNameID").val();
+        if(parentID=="0")
+        {
+            $('#SettingMasklayer').modal('hide');
+            //没有选择移动组别id
+            AgiCommonDialogBox.Alert("您没有选择组别！", null);
+            return;
+        }
+        Agi.DatasetsManager.DSNodeMove({DataSetsKey:$(t).find("a").attr("title"),ParentKey:parentID},function(result){
+            if(result.result=="true"){
+                AddAllDatasets();//刷新主界面的DataSet列表
+                menuManagement.loadDataSource($('#accordion-agivis #collapseOne>.accordion-inner'));//刷新新建页面左侧的DataSet列表
+                $('#SettingMasklayer').modal('hide');
+                AgiCommonDialogBox.Alert("移动成功！", null);
+            }else{
+                $('#SettingMasklayer').modal('hide');
+                AgiCommonDialogBox.Alert(result.message, null);
+            }
+        });
+    });
+    $("#ContentDiv").html('<div style="font-size: 15px; float: left; width: 80px; font-weight: bold;"><p style="margin-top: ' +
+        '104px;text-align: center;">组别名称：</p></div><div id="MovesDataSetGroup" ' +
+        'class="jstree jstree-1 jstree-default jstree-focused jstree-0" style="height:228px; width:356px; text-align:left;overflow-y: scroll;float: ' +
+        'left;"></div>');
+    RequestMovePageData();
+}
+/*2014-03-03  coke
+ * 获取组别名称
+ *
+ * */
+function RequestMovePageData(dataContent,BackFunction)
+{
+    var NewNodeInfo = { perid: "root" };
+    if(dataContent==undefined)
+    {
+        $("#MovesDataSetGroup").empty();
+    }else
+    {
+        NewNodeInfo.perid=dataContent.rslt.obj.attr("ID")
+    }
+
+    Agi.DatasetsManager.DSAllDataSet_SG(NewNodeInfo,function (result) {
+        if (result.result!="true") {
+            BackFunction([]); //无效返回值
+            return;
+        }
+        if(dataContent==undefined){
+            //产生树形节点
+            //第一次加载的时候执行
+            CreateMoveTreeNode(result.Data.groups);
+        }else{
+            //点击树形节点执行此代码
+            var data=result.Data.groups;
+            var position = 'inside';
+            var parent = $('#MovesDataSetGroup').jstree('get_selected');
+            for(var s= 0,len=data.length;s<len;s++)
+            {
+                var em={
+                    "data": {title:data[s].ID },
+                    'attr': {title:data[s].ID ,ID:data[s].path},
+                    "metadata": { id:data[s].path, type: 'commonLib' }
+                }
+                dataContent.inst.create_node(parent, position, em, false, false);//添加节点
+            }
+            dataContent.inst.open_node();//打开节点
+            BackFunction(data); //返回实体下次使用
+        }
+
+    });
+
+}
+/*2014-03-03  coke
+ * 产生树形节点
+ *
+ * */
+function CreateMoveTreeNode(dataList)
+{
+    var dataIn = [];
+    var data=dataList;
+    for(var s= 0,len=data.length;s<len;s++)
+    {
+        var em={
+            "data": {title:data[s].ID },
+            'attr': {title:data[s].ID,ID:data[s].path},
+            "metadata": { id:data[s].path, type: 'commonLib' },
+            children: []
+        }
+        dataIn.push(em);
+    }
+    if(dataIn.length<0){return;}
+    var temp="";
+    $("#MovesDataSetGroup") .jstree({
+        json_data: {data: dataIn },
+        plugins: ["themes", "json_data", "ui"]
+    }).bind("select_node.jstree",function (event, data1) {
+            //点击获取组别
+            $("#GroupNameID").val(data1.rslt.obj.attr("ID"));
+            //删除节点
+            data1.rslt.obj.children(2).eq(2).remove();
+            if(temp!=data1.rslt.obj.attr("title"))
+            {
+                temp=data1.rslt.obj.attr("title");
+                RequestMovePageData(data1,function(ev){
+                    data=ev;
+                });
+
+            }else{
+                var position = 'inside';
+                var parent = $('#MovesDataSetGroup').jstree('get_selected');
+                for(var s= 0,len=data.length;s<len;s++)
+                {
+                    var em={
+                        "data": {title:data[s].ID },
+                        'attr': {title:data[s].ID ,ID:data[s].path},
+                        "metadata": { id:data[s].path, type: 'commonLib' }
+                    }
+                    data1.inst.create_node(parent, position, em, false, false);
+                }
+                data1.inst.open_node();
+            }
+
+        }).delegate("a", "click", function (event, data) {
+            event.preventDefault();
+        }).bind("loaded.jstree",function(e,data){ })
+}
 //删除dataset
 function DelDataset(setid) {
     Agi.DatasetsManager.DSSDelete(setid, function (result) {
@@ -4210,7 +4456,10 @@ function GobakFramePage() {
                                 }
                             });
                         });
-                    }
+                    },
+                    'movedas':function(t){
+                        MovesGroupData(t);
+                    }//2014-03-03  coke 移动组别
                 }
             });
             //关于datasets的分组右键菜单

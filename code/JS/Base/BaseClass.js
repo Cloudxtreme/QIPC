@@ -831,3 +831,13 @@ Agi.Script.EntityDataFilterDateConvert=function(_TimeValue){
 Agi.Script.StringTrim=function(_StrItem){
     return _StrItem.replace(/(^\s*)|(\s*$)/g,"");
 }
+
+/*12.数组求最大值、最小值、平均数*/
+//12.1.获得数组中的最大值
+Agi.Script.GetArrayMaxValue = function (_Arraydata) {
+    return Math.max.apply(Math,_Arraydata);
+}
+//12.2.获得数组中的最小值
+Agi.Script.GetArrayMinValue = function (_Arraydata) {
+    return Math.min.apply(Math,_Arraydata);
+}

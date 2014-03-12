@@ -35,6 +35,9 @@ edit.NewPage = function () {
         $("#BottomRightCenterContentDiv").css("background-size", "");
         //zsj 修复bug ZHZS-561
         $("#BottomRightCenterContentDiv").data('colorValue',null);
+
+        //20140310 13:35 markeluo 新增 新建页面时，默认让页面另存为的选项为可见
+        $("#PageSaveToGroup").show();
     }
     });
    
@@ -168,8 +171,9 @@ edit.SavePage = function (callBack) {
         "VSummary":description,//经验总结
         "VIsSPCPage":"false"
     };
+    //20140308 13:36 创建新版本后再覆盖版本后台会出现重复页面版本情况解决
+    //edit.EditPageParentID = 0;
 
-    edit.EditPageParentID = 0;
     /* alert(workspace.pageName);
     if(isEdite){
     var jsonData = {
@@ -281,7 +285,6 @@ edit.OpenPage = function (pageName, id, _parentID) {
     isEdite = true;
     var jsonData = { "url": pageName, "ID": id };
     var jsonString = JSON.stringify(jsonData);
-    // alert(pageName);
     //
     Agi.DAL.ReadData(
         {

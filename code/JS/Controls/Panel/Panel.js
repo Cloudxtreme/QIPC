@@ -199,7 +199,7 @@ Agi.Controls.Panel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 PagePars = _ThisPosition = null;
             }
         },
-        FilterChange: function (_Fillter) {debugger;
+        FilterChange: function (_Fillter) {
             if (_Fillter != null && _Fillter.LeftFillet1 != null && _Fillter.LeftFillet2 != null && _Fillter.RightFillet1 != null && _Fillter.RightFillet2 != null) {
                 this.Set("PanelFilter", _Fillter);
                 _Fillter = null;
@@ -249,7 +249,7 @@ Agi.Controls.Panel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 Me.Refresh(); //每个控件都应该有一个Refresh方法，内部其实也是更新Position属性，但可能根据每个控件有所不同，大家可以参考Chart控件的实现代码，但不要完全模仿
             }
         },
-        EnterEditState: function (size) {debugger;
+        EnterEditState: function (size) {
             var obj = $(this.Get('HTMLElement'));
             this.oldSize = {
                 width: obj.width(),
@@ -269,7 +269,7 @@ Agi.Controls.Panel = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             //            obj.width(786);
             //  Mozilla/5.0 (Windows; U; Windows NT 5.2) AppleWebKit/525.13 (KHTML, like Gecko) Version/3.1 Safari/525.13
         },
-        BackOldSize: function () {debugger;
+        BackOldSize: function () {
             if (this.oldSize) {
                 var obj = $(this.Get('HTMLElement'));
                 var Me = this;
@@ -578,7 +578,7 @@ Agi.Controls.InitPanel = function () {
 }
 //var _Panel;
 //BasicChart 自定义属性面板初始化显示
-Agi.Controls.PanelProrityInit = function (prortityPanel) {debugger;
+Agi.Controls.PanelProrityInit = function (prortityPanel) {
     var _Panel = prortityPanel;
     var Me = this;
     var ThisProItems = [];
@@ -702,7 +702,7 @@ Agi.Controls.PanelProrityInit = function (prortityPanel) {debugger;
     $("#FilterBgColor").css(PanelFilter.FilterBgColor.value).data('colorValue',PanelFilter.FilterBgColor);
     $("#FilterBgColor").unbind().bind("click",function(){
         var oThisSelColorPanel=this;
-        Agi.Controls.ControlColorApply.fEditColor(oThisSelColorPanel,[],true,function(color){debugger;
+        Agi.Controls.ControlColorApply.fEditColor(oThisSelColorPanel,[],true,function(color){
             var BgColorValue=Agi.Controls.ControlColorApply.fBackgroundColorFormat(color);
             PanelFilter.FilterBgColor=color;
             _Panel.Set("PanelFilter",PanelFilter);

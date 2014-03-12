@@ -205,7 +205,7 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             }
             this.chartOptions.chart.renderTo = cp.chart_RenderTo;
             //模拟数据
-            agi.jsloader.script("JS/controls/CustomBoxChart/demo.js")
+            agi.jsloader.script("js/controls/CustomBoxChart/demo.js")
                 .wait(function () {
                     //debugger;
                 });
@@ -469,7 +469,7 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                             type: "scatter",
                                             data: [],
                                             marker: {
-                                                symbol: 'url(JS/Controls/CustomBoxChart/s1.png)'
+                                                symbol: 'url(js/Controls/CustomBoxChart/s1.png)'
                                             }
                                         };
                                         control.chartOptions.series.push(series);
@@ -507,7 +507,7 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                             type: "scatter",
                                             data: [],
                                             marker: {
-                                                symbol: 'url(JS/Controls/CustomBoxChart/s2.png)'
+                                                symbol: 'url(js/Controls/CustomBoxChart/s2.png)'
                                             }
                                         };
                                         control.chartOptions.series.push(series);
@@ -540,7 +540,7 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                             type: "scatter",
                                             data: [],
                                             marker: {
-                                                symbol: 'url(JS/Controls/CustomBoxChart/s3.png)'
+                                                symbol: 'url(js/Controls/CustomBoxChart/s3.png)'
                                             }
                                         };
                                         control.chartOptions.series.push(series);
@@ -598,7 +598,7 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                                             type: "scatter",
                                             data: [],
                                             marker: {
-                                                symbol: 'url(JS/Controls/CustomBoxChart/s4.png)'
+                                                symbol: 'url(js/Controls/CustomBoxChart/s4.png)'
                                             }
                                         };
                                         control.chartOptions.series.push(series);
@@ -1058,6 +1058,8 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             this.Set("PointsParamerters", []); //注册数据点位号保存，点位号集合，结构["11AE84102","11AE84015","11AE84103"]
             var ID = savedId ? savedId : "CustomBoxChart" + Agi.Script.CreateControlGUID();
             var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty selectPanelSty SPCPanelSty'></div>");
+
+            $("<a href='#zoomDiv' role='button' class='btn zoomControl' style='height:17px;position:absolute;z-index:1000000;' data-toggle='modal'>放大</a>").appendTo(HTMLElementPanel);
 
             var PostionValue = { Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
@@ -1519,10 +1521,10 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         //margin:cp.yAxis_Title_Margin,
                         text: cp.yAxis_Title_Text
                     },
-                    min: cp.yAxis_Min,
-                    max: cp.yAxis_Max,
+//                    min: cp.yAxis_Min,
+//                    max: cp.yAxis_Max,
                     gridLineWidth: cp.yAxis_GridLineWidth,
-                    tickInterval: yValue,
+//                    tickInterval: yValue,
                     tickWidth: cp.yAxis_TickWidth,
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.yAxis_TickPosition, labels: {
@@ -1778,17 +1780,17 @@ Agi.Controls.CustomBoxChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             proPerty = null;
             delete this;
         },
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
-                NewSPCSingleChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewSPCSingleChart;
-            }
-        },
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
+//                NewSPCSingleChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewSPCSingleChart;
+//            }
+//        },
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();
@@ -2181,7 +2183,7 @@ Agi.Controls.CustomBoxChartProrityInit = function (_BasicChart) {
         var ItemContent;
 //
         ItemContent = $("<div id='CSChartDataLine'></div>")
-        ItemContent.load('JS/Controls/CustomBoxChart/tabTemplates.html #tab-1', function () {
+        ItemContent.load('js/Controls/CustomBoxChart/tabTemplates.html #tab-1', function () {
             //初始化控件
             $(this).find("#CustomBoxChart_fontColor").spectrum({
                 showInput: true,
@@ -2707,7 +2709,7 @@ Agi.Controls.CustomBoxChartView_dataViewAdv = function (_Panel, _Control) {
     if ($(_Panel).find(".content").length > 0) {
         ItemContentPanel = $(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomBoxChart/tabTemplates.html #tab-6', function () {
+    ItemContentPanel.load('js/Controls/CustomBoxChart/tabTemplates.html #tab-6', function () {
         //初始化
         var cp = control.Get('ChartProperty');
         //
@@ -2854,7 +2856,7 @@ Agi.Controls.CustomBoxChartView_dataViewAdv = function (_Panel, _Control) {
                         type: "scatter",
                         data: [],
                         marker: {
-                            symbol: 'url(JS/Controls/CustomBoxChart/s1.png)'
+                            symbol: 'url(js/Controls/CustomBoxChart/s1.png)'
                         }
                     };
                     control.chartOptions.series.push(series);
@@ -2909,7 +2911,7 @@ Agi.Controls.CustomBoxChartView_dataViewAdv = function (_Panel, _Control) {
                         type: "scatter",
                         data: [],
                         marker: {
-                            symbol: 'url(JS/Controls/CustomBoxChart/s2.png)'
+                            symbol: 'url(js/Controls/CustomBoxChart/s2.png)'
                         }
                     };
                     control.chartOptions.series.push(series);
@@ -2959,7 +2961,7 @@ Agi.Controls.CustomBoxChartView_dataViewAdv = function (_Panel, _Control) {
                         type: "scatter",
                         data: [],
                         marker: {
-                            symbol: 'url(JS/Controls/CustomBoxChart/s3.png)'
+                            symbol: 'url(js/Controls/CustomBoxChart/s3.png)'
                         }
                     };
                     control.chartOptions.series.push(series);
@@ -3051,7 +3053,7 @@ Agi.Controls.CustomBoxChartView_dataViewAdv = function (_Panel, _Control) {
                         type: "scatter",
                         data: [],
                         marker: {
-                            symbol: 'url(JS/Controls/CustomBoxChart/s4.png)'
+                            symbol: 'url(js/Controls/CustomBoxChart/s4.png)'
                         }
                     };
                     control.chartOptions.series.push(series);
@@ -3136,7 +3138,7 @@ Agi.Controls.CustomBoxChartView_dataColumns = function (_Panel, _Control) {
     if ($(_Panel).find(".content").length > 0) {
         ItemContentPanel = $(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomBoxChart/tabTemplates.html #tab-3', function () {
+    ItemContentPanel.load('js/Controls/CustomBoxChart/tabTemplates.html #tab-3', function () {
         //初始化
         var cp = control.Get('ChartProperty');
         var chartEntity = control.Get("Entity")[0];
@@ -3364,7 +3366,7 @@ Agi.Controls.CustomSigChartView_SpecialAlarmMenu = function (_Panel, _Control) {
     if ($(_Panel).find(".content").length > 0) {
         ItemContentPanel = $(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomBoxChart/tabTemplates.html #tab-5', function () {
+    ItemContentPanel.load('js/Controls/CustomBoxChart/tabTemplates.html #tab-5', function () {
         //1.保存规则
         $(this).find('#warnSave').click(function () {
             var warn = {
@@ -3438,7 +3440,7 @@ Agi.Controls.CustomSigChartView_ExtractMenu = function (_Panel, _Control) {
     if ($(_Panel).find(".content").length > 0) {
         ItemContentPanel = $(_Panel).find(".content");
     }
-    ItemContentPanel.load('JS/Controls/CustomBoxChart/tabTemplates.html #tab-7', function () {
+    ItemContentPanel.load('js/Controls/CustomBoxChart/tabTemplates.html #tab-7', function () {
         //0.默认选项隐藏
         $("#CustomBoxChartParCancel").hide();
         $("#CustomBoxChartNewParsTxt").width(0).hide();

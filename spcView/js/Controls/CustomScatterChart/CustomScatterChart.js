@@ -543,6 +543,10 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
             var ID = savedId ? savedId : "CustomScatterChart" + Agi.Script.CreateControlGUID();
             var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty selectPanelSty SPCPanelSty'></div>");
 
+            //20140306 添加放大按钮
+            $("<a href='#zoomDiv' role='button' class='btn zoomControl' style='height:17px;position:absolute;z-index:1000000;' data-toggle='modal'>放大</a>").appendTo(HTMLElementPanel);
+            //end
+
             var PostionValue ={ Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {
@@ -810,6 +814,7 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
                     lineWidth: cp.xAxis_LineWidth,
                     lineColor:cp.xAxis_LineColor,
                     tickColor: cp.Axis_TickColor,
+                    minTickInterval:1,//最小步长
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines,
                     categories:cp.xAxis_categories
@@ -821,6 +826,7 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         tickPositions: cp.xAxis_TickPositions
                     });
                 }
@@ -990,17 +996,17 @@ Agi.Controls.CustomScatterChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic
             proPerty = null;
             delete this;
         },//34.控件删除,销毁
-        Copy: function () {
-            if (layoutManagement.property.type == 1) {
-                var ParentObj = this.shell.Container.parent();
-                var PostionValue = this.Get("Position");
-                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
-                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
-                NewSPCSingleChart.Init(ParentObj, PostionValue);
-                newPanelPositionpars = null;
-                return NewSPCSingleChart;
-            }
-        },//35.控件复制(新建控件)
+//        Copy: function () {
+//            if (layoutManagement.property.type == 1) {
+//                var ParentObj = this.shell.Container.parent();
+//                var PostionValue = this.Get("Position");
+//                var newPanelPositionpars = { Left: parseFloat(PostionValue.Left), Top: parseFloat(PostionValue.Top) }
+//                var NewSPCSingleChart = Agi.Controls.InitSPCSingleChart();
+//                NewSPCSingleChart.Init(ParentObj, PostionValue);
+//                newPanelPositionpars = null;
+//                return NewSPCSingleChart;
+//            }
+//        },//35.控件复制(新建控件)
         PostionChange: function (_Postion) {
             if (_Postion != null && _Postion.Left != null && _Postion.Top != null && _Postion.Right != null && _Postion.Bottom != null) {
                 var ParentObj = $(this.Get("HTMLElement")).parent();

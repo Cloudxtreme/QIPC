@@ -1,0 +1,83 @@
+.MainSty {
+    width: 100%;
+    height: 350px;
+    border: solid 1px #dcdcdc;
+}
+
+.Menusty {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.txtstyClass {
+    width: 50px;
+}
+
+.Line_V_DragMenuPanelSty {
+    position: absolute;
+}
+
+.Line_V_DragMenuleftSty {
+    width: 14px;
+    border-right: dashed 2px red;
+}
+
+.Line_H_DragMenuleftSty {
+    height: 14px;
+    line-height: 14px;
+    border-bottom: dashed 2px red;
+    float: left;
+}
+
+.Line_V_DragMenuSty {
+    width: 30px;
+    height: 30px;
+    background-image: url(Images/Line_DragMenu.png);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    cursor:pointer;
+}
+
+.Line_H_DragMenuPanelSty {
+    position: absolute;
+}
+
+.Line_H_DragMenuSty {
+    width: 30px;
+    height: 30px;
+    background-image: url(Images/Line_DragMenu.png);
+    float: right;
+    cursor:pointer;
+}
+
+.clearfloat {
+    clear: both;
+}
+/*动画加载图标样式*/
+.BigChartLoadingPanel{
+    width:150px;
+    line-height:40px;
+    height: 40px;
+    padding:5px;
+    border:solid 1px #dcdcdc;
+    border-radius:5px;
+    background-color:#efefef;
+    position:absolute;
+    display:none;
+}
+.BigChartLoadingTitle{
+    width:150px;
+    line-height:20px;
+    height:20px;
+    font-family:'微软雅黑 宋体 arial';
+    font-size:9px;
+}
+.BIgChartLoadingImgPanel{
+    width:136px;
+    height:10px;
+    line-height:10px;
+    background-image:url("Images/chartloading.gif");
+    margin-left:7px;
+}

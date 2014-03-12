@@ -941,6 +941,7 @@ Agi.Controls.CustomCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     tickPixelInterval: cp.xAxis_TickPixelInterval,
                     reversed: cp.xAxis_Reversed,
                     lineWidth: cp.xAxis_LineWidth,
+                    minTickInterval:1,//最小步长
                     tickColor: cp.Axis_TickColor,
                     tickPosition: cp.xAxis_TickPosition,
                     plotLines: cp.xAxis_PlotLines
@@ -951,6 +952,7 @@ Agi.Controls.CustomCChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                         linkedTo: cp.xAxis_LinkedTo,
                         opposite: cp.xAxis_Opposite,
                         tickWidth: cp.xAxis_TickWidth2,
+                        minTickInterval:1,//最小步长
                         //tickInterval: cp.xAxis_TickInterval2,
                         tickPositions: cp.xAxis_TickPositions,
                         labels: {
@@ -2341,6 +2343,11 @@ Agi.Controls.CustomCChartView_SigmaMenu=function(_Panel,_Control){
         //3.判断当前控件有没有应用规则，进行绑定
         if(THisChartSigmaRules==null){
             THisChartSigmaRules=[];
+			//20140303 倪飘 8项判异规则的默认颜色更改为红色
+			$('#Kcolor1').spectrum("set",'#f00');
+			$('#Kcolor2').spectrum("set",'#f00');
+			$('#Kcolor3').spectrum("set",'#f00');
+			$('#Kcolor4').spectrum("set",'#f00');
         }
         if(THisChartSigmaRules!=null && THisChartSigmaRules.length>0){
             for(var i=1;i<=THisChartSigmaRules.length;i++){

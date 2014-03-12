@@ -188,6 +188,36 @@ Agi.DataAccessLayer.DataManage = function () {
                     "message":"获取数据成功"
                 }
                 objcet.CallBackFunction(TestData);
+			
+			//20140308 Call_qpcPageLoad方法测试
+//			if(objcet.MethodName == "Call_qpcPageLoad"){
+//				//WebService_Jurisdiction.js.Call_qpcPageLoad方法回调测试
+//				var TestData={
+//					 "result":"true/false",
+//					 "message":"成功/失败",
+//					"showTopButton":
+//						[{"items":"database_plus","state":"1"},
+//							{"items":"virtual","state":"1"},
+//							{"items":"dataset","state":"1"},
+//							{"items":"dashboardspc","state":"1"}],
+//					"showLeftButton":
+//						[{"items":"DrawerMenu_Group","state":"1"},
+//							{"items":"DrawerMenu_ReAndR","state":"1"},
+//							{"items":"AddVTManage","state":"1"},
+//							{"items":"DrawerMenu_MyDataSets","state":"1"},
+//							{"items":"DrawerMenu_PageManage","state":"1"},
+//							{"items":"DrawerMenu_ResourceManage","state":"1"}],
+//					"showRightButton":
+//						[{"items":"MainDatasourceDiv","state":"1"},
+//							{"items":"MainVirtualtableDiv","state":"1"},
+//							{"items":"MainDatasetsDiv","state":"1"},
+//							{"items":"MainSPCPageDiv","state":"1"},
+//							{"items":"MainSourceDiv","state":"1"}],
+//					"showEditPagLeftButton":
+//						[{"items":"EpDrawerMenu_RealTimeDataSource","state":"1"},
+//							{"items":"EpDrawerMenu_Dataset","state":"1"}]
+//					};
+//				objcet.CallBackFunction(TestData);
             }else{
                 $.ajax({
                     type: "POST",
@@ -248,3 +278,44 @@ Agi.DataAccessLayer.DataManage = function () {
 
 Agi.DAL = new Agi.DataAccessLayer.DataManage();
 
+Namespace.register("Agi.RightsManagement");
+Agi.RightsManagement.UserRights=function(){
+    //用户登录信息
+    this.UserInfo={
+        card:"",
+        sessionid:""
+    }
+    //用户登录信息初始化
+    this.Init=function(){
+        this.UserInfo.card=GetUrlParas("card");
+        this.UserInfo.sessionid=GetUrlParas("ssid");
+        //存入cookie
+        document.cookie="card="+escape(this.UserInfo.card);
+        document.cookie="sessionId="+escape(this.UserInfo.sessionid);
+    }
+    //获取cookie中参数
+    this.getCookie=function(cookieName){
+        var cookieContent = '';
+        var cookieAry = document.cookie.split(";");//得到Cookie数组
+        for(var i=0;i<cookieAry.length;i++){
+            var temp = cookieAry[i].split("=");
+            if(temp[0] == cookieName){
+                cookieContent = unescape(temp[1]);
+            }
+        }
+        return cookieContent;
+    }
+    //获取url参数
+    this.GetUrlParas=function(param) {
+        var query = window.location.search;
+        var iLen = param.length;
+        var iStart = query.indexOf(param);
+        if (iStart == -1)
+            return "";
+        iStart += iLen + 1;
+        var iEnd = query.indexOf("&", iStart);
+        if (iEnd == -1)
+            return query.substring(iStart);
+        return decodeURI(query.substring(iStart, iEnd));
+    }
+}

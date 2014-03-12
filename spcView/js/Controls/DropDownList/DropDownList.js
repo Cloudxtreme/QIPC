@@ -93,9 +93,14 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 }
                 menu.html("");
                 Tnum=1;
+                var TextFieldValue="";
                 for(var s=0;s<data.length;s++)
                 {
-                    $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+data[s][textField.trim()]+'</a></li>').appendTo(menu);
+                    TextFieldValue=data[s][textField.trim()];
+                    if(TextFieldValue!=null && TextFieldValue!=""){}else{
+                        TextFieldValue="全部";
+                    }
+                    $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+TextFieldValue+'</a></li>').appendTo(menu);
                     Tnum++;
                 }
                 if(Tnum>20)
@@ -138,10 +143,15 @@ Agi.Controls.DropDownList = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                     //if(event.keyCode!=32){return;}
                     menu.html("");
                     Tnum=1;
+                    var TextFieldValue="";
                     for(var s=0;s<data.length;s++)
                     {
+                        TextFieldValue=data[s][textField.trim()];
+                        if(TextFieldValue!=null && TextFieldValue!=""){}else{
+                            TextFieldValue="全部";
+                        }
                         if($("#HiddenText"+self.shell.BasicID).val()!=""&&String(data[s][textField.trim()]).indexOf($("#HiddenText"+self.shell.BasicID).val().trim())<0){continue;}
-                        $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+data[s][textField.trim()]+'</a></li>').appendTo(menu);
+                        $('<li data-value="'+data[s][valueField.trim()]+'"><a tabindex="-1" href="#">'+TextFieldValue+'</a></li>').appendTo(menu);
                         Tnum++;
                     }
                     if(Tnum>20)
@@ -695,7 +705,7 @@ Agi.Controls.DropDownListAttributeChange = function (_ControlObj, Key, _Value) {
             {
                 //var data = _ControlObj.Get('data');
                 var data = self.selectedValue;
-                if (data.value) {
+                if (data.value!=null) {
                     //alert('您选择了:'+data.selectedValue.value +'\n'+ data.selectedValue.text);
 
                     var ThisProPerty = _ControlObj.Get("ProPerty");
@@ -780,9 +790,13 @@ Agi.Controls.DropDownListAttributeChange = function (_ControlObj, Key, _Value) {
                 if (BasicProperty.selectValueField == undefined) {
                     BasicProperty.selectValueField = valueField;
                 }
-
+                var TextFieldValue="";
                 $(data).each(function (i, dd) {
-                    $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + dd[textField.trim()] + '</a></li>').appendTo(menu);
+                    TextFieldValue=dd[textField.trim()];
+                    if(TextFieldValue!=null && TextFieldValue!=""){}else{
+                        TextFieldValue="全部";
+                    }
+                    $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + TextFieldValue + '</a></li>').appendTo(menu);
                 });
 
                 // 计算高度  2013-02-26  coke
@@ -860,8 +874,13 @@ Agi.Controls.DropDownListAttributeChange = function (_ControlObj, Key, _Value) {
             BasicProperty.selectValueField = valueField;
         }
 
+        var TextFieldValue="";
         $(data).each(function (i, dd) {
-            $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + dd[textField.trim()] + '</a></li>').appendTo(menu);
+            TextFieldValue=dd[textField.trim()];
+            if(TextFieldValue!=null && TextFieldValue!=""){}else{
+                TextFieldValue="全部";
+            }
+            $('<li data-value="' + dd[valueField.trim()] + '"><a tabindex="-1" href="#">' + TextFieldValue + '</a></li>').appendTo(menu);
         });
         // 计算高度  2013-02-26  coke
         var menuheight=$UI.find('.dropdown-menu').height();

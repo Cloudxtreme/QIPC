@@ -24,10 +24,22 @@
                     <td class="CustomprortityPanelTabletd1"><input type="text" id="CustSigChartmarkerColor"/></td>
             </tr>
             <tr>
+                <td class="CustomprortityPanelTabletd0">分组模式:</td>
+                <td class="CustomprortityPanelTabletd1" colspan="3"> <select id="CustSigChartGrpType" class="input-mini"><option selected="selected" value="0">单列分组</option><option value="1">多列分组</option></select></td>
+            </tr>
+            <tr id="CustSigChartGrpType0">
                     <td class="CustomprortityPanelTabletd0">分组列:</td>
                     <td class="CustomprortityPanelTabletd1"> <select id="CustSigChartGrpColumn" class="input-mini"></select></td>
                     <td class="CustomprortityPanelTabletd0">数据列:</td>
                     <td class="CustomprortityPanelTabletd1"> <select id="CustSigChartDataColumn" class="input-mini"></select></td>
+            </tr>
+            <tr id="CustSigChartGrpType1" style="display: none;">
+                <td class="CustomprortityPanelTabletd0">分组列:</td>
+                <td class="CustomprortityPanelTabletd1" colspan="3">
+                    <div id="CustSigChartMultGrpColumn" style="width:100%;height: auto;">
+
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
@@ -99,19 +111,19 @@
                 <td class="CustomprortityPanelTabletd0">1</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="1" style="margin-top:-4px;width:auto;"/> 一个点，距离中心线大于K个标准差</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K1" value="3" min="1" max="6"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor1" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor1" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">2</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="2" style="margin-top:-4px;width:auto;"/>连续K点在中心线同一侧</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K2" value="9" min="7" max="11"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor2" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor2" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">3</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="3" style="margin-top:-4px;width:auto;"/>连续K个点，全部递增或全部递减</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K3" value="6" min="5" max="8"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor3" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor3" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">4</td>
@@ -123,25 +135,25 @@
                 <td class="CustomprortityPanelTabletd0">5</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="5" style="margin-top:-4px;width:auto;"/>K+1个点中有K个点，距离中心线（同侧）大于2个标准差</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K5" value="2" min="2" max="4"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="color5" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor5" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">6</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="6" style="margin-top:-4px;width:auto;"/>K+1个点中有K个点，距离中心线（同侧）大于1个标准差</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K6" value="4" min="3" max="6"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor6" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor6" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">7</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="7" style="margin-top:-4px;width:auto;"/>连续K个点，距离中心线（任一侧）1个标准差内</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K7" value="15" min="12" max="15"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor7" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor7" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
             <tr>
                 <td class="CustomprortityPanelTabletd0">8</td>
                 <td class="CustomprortityPanelTabletd1"><input type="checkbox" name="ruleNum" value="8" style="margin-top:-4px;width:auto;"/>连续K个点，距离中心线（任一侧）大于1个标准差</td>
                 <td class="CustomprortityPanelTabletd0"><input type="number" style="width: 40px" id="K8"  value="8" min="6" max="10"/></td>
-                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor8" class="SigmaRulColor"/></td>
+                <td class="CustomprortityPanelTabletd1"><input type="text" id="Kcolor8" class="SigmaRulColor" value="#ff0000"/></td>
             </tr>
         </table>
     </div>

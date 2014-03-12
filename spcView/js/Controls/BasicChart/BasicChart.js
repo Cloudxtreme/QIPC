@@ -510,6 +510,7 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             legend: ChartOptions.legend,
             title: ChartOptions.title,
             xAxis: ChartOptions.xAxis,
+            xTypes:ChartOptions.xTypes,//2014-03-06  步长类型 coke
             yAxis: ChartOptions.yAxis,
             tooltip: ChartOptions.tooltip,
             plotOptions: ChartOptions.plotOptions,
@@ -539,9 +540,20 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 Me.Set("Position", Me.Get("Position"));
             }
         }
+        //region 20140208 11:08 根据数量设定X轴显示的lable 步长
+        //2014-02-18  coke 设置x轴步长
+        if(ChartInitOption.xTypes=="none"||ChartInitOption.xTypes==undefined){
+            //自适应步长值
+            Agi.Controls.BasicChart.SetxAsixTickInterval(ChartInitOption);
+        }else if(ChartInitOption.xTypes=="set"){
+            if(ChartInitOption.xAxis.tickInterval==undefined)
+            {
+                ChartInitOption.xAxis.tickInterval=0;//默认值
+            }
+        }
 
         //region 20140208 11:08 根据数量设定X轴显示的lable 步长
-        Agi.Controls.BasicChart.SetxAsixTickInterval(ChartInitOption);
+        //Agi.Controls.BasicChart.SetxAsixTickInterval(ChartInitOption);
         //endregion
 
         var BaseControlObj = new Highcharts.Chart(ChartInitOption);
@@ -3197,7 +3209,6 @@ Agi.Controls.BasicChart.SetxAsixTickInterval=function(_ChartOption){
             }
         }
         if(MaxNum>0){
-
             if(MaxNum>20){
                 _ChartOption.xAxis.tickInterval=parseInt(MaxNum/20)+1;
             }else{

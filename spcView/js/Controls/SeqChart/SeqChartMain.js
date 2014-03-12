@@ -108,6 +108,10 @@ Agi.Controls.SeqChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             var ID = savedId ? savedId : "CustomSingleChart" + Agi.Script.CreateControlGUID();
             var HTMLElementPanel = $("<div recivedata='true' id='Panel_" + ID + "' class='PanelSty selectPanelSty SPCPanelSty'></div>");
 
+            //20140306 添加放大按钮
+            $("<a href='#zoomDiv' role='button' class='btn zoomControl' style='height:17px;position:absolute;z-index:1000000;' data-toggle='modal'>放大</a>").appendTo(HTMLElementPanel);
+            //end
+
             var PostionValue ={ Left: 0, Top: 0, Right: 0, Bottom: 0 };
             var obj = null;
             if (typeof (_Target) == "string") {

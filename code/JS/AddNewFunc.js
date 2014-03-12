@@ -6037,7 +6037,9 @@ function selectLak(_pageName) {//版本名称显示在下拉框中
 
     }
     Agi.DCManager.VSGetversionsBypageName(pagenamestr, IsNewSPCPage, function (_result) {
-        //alert("下拉框判断"+_result.result)
+        //20140308 13:58 编辑一个页面时，默认的页面Group分组选择目录不可用
+        $("#PageSaveToGroup").hide();
+
         if (_result.result == "true") {
             var arry = _result.data;
             //alert(arry.length);

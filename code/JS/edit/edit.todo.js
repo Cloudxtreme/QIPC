@@ -209,6 +209,10 @@ $(function () {
                          }
                          });
                          }, oldValue, newValue));*/
+                        
+                        /**[SGAI MARKER][20140303]START*/
+                        associateControlWithQueryArea(Agi.Edit.workspace.currentControls,false);
+                        /**[SGAI MARKER][20140303]END*/
                         //end drag
                     }
                 })
@@ -242,6 +246,10 @@ $(function () {
                          }, oldValue, newValue
                          ));*/
                         //endregion
+                        
+                        /**[SGAI MARKER][20140303]START*/
+                        associateControlWithQueryArea(Agi.Edit.workspace.currentControls,false);
+                        /**[SGAI MARKER][20140303]END*/
                     },
                     resize:function (event, ui) {
                         //$(window).resize();//这段代码会导致实时chart在缩放后报一个错误

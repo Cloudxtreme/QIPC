@@ -259,12 +259,14 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
         }
 
         // 2014-02-19  coke  删除实体默认值步长
-       var ChartOptions=Me.Get("ChartOptions");
-        ChartOptions.xAxis.tickInterval=1;//默认值
-        Me.Set("ChartOptions",ChartOptions);
-        $("#basicChart_XAxisTickInterval").val(ChartOptions.xAxis.tickInterval);//设置x轴步长
-
-        Me.RefreshStandLines(); //更新基准线显示
+          var ChartOptions=Me.Get("ChartOptions");
+            ChartOptions.xTypes="none";
+            ChartOptions.xAxis.tickInterval=0;//默认值
+            Me.Set("ChartOptions",ChartOptions);
+            $("#basicChart_XAxisTickInterval").val(ChartOptions.xAxis.tickInterval);//设置x轴步长
+            $("#basicChart_XAxisTickType").find("option[value='"+ChartOptions.xTypes+"']").attr("selected","selected");//设置x轴步长
+            document.getElementById("basicChart_XAxisTickInterval").disabled=true;
+           Me.RefreshStandLines(); //更新基准线显示
 
     }, //移除实体Entity
     ParameterChange: function (_ParameterInfo) {
@@ -528,6 +530,7 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
             legend: ChartOptions.legend,
             title: ChartOptions.title,
             xAxis: ChartOptions.xAxis,
+            xTypes:ChartOptions.xTypes,//2014-03-06  步长类型 coke
             yAxis: ChartOptions.yAxis,
             tooltip: ChartOptions.tooltip,
             plotOptions: ChartOptions.plotOptions,
@@ -557,13 +560,19 @@ Agi.Controls.BasicChart = Agi.OOP.Class.Create(Agi.Controls.ControlBasic,
                 Me.Set("Position", Me.Get("Position"));
             }
         }
-
+   debugger;
         //region 20140208 11:08 根据数量设定X轴显示的lable 步长
         //2014-02-18  coke 设置x轴步长
-        if( ChartInitOption.xAxis.tickInterval==undefined){
-            ChartInitOption.xAxis.tickInterval=1;//默认值
+        if(ChartInitOption.xTypes=="none"||ChartInitOption.xTypes==undefined){
+            //自适应步长值
+            Agi.Controls.BasicChart.SetxAsixTickInterval(ChartInitOption);
+        }else if(ChartInitOption.xTypes=="set"){
+            if(ChartInitOption.xAxis.tickInterval==undefined)
+            {
+                ChartInitOption.xAxis.tickInterval=0;//默认值
+            }
         }
-        //Agi.Controls.BasicChart.SetxAsixTickInterval(ChartInitOption);
+        //
         //endregion
 
         var BaseControlObj = new Highcharts.Chart(ChartInitOption);
@@ -1574,8 +1583,15 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
     //2014-02-18 coke  设置x轴步长tickInterval
 
     ItemContent.append("<tr>");
-    ItemContent.append("<td class='prortityPanelTabletd0'>设置X轴步长：</td><td class='prortityPanelTabletd' colspan='3'>" +
-        "<input id='basicChart_XAxisTickInterval' type='number' value='1' defaultvalue='1' min='1' max='20' class='ControlProNumberSty'/>"+
+
+
+    ItemContent.append("<td class='prortityPanelTabletd0'>步长类型：</td><td class='prortityPanelTabletd' colspan=''>" +
+        "<select id='basicChart_XAxisTickType' class='BasicChart_XTimeLableFormatrsty'>" +
+        "<option selected='selected' value='none'>自适应</option>" +
+        "<option value='set'>设置固定值</option>" +
+        "</select></td>");
+    ItemContent.append("<td class='prortityPanelTabletd0'>设置X轴步长：</td><td class='prortityPanelTabletd' colspan=''>" +
+        "<input id='basicChart_XAxisTickInterval' type='number' value='0' defaultvalue='0' min='0'  max='10000' class='ControlProNumberSty' disabled='true'/>"+
         "</td>");
     ItemContent.append("</tr>");
 
@@ -1667,6 +1683,19 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
 
     Agi.Controls.Property.PropertyPanelControl.InitPanel(ThisProItems);
     //endregion
+
+
+//2014-03-06  coke 设置步长类型
+    $("#basicChart_XAxisTickType").unbind().bind("change",function(){
+     if($("#basicChart_XAxisTickType").val()=="none")
+     {
+         document.getElementById("basicChart_XAxisTickInterval").disabled=true;
+     }else{
+         document.getElementById("basicChart_XAxisTickInterval").disabled=false;
+     }
+    });
+
+
 
     //region 6.属性禁用、启用处理
     Agi.Controls.Property.PropertyPanelControl.DisabledChanged=function(_item){
@@ -1849,6 +1878,16 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
     if(_ChartOptions.xAxis.tickInterval!=null){
         $("#basicChart_XAxisTickInterval").val(_ChartOptions.xAxis.tickInterval);//设置x轴步长
     }
+    if(_ChartOptions.xTypes!=null){
+        //步长类型
+        $("#basicChart_XAxisTickType").find("option[value='"+_ChartOptions.xTypes+"']").attr("selected","selected");
+        if(_ChartOptions.xTypes=="none")
+        {
+            document.getElementById("basicChart_XAxisTickInterval").disabled=true;
+        }else if(_ChartOptions.xTypes=="set"){
+            document.getElementById("basicChart_XAxisTickInterval").disabled=false;
+        }
+    }
     if(_ChartOptions.xAxis.tickLength!=null){
         $("#basicChart_XAxisLineTicklength").val(_ChartOptions.xAxis.tickLength);//刻度长度
     }
@@ -1936,6 +1975,7 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
     });
     /*7.8 XAsix 设置保存*/
     $("#basicChart_XAxisSave").unbind().bind("click",function(ev){
+       debugger;
         var XAsixObj={
             XAsixIsEnable:$("#BasicChartXAxis").val(),//是否启用
             XAsixfontfamily:$("#basicChart_XAxisFontSty").val(),//字体样式
@@ -1944,6 +1984,7 @@ Agi.Controls.BasicChartProrityInit=function(_BasicChart){
             XAsixfontcolor:Agi.Controls.ControlColorApply.fColorControlValueGet("basicChart_XAxisFontColor"),//字体颜色
             XAsixLinesieze:parseInt($("#basicChart_XAxisLineSize").val()),//线条大小
             XAsixTickInterval:parseInt($("#basicChart_XAxisTickInterval").val()),//设置x轴步长
+            XTypes:$("#basicChart_XAxisTickType").val(),//设置x轴步长类型
             XAsixLinecolor:Agi.Controls.ControlColorApply.fColorControlValueGet("basicChart_XAxisLineColor"),//线条颜色
             XAsixtickLength:parseInt($("#basicChart_XAxisLineTicklength").val()),//刻度长度
             XAsixtickWidth:parseInt($("#basicChart_XAxisLineTickWidth").val()),//刻度宽度
@@ -2990,6 +3031,8 @@ Agi.Controls.BasicChart.XAsixApply=function(_ControlObj,_XAsixObj){
 
         //2014-02-18  coke 设置x轴步长
         _ChartOptions.xAxis.tickInterval=_XAsixObj.XAsixTickInterval;//设置x轴步长
+        //2014-03-06  coke 设置x轴步长类型
+        _ChartOptions.xTypes=_XAsixObj.XTypes;//设置x轴步长类型
 
         var XFormatAppMsg=Agi.Controls.BasicChart.XAsixTimeFormat(_ControlObj,_XAsixObj.XTimeFormat);
         if(XFormatAppMsg.State){
